@@ -155,3 +155,4 @@ Thumbs.db #thumbnail cache on Windows
 .prof
 
 static_in_env/
+.env
