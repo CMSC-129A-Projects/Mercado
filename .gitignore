@@ -116,7 +116,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-# .env
+.env
 .env/
 .venv/
 env/
@@ -155,4 +155,3 @@ Thumbs.db #thumbnail cache on Windows
 .prof
 
 static_in_env/
-.env
