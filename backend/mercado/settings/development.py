@@ -7,8 +7,12 @@ MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / config('DATABASE_NAME'),
+        'ENGINE': config('DATABASE_ENGINE'),
+        'NAME': config('DATABASE_NAME'),
+        'USER': config('USER'),
+        'PASSWORD': '',
+        'HOST': config('HOST'),
+        'PORT': config('PORT'),
     }
 }
 
