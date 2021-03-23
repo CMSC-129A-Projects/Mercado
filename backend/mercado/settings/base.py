@@ -77,6 +77,6 @@ STATIC_ROOT = VENV_PATH / 'static_root'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = VENV_PATH / 'media'
 
-# CORS_ALLOWED_ORIGINS = [
-#     'http://127.0.0.1:8000/',
-# ]
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
