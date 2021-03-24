@@ -18,8 +18,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'djoser',
+    'phonenumber_field',
     'core',
     'frontend',
+    'accounts',
 ]
 
 MIDDLEWARE = [ 
@@ -79,10 +82,13 @@ MEDIA_ROOT = VENV_PATH / 'media'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ]
 }
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
+
+PHONENUMBER_DB_FORMAT = 'NATIONAL'
+PHONENUMBER_DEFAULT_REGION = 'PH'
