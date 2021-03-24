@@ -1,35 +1,44 @@
 import React, { Component } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
+import Img from '../images/logo.png'
 
 export default class SignUp extends Component {
     render() {
         return (
             <Container>
+                <div class="row justify-content-center">
+                    <img src = {Img} alt = "logo" />
+                </div>
             <form>
-                <h3>Register</h3>
-
+                <Row>
+                <Col>
                 <div className="form-group">
-                    <label>First name</label>
-                    <input type="text" className="form-control" placeholder="First name" />
-                </div>
-
-                <div className="form-group">
-                    <label>Last name</label>
-                    <input type="text" className="form-control" placeholder="Last name" />
-                </div>
-
-                <div className="form-group">
-                    <label>Email</label>
-                    <input type="email" className="form-control" placeholder="Enter email" />
+                    <label>Phone Number</label>
+                    <input type="phone number" className="form-control" />
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" />
+                    <input type="password" className="form-control" />
+                </div>
+                </Col>
+                <Col>
+                <div className="form-group">
+                    <label>First name</label>
+                    <input type="text" className="form-control" />
                 </div>
 
-                <button type="submit" className="btn btn-dark btn-lg btn-block">Register</button>
-                <p className="forgot-password text-right">
+                <div className="form-group">
+                    <label>Last name</label>
+                    <input type="text" className="form-control" />
+                </div>
+                </Col>
+                </Row>
+                
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </div>
+                <p className="forgot-password text-center">
                     Already registered <a href="#">log in?</a>
                 </p>
             </form>
