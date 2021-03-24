@@ -3,31 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {
-  Route, 
-  BrowserRouter as Router, 
-  Switch
+import { 
+  BrowserRouter 
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Header from './components/Header';
-import Footer from './components/Footer';
-
-const routing = (
-  <Router>
-    <React.StrictMode>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={App} />
-      </Switch>
-      <Footer />
-    </React.StrictMode>
-  </Router>
-)
-
 ReactDOM.render(
-  routing,
-  document.getElementById('root'),
+  <BrowserRouter>
+      <App />
+  </BrowserRouter>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,18 +1,22 @@
+import React from 'react';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+
+import SignUp from "./components/SignUp";
 
 function App() {
-  return (
+  return (<Router>
     <div className="App">
-      <header className="App-header">
-        <a
-          href={"https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Please click me.
-        </a>
-      </header>
-    </div>
+      <div className="outer">
+        <div className="inner">
+          <Switch>
+            <Route exact path='/' component={SignUp} />
+            <Route path="/sign-up" component={SignUp} />
+          </Switch>
+        </div>
+      </div>
+    </div></Router>
   );
 }
 
