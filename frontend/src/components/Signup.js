@@ -1,9 +1,13 @@
 import React from "react";
 import { Container, Form, InputGroup, Button } from "react-bootstrap";
+import { useHistory } from "react-router";
 import Img from '../images/logo.png'
 
-function SignUpPage() {
-    const [state, setState] = React.useState({
+export default function Signup() {
+    const history = useHistory();
+
+    // Object.freeze() prevents data changes after committing 
+    const initialFormData = Object.freeze({
         phone_number: '',
         first_name: '',
         last_name: '',
@@ -11,13 +15,37 @@ function SignUpPage() {
         re_password: '',
     });
 
-    function handleChange(e) {
-        setState({ ...state, [e.target.name]: e.target.value });
-    }
+    const [formData, updateFormData] = useState(initialFormData);
 
-    function onSubmit(e) {
-        
-    }
+    const handleChange = (e) => {
+        updateFormData({
+            ...formData,
+            // trim() Trims any whitespaces 
+            [e.target.name]: e.target.value.trim(),
+        });
+    };
+
+    const handlePhoneFieldChange = (e) => {
+        const re = /^[0-9\b]+$/;
+
+        // If value is not blank, test using regex
+        if (e.target.value === '' || re.test(e.target.value)) {
+            updateFormData({
+                ...formData,
+                // trim() Trims any whitespaces 
+                [e.target.name]: e.target.value.trim(),
+            });
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData);
+
+        axiosInstance.post(`api/user/register/`, {
+            
+        })
+    };
 
     return (
         <Container>
@@ -34,7 +62,7 @@ function SignUpPage() {
                             required={true}
                             maxLength="10"
                             value={state.phone_number}
-                            onChange={handleChange}
+                            onChange={handlePhoneFieldChange}
                             type="text" 
                             id="phoneNumber" 
                             name="phone_number"
@@ -102,5 +130,3 @@ function SignUpPage() {
         </Container>
     );
 }
-
-export default SignUpPage;

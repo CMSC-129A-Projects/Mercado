@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Container, Form, InputGroup, Button } from "react-bootstrap";
 
-function LoginPage() {
+function Login() {
     const [state, setState] = React.useState({
         phone_number: '',
         password: '',
@@ -12,7 +12,7 @@ function LoginPage() {
     function handlePhoneFieldChange(e) {
         const re = /^[0-9\b]+$/;
 
-        // if value is not blank, then test the regex
+        // If value is not blank, test using regex
         if (e.target.value === '' || re.test(e.target.value)) {
             setState({ ...state, [e.target.name]: e.target.value })
         }
@@ -71,4 +71,4 @@ function LoginPage() {
     );
 }
 
-export default LoginPage;
+export default Login;
