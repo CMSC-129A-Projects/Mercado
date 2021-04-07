@@ -42,7 +42,9 @@ export default function Signup() {
         e.preventDefault();
         console.log(formData);
 
-        axiosInstance.post(`api/user/register/`, {
+        axiosInstance.post(`users/register/`, {
+            phone_number: formData.phone_number,
+            first_name: formData.first_name,
             
         })
     };
