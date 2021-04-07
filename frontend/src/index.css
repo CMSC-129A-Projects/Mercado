@@ -6,8 +6,6 @@ body {
   min-height: 100vh;
   display: flex;
   font-weight: 100;
-  font-family: "Times New Roman", Times, serif;
-  background: #12c2e9;  /* fallback for old browsers */
 }
 
 body, html, .App, #root, .outer {
