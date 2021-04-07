@@ -4,6 +4,7 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 
 function App() {
   return (<Router>

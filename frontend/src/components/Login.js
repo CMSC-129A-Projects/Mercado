@@ -10,7 +10,6 @@ export default class Login extends Component {
             <img src = {Img} alt = "logo" />
         </div>
       <form>
-        <h4>Log in</h4>
         <div className="form-group">
             <label>Phone Number</label>
             <input type="Phone Number" className="form-control" />
