@@ -1,20 +1,24 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
+import Img from '../images/logo.png'
 
 export default class Login extends Component {
   render() {
     return (
       <Container>
+        <div class="row justify-content-center">
+            <img src = {Img} alt = "logo" />
+        </div>
       <form>
-        <h3>Log in</h3>
+        <h4>Log in</h4>
         <div className="form-group">
-            <label>Email</label>
-            <input type="email" className="form-control" placeholder="Enter email" />
+            <label>Phone Number</label>
+            <input type="Phone Number" className="form-control" />
         </div>
 
         <div className="form-group">
             <label>Password</label>
-            <input type="password" className="form-control" placeholder="Enter password" />
+            <input type="password" className="form-control" />
         </div>
 
         <div className="form-group">
