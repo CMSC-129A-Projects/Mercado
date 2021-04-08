@@ -1,5 +1,3 @@
-node_modules
-
 ### Django ###
 *.log
 *.pot
@@ -126,6 +124,8 @@ env.bak/
 venv.bak/
 pythonenv*
 
+static_in_env/
+
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -153,5 +153,3 @@ Thumbs.db #thumbnail cache on Windows
 
 # profiling data
 .prof
-
-static_in_env/

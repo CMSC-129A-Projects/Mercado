@@ -1,13 +1,48 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  min-height: 100vh;
+  display: flex;
+  font-weight: 100;
+  font-family: "Times New Roman", Times, serif;
+  background: #12c2e9;  /* fallback for old browsers */
+  background-image: url(./images/bg.gif);
+}
+
+body, html, .App, #root, .outer {
+  width: 100%;
+  height: 100%;
+}
+
+.outer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+.inner {
+  height: 600px;
+  width: 550px;
+  margin: auto;
+  background: #ffffff;
+  padding: 20px 55px 20px 55px;
+  border-radius: 15px;
+  transition: all .3s;
+  font-size: 13px;
+}
+
+.forgot-password,
+.forgot-password a {
+  text-align: right;
+  font-size: 13px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+}
+
+.forgot-password a {
+  color: #167bff;
 }

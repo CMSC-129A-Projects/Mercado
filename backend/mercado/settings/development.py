@@ -7,8 +7,12 @@ MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / config('DATABASE_NAME'),
+        'ENGINE': config('DATABASE_ENGINE'),
+        'NAME': config('DATABASE_NAME'),
+        'USER': config('USER'),
+        'PASSWORD': '',
+        'HOST': config('HOST'),
+        'PORT': config('PORT'),
     }
 }
 
@@ -38,3 +42,10 @@ DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REFIRECT': False,
     'SHOW_TOOLBAR_CALLBACK': show_toolbar,
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'luffymanzanares101@gmail.com'
+EMAIL_HOST_PASSWORD = 'exjjznhayzmnewoq'
+EMAIL_USE_TLS = True
