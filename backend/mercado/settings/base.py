@@ -21,7 +21,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'djoser',
     'core',
-    'frontend',
     'accounts',
 ]
 
@@ -41,7 +40,7 @@ ROOT_URLCONF = 'mercado.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '../frontend')],
+        'DIRS': [os.path.join(BASE_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,7 +73,7 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, '../frontend/build/static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build/static')]
 VENV_PATH = BASE_DIR
 STATIC_ROOT = VENV_PATH / 'static_root'
 MEDIA_URL = '/media/'
@@ -99,6 +98,8 @@ AUTH_USER_MODEL = 'accounts.User'
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 
 # Djoser settings
