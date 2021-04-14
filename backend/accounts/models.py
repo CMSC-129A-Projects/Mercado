@@ -8,30 +8,30 @@ from django.conf import settings
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
-    def _create_user(self, phone_number, password, **extra_fields):
+    def _create_user(self, email, password, **extra_fields):
         """
         Creates and save a User with the phone_number and password
         """
-        if not phone_number:
-            raise ValueError("Phone number is not set.")
+        if not email:
+            raise ValueError("Email is not set.")
 
-        user = self.model(phone_number=phone_number, **extra_fields)
+        user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
 
         return user
 
-    def create_user(self, phone_number, password=None, **extra_fields):
+    def create_user(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_superuser', False)
-        return self._create_user(phone_number, password, **extra_fields)
+        return self._create_user(email, password, **extra_fields)
     
-    def create_superuser(self, phone_number, password=None, **extra_fields):
+    def create_superuser(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_superuser', True)
 
         if extra_fields.get('is_superuser') is not True:
             raise ValueError("is_superuser is set to False.")
 
-        return self._create_user(phone_number, password, **extra_fields)
+        return self._create_user(email, password, **extra_fields)
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -46,8 +46,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
     
-    USERNAME_FIELD = 'phone_number'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['phone_number', 'first_name', 'last_name']
 
     class Meta:
         verbose_name = _('user')
