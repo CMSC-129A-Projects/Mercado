@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, Redirect } from 'react-router-dom';
 import { Container, Form, Button } from "react-bootstrap";
 import { connect } from 'react-redux';
+
 import { login } from '../actions/auth';
 
 const Login = ({ login, isAuthenticated }) => {
@@ -20,8 +21,6 @@ const Login = ({ login, isAuthenticated }) => {
         login(email, password);
     };
 
-    // Check for user authentication 
-    // Redirect to login page is failed 
     if (isAuthenticated) {
         return <Redirect to="/" />
     }
@@ -54,7 +53,7 @@ const Login = ({ login, isAuthenticated }) => {
                 </Form.Group>
                 <Form.Group>
                     <Form.Check type="checkbox" id="terms" label="Accept terms & agreements." />
-                    <Link to="/">Read here</Link>.
+                    <Link to="/signup">Read here</Link>.
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
