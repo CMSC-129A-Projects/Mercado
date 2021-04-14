@@ -7,12 +7,11 @@ import Img from '../images/logo2.png'
 
 function Login() {
     const [state, setState] = React.useState({
-        phone_number: '',
+        email_address: '',
         password: '',
     });
 
-    function handlePhoneFieldChange(e) {
-        const re = /^[0-9\b]+$/;
+    function handleEmailFieldChange(e) {
 
         // If value is not blank, test using regex
         if (e.target.value === '' || re.test(e.target.value)) {
@@ -35,20 +34,15 @@ function Login() {
             </div>
             <Form onSubmit={onSubmit}>
                 <Form.Group>
-                    <Form.Label>Phone Number</Form.Label>
+                    <Form.Label>Email</Form.Label>
                     <InputGroup>
-                        <InputGroup.Prepend>
-                        <InputGroup.Text>+63</InputGroup.Text>
-                        </InputGroup.Prepend>
                         <Form.Control 
                             required={true}
-                            maxLength="10"
                             value={'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             +63'+state.phone_number}
                             onChange={handlePhoneFieldChange}
                             type="text" 
-                            id="phoneNumber" 
-                            name="phone_number"
-                            placeholder="Phone"
+                            id="emailAddress" 
+                            name="email_address"
                         />
                     </InputGroup>
                 </Form.Group>

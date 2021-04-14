@@ -10,7 +10,7 @@ export default class Signup extends React.Component {
         super();
         this.state = {
             input: {
-                'phone_number': '',
+                'email_address': '',
                 'first_name': '',
                 'last_name': '',
                 'password': '',
@@ -20,7 +20,7 @@ export default class Signup extends React.Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
-        this.handlePhoneField = this.handlePhoneField.bind(this);
+        this.handleEmailField = this.handleEmailField.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -31,7 +31,7 @@ export default class Signup extends React.Component {
         this.setState({ input });
     }
 
-    handlePhoneField(e) {
+    handleEmailField(e) {
         let input = this.state.input;
         input[e.target.name] = e.target.value;
 
@@ -48,13 +48,13 @@ export default class Signup extends React.Component {
         let errors = {};
         let isValid = true;
 
-        if (!input['phone_number']) {
-            errors['phone_number'] = "Phone number is required.";
+        if (!input['email_address']) {
+            errors['email_address'] = "Email is required.";
             isValid = false;
         } else {
             const phone_regex = /^(9)\d{9}$/;
-            if (!phone_regex.test(input['phone_number'])) {
-                errors['phone_number'] = "Phone number not valid.";
+            if (!phone_regex.test(input['email_address'])) {
+                errors['email_address'] = "Email not valid.";
                 isValid = false;
             }
         }
@@ -97,9 +97,8 @@ export default class Signup extends React.Component {
         if (this.validate()) {
             console.log(this.state.input)
 
-            let phone_number = '+63' + this.state.input['phone_number'];
             axiosInstance.post(`users/register/`, {
-                phone_number: phone_number,
+                email_address: this.state.input['email_address'],
                 first_name: this.state.input['first_name'],
                 last_name: this.state.input['last_name'],
                 password: this.state.input['password'],
@@ -118,22 +117,18 @@ export default class Signup extends React.Component {
                     </div>
                 <Form>
                     <Form.Group>
-                        <Form.Label>Phone Number</Form.Label>
+                        <Form.Label>Email</Form.Label>
                         <InputGroup>
-                            <InputGroup.Prepend>
-                            <InputGroup.Text>+63</InputGroup.Text>
-                            </InputGroup.Prepend>
                             <Form.Control 
                                 required
-                                maxLength="10"
-                                id="phone_number" 
-                                name="phone_number"
-                                value={this.state.input.phone_number}
-                                onChange={this.handlePhoneField}
+                                id="email_address" 
+                                name="email_address"
+                                value={this.state.input.email_address}
+                                onChange={this.handleEmailField}
                                 type="text" 
                             />
                         </InputGroup>
-                        <Form.Text className="text-danger">{this.state.errors.phone_number}</Form.Text>
+                        <Form.Text className="text-danger">{this.state.errors.email_address}</Form.Text>
                     </Form.Group>
                     <Row>
                     <Col>
