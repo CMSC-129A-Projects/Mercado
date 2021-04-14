@@ -1,7 +1,8 @@
 import React from 'react';
-import { Container, Form, InputGroup, Button } from 'react-bootstrap';
+import { Container, Form, InputGroup, Button, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../axios';
+import Img from '../images/logo1.png'
 
 
 export default class Signup extends React.Component {
@@ -112,10 +113,12 @@ export default class Signup extends React.Component {
     render() {
         return (
             <Container className="mt-4">
+                    <div class="row justify-content-center">
+                        <img src = {Img} alt = "logo" />
+                    </div>
                 <Form>
-                    <h3>Sign up</h3>
                     <Form.Group>
-                        <Form.Label>Phone</Form.Label>
+                        <Form.Label>Phone Number</Form.Label>
                         <InputGroup>
                             <InputGroup.Prepend>
                             <InputGroup.Text>+63</InputGroup.Text>
@@ -128,12 +131,12 @@ export default class Signup extends React.Component {
                                 value={this.state.input.phone_number}
                                 onChange={this.handlePhoneField}
                                 type="text" 
-                                placeholder="Phone"
                             />
                         </InputGroup>
                         <Form.Text className="text-danger">{this.state.errors.phone_number}</Form.Text>
                     </Form.Group>
-    
+                    <Row>
+                    <Col>
                     <Form.Group>
                         <Form.Label>First Name</Form.Label>
                         <Form.Control 
@@ -143,7 +146,6 @@ export default class Signup extends React.Component {
                             name="first_name" 
                             value={this.state.input.first_name}
                             onChange={this.handleChange}
-                            placeholder="First Name"
                         />
                         <Form.Text className="text-danger">{this.state.errors.first_name}</Form.Text>
                     </Form.Group>
@@ -157,11 +159,11 @@ export default class Signup extends React.Component {
                             name="last_name" 
                             value={this.state.input.last_name}
                             onChange={this.handleChange}
-                            placeholder="Last Name"
                         />
                         <Form.Text className="text-danger">{this.state.errors.last_name}</Form.Text>
                     </Form.Group>
-    
+                    </Col>
+                    <Col>
                     <Form.Group>
                         <Form.Label>Password</Form.Label>
                         <Form.Control 
@@ -171,7 +173,6 @@ export default class Signup extends React.Component {
                             name="password" 
                             value={this.state.input.password}
                             onChange={this.handleChange}
-                            placeholder="Password"
                         />
                         <Form.Text className="text-danger">{this.state.errors.password}</Form.Text>
                     </Form.Group>
@@ -185,15 +186,20 @@ export default class Signup extends React.Component {
                             name="re_password" 
                             value={this.state.input.re_password}
                             onChange={this.handleChange}
-                            placeholder="Re-type Password"
                         />
                         <Form.Text className="text-danger">{this.state.errors.re_password}</Form.Text>
                     </Form.Group>
-    
-                    <Button variant="primary" type="submit" onClick={this.handleSubmit}>
-                        Sign up
-                    </Button>
-                    <p>Already have an account? <Link to="/login">Login</Link></p>
+                    </Col>
+                    </Row>
+                    <div class="row justify-content-center">
+                        <Button variant="primary" type="submit" onClick={this.handleSubmit}>
+                            Sign up
+                        </Button>
+                    </div>
+                    <p className="forgot-password text-center">
+                        Already have an account? <Link to="/login">Login</Link>
+                    </p>
+                    
                 </Form>
             </Container>
         );

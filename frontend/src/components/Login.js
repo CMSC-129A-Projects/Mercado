@@ -2,6 +2,8 @@ import React from "react";
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Container, Form, InputGroup, Button } from "react-bootstrap";
+import Img from '../images/logo2.png'
+
 
 function Login() {
     const [state, setState] = React.useState({
@@ -28,10 +30,12 @@ function Login() {
 
     return (
         <Container>
+            <div class="row justify-content-center">
+                <img src = {Img} alt = "logo" />
+            </div>
             <Form onSubmit={onSubmit}>
-                <h3>Log in</h3>
                 <Form.Group>
-                    <Form.Label>Phone</Form.Label>
+                    <Form.Label>Phone Number</Form.Label>
                     <InputGroup>
                         <InputGroup.Prepend>
                         <InputGroup.Text>+63</InputGroup.Text>
@@ -58,14 +62,16 @@ function Login() {
                         type="password"
                         id="password" 
                         name="password" 
-                        placeholder="Password"
                     />
                 </Form.Group>
-
-                <Button variant="primary" type="submit">
-                    Log in
-                </Button>
-                <p>Forgot <Link to="/reset_password">password?</Link></p>
+                <div class="row justify-content-center">
+                    <Button variant="primary" type="submit">
+                        Log in
+                    </Button>
+                </div>
+                <p className="forgot-password text-center">
+                    Forgot <Link to="/reset_password">password?</Link>
+                </p>
             </Form>
         </Container>
     );
