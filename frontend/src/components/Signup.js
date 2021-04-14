@@ -9,6 +9,7 @@ export default class Signup extends React.Component {
         super();
         this.state = {
             input: {
+                'email': '',
                 'phone_number': '',
                 'first_name': '',
                 'last_name': '',
@@ -46,6 +47,17 @@ export default class Signup extends React.Component {
         let input = this.state.input;
         let errors = {};
         let isValid = true;
+
+        if (!input['email']) {
+            errors['email'] = "Email is required.";
+            isValid = false;
+        } else {
+            const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+            if (!re.test(String(input['email'].toLowerCase()))) {
+                errors['email'] = "Email is not valid."
+                isValid = false;
+            }
+        }
 
         if (!input['phone_number']) {
             errors['phone_number'] = "Phone number is required.";
@@ -97,11 +109,13 @@ export default class Signup extends React.Component {
             console.log(this.state.input)
 
             let phone_number = '+63' + this.state.input['phone_number'];
-            axiosInstance.post(`users/register/`, {
+            axiosInstance.post(`users/`, {
+                email: this.state.input['email'],
                 phone_number: phone_number,
                 first_name: this.state.input['first_name'],
                 last_name: this.state.input['last_name'],
                 password: this.state.input['password'],
+                re_password: this.state.input['re_password'],
             }).then((res) => {
                 console.log(res);
                 console.log(res.data);
@@ -114,6 +128,20 @@ export default class Signup extends React.Component {
             <Container className="mt-4">
                 <Form>
                     <h3>Sign up</h3>
+                    <Form.Group>
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control 
+                            required
+                            type="email"
+                            id="email" 
+                            name="email" 
+                            value={this.state.input.email}
+                            onChange={this.handleChange}
+                            placeholder="Email"
+                        />
+                        <Form.Text className="text-danger">{this.state.errors.email}</Form.Text>
+                    </Form.Group>
+
                     <Form.Group>
                         <Form.Label>Phone</Form.Label>
                         <InputGroup>
