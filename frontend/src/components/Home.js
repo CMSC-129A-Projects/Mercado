@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-function Home() {
+import NavigationBar from './NavigationBar';
+
+const Home = ({ isAuthenticated }) => {
+    if (!isAuthenticated) {
+        return <Redirect to="/login" />
+    }
+
     return (
         <React.Fragment>
+            <NavigationBar />
             <h1>Home</h1>
         </React.Fragment>
     );
-}
+};
 
-export default Home;
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, {})(Home);

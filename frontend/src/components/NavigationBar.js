@@ -1,17 +1,31 @@
-import React from 'react';
-import {
-    Nav,
-    Navbar, 
-    NavDropdown,
-    Form,
-    FormControl,
-    Button
-} from 'react-bootstrap';
+import React, { Fragment } from 'react';
+import { Nav, Navbar } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
-function NavigationBar() {
+import { logout } from '../actions/auth';
+
+const NavigationBar = ({ logout }) => {
+    const logout_user = () => {
+        logout();
+    };
+
     return (
-        <h1>Navigation</h1>
+        <Fragment>
+            <Navbar bg="dark" variant="dark">
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                        <Nav.Link href="/">Home</Nav.Link>
+                        <Nav.Link href="" onClick={logout_user}>Logout</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+        </Fragment>
     );
-}
+};
 
-export default NavigationBar;
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { logout })(NavigationBar);

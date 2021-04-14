@@ -217,6 +217,11 @@ export default class Signup extends React.Component {
                         />
                         <Form.Text className="text-danger">{this.state.errors.re_password}</Form.Text>
                     </Form.Group>
+
+                    <Form.Group>
+                        <Form.Check type="checkbox" id="terms" label="Accept terms & agreements." />
+                        <Link to="/">Read here</Link>.
+                    </Form.Group>
     
                     <Button variant="primary" type="submit" onClick={this.handleSubmit}>
                         Sign up
