@@ -37,7 +37,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     phone_regex = RegexValidator(regex=r'^(09|\+639)\d{9}$')
     phone_number = models.CharField(_("Phone Number"), validators=[phone_regex], max_length=50, unique=True)
-    email = models.EmailField(_("E-mail Address"), max_length=100, blank=True, null=True)
+    email = models.EmailField(_("E-mail Address"), max_length=100, unique=True)
     first_name = models.CharField(_("First Name"), max_length=100)
     last_name = models.CharField(_("Last Name"), max_length=100)
     is_active = models.BooleanField(_("Is Active"), default=True)
