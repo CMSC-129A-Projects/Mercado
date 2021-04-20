@@ -8,36 +8,36 @@ from django.conf import settings
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
-    def _create_user(self, phone_number, password, **extra_fields):
+    def _create_user(self, email, password, **extra_fields):
         """
         Creates and save a User with the phone_number and password
         """
-        if not phone_number:
-            raise ValueError("Phone number is not set.")
+        if not email:
+            raise ValueError("Email is not set.")
 
-        user = self.model(phone_number=phone_number, **extra_fields)
+        user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
 
         return user
 
-    def create_user(self, phone_number, password=None, **extra_fields):
+    def create_user(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_superuser', False)
-        return self._create_user(phone_number, password, **extra_fields)
+        return self._create_user(email, password, **extra_fields)
     
-    def create_superuser(self, phone_number, password=None, **extra_fields):
+    def create_superuser(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_superuser', True)
 
         if extra_fields.get('is_superuser') is not True:
             raise ValueError("is_superuser is set to False.")
 
-        return self._create_user(phone_number, password, **extra_fields)
+        return self._create_user(email, password, **extra_fields)
 
 
 class User(AbstractBaseUser, PermissionsMixin):
     phone_regex = RegexValidator(regex=r'^(09|\+639)\d{9}$')
     phone_number = models.CharField(_("Phone Number"), validators=[phone_regex], max_length=50, unique=True)
-    email = models.EmailField(_("E-mail Address"), max_length=100, blank=True, null=True)
+    email = models.EmailField(_("E-mail Address"), max_length=100, unique=True)
     first_name = models.CharField(_("First Name"), max_length=100)
     last_name = models.CharField(_("Last Name"), max_length=100)
     is_active = models.BooleanField(_("Is Active"), default=True)
@@ -46,8 +46,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
     
-    USERNAME_FIELD = 'phone_number'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['phone_number', 'first_name', 'last_name']
 
     class Meta:
         verbose_name = _('user')

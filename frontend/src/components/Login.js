@@ -1,74 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Redirect } from 'react-router-dom';
+import { Container, Form, Button } from "react-bootstrap";
 import { connect } from 'react-redux';
-import { Container, Form, InputGroup, Button } from "react-bootstrap";
 
-function Login() {
-    const [state, setState] = React.useState({
-        phone_number: '',
-        password: '',
+import { login } from '../actions/auth';
+
+const Login = ({ login, isAuthenticated }) => {
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
     });
 
-    function handlePhoneFieldChange(e) {
-        const re = /^[0-9\b]+$/;
+    const { email, password } = formData;
 
-        // If value is not blank, test using regex
-        if (e.target.value === '' || re.test(e.target.value)) {
-            setState({ ...state, [e.target.name]: e.target.value })
-        }
-    }
+    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    function handleChange(e) {
-        setState({ ...state, [e.target.name]: e.target.value });
-    }
+    const onSubmit = e => {
+        e.preventDefault();
 
-    function onSubmit(e) {
-        
+        login(email, password);
+    };
+
+    if (isAuthenticated) {
+        return <Redirect to="/" />
     }
 
     return (
-        <Container>
-            <Form onSubmit={onSubmit}>
-                <h3>Log in</h3>
+        <Container className="mt-4">
+            <Form onSubmit={e => onSubmit(e)}>
+                Log in
                 <Form.Group>
-                    <Form.Label>Phone</Form.Label>
-                    <InputGroup>
-                        <InputGroup.Prepend>
-                        <InputGroup.Text>+63</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <Form.Control 
-                            required={true}
-                            maxLength="10"
-                            value={'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             +63'+state.phone_number}
-                            onChange={handlePhoneFieldChange}
-                            type="text" 
-                            id="phoneNumber" 
-                            name="phone_number"
-                            placeholder="Phone"
-                        />
-                    </InputGroup>
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control 
+                        type="email"
+                        name="email"
+                        id="email"
+                        value={email}
+                        onChange={e => onChange(e)}
+                        required
+                    />
                 </Form.Group>
-
                 <Form.Group>
                     <Form.Label>Password</Form.Label>
                     <Form.Control 
-                        required={true}
-                        value={state.password}
-                        onChange={handleChange}
                         type="password"
-                        id="password" 
-                        name="password" 
-                        placeholder="Password"
+                        name="password"
+                        id="password"
+                        value={password}
+                        onChange={e => onChange(e)}
+                        required
                     />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Check type="checkbox" id="terms" label="Accept terms & agreements." />
+                    <Link to="/signup">Read here</Link>.
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
                     Log in
                 </Button>
-                <p>Forgot <Link to="/reset_password">password?</Link></p>
+                <p>Forgot password? Click <Link to="/reset_password">here</Link>.</p>
+                <p>Don't have an account? <Link to="/signup">Sign Up</Link>.</p>
             </Form>
         </Container>
     );
-}
+};
 
-export default Login;
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { login })(Login);

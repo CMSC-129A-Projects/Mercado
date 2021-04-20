@@ -1,201 +1,143 @@
-import React from 'react';
-import { Container, Form, InputGroup, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import axiosInstance from '../axios';
+import React, { useState } from "react";
+import { Link, Redirect } from 'react-router-dom';
+import { Container, Form, InputGroup, Button } from "react-bootstrap";
+import { connect } from 'react-redux';
 
+import { signup } from '../actions/auth';
 
-export default class Signup extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            input: {
-                'phone_number': '',
-                'first_name': '',
-                'last_name': '',
-                'password': '',
-                're_password': ''
-            },
-            errors: {},
-        };
+const Signup = ({ signup, isAuthenticated }) => {
+    const [accountCreated, setAccountCreated] = useState(false);
+    const [formData, setFormData] = useState({
+        email: '',
+        phone_number: '',
+        first_name: '',
+        last_name: '',
+        password: '',
+        re_password: ''
+    });
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handlePhoneField = this.handlePhoneField.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+    const { email, phone_number, first_name, last_name, password, re_password } = formData;
 
-    handleChange(e) {
-        let input = this.state.input;
-        input[e.target.name] = e.target.value;
-
-        this.setState({ input });
-    }
-
-    handlePhoneField(e) {
-        let input = this.state.input;
-        input[e.target.name] = e.target.value;
-
+    const onPhoneChange = e => {
         const re = /^[0-9\b]+$/;
 
-        // If value is not blank, test using regex
         if (e.target.value === '' || re.test(e.target.value)) {
-            this.setState({ input })
+            setFormData({ ...formData, [e.target.name]: e.target.value });
         }
-    }
+    };
 
-    validate() {
-        let input = this.state.input;
-        let errors = {};
-        let isValid = true;
+    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-        if (!input['phone_number']) {
-            errors['phone_number'] = "Phone number is required.";
-            isValid = false;
-        } else {
-            const phone_regex = /^(9)\d{9}$/;
-            if (!phone_regex.test(input['phone_number'])) {
-                errors['phone_number'] = "Phone number not valid.";
-                isValid = false;
-            }
-        }
-
-        if (!input['first_name']) {
-            errors['first_name'] = "First name is required.";
-            isValid = false;
-        }
-
-        if (!input['last_name']) {
-            errors['last_name'] = "Last name is required.";
-            isValid = false;
-        }
-
-        if (!input['password']) {
-            errors['password'] = "Password is required.";
-            isValid = false;
-        }
-
-        if (!input['re_password']) {
-            errors['re_password'] = "Confirm password.";
-            isValid = false;
-        }
-
-        if (input['password'] !== input['re_password']) {
-            errors['re_password'] = "Passwords don't match.";
-            isValid = false;
-        }
-
-        this.setState({
-            errors: errors,
-        });
-
-        return isValid;
-    }
-
-    handleSubmit(e) {
+    const onSubmit = e => {
         e.preventDefault();
 
-        if (this.validate()) {
-            console.log(this.state.input)
-
-            let phone_number = '+63' + this.state.input['phone_number'];
-            axiosInstance.post(`users/register/`, {
-                phone_number: phone_number,
-                first_name: this.state.input['first_name'],
-                last_name: this.state.input['last_name'],
-                password: this.state.input['password'],
-            }).then((res) => {
-                console.log(res);
-                console.log(res.data);
-            });   
+        if (password === re_password) {
+            let phone = '+63' + phone_number;
+            signup(email, phone, first_name, last_name, password, re_password);
+            setAccountCreated(true);
         }
+    };
+
+    if (isAuthenticated) {
+        return <Redirect to="/" />
     }
 
-    render() {
-        return (
-            <Container className="mt-4">
-                <Form>
-                    <h3>Sign up</h3>
-                    <Form.Group>
-                        <Form.Label>Phone</Form.Label>
-                        <InputGroup>
-                            <InputGroup.Prepend>
-                            <InputGroup.Text>+63</InputGroup.Text>
-                            </InputGroup.Prepend>
-                            <Form.Control 
-                                required
-                                maxLength="10"
-                                id="phone_number" 
-                                name="phone_number"
-                                value={this.state.input.phone_number}
-                                onChange={this.handlePhoneField}
-                                type="text" 
-                                placeholder="Phone"
-                            />
-                        </InputGroup>
-                        <Form.Text className="text-danger">{this.state.errors.phone_number}</Form.Text>
-                    </Form.Group>
-    
-                    <Form.Group>
-                        <Form.Label>First Name</Form.Label>
-                        <Form.Control 
-                            required
-                            type="text"
-                            id="first_name" 
-                            name="first_name" 
-                            value={this.state.input.first_name}
-                            onChange={this.handleChange}
-                            placeholder="First Name"
-                        />
-                        <Form.Text className="text-danger">{this.state.errors.first_name}</Form.Text>
-                    </Form.Group>
-    
-                    <Form.Group>
-                        <Form.Label>Last Name</Form.Label>
-                        <Form.Control 
-                            required
-                            type="text"
-                            id="last_name" 
-                            name="last_name" 
-                            value={this.state.input.last_name}
-                            onChange={this.handleChange}
-                            placeholder="Last Name"
-                        />
-                        <Form.Text className="text-danger">{this.state.errors.last_name}</Form.Text>
-                    </Form.Group>
-    
-                    <Form.Group>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control 
-                            required
-                            type="password"
-                            id="password" 
-                            name="password" 
-                            value={this.state.input.password}
-                            onChange={this.handleChange}
-                            placeholder="Password"
-                        />
-                        <Form.Text className="text-danger">{this.state.errors.password}</Form.Text>
-                    </Form.Group>
-    
-                    <Form.Group>
-                        <Form.Label>Re-type Password</Form.Label>
-                        <Form.Control 
-                            required
-                            type="password"
-                            id="re_password" 
-                            name="re_password" 
-                            value={this.state.input.re_password}
-                            onChange={this.handleChange}
-                            placeholder="Re-type Password"
-                        />
-                        <Form.Text className="text-danger">{this.state.errors.re_password}</Form.Text>
-                    </Form.Group>
-    
-                    <Button variant="primary" type="submit" onClick={this.handleSubmit}>
-                        Sign up
-                    </Button>
-                    <p>Already have an account? <Link to="/login">Login</Link></p>
-                </Form>
-            </Container>
-        );
+    if (accountCreated) {
+        return <Redirect to="/login" />
     }
-}
+
+    return (
+        <Container className="mt-4">
+            <Form onSubmit={e => onSubmit(e)}>
+                Sign Up
+                <Form.Group>
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control 
+                        type="email"
+                        name="email"
+                        id="email"
+                        value={email}
+                        onChange={e => onChange(e)}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Phone</Form.Label>
+                    <InputGroup>
+                        <InputGroup.Prepend>
+                        <InputGroup.Text>+63</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <Form.Control 
+                            type="text"
+                            name="phone_number"
+                            id="phone_number"
+                            maxLength="10" 
+                            value={phone_number}
+                            onChange={e => onPhoneChange(e)}
+                            required
+                        />
+                    </InputGroup>
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>First Name</Form.Label>
+                    <Form.Control 
+                        type="text"
+                        name="first_name"
+                        id="first_name"
+                        value={first_name}
+                        onChange={e => onChange(e)}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control 
+                        type="text"
+                        name="last_name"
+                        id="last_name"
+                        value={last_name}
+                        onChange={e => onChange(e)}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control 
+                        type="password"
+                        name="password"
+                        id="password"
+                        value={password}
+                        onChange={e => onChange(e)}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Re-type Password</Form.Label>
+                    <Form.Control 
+                        type="password"
+                        name="re_password"
+                        id="re_password"
+                        value={re_password}
+                        onChange={e => onChange(e)}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Check type="checkbox" id="terms" label="Accept terms & agreements." />
+                    <Link to="/login">Read here</Link>.
+                </Form.Group>
+
+                <Button variant="primary" type="submit">
+                    Sign up
+                </Button>
+                <p>Already have an account? <Link to="/login">Log In</Link>.</p>
+            </Form>
+        </Container>
+    );
+};
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { signup })(Signup);
