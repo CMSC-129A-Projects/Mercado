@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link, Redirect } from 'react-router-dom';
-import { Container, Form, InputGroup, Button } from "react-bootstrap";
+import { Container, Form, InputGroup, Button, Row, Col } from "react-bootstrap";
 import { connect } from 'react-redux';
 
 import { signup } from '../actions/auth';
+import Img from '../images/logo1.png';
 
 const Signup = ({ signup, isAuthenticated }) => {
     const [accountCreated, setAccountCreated] = useState(false);
@@ -48,6 +49,9 @@ const Signup = ({ signup, isAuthenticated }) => {
 
     return (
         <Container className="mt-4">
+            <div class="row justify-content-center">
+                <img src={Img} alt="logo" />
+            </div>
             <Form onSubmit={e => onSubmit(e)}>
                 Sign Up
                 <Form.Group>
@@ -78,59 +82,71 @@ const Signup = ({ signup, isAuthenticated }) => {
                         />
                     </InputGroup>
                 </Form.Group>
-                <Form.Group>
-                    <Form.Label>First Name</Form.Label>
-                    <Form.Control 
-                        type="text"
-                        name="first_name"
-                        id="first_name"
-                        value={first_name}
-                        onChange={e => onChange(e)}
-                        required
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Last Name</Form.Label>
-                    <Form.Control 
-                        type="text"
-                        name="last_name"
-                        id="last_name"
-                        value={last_name}
-                        onChange={e => onChange(e)}
-                        required
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control 
-                        type="password"
-                        name="password"
-                        id="password"
-                        value={password}
-                        onChange={e => onChange(e)}
-                        required
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Re-type Password</Form.Label>
-                    <Form.Control 
-                        type="password"
-                        name="re_password"
-                        id="re_password"
-                        value={re_password}
-                        onChange={e => onChange(e)}
-                        required
-                    />
-                </Form.Group>
+
+                <Row>
+                    <Col>
+                        <Form.Group>
+                            <Form.Label>First Name</Form.Label>
+                            <Form.Control 
+                                type="text"
+                                name="first_name"
+                                id="first_name"
+                                value={first_name}
+                                onChange={e => onChange(e)}
+                                required
+                            />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Last Name</Form.Label>
+                            <Form.Control 
+                                type="text"
+                                name="last_name"
+                                id="last_name"
+                                value={last_name}
+                                onChange={e => onChange(e)}
+                                required
+                            />
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Form.Group>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control 
+                                type="password"
+                                name="password"
+                                id="password"
+                                value={password}
+                                onChange={e => onChange(e)}
+                                required
+                            />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Re-type Password</Form.Label>
+                            <Form.Control 
+                                type="password"
+                                name="re_password"
+                                id="re_password"
+                                value={re_password}
+                                onChange={e => onChange(e)}
+                                required
+                            />
+                        </Form.Group>
+                    </Col>
+                </Row>
+                
                 <Form.Group>
                     <Form.Check type="checkbox" id="terms" label="Accept terms & agreements." />
                     <Link to="/login">Read here</Link>.
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
-                    Sign up
-                </Button>
-                <p>Already have an account? <Link to="/login">Log In</Link>.</p>
+                <div class="row justify-content-center">
+                    <Button variant="primary" type="submit">
+                        Sign up
+                    </Button>
+                </div>
+                <p className="forgot-password text-center">
+                    Already have an account? <Link to="/login">Login</Link>
+                </p>
             </Form>
         </Container>
     );
