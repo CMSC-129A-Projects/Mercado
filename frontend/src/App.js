@@ -24,12 +24,12 @@ function App() {
               <div className="outer">
                 <div className="inner">
                 <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/login" component={Login} />
-                <Route path="/signup" component={Signup} />
-                <Route path="/activate/:uid/:token" component={Activate} />
-                <Route path="/reset_password" component={ResetPassword} />
-                <Route path="/password/reset/confirm/:uid/:token" component={ResetPasswordConfirm} />
+                  <Route exact path="/" component={Home} />
+                  <Route path="/login" component={Login} />
+                  <Route path="/signup" component={Signup} />
+                  <Route path="/activate/:uid/:token" component={Activate} />
+                  <Route path="/reset_password" component={ResetPassword} />
+                  <Route path="/password/reset/confirm/:uid/:token" component={ResetPasswordConfirm} />
               </Switch>
                 </div>
               </div>
