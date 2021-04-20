@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Container, Form, Button } from "react-bootstrap";
 import { connect } from 'react-redux';
 
 import { login } from '../actions/auth';
+import Img from '../images/logo2.png';
 
 const Login = ({ login, isAuthenticated }) => {
     const [formData, setFormData] = useState({
@@ -27,6 +28,9 @@ const Login = ({ login, isAuthenticated }) => {
 
     return (
         <Container className="mt-4">
+            <div class="row justify-content-center">
+                <img src={Img} alt="logo" />
+            </div>
             <Form onSubmit={e => onSubmit(e)}>
                 Log in
                 <Form.Group>
@@ -56,10 +60,14 @@ const Login = ({ login, isAuthenticated }) => {
                     <Link to="/signup">Read here</Link>.
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
-                    Log in
-                </Button>
-                <p>Forgot password? Click <Link to="/reset_password">here</Link>.</p>
+                <div class="row justify-content-center">
+                    <Button variant="primary" type="submit">
+                        Log in
+                    </Button>
+                </div>
+                <p className="forgot-password text-center">
+                    Forgot <Link to="/reset_password">password?</Link>
+                </p>
                 <p>Don't have an account? <Link to="/signup">Sign Up</Link>.</p>
             </Form>
         </Container>
