@@ -129,7 +129,6 @@ const Signup = ({ signup, isAuthenticated }) => {
                                 required
                             />
                         </Form.Group>
-                        <div></div>
                     </Col>
                 </Row>
                 
