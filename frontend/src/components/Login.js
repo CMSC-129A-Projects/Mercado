@@ -28,7 +28,7 @@ const Login = ({ login, isAuthenticated }) => {
 
     return (
         <Container className="mt-4">
-            <div class="row justify-content-center">
+            <div className="row justify-content-center">
                 <img src={Img} alt="logo" />
             </div>
             <Form onSubmit={e => onSubmit(e)}>
@@ -55,12 +55,8 @@ const Login = ({ login, isAuthenticated }) => {
                         required
                     />
                 </Form.Group>
-                <Form.Group>
-                    <Form.Check type="checkbox" id="terms" label="Accept terms & agreements." />
-                    <Link to="/signup">Read here</Link>.
-                </Form.Group>
 
-                <div class="row justify-content-center">
+                <div className="row justify-content-center">
                     <Button variant="primary" type="submit">
                         Log in
                     </Button>
@@ -68,7 +64,9 @@ const Login = ({ login, isAuthenticated }) => {
                 <p className="forgot-password text-center">
                     Forgot <Link to="/reset_password">password?</Link>
                 </p>
-                <p>Don't have an account? <Link to="/signup">Sign Up</Link>.</p>
+                <p className="forgot-password text-center">
+                    Don't have an account? <Link to="/signup">Sign Up</Link>.
+                </p>
             </Form>
         </Container>
     );
