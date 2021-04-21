@@ -4,7 +4,7 @@ import { Container, Form, InputGroup, Button, Row, Col } from "react-bootstrap";
 import { connect } from 'react-redux';
 
 import { signup } from '../actions/auth';
-import Img from '../images/logo1.png';
+import Img from '../images/logo2.png';
 
 const Signup = ({ signup, isAuthenticated }) => {
     const [accountCreated, setAccountCreated] = useState(false);
@@ -53,38 +53,19 @@ const Signup = ({ signup, isAuthenticated }) => {
                 <img src={Img} alt="logo" />
             </div>
             <Form onSubmit={e => onSubmit(e)}>
-                Sign Up
-                <Form.Group>
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control 
-                        type="email"
-                        name="email"
-                        id="email"
-                        value={email}
-                        onChange={e => onChange(e)}
-                        required
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Phone</Form.Label>
-                    <InputGroup>
-                        <InputGroup.Prepend>
-                        <InputGroup.Text>+63</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <Form.Control 
-                            type="text"
-                            name="phone_number"
-                            id="phone_number"
-                            maxLength="10" 
-                            value={phone_number}
-                            onChange={e => onPhoneChange(e)}
-                            required
-                        />
-                    </InputGroup>
-                </Form.Group>
-
                 <Row>
                     <Col>
+                        <Form.Group>
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control 
+                                type="email"
+                                name="email"
+                                id="email"
+                                value={email}
+                                onChange={e => onChange(e)}
+                                required
+                            />
+                        </Form.Group>
                         <Form.Group>
                             <Form.Label>First Name</Form.Label>
                             <Form.Control 
@@ -110,6 +91,23 @@ const Signup = ({ signup, isAuthenticated }) => {
                     </Col>
                     <Col>
                         <Form.Group>
+                            <Form.Label>Phone</Form.Label>
+                            <InputGroup>
+                                <InputGroup.Prepend>
+                                <InputGroup.Text>+63</InputGroup.Text>
+                                </InputGroup.Prepend>
+                                <Form.Control 
+                                    type="text"
+                                    name="phone_number"
+                                    id="phone_number"
+                                    maxLength="10" 
+                                    value={phone_number}
+                                    onChange={e => onPhoneChange(e)}
+                                    required
+                                />
+                            </InputGroup>
+                        </Form.Group>
+                        <Form.Group>
                             <Form.Label>Password</Form.Label>
                             <Form.Control 
                                 type="password"
@@ -131,6 +129,7 @@ const Signup = ({ signup, isAuthenticated }) => {
                                 required
                             />
                         </Form.Group>
+                        <div></div>
                     </Col>
                 </Row>
                 
