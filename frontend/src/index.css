@@ -8,7 +8,7 @@ body {
   font-weight: 100;
   font-family: sans-serif;
   background: #12c2e9;  /* fallback for old browsers */
-  background-image: url(./images/bg.gif);
+  background-image: url(./images/bg.jpg);
 }
 
 body, html, .App, #root, .outer {
@@ -24,14 +24,15 @@ body, html, .App, #root, .outer {
 }
 
 .inner {
-  height: 600px;
+  height: 650px;
   width: 550px;
   margin: auto;
   background: #ffffff;
-  padding: 20px 55px 20px 55px;
+  padding: 10px 55px 10px 55px;
   border-radius: 15px;
   transition: all .3s;
   font-size: 13px;
+  opacity: 0.9;
 }
 
 .forgot-password,

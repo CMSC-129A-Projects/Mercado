@@ -30,7 +30,7 @@ const ResetPassword = ({ reset_password }) => {
     return (
         <Container className="mt-4">
             <Form onSubmit={e => onSubmit(e)}>
-                Password Reset Request
+                <h5>Password Reset Request</h5>
                 <Form.Group>
                     <Form.Label>Email</Form.Label>
                     <Form.Control 

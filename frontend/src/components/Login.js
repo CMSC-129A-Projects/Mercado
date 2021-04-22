@@ -4,7 +4,7 @@ import { Container, Form, Button } from "react-bootstrap";
 import { connect } from 'react-redux';
 
 import { login } from '../actions/auth';
-import Img from '../images/logo2.png';
+import Img from '../images/logo1.png';
 
 const Login = ({ login, isAuthenticated }) => {
     const [formData, setFormData] = useState({
@@ -32,7 +32,6 @@ const Login = ({ login, isAuthenticated }) => {
                 <img src={Img} alt="logo" />
             </div>
             <Form onSubmit={e => onSubmit(e)}>
-                Log in
                 <Form.Group>
                     <Form.Label>Email</Form.Label>
                     <Form.Control 
@@ -66,9 +65,11 @@ const Login = ({ login, isAuthenticated }) => {
                     </Button>
                 </div>
                 <p className="forgot-password text-center">
-                    Forgot <Link to="/reset_password">password?</Link>
+                    Forgot <Link to="/reset_password">Password?</Link>
                 </p>
-                <p>Don't have an account? <Link to="/signup">Sign Up</Link>.</p>
+                <p className="forgot-password text-center">
+                    Don't have an account? <Link to="/signup">Sign Up</Link>.
+                </p>
             </Form>
         </Container>
     );
