@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Container, Form, InputGroup, Button, Row, Col } from "react-bootstrap";
 import { connect } from 'react-redux';
@@ -39,17 +39,15 @@ const Signup = ({ signup, isAuthenticated }) => {
         }
     };
 
-    if (isAuthenticated) {
-        return <Redirect to="/" />
-    }
+    if (isAuthenticated)
+        return <Redirect to="/" />;
 
-    if (accountCreated) {
-        return <Redirect to="/login" />
-    }
+    if (accountCreated)
+        return <Redirect to="/login" />;
 
     return (
         <Container className="mt-4">
-            <div class="row justify-content-center">
+            <div className="row justify-content-center">
                 <img src={Img} alt="logo" />
             </div>
             <Form onSubmit={e => onSubmit(e)}>
@@ -131,13 +129,8 @@ const Signup = ({ signup, isAuthenticated }) => {
                         </Form.Group>
                     </Col>
                 </Row>
-                
-                <Form.Group>
-                    <Form.Check type="checkbox" id="terms" label="Accept terms & agreements." />
-                    <Link to="/login">Read here</Link>.
-                </Form.Group>
 
-                <div class="row justify-content-center">
+                <div className="row justify-content-center">
                     <Button variant="primary" type="submit">
                         Sign up
                     </Button>
