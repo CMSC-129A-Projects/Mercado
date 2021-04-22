@@ -49,7 +49,7 @@ const Signup = ({ signup, isAuthenticated }) => {
 
     return (
         <Container className="mt-4">
-            <div class="row justify-content-center">
+            <div className="row justify-content-center">
                 <img src={Img} alt="logo" />
             </div>
             <Form onSubmit={e => onSubmit(e)}>
@@ -131,13 +131,8 @@ const Signup = ({ signup, isAuthenticated }) => {
                         </Form.Group>
                     </Col>
                 </Row>
-                
-                <Form.Group>
-                    <Form.Check type="checkbox" id="terms" label="Accept terms & agreements." />
-                    <Link to="/login">Read here</Link>.
-                </Form.Group>
 
-                <div class="row justify-content-center">
+                <div className="row justify-content-center">
                     <Button variant="primary" type="submit">
                         Sign up
                     </Button>

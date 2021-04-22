@@ -22,13 +22,11 @@ const Login = ({ login, isAuthenticated }) => {
         login(email, password);
     };
 
-    if (isAuthenticated) {
-        return <Redirect to="/" />
-    }
+    if (isAuthenticated) { return <Redirect to="/" />; }
 
     return (
         <Container className="mt-4">
-            <div class="row justify-content-center">
+            <div className="row justify-content-center">
                 <img src={Img} alt="logo" />
             </div>
             <Form onSubmit={e => onSubmit(e)}>
@@ -54,12 +52,8 @@ const Login = ({ login, isAuthenticated }) => {
                         required
                     />
                 </Form.Group>
-                <Form.Group>
-                    <Form.Check type="checkbox" id="terms" label="Accept terms & agreements." />
-                    <Link to="/signup">Read here</Link>.
-                </Form.Group>
 
-                <div class="row justify-content-center">
+                <div className="row justify-content-center">
                     <Button variant="primary" type="submit">
                         Log in
                     </Button>
