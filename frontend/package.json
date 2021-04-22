@@ -8,11 +8,11 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
-    "axios-auth-refresh": "^3.1.0",
     "bootstrap": "^4.6.0",
     "jquery": "^3.6.0",
     "jwt-decode": "^3.1.2",
     "popper.js": "^1.16.1",
+    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.2",
     "react-dom": "^17.0.1",
@@ -23,6 +23,7 @@
     "redux-csrf": "^1.1.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
+    "uuid": "^8.3.2",
     "web-vitals": "^1.1.1"
   },
   "scripts": {

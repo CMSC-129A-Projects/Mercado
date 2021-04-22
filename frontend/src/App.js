@@ -1,17 +1,18 @@
 import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
-import Layout from './components/Layout';
-import Home from './components/Home';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import Activate from './components/Activate';
-import ResetPassword from './components/ResetPassword';
-import ResetPasswordConfirm from './components/ResetPasswordConfirm';
-
 import { Provider } from 'react-redux';
+
+import Layout from './hocs/Layout';
+import Home from './containers/Home';
+import Login from './containers/Login';
+import Signup from './containers/Signup';
+import Activate from './containers/Activate';
+import ResetPassword from './containers/ResetPassword';
+import ResetPasswordConfirm from './containers/ResetPasswordConfirm';
+
 import store from './store';
 
 function App() {

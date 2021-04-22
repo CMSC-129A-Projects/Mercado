@@ -1,4 +1,6 @@
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+
 import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
@@ -18,7 +20,7 @@ import {
     REFRESH_SUCCESS,
     REFRESH_FAIL
 } from './types';
-import jwt_decode from 'jwt-decode';
+import { setAlert } from './alert';
 
 /**
  * Verify access token
@@ -166,10 +168,13 @@ export const login = (email, password) => async dispatch => {
         });
 
         dispatch(loadUser());
+        dispatch(setAlert('Login successful', 'success'));
     } catch (err) {
         dispatch({
             type: LOGIN_FAIL
         });
+
+        dispatch(setAlert('Login failed', 'error'));
     }
 };
 
@@ -200,10 +205,14 @@ export const signup = (email, phone_number, first_name, last_name, password, re_
             type: SIGNUP_SUCCESS,
             payload: res.data
         });
+
+        dispatch(setAlert('Sign up successful', 'success'));
     } catch (err) {
         dispatch({
             type: SIGNUP_FAIL
         });
+
+        dispatch(setAlert('Sign up failed', 'error'));
     }
 };
 

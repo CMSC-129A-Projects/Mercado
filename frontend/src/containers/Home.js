@@ -2,10 +2,11 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import NavigationBar from './NavigationBar';
+import NavigationBar from '../components/NavigationBar';
 
 const Home = ({ isAuthenticated }) => {
-    if (!isAuthenticated) { return <Redirect to="/login" />; }
+    if (!isAuthenticated)
+        return <Redirect to="/login" />;
 
     return (
         <React.Fragment>

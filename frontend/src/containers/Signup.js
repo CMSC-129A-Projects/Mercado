@@ -39,13 +39,11 @@ const Signup = ({ signup, isAuthenticated }) => {
         }
     };
 
-    if (isAuthenticated) {
-        return <Redirect to="/" />
-    }
+    if (isAuthenticated)
+        return <Redirect to="/" />;
 
-    if (accountCreated) {
-        return <Redirect to="/login" />
-    }
+    if (accountCreated)
+        return <Redirect to="/login" />;
 
     return (
         <Container className="mt-4">
