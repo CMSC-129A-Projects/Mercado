@@ -14,9 +14,17 @@ import {
     PASSWORD_RESET_SUCCESS,
     PASSWORD_RESET_FAIL,
     PASSWORD_RESET_CONFIRM_SUCCESS,
-    PASSWORD_RESET_CONFIRM_FAIL
+    PASSWORD_RESET_CONFIRM_FAIL,
+    REFRESH_SUCCESS,
+    REFRESH_FAIL
 } from './types';
+import jwt_decode from 'jwt-decode';
 
+/**
+ * Verify access token
+ * 
+ * @returns 
+ */
 export const checkAuthenticated = () => async dispatch => {
     if (localStorage.getItem('access')) {
         const config = {
@@ -52,7 +60,59 @@ export const checkAuthenticated = () => async dispatch => {
     }
 };
 
-export const load_user = () => async dispatch => {
+/**
+ * Request new access token if token is expired
+ * 
+ * @returns 
+ */
+export const refreshToken = () => async dispatch => {
+    if (localStorage.getItem('access')) {
+        const token_decoded = jwt_decode(localStorage.getItem('access'));
+        
+        if (Date.now() >= (token_decoded.exp * 1000)) {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+            
+            const body = JSON.stringify({ refresh: localStorage.getItem('refresh') });
+        
+            try {
+                const res = await axios.post(`/auth/jwt/refresh/`, body, config);
+                
+                console.log(res.data.access);
+
+                dispatch({
+                    type: REFRESH_SUCCESS,
+                    payload: res.data
+                });
+            } catch (err) {
+                dispatch({
+                    type: REFRESH_FAIL
+                });
+            }
+        } else {
+            dispatch({
+                type: REFRESH_FAIL
+            });
+        }
+    } else {
+        dispatch({
+            type: REFRESH_FAIL
+        });
+    }
+
+    dispatch(checkAuthenticated());
+    dispatch(loadUser());
+};
+
+/**
+ * Get user object from database
+ * 
+ * @returns 
+ */
+export const loadUser = () => async dispatch => {
     if (localStorage.getItem('access')) {
         const config = {
             headers: {
@@ -81,6 +141,13 @@ export const load_user = () => async dispatch => {
     }
 };
 
+/**
+ * Create jwt to login user
+ * 
+ * @param {string} email User email
+ * @param {string} password User password
+ * @returns 
+ */
 export const login = (email, password) => async dispatch => {
     const config = {
         headers: {
@@ -98,7 +165,7 @@ export const login = (email, password) => async dispatch => {
             payload: res.data
         });
 
-        dispatch(load_user());
+        dispatch(loadUser());
     } catch (err) {
         dispatch({
             type: LOGIN_FAIL
@@ -106,6 +173,17 @@ export const login = (email, password) => async dispatch => {
     }
 };
 
+/**
+ * Create new User 
+ * 
+ * @param {string} email User email
+ * @param {string} phone_number User phonenumber
+ * @param {string} first_name User first name
+ * @param {string} last_name User last name
+ * @param {string} password User password
+ * @param {string} re_password Password retype
+ * @returns 
+ */
 export const signup = (email, phone_number, first_name, last_name, password, re_password) => async dispatch => {
     const config = {
         headers: {
@@ -129,6 +207,13 @@ export const signup = (email, phone_number, first_name, last_name, password, re_
     }
 };
 
+/**
+ * Email verification via djoser
+ * 
+ * @param {string} uid Uid
+ * @param {string} token JWT
+ * @returns 
+ */
 export const verify = (uid, token) => async dispatch => {
     const config = {
         headers: {
@@ -151,6 +236,12 @@ export const verify = (uid, token) => async dispatch => {
     }
 };
 
+/**
+ * Send password reset through email by djoser 
+ * 
+ * @param {string} email User email
+ * @returns 
+ */
 export const reset_password = (email) => async dispatch => {
     const config = {
         headers: {
@@ -173,6 +264,15 @@ export const reset_password = (email) => async dispatch => {
     }
 };
 
+/**
+ * Verify password reset by djoser
+ * 
+ * @param {string} uid Uid
+ * @param {string} token JWT
+ * @param {string} new_password New user password
+ * @param {string} re_new_password Password re-type
+ * @returns 
+ */
 export const reset_password_confirm = (uid, token, new_password, re_new_password) => async dispatch => {
     const config = {
         headers: {
@@ -195,6 +295,11 @@ export const reset_password_confirm = (uid, token, new_password, re_new_password
     }
 };
 
+/**
+ * Destroy tokens and logout user
+ * 
+ * @returns 
+ */
 export const logout = () => dispatch => {
     dispatch({
         type: LOGOUT

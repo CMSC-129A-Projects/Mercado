@@ -22,9 +22,7 @@ const Login = ({ login, isAuthenticated }) => {
         login(email, password);
     };
 
-    if (isAuthenticated) {
-        return <Redirect to="/" />
-    }
+    if (isAuthenticated) { return <Redirect to="/" />; }
 
     return (
         <Container className="mt-4">

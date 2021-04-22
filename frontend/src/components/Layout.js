@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { checkAuthenticated, load_user } from '../actions/auth';
+import { refreshToken } from '../actions/auth';
 
-const Layout = ({ checkAuthenticated, load_user, children }) => {
+const Layout = ({ refreshToken, children }) => {
     useEffect(() => {
-        checkAuthenticated();
-        load_user();
+        refreshToken();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -16,4 +17,4 @@ const Layout = ({ checkAuthenticated, load_user, children }) => {
     );
 };
 
-export default connect(null, { checkAuthenticated, load_user })(Layout);
+export default connect(null, { refreshToken })(Layout);
