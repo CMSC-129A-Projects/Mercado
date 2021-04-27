@@ -2,27 +2,120 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.conf import settings
+from django.urls import reverse
+
+
+class Category(models.Model):
+    name = models.CharField(_('category name'), max_length=255, db_index=True)
+    slug = models.SlugField(_('slug'), max_length=255, unique=True)
+    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True, auto_now_add=False)
+
+    class Meta:
+        verbose_name_plural = 'categories'
+
+    def get_absolute_url(self):
+        return reverse('store:category-list', kwargs={'slug': self.slug})
+
+    def __str__(self):
+        return self.name
+    
 
 class Product(models.Model):
-    seller = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='%(class)s_product_seller', verbose_name=_("Seller"), on_delete=models.CASCADE)
-    product_name = models.CharField(_("Product Name"), max_length=100)
-    image_url = models.CharField(_("Images"), max_length=255)
-    price = models.DecimalField(_("Price"), max_digits=5, decimal_places=2)
-    description = models.TextField(_("Description"))
-    slug = models.SlugField(_("Slug"), max_length=50)
-    is_available = models.BooleanField(_("Is Available"), default=True)
-    created_at = models.DateTimeField(_("Timestamp Created"), auto_now=False, auto_now_add=True)
-    last_updated = models.DateTimeField(_("Timestamp Updated"), auto_now=True, auto_now_add=False)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('product_creator'), on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    desc = models.TextField(_('description'), blank=True, null=True)
+    price = models.FloatField()
+    disc_price = models.FloatField(_('discounted price'), blank=True, null=True)
+    category = models.ForeignKey(Category, related_name=_('product_category'), on_delete=models.CASCADE, blank=True, null=True)
+    slug = models.SlugField(unique=True)
+    in_stock = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True, auto_now_add=False)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def get_absolute_url(self):
+        return reverse('store:product', kwargs={'slug': self.slug})
+
+    def __str__(self):
+        return self.name
+    
+
+def product_image_path(instance, filename):
+    return 'user_{0}/{1}'.format(instance.user.id, filename)
+
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, related_name=_('image_product'), on_delete=models.CASCADE)
+    image = models.ImageField(upload_to=product_image_path, height_field=None, width_field=None, max_length=None)
+    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+
+class ShoppingSession(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('session_user'), on_delete=models.CASCADE)
+    total = models.DecimalField(max_digits=5, decimal_places=2)
+    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True, auto_now_add=False)
+
+
+class CartItem(models.Model):
+    session = models.ForeignKey(ShoppingSession, related_name=_('cart_session'), on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name=_('cart_product'), on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True, auto_now_add=False)
+
+
+class OrderItems(models.Model):
+    product = models.ForeignKey(Product, related_name=_('order_product'), on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True, auto_now_add=False)
+
+
+class PaymentDetails(models.Model):
+    amount = models.DecimalField(max_digits=5, decimal_places=2)
+    provider = models.CharField(max_length=255)
+    status = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True, auto_now_add=False)
+
+
+class OrderDetails(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('order_detail_user'), on_delete=models.CASCADE)
+    total = models.DecimalField(max_digits=5, decimal_places=2)
+    payment = models.ForeignKey(PaymentDetails, related_name=_('order_detail_payment'), on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True, auto_now_add=False)
+
+
+def review_image_path(instance, filename):
+    return '/'.join(['review-images/% Y/% m', str(instance.name), filename])
 
 
 class ProductReview(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='%(class)s_review_author', verbose_name=_("Author"), on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, related_name='%(class)s_review_product', verbose_name=_("Product"), on_delete=models.CASCADE)
-    rating = models.DecimalField(_("Rating"), max_digits=2, decimal_places=1, validators=[MinValueValidator(0.0), MaxValueValidator(5.0)], default=0)
-    content = models.TextField(_("Content"))
-    image_url = models.CharField(_("Images"), max_length=255)
-    slug = models.SlugField(_("Slug"), max_length=50)
-    created_at = models.DateTimeField(_("Timestamp Created"), auto_now=False, auto_now_add=True)
-    last_updated = models.DateTimeField(_("Timestamp Updated"), auto_now=True, auto_now_add=False)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('product_review_creator'), on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name=_('review_product'), on_delete=models.CASCADE)
+    rating = models.DecimalField(max_digits=2, decimal_places=1, validators=[MinValueValidator(0.0), MaxValueValidator(5.0)], default=0)
+    title = models.CharField(max_length=255)
+    body = models.TextField(blank=True, null=True)
+    review_image = models.ImageField(upload_to=review_image_path, height_field=None, width_field=None, max_length=None)
+    slug = models.SlugField(max_length=255, unique=True)
+    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+    class Meta:
+        ordering = ['-created_at']
+
+    def get_absolute_url(self):
+        return reverse('store:product-review', kwargs={'slug': self.slug})
+
+    def __str__(self):
+        return self.title
+
+    def get_review_body(self):
+        return self.body
 
 

@@ -5,6 +5,7 @@ from django.core.validators import RegexValidator
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.conf import settings
 
+
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
@@ -35,26 +36,27 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    phone_regex = RegexValidator(regex=r'^(09|\+639)\d{9}$')
-    phone_number = models.CharField(_("Phone Number"), validators=[phone_regex], max_length=50, unique=True)
-    email = models.EmailField(_("E-mail Address"), max_length=100, unique=True)
-    first_name = models.CharField(_("First Name"), max_length=100)
-    last_name = models.CharField(_("Last Name"), max_length=100)
-    is_active = models.BooleanField(_("Is Active"), default=True)
-    is_staff = models.BooleanField(_("Is Staff"), default=False)
-    created_at = models.DateTimeField(_("Timestamp Created"), auto_now=False, auto_now_add=True)
+    email = models.EmailField(max_length=255, unique=True)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True, auto_now_add=False)
 
     objects = UserManager()
     
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['phone_number', 'first_name', 'last_name']
-
-    class Meta:
-        verbose_name = _('user')
-        verbose_name_plural = _('users')
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     def __str__(self):
-        return self.username
+        return self.email
+
+    def get_username(self):
+        """
+        Returns user email
+        """
+        return self.email
 
     def get_full_name(self):
         """
@@ -74,33 +76,84 @@ class User(AbstractBaseUser, PermissionsMixin):
         Send an email to the user
         """
         if not self.email:
-            raise ValueError("No email.")
+            raise ValueError('No email')
 
         send_email(subject, message, from_email, [self.email], **kwargs)
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='%(class)s_profile', verbose_name=_("User Profile"), on_delete=models.CASCADE)
-    profile_img = models.CharField(_("Profile Image"), max_length=255, blank=True)
-    bio = models.CharField(_("Bio"), max_length=255, blank=True, null=True)
-    address = models.CharField(_("Address"), max_length=255, blank=True, null=True)
-    is_seller = models.BooleanField(_("Is Seller"), default=False)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('profile'), on_delete=models.CASCADE)
+    bio = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        order_with_respect_to = 'user'
+
+    def get_absolute_url(self):
+        return reverse('accounts:user-profile', kwargs={'slug': self.slug})
 
     def __str__(self):
         return str(user)
 
-    def is_user_seller(self):
-        return str(is_seller)
+
+def profile_image_path(instance, filename):
+    return '/'.join(['profile-images/% Y/% m', str(instance.name), filename])
+
+
+class ProfileImage(models.Model):
+    profile = models.ForeignKey(Profile, related_name=_('profile'), on_delete=models.CASCADE)
+    image = models.ImageField(upload_to=profile_image_path, height_field=None, width_field=None, max_length=None)
+    created_at = models.DateTimeField(_('image upload timestamp'), auto_now=False, auto_now_add=True)
+
+
+class UserAddress(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('user_address'), on_delete=models.CASCADE)
+    address_line1 = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    address_line2 = models.CharField(max_length=255)
+    postal_code =  models.CharField(max_length=50)
+    country = models.CharField(max_length=50, default='PH')
+    modified_at = models.DateTimeField(auto_now=True, auto_now_add=False)
+
+    class Meta:
+        verbose_name_plural = _('addresses')
+        order_with_respect_to = 'user'
+
+    def __str__(self):
+        complete_address = '%s, %s, %s, %s %s ' % (self.address_line1, self.address_line2, self.city, self.country, self.postal_code)
+        return complete_address
+
+
+class UserPhone(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('user_phone'), on_delete=models.CASCADE)
+    phone_regex = RegexValidator(regex=r'^(09|\+639)\d{9}$')
+    phone_number = models.CharField(validators=[phone_regex], max_length=50, unique=True)
+    is_verified = models.BooleanField(default=False)
+
+    class Meta:
+        order_with_respect_to = 'user'
+
+    def __str__(self):
+        return self.phone_number
 
 
 class UserReview(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='%(class)s_review_author', verbose_name=_("Author"), on_delete=models.CASCADE)
-    recipient = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='%(class)s_review_recipient', verbose_name=_("Recipient"), on_delete=models.CASCADE)
-    rating = models.DecimalField(_("Rating"), max_digits=2, decimal_places=1, validators=[MinValueValidator(0.0), MaxValueValidator(5.0)], default=0)
-    content = models.TextField(_("Content"))
-    slug = models.SlugField(_("Slug"), max_length=50)
-    created_at = models.DateTimeField(_("Timestamp Created"), auto_now=False, auto_now_add=True)
-    last_updated = models.DateTimeField(_("Timestamp Updated"), auto_now=True, auto_now_add=False)
+    created_by = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('user_review_creator'), on_delete=models.CASCADE)
+    recipient = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('review_recipient'), on_delete=models.CASCADE)
+    rating = models.DecimalField( max_digits=2, decimal_places=1, validators=[MinValueValidator(0.0), MaxValueValidator(5.0)], default=0)
+    title = models.CharField(max_length=255)
+    body = models.TextField(blank=True, null=True)
+    slug = models.SlugField(max_length=255, unique=True)
+    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True, auto_now_add=False)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def get_absolute_url(self):
+        return reverse('accounts:user-review', kwargs={'slug': self.slug})
 
     def __str__(self):
-        return self.content
+        return self.title
+
+    def get_review_body(self):
+        return self.body
