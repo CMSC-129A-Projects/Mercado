@@ -9,6 +9,7 @@ body {
   font-family: sans-serif;
   background: #12c2e9;  /* fallback for old browsers */
   background-image: url(./images/bg.jpg);
+  background-size: cover;
 }
 
 body, html, .App, #root, .outer {
