@@ -117,8 +117,8 @@ DJOSER = {
     'SEND_CONFIRMATION_EMAIL': True,
     'SET_PASSWORD_RETYPE': True,
     'SERIALIZERS': {
-        'user_create': 'accounts.serializers.UserCreateSerializer',
-        'user': 'accounts.serializers.UserCreateSerializer',
+        'user_create': 'accounts.serializers.UserSerializer',
+        'user': 'accounts.serializers.UserSerializer',
         'user_delete': 'djoser.serializers.UserDeleteSerializer',
     },
 }

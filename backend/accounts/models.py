@@ -11,7 +11,7 @@ class UserManager(BaseUserManager):
 
     def _create_user(self, email, password, **extra_fields):
         """
-        Creates and save a User with the phone_number and password
+        Creates and save a User with the email and password
         """
         if not email:
             raise ValueError("Email is not set.")
@@ -39,15 +39,17 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
+    phone_number = models.CharField(validators=[RegexValidator(regex=r'^(09|\+639)\d{9}$')], max_length=50, unique=True)
+    is_verified = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
-    modified_at = models.DateTimeField(auto_now=True, auto_now_add=False)
+    last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
     objects = UserManager()
     
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number']
 
     def __str__(self):
         return self.email
@@ -89,7 +91,7 @@ class Profile(models.Model):
         order_with_respect_to = 'user'
 
     def get_absolute_url(self):
-        return reverse('accounts:user-profile', kwargs={'slug': self.slug})
+        return reverse('accounts:user-profile', args=[self.pk])
 
     def __str__(self):
         return str(user)
@@ -107,12 +109,13 @@ class ProfileImage(models.Model):
 
 class UserAddress(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('user_address'), on_delete=models.CASCADE)
-    address_line1 = models.CharField(max_length=255)
+    address_line1 = models.CharField(max_length=255, blank=True, null=True)
+    address_line2 = models.CharField(max_length=255, blank=True, null=True)
     city = models.CharField(max_length=255)
-    address_line2 = models.CharField(max_length=255)
     postal_code =  models.CharField(max_length=50)
     country = models.CharField(max_length=50, default='PH')
-    modified_at = models.DateTimeField(auto_now=True, auto_now_add=False)
+    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
     class Meta:
         verbose_name_plural = _('addresses')
@@ -123,34 +126,20 @@ class UserAddress(models.Model):
         return complete_address
 
 
-class UserPhone(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('user_phone'), on_delete=models.CASCADE)
-    phone_regex = RegexValidator(regex=r'^(09|\+639)\d{9}$')
-    phone_number = models.CharField(validators=[phone_regex], max_length=50, unique=True)
-    is_verified = models.BooleanField(default=False)
-
-    class Meta:
-        order_with_respect_to = 'user'
-
-    def __str__(self):
-        return self.phone_number
-
-
 class UserReview(models.Model):
     created_by = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('user_review_creator'), on_delete=models.CASCADE)
     recipient = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('review_recipient'), on_delete=models.CASCADE)
     rating = models.DecimalField( max_digits=2, decimal_places=1, validators=[MinValueValidator(0.0), MaxValueValidator(5.0)], default=0)
     title = models.CharField(max_length=255)
     body = models.TextField(blank=True, null=True)
-    slug = models.SlugField(max_length=255, unique=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
-    modified_at = models.DateTimeField(auto_now=True, auto_now_add=False)
+    last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
     class Meta:
         ordering = ['-created_at']
 
     def get_absolute_url(self):
-        return reverse('accounts:user-review', kwargs={'slug': self.slug})
+        return reverse('accounts:user-review', args=[self.pk])
 
     def __str__(self):
         return self.title
