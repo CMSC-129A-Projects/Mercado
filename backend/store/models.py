@@ -36,7 +36,7 @@ class Product(models.Model):
         ordering = ['-created_at']
 
     def get_absolute_url(self):
-        return reverse('store:product', kwargs={'slug': self.slug})
+        return reverse('store:product-detail', args=[self.pk])
 
     def __str__(self):
         return self.name
@@ -52,23 +52,23 @@ class ProductImage(models.Model):
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
 
 
-class ShoppingSession(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('shopping_sessions'), on_delete=models.CASCADE)
+class Cart(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('carts'), on_delete=models.CASCADE)
     total = models.DecimalField(max_digits=5, decimal_places=2)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
 
 class CartItem(models.Model):
-    session = models.ForeignKey(ShoppingSession, related_name=_('cart_session'), on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, related_name=_('cart_product'), on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, related_name=_('cart_items'), on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name=_('cart_products'), on_delete=models.CASCADE)
     quantity = models.IntegerField()
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
 
 class OrderItem(models.Model):
-    product = models.ForeignKey(Product, related_name=_('order_product'), on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name=_('order_products'), on_delete=models.CASCADE)
     quantity = models.IntegerField()
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)

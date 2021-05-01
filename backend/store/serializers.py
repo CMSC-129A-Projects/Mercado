@@ -3,7 +3,7 @@ from rest_framework import serializers
 from .models import (
     Category, 
     Product, 
-    ShoppingSession,
+    Cart,
     CartItem, 
     OrderItem, 
     ProductReview
@@ -16,16 +16,16 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ['name']
 
 
-class ShoppingSessionSerializer(serializers.ModelSerializer):
+class CartSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ShoppingSession
+        model = Cart
         fields = ['total']
 
 
 class CartItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = CartItem
-        fields = ['session', 'product', 'quantity']
+        fields = ['cart', 'product', 'quantity']
 
 
 class OrderItemSerializer(serializers.ModelSerializer):

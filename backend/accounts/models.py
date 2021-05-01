@@ -83,9 +83,14 @@ class User(AbstractBaseUser, PermissionsMixin):
         send_email(subject, message, from_email, [self.email], **kwargs)
 
 
+def profile_image_path(instance, filename):
+    return '/'.join(['profile-images/', str(instance.name), filename])
+
+
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('profile'), on_delete=models.CASCADE)
     bio = models.CharField(max_length=255, blank=True, null=True)
+    image = models.ImageField(upload_to=profile_image_path, height_field=None, width_field=None, max_length=None, blank=True, null=True)
 
     class Meta:
         order_with_respect_to = 'user'
@@ -97,22 +102,12 @@ class Profile(models.Model):
         return str(user)
 
 
-def profile_image_path(instance, filename):
-    return '/'.join(['profile-images/% Y/% m', str(instance.name), filename])
-
-
-class ProfileImage(models.Model):
-    profile = models.ForeignKey(Profile, related_name=_('profile'), on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=profile_image_path, height_field=None, width_field=None, max_length=None)
-    created_at = models.DateTimeField(_('image upload timestamp'), auto_now=False, auto_now_add=True)
-
-
 class UserAddress(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('user_address'), on_delete=models.CASCADE)
     address_line1 = models.CharField(max_length=255, blank=True, null=True)
     address_line2 = models.CharField(max_length=255, blank=True, null=True)
     city = models.CharField(max_length=255)
-    postal_code =  models.CharField(max_length=50)
+    postal_code =  models.CharField(max_length=50, blank=True, null=True)
     country = models.CharField(max_length=50, default='PH')
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
@@ -127,8 +122,8 @@ class UserAddress(models.Model):
 
 
 class UserReview(models.Model):
-    created_by = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('user_review_creator'), on_delete=models.CASCADE)
-    recipient = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('review_recipient'), on_delete=models.CASCADE)
+    created_by = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('user_reviews_from'), on_delete=models.CASCADE)
+    recipient = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('user_reviews_to'), on_delete=models.CASCADE)
     rating = models.DecimalField( max_digits=2, decimal_places=1, validators=[MinValueValidator(0.0), MaxValueValidator(5.0)], default=0)
     title = models.CharField(max_length=255)
     body = models.TextField(blank=True, null=True)

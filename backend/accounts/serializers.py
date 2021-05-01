@@ -2,61 +2,60 @@ from rest_framework import serializers
 from django.conf import settings
 
 from .models import (User, Profile, UserAddress, UserReview)
-from store.models import (Product, ProductReview, ShoppingSession)
-
-
-class UserSerializer(serializers.ModelSerializer):
-    products = serializers.PrimaryKeyRelatedField(many=True, queryset=Product.objects.all())
-    product_reviews_user = serializers.PrimaryKeyRelatedField(many=True, queryset=ProductReview.objects.all())
-    shopping_sessions = serializers.PrimaryKeyRelatedField(many=True, queryset=ShoppingSession.objects.all())
-
-    class Meta:
-        model = User
-        fields = (
-            'email',
-            'first_name',
-            'last_name',
-            'phone_number',
-            'products',
-            'product_reviews_user',
-            'shopping_sessions'
-        )
+from store.models import (Product, ProductReview, Cart)
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
-
     class Meta:
         model = Profile
-        fields = ('user', 'bio')
+        fields = ['bio', 'image']
+        lookup_field = 'user'
 
 
 class UserAddressSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
-
     class Meta:
         model = UserAddress
-        fields = (
-            'user',
+        fields = [
             'address_line1', 
             'address_line2', 
             'city',
             'postal_code',
             'country'
-        )
+        ]
 
 
 class UserReviewSerializer(serializers.ModelSerializer):
-    created_by = serializers.PrimaryKeyRelatedField(read_only=True)
-    recipient = serializers.PrimaryKeyRelatedField(read_only=True)
-
     class Meta:
         model = UserReview
-        fields = (
-            'created_by',
+        fields = [
             'recipient',
             'rating',
             'title',
             'body',
-            'slug'
-        )
+        ]
+
+
+class UserSerializer(serializers.ModelSerializer):
+    profile = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
+    user_address = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
+    user_reviews_from = serializers.PrimaryKeyRelatedField(many=True, queryset=Product.objects.all())
+    user_reviews_to = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    products = serializers.PrimaryKeyRelatedField(many=True, queryset=Product.objects.all())
+    product_reviews_user = serializers.PrimaryKeyRelatedField(many=True, queryset=ProductReview.objects.all())
+    carts = serializers.PrimaryKeyRelatedField(many=True, queryset=Cart.objects.all())
+
+    class Meta:
+        model = User
+        fields = [
+            'email',
+            'first_name',
+            'last_name',
+            'phone_number',
+            'profile',
+            'user_address',
+            'user_reviews_from',
+            'user_reviews_to',
+            'products',
+            'product_reviews_user',
+            'carts'
+        ]
