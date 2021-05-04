@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
+import Alert from './Alert';
 import { logout } from '../actions/auth';
 
 const NavigationBar = ({ logout }) => {
@@ -19,6 +20,7 @@ const NavigationBar = ({ logout }) => {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
+            <Alert />
         </Fragment>
     );
 };
