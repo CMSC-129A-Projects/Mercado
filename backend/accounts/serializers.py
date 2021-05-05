@@ -51,6 +51,8 @@ class UserSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'phone_number',
+            'created_at',
+            'last_updated',
             'profile',
             'user_address',
             'user_reviews_from',

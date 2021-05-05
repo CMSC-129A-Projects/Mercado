@@ -7,8 +7,6 @@ body {
   display: flex;
   font-weight: 100;
   font-family: sans-serif;
-  background: #12c2e9;  /* fallback for old browsers */
-  background-image: url(./images/bg.jpg);
 }
 
 body, html, .App, #root, .outer {

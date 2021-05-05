@@ -26,47 +26,51 @@ const Login = ({ login, isAuthenticated }) => {
         return <Redirect to="/" />;
 
     return (
-        <Container className="mt-4">
-            <div className="row justify-content-center">
-                <img src={Img} alt="logo" />
-            </div>
-            <Form onSubmit={e => onSubmit(e)}>
-                <Form.Group>
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control 
-                        type="email"
-                        name="email"
-                        id="email"
-                        value={email}
-                        onChange={e => onChange(e)}
-                        required
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control 
-                        type="password"
-                        name="password"
-                        id="password"
-                        value={password}
-                        onChange={e => onChange(e)}
-                        required
-                    />
-                </Form.Group>
-
+        <div className="outer">
+            <div className="inner">
+            <Container className="mt-4">
                 <div className="row justify-content-center">
-                    <Button variant="primary" type="submit">
-                        Log in
-                    </Button>
+                    <img src={Img} alt="logo" />
                 </div>
-                <p className="forgot-password text-center">
-                    Forgot <Link to="/reset_password">Password?</Link>
-                </p>
-                <p className="forgot-password text-center">
-                    Don't have an account? <Link to="/signup">Sign Up</Link>.
-                </p>
-            </Form>
-        </Container>
+                <Form onSubmit={e => onSubmit(e)}>
+                    <Form.Group>
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control 
+                            type="email"
+                            name="email"
+                            id="email"
+                            value={email}
+                            onChange={e => onChange(e)}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control 
+                            type="password"
+                            name="password"
+                            id="password"
+                            value={password}
+                            onChange={e => onChange(e)}
+                            required
+                        />
+                    </Form.Group>
+
+                    <div className="row justify-content-center">
+                        <Button variant="primary" type="submit">
+                            Log in
+                        </Button>
+                    </div>
+                    <p className="forgot-password text-center">
+                        Forgot <Link to="/reset_password">Password?</Link>
+                    </p>
+                    <p className="forgot-password text-center">
+                        Don't have an account? <Link to="/signup">Sign Up</Link>.
+                    </p>
+                </Form>
+            </Container>
+            </div>
+        </div>
     );
 };
 

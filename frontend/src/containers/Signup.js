@@ -46,100 +46,104 @@ const Signup = ({ signup, isAuthenticated }) => {
         return <Redirect to="/login" />;
 
     return (
-        <Container className="mt-4">
-            <div className="row justify-content-center">
-                <img src={Img} alt="logo" />
-            </div>
-            <Form onSubmit={e => onSubmit(e)}>
-                <Row>
-                    <Col>
-                        <Form.Group>
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control 
-                                type="email"
-                                name="email"
-                                id="email"
-                                value={email}
-                                onChange={e => onChange(e)}
-                                required
-                            />
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>First Name</Form.Label>
-                            <Form.Control 
-                                type="text"
-                                name="first_name"
-                                id="first_name"
-                                value={first_name}
-                                onChange={e => onChange(e)}
-                                required
-                            />
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Last Name</Form.Label>
-                            <Form.Control 
-                                type="text"
-                                name="last_name"
-                                id="last_name"
-                                value={last_name}
-                                onChange={e => onChange(e)}
-                                required
-                            />
-                        </Form.Group>
-                    </Col>
-                    <Col>
-                        <Form.Group>
-                            <Form.Label>Phone</Form.Label>
-                            <InputGroup>
-                                <InputGroup.Prepend>
-                                <InputGroup.Text>+63</InputGroup.Text>
-                                </InputGroup.Prepend>
-                                <Form.Control 
-                                    type="text"
-                                    name="phone_number"
-                                    id="phone_number"
-                                    maxLength="10" 
-                                    value={phone_number}
-                                    onChange={e => onPhoneChange(e)}
-                                    required
-                                />
-                            </InputGroup>
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control 
-                                type="password"
-                                name="password"
-                                id="password"
-                                value={password}
-                                onChange={e => onChange(e)}
-                                required
-                            />
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Re-type Password</Form.Label>
-                            <Form.Control 
-                                type="password"
-                                name="re_password"
-                                id="re_password"
-                                value={re_password}
-                                onChange={e => onChange(e)}
-                                required
-                            />
-                        </Form.Group>
-                    </Col>
-                </Row>
+        <div className="outer">
+            <div className="inner">
+                <Container className="mt-4">
+                    <div className="row justify-content-center">
+                        <img src={Img} alt="logo" />
+                    </div>
+                    <Form onSubmit={e => onSubmit(e)}>
+                        <Row>
+                            <Col>
+                                <Form.Group>
+                                    <Form.Label>Email</Form.Label>
+                                    <Form.Control 
+                                        type="email"
+                                        name="email"
+                                        id="email"
+                                        value={email}
+                                        onChange={e => onChange(e)}
+                                        required
+                                    />
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Label>First Name</Form.Label>
+                                    <Form.Control 
+                                        type="text"
+                                        name="first_name"
+                                        id="first_name"
+                                        value={first_name}
+                                        onChange={e => onChange(e)}
+                                        required
+                                    />
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Label>Last Name</Form.Label>
+                                    <Form.Control 
+                                        type="text"
+                                        name="last_name"
+                                        id="last_name"
+                                        value={last_name}
+                                        onChange={e => onChange(e)}
+                                        required
+                                    />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group>
+                                    <Form.Label>Phone</Form.Label>
+                                    <InputGroup>
+                                        <InputGroup.Prepend>
+                                        <InputGroup.Text>+63</InputGroup.Text>
+                                        </InputGroup.Prepend>
+                                        <Form.Control 
+                                            type="text"
+                                            name="phone_number"
+                                            id="phone_number"
+                                            maxLength="10" 
+                                            value={phone_number}
+                                            onChange={e => onPhoneChange(e)}
+                                            required
+                                        />
+                                    </InputGroup>
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control 
+                                        type="password"
+                                        name="password"
+                                        id="password"
+                                        value={password}
+                                        onChange={e => onChange(e)}
+                                        required
+                                    />
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Label>Re-type Password</Form.Label>
+                                    <Form.Control 
+                                        type="password"
+                                        name="re_password"
+                                        id="re_password"
+                                        value={re_password}
+                                        onChange={e => onChange(e)}
+                                        required
+                                    />
+                                </Form.Group>
+                            </Col>
+                        </Row>
 
-                <div className="row justify-content-center">
-                    <Button variant="primary" type="submit">
-                        Sign up
-                    </Button>
-                </div>
-                <p className="forgot-password text-center">
-                    Already have an account? <Link to="/login">Login</Link>
-                </p>
-            </Form>
-        </Container>
+                        <div className="row justify-content-center">
+                            <Button variant="primary" type="submit">
+                                Sign up
+                            </Button>
+                        </div>
+                        <p className="forgot-password text-center">
+                            Already have an account? <Link to="/login">Login</Link>
+                        </p>
+                    </Form>
+                </Container>
+            </div>
+        </div>
     );
 };
 

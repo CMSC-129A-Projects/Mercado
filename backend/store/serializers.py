@@ -13,25 +13,25 @@ from .models import (
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['name']
+        fields = ['name', 'created_at', 'last_updated']
 
 
 class CartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cart
-        fields = ['total']
+        fields = ['total', 'created_at', 'last_updated']
 
 
 class CartItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = CartItem
-        fields = ['cart', 'product', 'quantity']
+        fields = ['cart', 'product', 'quantity', 'created_at', 'last_updated']
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
-        fields = ['product', 'quantity']
+        fields = ['product', 'quantity', 'created_at', 'last_updated']
 
 
 class ProductReviewSerializer(serializers.ModelSerializer):
@@ -41,22 +41,28 @@ class ProductReviewSerializer(serializers.ModelSerializer):
             'product',
             'rating',
             'title',
-            'body'
+            'body',
+            'created_at',
+            'last_updated'
         ]
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    categories = serializers.StringRelatedField(many=True)
     product_reviews_product = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     
     class Meta:
         model = Product
         fields = [
+            'created_by',
             'name',
             'desc',
             'price',
             'disc_price',
             'categories',
             'in_stock',
+            'created_at',
+            'last_updated',
             'product_reviews_product'
         ]
 

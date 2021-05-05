@@ -5,29 +5,21 @@ import {
     PRODUCTS_LOADED_FAIL
 } from './types';
 
-export const loadProducts = (auth) => async dispatch => {
-    if (auth.user) {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `JWT ${auth.access}`,
-                'Accept': 'application/json'
-            }
-        };
-
-        try {
-            const res = await axios.get(`/store/products/`, config);
-
-            dispatch({
-                type: PRODUCTS_LOADED_SUCCESS,
-                payload: res
-            });
-        } catch (err) {
-            dispatch({
-                type: PRODUCTS_LOADED_FAIL
-            });
+export const loadProducts = () => async dispatch => {
+    const config = {
+        headers: {
+            'Accept': 'application/json'            
         }
-    } else {
+    };
+
+    try {
+        const res = await axios.get(`/store/products/`, config);
+
+        dispatch({
+            type: PRODUCTS_LOADED_SUCCESS,
+            payload: res.data
+        });
+    } catch (err) {
         dispatch({
             type: PRODUCTS_LOADED_FAIL
         });

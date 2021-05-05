@@ -313,4 +313,6 @@ export const logout = () => dispatch => {
     dispatch({
         type: LOGOUT
     });
+
+    dispatch(setAlert('Logout successful', 'success'));
 };

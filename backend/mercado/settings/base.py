@@ -108,13 +108,27 @@ SIMPLE_JWT = {
 DOMAIN = config('DOMAIN')
 SITE_NAME = config('SITE_NAME')
 
+# DJOSER = {
+#     'LOGIN_FIELD': 'email',
+#     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
+#     'ACTIVATION_URL': 'activate/{uid}/{token}',
+#     'USER_CREATE_PASSWORD_RETYPE': True,
+#     'SEND_ACTIVATION_EMAIL': True,
+#     'SEND_CONFIRMATION_EMAIL': True,
+#     'SET_PASSWORD_RETYPE': True,
+#     'SERIALIZERS': {
+#         'user_create': 'accounts.serializers.UserSerializer',
+#         'user': 'accounts.serializers.UserSerializer',
+#         'user_delete': 'djoser.serializers.UserDeleteSerializer',
+#     },
+# }
+
+# Without email verification 
+
 DJOSER = {
     'LOGIN_FIELD': 'email',
     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
-    'ACTIVATION_URL': 'activate/{uid}/{token}',
     'USER_CREATE_PASSWORD_RETYPE': True,
-    'SEND_ACTIVATION_EMAIL': True,
-    'SEND_CONFIRMATION_EMAIL': True,
     'SET_PASSWORD_RETYPE': True,
     'SERIALIZERS': {
         'user_create': 'accounts.serializers.UserSerializer',
