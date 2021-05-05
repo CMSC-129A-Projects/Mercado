@@ -12,6 +12,8 @@ import Signup from './containers/Signup';
 import Activate from './containers/Activate';
 import ResetPassword from './containers/ResetPassword';
 import ResetPasswordConfirm from './containers/ResetPasswordConfirm';
+import Product from './containers/Product';
+import Profile from './containers/Profile';
 
 import store from './store';
 
@@ -29,6 +31,8 @@ function App() {
                 <Route path="/activate/:uid/:token" component={Activate} />
                 <Route path="/reset_password" component={ResetPassword} />
                 <Route path="/password/reset/confirm/:uid/:token" component={ResetPasswordConfirm} />
+                <Route path="/product/:id" component={Product} />
+                <Route path="/profile" component={Profile} />
               </Switch>
             </div>
           </Layout>

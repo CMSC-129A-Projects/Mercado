@@ -14,7 +14,7 @@ const NavigationBar = ({ isAuthenticated, logout }) => {
         ? (
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <a className="nav-link" aria-current="page" href="">Profile</a>
+                        <a className="nav-link" aria-current="page" href="/profile">Profile</a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" aria-current="page" href="" onClick={logout_user}>Logout</a>
@@ -32,7 +32,7 @@ const NavigationBar = ({ isAuthenticated, logout }) => {
 
     return (
         <Fragment>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-lg navbar-success bg-light">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="/">Mercado</a>
                     <button 

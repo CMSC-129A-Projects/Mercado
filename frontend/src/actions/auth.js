@@ -83,8 +83,6 @@ export const refreshToken = () => async dispatch => {
             try {
                 const res = await axios.post(`/auth/jwt/refresh/`, body, config);
                 
-                console.log(res.data.access);
-
                 dispatch({
                     type: REFRESH_SUCCESS,
                     payload: res.data
