@@ -1,38 +1,188 @@
-.App {
-    text-align: center;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-.App-logo {
-height: 40vmin;
-pointer-events: none;
+/* login and signup */
+
+.outer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-.App-logo {
-    animation: App-logo-spin infinite 20s linear;
-}
-}
-
-.App-header {
-background-color: #3f2909;
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-font-size: calc(10px + 2vmin);
-color: white;
+.inner {
+    height: 650px;
+    width: 550px;
+    margin: auto;
+    background: rgb(255, 255, 255);
+    padding: 10px 55px 10px 55px;
+    border-radius: 15px;
+    transition: all .3s;
+    font-size: 13px;
+    opacity: 0.9;
 }
 
-.App-link {
-color: #61dafb;
+.forgot-password,
+.forgot-password a {
+    text-align: right;
+    font-size: 13px;
+    padding-top: 10px;
+    color: #7f7d7d;
+    margin: 0;
 }
 
-@keyframes App-logo-spin {
-from {
-    transform: rotate(0deg);
+.forgot-password a {
+    color: #167bff;
 }
-to {
-    transform: rotate(360deg);
+
+/* navbar */
+
+.navbar-brand {
+    margin-right: 100px;
+    font-size: 300%;
+    color: rgb(196, 189, 167);
+    font-family: 'Shrikhand', cursive;
 }
+
+.navbar-brand:hover {
+    color: rgb(71, 81, 44);
+}
+
+.nav-link {
+    margin-right: 20px;
+    margin-left: 20px;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+}
+
+.nav-link:hover {
+    color: rgb(196, 189, 167);
+}
+
+.nav-item .active {
+    text-decoration: underline;
+}
+
+.search {
+    height: 40px;
+    width: 180px;
+    border-radius: 60px;
+    outline: none;
+    margin-right: -35px;
+    font-family: 'Open Sans', sans-serif;
+    border: 2px solid rgb(71, 81, 44);
+}
+
+.search-btn {
+    height: 40px;
+    width: 90px;
+    outline: none;
+    border: none;
+    background: rgb(71, 81, 44);
+    color: rgb(255, 255, 255);
+    border-radius: 60px;
+    font-weight: 500;
+}
+
+/* showcase */
+
+.showcase {
+    background-image: url('./images/bg1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 600px;
+    background-position: 50% 50%;
+    width: 100%;
+}
+
+.showcase h1 {
+    font-size: 500%;
+    height: 65px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+}
+
+.showcase h5 {
+    font-size: 30px;
+    margin-top: 20px;
+    font-family: 'Mrs Sheppards', cursive;
+}
+
+.showcase-btn-1 {
+    height: 39px;
+    width: 25%;
+    border: none;
+    outline-width: 3px;
+    outline-style: solid;
+    outline-color: rgb(71, 81, 44);
+    background-color: rgb(242, 244, 235);
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: rgb(71, 81, 44);
+}
+
+.showcase-btn-1:hover {
+    background-color: rgb(71, 81, 44);
+    outline-color: rgb(242, 244, 235);
+    color: rgb(242, 244, 235);
+}
+
+.showcase-btn-2 {
+    margin-left: 10px;
+    height: 45px;
+    width: 25%;
+    border: none;
+    outline: none;
+    background-color: rgb(71, 81, 44);
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: rgb(242, 244, 235);
+}
+
+.showcase-btn-2:hover {
+    background-color: rgb(242, 244, 235);
+    outline-color: rgb(71, 81, 44);
+    color: rgb(71, 81, 44);
+}
+
+.showcase-btn-2 a {
+    text-decoration: none;
+    color: rgb(242, 244, 235);
+}
+
+.showcase-btn-2 a:hover {
+    background-color: rgb(242, 244, 235);
+    outline-color: rgb(71, 81, 44);
+    color: rgb(71, 81, 44);
+}
+
+/* categories */
+
+.categories {
+    background-color: rgb(196, 189, 167);
+}
+
+.categories h6 {
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(69, 41, 28);
+}
+
+.card:hover {
+    box-shadow: -2px -1px 25px -4px rgba(0,0,0,0.75);
+    -webkit-box-shadow: -2px -1px 25px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: -2px -1px 25px -4px rgba(0,0,0,0.75);
+    transition: 0.5s;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+.product h1, h6, p {
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(0, 0, 0);
 }

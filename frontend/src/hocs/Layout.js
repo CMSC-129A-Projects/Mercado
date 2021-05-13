@@ -8,12 +8,12 @@ const Layout = ({ refreshToken, children }) => {
         refreshToken();
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    });
 
     return (
-        <React.Fragment>
+        <>
             {children}
-        </React.Fragment>
+        </>
     );
 };
 
