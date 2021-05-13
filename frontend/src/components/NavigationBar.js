@@ -18,7 +18,7 @@ const NavigationBar = ({ isAuthenticated }) => {
                                 <a className="nav-link" href="/">Home</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/">Shop</a>
+                                <a className="nav-link" href="/shop">Shop</a>
                             </li>
 
                             {
@@ -48,7 +48,7 @@ const NavigationBar = ({ isAuthenticated }) => {
                                 className="px-2 search" 
                                 type="text" 
                                 aria-label="Search" 
-                                
+
                             />
                             <button className="search-btn" type="submit">Search</button>
                         </form>

@@ -23,7 +23,7 @@ const Home = ({ loadProducts, products }) => {
                         <h1> FRESHEST</h1>
                         <h5>and the best deals in your locality!</h5>
                         <button className="showcase-btn-1 mt-3">LEARN MORE</button>
-                        <button className="showcase-btn-2 mt-3">SHOP NOW</button>
+                        <button className="showcase-btn-2 mt-3"><a href="/shop">SHOP NOW</a></button>
                     </div>
                 </div>
                 </div>

@@ -1,5 +1,4 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import NavigationBar from '../components/NavigationBar';
@@ -14,7 +13,6 @@ const Profile = ({ logout, createProduct, curr_user, isAuthenticated }) => {
         'discPrice': 0,
         'inStock': false
     });
-    const [created, setCreated] = useState(false);
 
     const { productName, desc, price, discPrice, inStock } = productForm;
 
@@ -25,16 +23,14 @@ const Profile = ({ logout, createProduct, curr_user, isAuthenticated }) => {
     const onSubmit = e => {
         let in_stock = inStock ? 1 : 0;
         createProduct(curr_user.id, productName, desc, price, discPrice, in_stock);
-        setCreated(true);
+
+        window.location.href = '/shop';
     };
 
     const logout_user = () => {
         logout();
         window.location.href = '/login';
     };
-
-    if (created)
-        return <Redirect to="/profile" />;
 
     return (
         <Fragment>

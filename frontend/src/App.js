@@ -13,6 +13,7 @@ import ResetPassword from './containers/ResetPassword';
 import ResetPasswordConfirm from './containers/ResetPasswordConfirm';
 import Product from './containers/Product';
 import Profile from './containers/Profile';
+import Shop from './containers/Shop';
 
 import store from './store';
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="/password/reset/confirm/:uid/:token" component={ResetPasswordConfirm} />
             <Route path="/product/:id" component={Product} />
             <Route path="/profile" component={Profile} />
+            <Route path="/shop" component={Shop} />
           </Switch>
         </Layout>
       </Router>

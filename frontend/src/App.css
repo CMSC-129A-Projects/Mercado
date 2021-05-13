@@ -147,6 +147,17 @@
     color: rgb(71, 81, 44);
 }
 
+.showcase-btn-2 a {
+    text-decoration: none;
+    color: rgb(242, 244, 235);
+}
+
+.showcase-btn-2 a:hover {
+    background-color: rgb(242, 244, 235);
+    outline-color: rgb(71, 81, 44);
+    color: rgb(71, 81, 44);
+}
+
 /* categories */
 
 .categories {
