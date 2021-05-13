@@ -11,9 +11,9 @@ const Layout = ({ refreshToken, children }) => {
     });
 
     return (
-        <React.Fragment>
+        <>
             {children}
-        </React.Fragment>
+        </>
     );
 };
 

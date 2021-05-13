@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import NavigationBar from '../components/NavigationBar';
 import { getProduct } from '../actions/products';
-import goods1 from '../images/goods1.jpg';
 
 const Product = ({ match, getProduct, product }) => {
     useEffect(() => {
@@ -17,7 +16,7 @@ const Product = ({ match, getProduct, product }) => {
             <NavigationBar />
 
             <div className="card mb-3">
-                <img src={goods1} className="card-img-top" alt="Market goods" />
+                <img src="images/goods1.jpg" className="card-img-top" alt="Market goods" />
                 <div className="card-body">
                     <h5 className="card-title">{product && product.name}</h5>
                     <p className="card-text">{product && product.desc}</p>

@@ -1,5 +1,4 @@
 import React from 'react';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -20,24 +19,20 @@ import store from './store';
 function App() {
   return (
     <Provider store={store}>
-      <React.Fragment>
-        <Router>
-          <Layout>
-            <div className="App">
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/login" component={Login} />
-                <Route path="/signup" component={Signup} />
-                <Route path="/activate/:uid/:token" component={Activate} />
-                <Route path="/reset_password" component={ResetPassword} />
-                <Route path="/password/reset/confirm/:uid/:token" component={ResetPasswordConfirm} />
-                <Route path="/product/:id" component={Product} />
-                <Route path="/profile" component={Profile} />
-              </Switch>
-            </div>
-          </Layout>
-        </Router>
-      </React.Fragment>
+      <Router>
+        <Layout>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/activate/:uid/:token" component={Activate} />
+            <Route path="/reset_password" component={ResetPassword} />
+            <Route path="/password/reset/confirm/:uid/:token" component={ResetPasswordConfirm} />
+            <Route path="/product/:id" component={Product} />
+            <Route path="/profile" component={Profile} />
+          </Switch>
+        </Layout>
+      </Router>
     </Provider>
   );
 }

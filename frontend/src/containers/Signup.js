@@ -4,10 +4,10 @@ import { Container, Form, InputGroup, Button, Row, Col } from "react-bootstrap";
 import { connect } from 'react-redux';
 
 import { signup } from '../actions/auth';
-import Img from '../images/logo2.png';
 
 const Signup = ({ signup, isAuthenticated }) => {
     const [accountCreated, setAccountCreated] = useState(false);
+    
     const [formData, setFormData] = useState({
         email: '',
         phone_number: '',
@@ -50,7 +50,7 @@ const Signup = ({ signup, isAuthenticated }) => {
             <div className="inner">
                 <Container className="mt-4">
                     <div className="row justify-content-center">
-                        <img src={Img} alt="logo" />
+                        <img src="images/logo1.png" alt="logo" />
                     </div>
                     <Form onSubmit={e => onSubmit(e)}>
                         <Row>
@@ -66,6 +66,10 @@ const Signup = ({ signup, isAuthenticated }) => {
                                         required
                                     />
                                 </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
                                 <Form.Group>
                                     <Form.Label>First Name</Form.Label>
                                     <Form.Control 
@@ -77,6 +81,8 @@ const Signup = ({ signup, isAuthenticated }) => {
                                         required
                                     />
                                 </Form.Group>
+                            </Col>
+                            <Col>
                                 <Form.Group>
                                     <Form.Label>Last Name</Form.Label>
                                     <Form.Control 
@@ -89,6 +95,8 @@ const Signup = ({ signup, isAuthenticated }) => {
                                     />
                                 </Form.Group>
                             </Col>
+                        </Row>
+                        <Row>
                             <Col>
                                 <Form.Group>
                                     <Form.Label>Phone</Form.Label>
@@ -107,6 +115,10 @@ const Signup = ({ signup, isAuthenticated }) => {
                                         />
                                     </InputGroup>
                                 </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
                                 <Form.Group>
                                     <Form.Label>Password</Form.Label>
                                     <Form.Control 
@@ -118,6 +130,8 @@ const Signup = ({ signup, isAuthenticated }) => {
                                         required
                                     />
                                 </Form.Group>
+                            </Col>
+                            <Col>
                                 <Form.Group>
                                     <Form.Label>Re-type Password</Form.Label>
                                     <Form.Control 
@@ -132,14 +146,15 @@ const Signup = ({ signup, isAuthenticated }) => {
                             </Col>
                         </Row>
 
-                        <div className="row justify-content-center">
+                        <div className="row justify-content-center mt-3">
                             <Button variant="primary" type="submit">
                                 Sign up
                             </Button>
+
+                            <p className="forgot-password text-center">
+                                Already have an account? <Link to="/login">Login</Link>
+                            </p>
                         </div>
-                        <p className="forgot-password text-center">
-                            Already have an account? <Link to="/login">Login</Link>
-                        </p>
                     </Form>
                 </Container>
             </div>

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import NavigationBar from '../components/NavigationBar';
+import { logout } from '../actions/auth';
 import { createProduct } from '../actions/products';
-import product from '../reducers/products';
 
-const Profile = ({ isAuthenticated, user, createProduct }) => {
+const Profile = ({ logout, createProduct, curr_user, isAuthenticated }) => {
     const [productForm, setProductForm] = useState({
         'productName': '',
         'desc': '',
@@ -14,9 +14,9 @@ const Profile = ({ isAuthenticated, user, createProduct }) => {
         'discPrice': 0,
         'inStock': false
     });
-    const { productName, desc, price, discPrice, inStock } = productForm;
-
     const [created, setCreated] = useState(false);
+
+    const { productName, desc, price, discPrice, inStock } = productForm;
 
     const onChange = e => setProductForm({ ...productForm, [e.target.name]: e.target.value });
 
@@ -24,16 +24,28 @@ const Profile = ({ isAuthenticated, user, createProduct }) => {
 
     const onSubmit = e => {
         let in_stock = inStock ? 1 : 0;
-        createProduct(user.id, productName, desc, price, discPrice, in_stock);
+        createProduct(curr_user.id, productName, desc, price, discPrice, in_stock);
         setCreated(true);
+    };
+
+    const logout_user = () => {
+        logout();
+        window.location.href = '/login';
     };
 
     if (created)
         return <Redirect to="/profile" />;
 
     return (
-        <>
+        <Fragment>
             <NavigationBar />
+
+            <div className="container mt-5">
+                <h1>{curr_user && curr_user.first_name} {curr_user && curr_user.last_name}</h1>
+                <button type="button" className="btn btn-sm btn-outline-warning" onClick={logout_user}>
+                    Logout
+                </button>
+            </div>
 
             <div className="container mt-5">
                 <form onSubmit={e => onSubmit(e)}>
@@ -66,13 +78,13 @@ const Profile = ({ isAuthenticated, user, createProduct }) => {
                     <button type="submit" className="btn btn-outline-success">Sell your product</button>
                 </form>
             </div>
-        </>
+        </Fragment>
     );
 };
 
 const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated,
-    user: state.auth.user
+    curr_user: state.auth.user,
+    isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { createProduct })(Profile);
+export default connect(mapStateToProps, { logout, createProduct })(Profile);
