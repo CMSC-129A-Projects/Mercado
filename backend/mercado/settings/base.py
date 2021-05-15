@@ -93,6 +93,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
 
+# Custom User model 
+
 AUTH_USER_MODEL = 'accounts.User'
 
 # Simple JWT settings 
@@ -104,6 +106,8 @@ SIMPLE_JWT = {
 }
 
 # Djoser settings
+
+# Used in email templates
 
 DOMAIN = config('DOMAIN')
 SITE_NAME = config('SITE_NAME')
@@ -126,7 +130,7 @@ SITE_NAME = config('SITE_NAME')
 # Without email verification 
 
 DJOSER = {
-    'LOGIN_FIELD': 'email',
+    'LOGIN_FIELD': 'phone_number',
     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
     'USER_CREATE_PASSWORD_RETYPE': True,
     'SET_PASSWORD_RETYPE': True,

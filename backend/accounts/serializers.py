@@ -41,16 +41,16 @@ class UserSerializer(serializers.ModelSerializer):
     user_reviews_from = serializers.PrimaryKeyRelatedField(many=True, queryset=Product.objects.all())
     user_reviews_to = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     products = serializers.PrimaryKeyRelatedField(many=True, queryset=Product.objects.all())
-    product_reviews_user = serializers.PrimaryKeyRelatedField(many=True, queryset=ProductReview.objects.all())
-    carts = serializers.PrimaryKeyRelatedField(many=True, queryset=Cart.objects.all())
+    user_product_reviews = serializers.PrimaryKeyRelatedField(many=True, queryset=ProductReview.objects.all())
+    cart = serializers.PrimaryKeyRelatedField(many=True, queryset=Cart.objects.all())
 
     class Meta:
         model = User
         fields = [
-            'email',
+            'phone_number',
             'first_name',
             'last_name',
-            'phone_number',
+            'email',
             'created_at',
             'last_updated',
             'profile',
@@ -58,6 +58,6 @@ class UserSerializer(serializers.ModelSerializer):
             'user_reviews_from',
             'user_reviews_to',
             'products',
-            'product_reviews_user',
-            'carts'
+            'user_product_reviews',
+            'cart'
         ]

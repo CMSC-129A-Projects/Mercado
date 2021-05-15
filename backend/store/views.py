@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 
 from .models import (Category, Product, ProductReview)
 from .serializers import (CategorySerializer, ProductSerializer, ProductReviewSerializer)
@@ -7,6 +7,7 @@ from .serializers import (CategorySerializer, ProductSerializer, ProductReviewSe
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    permission_classes = [permissions.IsAdminUser, permissions.IsAuthenticatedOrReadOnly]
 
 
 class ProductViewSet(viewsets.ModelViewSet):
