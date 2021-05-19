@@ -49,6 +49,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     phone_number = models.CharField(validators=[RegexValidator(regex=r'^(09|\+639)\d{9}$')], max_length=50, unique=True)
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
+    username = models.CharField(max_length=50, unique=True)
     email = models.CharField(max_length=50, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
@@ -58,27 +59,22 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
     
     USERNAME_FIELD = 'phone_number'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'username']
 
     class Meta:
         ordering = ['last_name']
 
 
-def profile_image_path(instance, filename):
-    return '/'.join(['profile-images/', str(instance.name), filename])
-
-
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('profile'), on_delete=models.CASCADE)
     slug = models.SlugField(max_length=25, unique=True)
-    image = models.ImageField(upload_to=profile_image_path, height_field=None, width_field=None, max_length=None, blank=True, null=True)
+    image = models.ImageField(upload_to='profile-images/', height_field=None, width_field=None, max_length=None, blank=True, null=True)
     dob = models.DateField(_('date of birth'), auto_now=False, auto_now_add=False, blank=True, null=True)
     gender = models.CharField(max_length=50, blank=True, null=True)
     bio = models.CharField(max_length=100, blank=True, null=True)
 
     def save(self, **kwargs):
-        slug_str = '%s %s' % (self.user.first_name, self.user.last_name)
-        unique_slugify(self, slug_str)
+        unique_slugify(self, self.user.username)
         super(Profile, self).save(**kwargs)
 
     def __str__(self):

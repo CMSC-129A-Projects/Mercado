@@ -28,6 +28,7 @@ class Product(models.Model):
     disc_price = models.FloatField(_('discounted price'), blank=True, null=True, default=0)
     stock = models.IntegerField(default=1)
     sold = models.IntegerField(default=0)
+    image = models.ImageField(upload_to='product-images/', height_field=None, width_field=None, max_length=None)
     in_stock = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
@@ -37,22 +38,11 @@ class Product(models.Model):
         ordering = ['-created_at']
 
     def save(self, **kwargs):
-        unique_slugify(self, self.title)
+        unique_slugify(self, self.name)
         super(Product, self).save(**kwargs)
 
     def __str__(self):
         return self.name
-    
-
-def product_image_path(instance, filename):
-    return 'user_{0}/{1}'.format(instance.user.id, filename)
-
-
-class ProductImage(models.Model):
-    product = models.ForeignKey(Product, related_name=_('product_images'), on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=product_image_path, height_field=None, width_field=None, max_length=None)
-    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
-    last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
 
 class Cart(models.Model):
@@ -93,7 +83,7 @@ class OrderDetail(models.Model):
 
 
 class ProductReview(models.Model):
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('user_product_reviews'), on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('user_product_reviews'), on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name=_('product_product_reviews'), on_delete=models.CASCADE)
     rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0)
     title = models.CharField(max_length=100)

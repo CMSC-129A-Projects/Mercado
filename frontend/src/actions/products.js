@@ -65,7 +65,8 @@ export const createProduct = (user_id, productName, desc, price, discPrice, inSt
     };
 
     const body = JSON.stringify({
-        created_by: user_id,
+        user: user_id,
+        category: 1,
         name: productName,
         desc: desc,
         price: price,

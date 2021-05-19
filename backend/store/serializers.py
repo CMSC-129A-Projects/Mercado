@@ -11,6 +11,7 @@ from .models import (
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    products = serializers.PrimaryKeyRelatedField(many=True, queryset=Product.objects.all())
     class Meta:
         model = Category
         fields = ['name', 'created_at', 'last_updated']
@@ -48,22 +49,19 @@ class ProductReviewSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    categories = serializers.StringRelatedField(many=True)
-    product_reviews_product = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-    
     class Meta:
         model = Product
         fields = [
             'id',
-            'created_by',
+            'user',
+            'category',
             'name',
-            'desc',
+            'description',
             'price',
             'disc_price',
-            'categories',
             'in_stock',
+            'image',
             'created_at',
             'last_updated',
-            'product_reviews_product'
         ]
 
