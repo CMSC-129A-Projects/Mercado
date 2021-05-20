@@ -11,14 +11,8 @@ import {
 import { setAlert } from './alert';
 
 export const loadProducts = () => async dispatch => {
-    const config = {
-        headers: {
-            'Accept': 'application/json'            
-        }
-    };
-
     try {
-        const res = await axios.get(`/store/products/`, config);
+        const res = await axios.get(`/store/products/`);
 
         dispatch({
             type: PRODUCTS_LOADED_SUCCESS,
@@ -35,7 +29,7 @@ export const loadProducts = () => async dispatch => {
     }
 };
 
-export const getProduct = (id) => async dispatch => {
+export const getProduct = (slug) => async dispatch => {
     const config = {
         headers: {
             'Accept': 'application/json'
@@ -43,7 +37,7 @@ export const getProduct = (id) => async dispatch => {
     }
 
     try {
-        const res = await axios.get(`/store/products/${id}/`, config);
+        const res = await axios.get(`/store/products/${slug}/`, config);
 
         dispatch({
             type: PRODUCT_LOADED_SUCCESS,
@@ -68,10 +62,9 @@ export const createProduct = (user_id, productName, desc, price, discPrice, inSt
         user: user_id,
         category: 1,
         name: productName,
-        desc: desc,
+        description: desc,
         price: price,
         disc_price: discPrice,
-        categories: [],
         in_stock: inStock
     });
 
@@ -81,7 +74,8 @@ export const createProduct = (user_id, productName, desc, price, discPrice, inSt
         const res = await axios.post(`/store/products/`, body, config);
 
         dispatch({
-            type: PRODUCT_CREATE_SUCCESS
+            type: PRODUCT_CREATE_SUCCESS,
+            payload: res
         });
 
         dispatch(setAlert('Product created successfully', 'success'));

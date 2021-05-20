@@ -27,6 +27,10 @@ export default function product(state = initialState, action) {
                 product: payload
             }
         case PRODUCT_CREATE_SUCCESS:
+            return {
+                ...state,
+                product: payload
+            }
         case PRODUCT_CREATE_FAIL:
         case PRODUCTS_LOADED_FAIL:
         case PRODUCT_LOADED_FAIL:

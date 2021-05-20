@@ -29,7 +29,7 @@ const NavigationBar = ({ isAuthenticated }) => {
                                             <a className="nav-link" href="/profile">Account</a>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" href="#">Cart</a>
+                                            <a className="nav-link" href="/cart">Cart</a>
                                         </li>
                                     </>
                                 ) : (
@@ -40,7 +40,7 @@ const NavigationBar = ({ isAuthenticated }) => {
                             }
 
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Contact Us</a>
+                                <a className="nav-link" href="contact-us/">Contact Us</a>
                             </li>
                         </ul>
                         <form className="d-flex">

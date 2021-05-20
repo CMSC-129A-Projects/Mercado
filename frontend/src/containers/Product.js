@@ -6,22 +6,23 @@ import { getProduct } from '../actions/products';
 
 const Product = ({ match, getProduct, product }) => {
     useEffect(() => {
-        const id = match.params.id;
+        const slug = match.params.slug;
 
-        getProduct(id);
-    }, []);
+        getProduct(slug);
+    });
 
     return (
         <>
             <NavigationBar />
 
             <div className="card mb-3">
-                <img src="images/goods1.jpg" className="card-img-top" alt="Market goods" />
+                <img src={product && product.image} className="card-img-top" alt="Market goods" />
                 <div className="card-body">
                     <h5 className="card-title">{product && product.name}</h5>
-                    <p className="card-text">{product && product.desc}</p>
+                    <p className="card-text">{product && product.description}</p>
+                    <p className="card-text">Php {product && product.price}</p>
                     <p className="card-text"><small className="text-muted">{product && product.created_at}</small></p>
-                    <a href="#" className="card-link">Add to Cart</a>
+                    <a href="add-to-cart/" className="card-link">Add to Cart</a>
                 </div>
             </div>
         </>

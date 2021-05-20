@@ -148,14 +148,12 @@ export const loadUser = () => async dispatch => {
  * @param {string} password User password
  * @returns 
  */
-export const login = (email, password) => async dispatch => {
-    const config = {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    };
-    
-    const body = JSON.stringify({ email, password });
+export const login = (phoneNumber, password) => async dispatch => {
+    const config = { headers: { 'Content-Type': 'application/json' } };
+    const body = JSON.stringify({
+        "phone_number": phoneNumber, 
+        "password": password
+    });
 
     try {
         const res = await axios.post(`/auth/jwt/create/`, body, config);
@@ -179,22 +177,24 @@ export const login = (email, password) => async dispatch => {
 /**
  * Create new User 
  * 
- * @param {string} email User email
- * @param {string} phone_number User phonenumber
- * @param {string} first_name User first name
- * @param {string} last_name User last name
+ * @param {string} phoneNumber User phonenumber
+ * @param {string} firstName User first name
+ * @param {string} lastName User last name
+ * @param {string} username User username
  * @param {string} password User password
  * @param {string} re_password Password retype
  * @returns 
  */
-export const signup = (email, phone_number, first_name, last_name, password, re_password) => async dispatch => {
-    const config = {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    };
-    
-    const body = JSON.stringify({ email, phone_number, first_name, last_name, password, re_password });
+export const create_user = (phoneNumber, firstName, lastName, username, password, rePassword) => async dispatch => {
+    const config = { headers: { 'Content-Type': 'application/json' } };
+    const body = JSON.stringify({ 
+        "phone_number": phoneNumber, 
+        "first_name": firstName, 
+        "last_name": lastName, 
+        "username": username, 
+        "password": password, 
+        "re_password": rePassword
+    });
 
     try {
         const res = await axios.post(`/auth/users/`, body, config);

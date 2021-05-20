@@ -29,7 +29,7 @@ function App() {
             <Route path="/activate/:uid/:token" component={Activate} />
             <Route path="/reset_password" component={ResetPassword} />
             <Route path="/password/reset/confirm/:uid/:token" component={ResetPasswordConfirm} />
-            <Route path="/product/:id" component={Product} />
+            <Route path="/products/:slug" component={Product} />
             <Route path="/profile" component={Profile} />
             <Route path="/shop" component={Shop} />
           </Switch>

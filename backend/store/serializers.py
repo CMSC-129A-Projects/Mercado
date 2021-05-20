@@ -17,6 +17,27 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ['name', 'created_at', 'last_updated']
 
 
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = [
+            'id',
+            'user',
+            'category',
+            'name',
+            'description',
+            'slug',
+            'price',
+            'disc_price',
+            'stock',
+            'sold',
+            'image',
+            'in_stock',
+            'created_at',
+            'last_updated',
+        ]
+
+
 class CartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cart
@@ -45,23 +66,5 @@ class ProductReviewSerializer(serializers.ModelSerializer):
             'body',
             'created_at',
             'last_updated'
-        ]
-
-
-class ProductSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Product
-        fields = [
-            'id',
-            'user',
-            'category',
-            'name',
-            'description',
-            'price',
-            'disc_price',
-            'in_stock',
-            'image',
-            'created_at',
-            'last_updated',
         ]
 

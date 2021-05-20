@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import NavigationBar from '../components/NavigationBar';
@@ -8,7 +8,7 @@ import { createProduct } from '../actions/products';
 const Profile = ({ logout, createProduct, curr_user, isAuthenticated }) => {
     const [productForm, setProductForm] = useState({
         'productName': '',
-        'desc': '',
+        'description': '',
         'price': 0,
         'discPrice': 0,
         'inStock': false

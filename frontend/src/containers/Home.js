@@ -92,11 +92,14 @@ const Home = ({ loadProducts, products }) => {
                                     <div className="col-lg-3 text-center" key={product.id}>
                                         <div className="card border-0 mb-3 bg-light">
                                             <div className="card-body">
-                                                <img src="/images/plant.png" className="img fluid" alt="" />
+                                                {/* <img src="/images/plant.png" className="img fluid" alt="" /> */}
+                                                <img src={product.image} className="img fluid" alt="" style={{ maxHeight: "200px", width: "auto" }} />
                                             </div>
                                         </div>
                                         <h6>{product.name}</h6>
-                                        <p>Php {product.price} / kilo</p>
+                                        <p>Php {product.price}</p>
+                                        <a href={'/products/'+product.slug} className="card-link">View</a>
+                                        <a href={'/products/'+product.slug} className="card-link">Add to Cart</a>
                                     </div>
                                 );
                             }))

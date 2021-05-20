@@ -104,7 +104,6 @@ class UserReview(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('user_reviews_from'), on_delete=models.CASCADE)
     recipient = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('user_reviews_to'), on_delete=models.CASCADE)
     rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0)
-    title = models.CharField(max_length=100)
     body = models.TextField(blank=True, null=True)
     slug = models.SlugField(max_length=25, unique=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
@@ -114,7 +113,7 @@ class UserReview(models.Model):
         ordering = ['-created_at']
 
     def save(self, **kwargs):
-        unique_slugify(self, self.title)
+        unique_slugify(self, self.body)
         super(UserReview, self).save(**kwargs)
 
     def __str__(self):

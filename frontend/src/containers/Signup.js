@@ -1,40 +1,40 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Container, Form, InputGroup, Button, Row, Col } from "react-bootstrap";
 import { connect } from 'react-redux';
 
-import { signup } from '../actions/auth';
+import { create_user } from '../actions/auth';
 
-const Signup = ({ signup, isAuthenticated }) => {
+const Signup = ({ create_user, isAuthenticated }) => {
     const [accountCreated, setAccountCreated] = useState(false);
     
     const [formData, setFormData] = useState({
-        email: '',
-        phone_number: '',
-        first_name: '',
-        last_name: '',
+        phoneNumber: '',
+        firstName: '',
+        lastName: '',
+        username: '',
         password: '',
-        re_password: ''
+        rePassword: ''
     });
 
-    const { email, phone_number, first_name, last_name, password, re_password } = formData;
+    const { phoneNumber, firstName, lastName, username, password, rePassword } = formData;
 
-    const onPhoneChange = e => {
-        const re = /^[0-9\b]+$/;
-
-        if (e.target.value === '' || re.test(e.target.value)) {
-            setFormData({ ...formData, [e.target.name]: e.target.value });
+    const onChange = e => {
+        if (e.target.name === 'phoneNumber') {
+            const re = /^[0-9\b]+$/;
+            if (e.target.value === '' || re.test(e.target.value)) {
+                setFormData({ ...formData, [e.target.name]: e.target.value });
+            }
+        } else {
+            setFormData({ ...formData, [e.target.name]: e.target.value })
         }
     };
-
-    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
     const onSubmit = e => {
         e.preventDefault();
 
-        if (password === re_password) {
-            let phone = '+63' + phone_number;
-            signup(email, phone, first_name, last_name, password, re_password);
+        if (password === rePassword) {
+            let phone = '+63' + phoneNumber;
+            create_user(phone, firstName, lastName, username, password, rePassword);
             setAccountCreated(true);
         }
     };
@@ -47,116 +47,132 @@ const Signup = ({ signup, isAuthenticated }) => {
 
     return (
         <div className="outer">
-            <div className="inner">
-                <Container className="mt-4">
+            <div className="inner mt-4">
+                <div className="container mt-4">
                     <div className="row justify-content-center">
-                        <img src="images/logo1.png" alt="logo" />
+                        <img src="images/logo1.png" alt="logo" style={{ maxHeight: "200px", width: "auto" }} />
                     </div>
-                    <Form onSubmit={e => onSubmit(e)}>
-                        <Row>
-                            <Col>
-                                <Form.Group>
-                                    <Form.Label>Email</Form.Label>
-                                    <Form.Control 
-                                        type="email"
-                                        name="email"
-                                        id="email"
-                                        value={email}
+                    
+                    <form onSubmit={e => onSubmit(e)}>
+                        <div className="row">
+                            <div className="col">
+                                <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
+                                <div className="input-group mb-3">
+                                    <span className="input-group-text" id="phonePrefix">(+63)</span>
+                                    <input 
+                                        type="text" 
+                                        className="form-control" 
+                                        id="phoneNumber" 
+                                        name="phoneNumber"
+                                        placeholder="9*********" 
+                                        aria-label="9*********"
+                                        aria-describedby="phonePrefix"
+                                        maxLength={10}
+                                        required={true}
+                                        value={phoneNumber}
                                         onChange={e => onChange(e)}
-                                        required
                                     />
-                                </Form.Group>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Form.Group>
-                                    <Form.Label>First Name</Form.Label>
-                                    <Form.Control 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col">
+                                <div className="mb-3">
+                                    <label htmlFor="firstName" className="form-label">First Name</label>
+                                    <input 
                                         type="text"
-                                        name="first_name"
-                                        id="first_name"
-                                        value={first_name}
+                                        className="form-control"
+                                        id="firstName"
+                                        name="firstName"
+                                        placeholder="First Name"
+                                        required={true}
+                                        value={firstName}
                                         onChange={e => onChange(e)}
-                                        required
                                     />
-                                </Form.Group>
-                            </Col>
-                            <Col>
-                                <Form.Group>
-                                    <Form.Label>Last Name</Form.Label>
-                                    <Form.Control 
+                                </div>
+                            </div>
+
+                            <div className="col">
+                                <div className="mb-3">
+                                    <label htmlFor="lastName" className="form-label">Last Name</label>
+                                    <input 
                                         type="text"
-                                        name="last_name"
-                                        id="last_name"
-                                        value={last_name}
+                                        className="form-control"
+                                        id="lastName"
+                                        name="lastName"
+                                        placeholder="Last Name"
+                                        required={true}
+                                        value={lastName}
                                         onChange={e => onChange(e)}
-                                        required
                                     />
-                                </Form.Group>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Form.Group>
-                                    <Form.Label>Phone</Form.Label>
-                                    <InputGroup>
-                                        <InputGroup.Prepend>
-                                        <InputGroup.Text>+63</InputGroup.Text>
-                                        </InputGroup.Prepend>
-                                        <Form.Control 
-                                            type="text"
-                                            name="phone_number"
-                                            id="phone_number"
-                                            maxLength="10" 
-                                            value={phone_number}
-                                            onChange={e => onPhoneChange(e)}
-                                            required
-                                        />
-                                    </InputGroup>
-                                </Form.Group>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Form.Group>
-                                    <Form.Label>Password</Form.Label>
-                                    <Form.Control 
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col">
+                                <div className="mb-3">
+                                    <label htmlFor="username" className="form-label">Username</label>
+                                    <input 
+                                        type="text"
+                                        className="form-control"
+                                        id="username"
+                                        name="username"
+                                        placeholder="Username"
+                                        required={true}
+                                        value={username}
+                                        onChange={e => onChange(e)}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col">
+                                <div className="mb-3">
+                                    <label htmlFor="password" className="form-label">Password</label>
+                                    <input 
                                         type="password"
-                                        name="password"
+                                        className="form-control"
                                         id="password"
+                                        name="password"
+                                        placeholder="Password"
+                                        required={true}
                                         value={password}
                                         onChange={e => onChange(e)}
-                                        required
                                     />
-                                </Form.Group>
-                            </Col>
-                            <Col>
-                                <Form.Group>
-                                    <Form.Label>Re-type Password</Form.Label>
-                                    <Form.Control 
+                                </div>
+                            </div>
+
+                            <div className="col">
+                                <div className="mb-3">
+                                    <label htmlFor="rePassword" className="form-label">Confirm Password</label>
+                                    <input 
                                         type="password"
-                                        name="re_password"
-                                        id="re_password"
-                                        value={re_password}
+                                        className="form-control"
+                                        id="rePassword"
+                                        name="rePassword"
+                                        placeholder="Confirm Password"
+                                        required={true}
+                                        value={rePassword}
                                         onChange={e => onChange(e)}
-                                        required
                                     />
-                                </Form.Group>
-                            </Col>
-                        </Row>
+                                </div>
+                            </div>
+                        </div>
 
                         <div className="row justify-content-center mt-3">
-                            <Button variant="primary" type="submit">
-                                Sign up
-                            </Button>
+                            <button type="submit" className="btn btn-outline-secondary" style={{ background: "rgba(175, 167, 140, 1)" }}>
+                                CREATE MY ACCOUNT NOW
+                            </button>
 
                             <p className="forgot-password text-center">
                                 Already have an account? <Link to="/login">Login</Link>
                             </p>
                         </div>
-                    </Form>
-                </Container>
+                    </form>
+                </div>
             </div>
         </div>
     );
@@ -166,4 +182,4 @@ const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { signup })(Signup);
+export default connect(mapStateToProps, { create_user })(Signup);

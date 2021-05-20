@@ -28,7 +28,7 @@ class Product(models.Model):
     disc_price = models.FloatField(_('discounted price'), blank=True, null=True, default=0)
     stock = models.IntegerField(default=1)
     sold = models.IntegerField(default=0)
-    image = models.ImageField(upload_to='product-images/', height_field=None, width_field=None, max_length=None)
+    image = models.ImageField(upload_to='product_images/', height_field=None, width_field=None, max_length=None)
     in_stock = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
