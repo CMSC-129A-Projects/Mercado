@@ -34,7 +34,7 @@ const Shop = ({ loadProducts, products }) => {
                                                 <img src={product.image} className="img fluid" alt="" style={{ maxHeight: "200px", width: "auto" }} />
                                             </div>
                                         </div>
-                                        <h4>{product.name}</h4>
+                                        <h5>{product.name}</h5>
                                         <p>Php {product.price}</p>
                                         <a href={'/products/'+product.slug} className="card-link">View</a>
                                         <a href={'/products/'+product.slug} className="card-link">Add to Cart</a>
