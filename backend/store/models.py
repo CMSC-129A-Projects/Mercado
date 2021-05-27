@@ -1,8 +1,8 @@
-from core.utils import unique_slugify
-from django.conf import settings
-from django.core.validators import MaxValueValidator, MinValueValidator
-from django.utils.translation import gettext_lazy as _
 from django.db import models
+from django.utils.translation import gettext_lazy as _
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.conf import settings
+from core.utils import unique_slugify
 
 
 class Category(models.Model):
@@ -47,9 +47,18 @@ class Product(models.Model):
 
 class Cart(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('user_cart'), on_delete=models.CASCADE)
-    total = models.DecimalField(max_digits=12, decimal_places=2)
+    total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    slug = models.SlugField(max_length=25, unique=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+
+    def save(self, **kwargs):
+        slug_field = '%s-%s' % (str(self.user), 'cart')
+        unique_slugify(self, slug_field)
+        super(Cart, self).save(**kwargs)
+
+    def __str__(self):
+        return self.slug
 
 
 class CartItem(models.Model):
