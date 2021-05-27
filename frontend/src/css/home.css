@@ -1,0 +1,3193 @@
+/* screen - home */
+
+.home {
+    background-color: #ffffff;
+    height: 2355px;
+    opacity: 1;
+    overflow: hidden;
+    overflow-x: hidden;
+    position: relative;
+    width: 1920px;
+  }
+  .home .and-the-best-de-n-your-locality-QGfTxc {
+    --z-index: 3;
+    background-color: transparent;
+    bottom: calc(44.25% - 34px);
+    color: #42271b;
+    font-family: 'Mrs Sheppards', Helvetica;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 400;
+    height: 76px;
+    left: 290px;
+    letter-spacing: 0.00px;
+    line-height: 130px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    white-space: nowrap;
+    width: 682px;
+  }
+  .home .bg1-QGfTxc {
+    --z-index: 0;
+    background-color: transparent;
+    background-image: url(../img/bg1@1x.png);
+    background-size: 100% 100%;
+    height: 719px;
+    left: 202px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: calc(100.00% - 202px);
+  }
+  .home .button-default-primary-QGfTxc {
+    --z-index: 4;
+    background-color: transparent;
+    height: calc(100.00% - 672px);
+    left: 290px;
+    opacity: 1;
+    position: absolute;
+    top: 477px;
+    width: calc(100.00% - 1891px);
+  }
+  .home .button-default-primary-WTpUhL {
+    --z-index: 5;
+    background-color: transparent;
+    cursor: pointer;
+    height: calc(100.00% - 672px);
+    left: 611px;
+    opacity: 1;
+    position: absolute;
+    top: 477px;
+    width: calc(100.00% - 1906px);
+  }
+  .home .card-background {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .home .card-backgroundsimple {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .home .cardwith-images {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .home .cardwith-images:hover {
+  
+  transform: scale(1.1);
+  }
+  .home .component-65-1-pql4zr {
+    --z-index: 1;
+    background-color: transparent;
+    cursor: pointer;
+    height: 100%;
+    left: 238px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 289px;
+  }
+  .home .component-66-1-pql4zr {
+    --z-index: 5;
+    background-color: transparent;
+    cursor: pointer;
+    height: 100%;
+    left: calc(32.31% - 93px);
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 289px;
+  }
+  .home .component-67-1-pql4zr {
+    --z-index: 4;
+    background-color: transparent;
+    cursor: pointer;
+    height: 100%;
+    opacity: 1;
+    position: absolute;
+    right: calc(49.97% - 144px);
+    top: 0px;
+    width: 289px;
+  }
+  .home .component-68-1-pql4zr {
+    --z-index: 3;
+    background-color: transparent;
+    cursor: pointer;
+    height: 100%;
+    opacity: 1;
+    position: absolute;
+    right: calc(32.25% - 93px);
+    top: 0px;
+    width: 289px;
+  }
+  .home .component-69-1-pql4zr {
+    --z-index: 2;
+    background-color: transparent;
+    cursor: pointer;
+    height: 100%;
+    opacity: 1;
+    position: absolute;
+    right: 237px;
+    top: 0px;
+    width: 289px;
+  }
+  .home .featured-produc-d-new-right-now-C61RwL {
+    --z-index: 2;
+    background-color: transparent;
+    color: #47512c;
+    font-family: "Open Sans", Helvetica;
+    font-size: 70px;
+    height: auto;
+    left: 628px;
+    letter-spacing: 0.00px;
+    line-height: 25px;
+    opacity: 1;
+    position: absolute;
+    text-align: center;
+    top: 1209px;
+    white-space: nowrap;
+    width: auto;
+  }
+  .home .fruit-pql4zr {
+    --z-index: 6;
+    background-color: transparent;
+    background-image: url(../img/fruit@1x.png);
+    background-size: 100% 100%;
+    height: 220px;
+    left: calc(33.69% - 51px);
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 40px;
+    width: 151px;
+  }
+  .home .fruits-pql4zr {
+    --z-index: 11;
+    background-color: transparent;
+    bottom: 49px;
+    color: #47512c;
+    font-family: 'Avenir-Roman', Helvetica;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    height: 32px;
+    left: calc(34.57% - 20px);
+    letter-spacing: 0.00px;
+    line-height: 22px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    white-space: nowrap;
+    width: 57px;
+  }
+  .home .goods-pql4zr {
+    --z-index: 8;
+    background-color: transparent;
+    background-image: url(../img/goods@1x.png);
+    background-size: 100% 100%;
+    height: 220px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    right: calc(33.52% - 55px);
+    top: 40px;
+    width: 163px;
+  }
+  .home .group-585-C61RwL {
+    --z-index: 0;
+    background-color: transparent;
+    height: 719px;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 2192px;
+  }
+  .home .group-586-C61RwL {
+    --z-index: 1;
+    background-color: transparent;
+    height: 360px;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 719px;
+    width: 1920px;
+  }
+  .home .homemade-goods-pql4zr {
+    --z-index: 13;
+    background-color: transparent;
+    bottom: 49px;
+    color: #47512c;
+    font-family: 'Avenir-Roman', Helvetica;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    height: 32px;
+    letter-spacing: 0.00px;
+    line-height: 22px;
+    opacity: 1;
+    position: absolute;
+    right: calc(33.18% - 63px);
+    text-align: left;
+    white-space: nowrap;
+    width: 190px;
+  }
+  .home .image-2VuuQe {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    cursor: pointer;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .home .image-AD0iRl {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .home .image-FNN9Ow {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    cursor: pointer;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .home .image-LyxMQe {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .home .image-VavT31 {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    cursor: pointer;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .home .image-X0tm9L {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .home .image-ZXViyD {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    cursor: pointer;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .home .image-cakCEY {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    cursor: pointer;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .home .image-fWHBaA {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    cursor: pointer;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .home .image-jyhgso {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    cursor: pointer;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .home .image-pJEbq1 {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .home .image-yLIvvV {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .home .learn-more-HyBoTj {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(44.44% - 13px);
+    color: #485130;
+    font-family: 'OpenSans Condensed-Bold', Helvetica;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    height: 29px;
+    letter-spacing: 0.00px;
+    line-height: 20px;
+    opacity: 1;
+    position: absolute;
+    right: calc(49.49% - 51px);
+    text-align: left;
+    white-space: nowrap;
+    width: 103px;
+  }
+  .home .meat-fish-and-poultry-pql4zr {
+    --z-index: 12;
+    background-color: transparent;
+    bottom: 49px;
+    color: #47512c;
+    font-family: 'Avenir-Roman', Helvetica;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    height: 32px;
+    letter-spacing: 0.00px;
+    line-height: 22px;
+    opacity: 1;
+    position: absolute;
+    right: calc(49.35% - 111px);
+    text-align: left;
+    white-space: nowrap;
+    width: 224px;
+  }
+  .home .meat-pql4zr {
+    --z-index: 7;
+    background-color: transparent;
+    background-image: url(../img/meat@1x.png);
+    background-size: 100% 100%;
+    height: 220px;
+    left: calc(50.00% - 58px);
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 40px;
+    width: 116px;
+  }
+  .home .plant-pql4zr {
+    --z-index: 9;
+    background-color: transparent;
+    background-image: url(../img/plant@1x.png);
+    background-size: 100% 100%;
+    height: 220px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    right: calc(17.99% - 20px);
+    top: 40px;
+    width: 113px;
+  }
+  .home .plants-and-flowers-pql4zr {
+    --z-index: 14;
+    background-color: transparent;
+    bottom: 49px;
+    color: #47512c;
+    font-family: 'Avenir-Roman', Helvetica;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    height: 32px;
+    letter-spacing: 0.00px;
+    line-height: 22px;
+    opacity: 1;
+    position: absolute;
+    right: calc(16.56% - 31px);
+    text-align: left;
+    white-space: nowrap;
+    width: 187px;
+  }
+  .home .primary-007-bff-HyBoTj {
+    --z-index: 0;
+    background-color: #f2f4ea;
+    border: 3px solid #495130;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .home .primary-007-bff-KE0IoO {
+    --z-index: 0;
+    background-color: #454d2e;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .home .rectangle-102-QGfTxc {
+    --z-index: 2;
+    background-color: #f2f4ea;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 237px;
+  }
+  .home .rectangle-103-pql4zr {
+    --z-index: 0;
+    background-color: #c0baa6;
+    height: 100%;
+    left: 0px;
+    opacity: 0.6;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .home .rectangle-104-tsHkIP {
+    --z-index: 0;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .home .rectangle-105-jp6rlS {
+    --z-index: 0;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .home .rectangle-106-XEal5p {
+    --z-index: 0;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .home .rectangle-107-IIRCzC {
+    --z-index: 0;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .home .rectangle-108-lQywED {
+    --z-index: 0;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .home .repeat-grid-2-C61RwL {
+    --z-index: 3;
+    background-color: transparent;
+    height: 868px;
+    left: 345px;
+    mix-blend-mode: normal;
+    opacity: 1;
+    position: absolute;
+    top: 1386px;
+    width: 1231px;
+  }
+  .home .shop-now-KE0IoO {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(44.44% - 13px);
+    color: #f2f4ea;
+    font-family: 'OpenSans Condensed-Bold', Helvetica;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    height: 29px;
+    letter-spacing: 0.00px;
+    line-height: 20px;
+    opacity: 1;
+    position: absolute;
+    right: calc(49.49% - 44px);
+    text-align: left;
+    white-space: nowrap;
+    width: 88px;
+  }
+  .home .span0-4rm5Es {
+    font-family: 'Open Sans', Helvetica;
+    font-style: normal;
+    font-weight: 800;
+  }
+  .home .span1-4rm5Es {
+    font-family: 'Open Sans', Helvetica;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 300;
+  }
+  .home .the-freshest-QGfTxc {
+    --z-index: 1;
+    background-color: transparent;
+    color: #42271b;
+    font-family: 'Open Sans', Helvetica;
+    font-size: 150px;
+    font-style: normal;
+    font-weight: 800;
+    height: 336px;
+    left: 280px;
+    letter-spacing: -3.00px;
+    line-height: 130px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    top: calc(38.64% - 130px);
+    white-space: nowrap;
+    width: 705px;
+  }
+  .home .veg-pql4zr {
+    --z-index: 15;
+    background-color: transparent;
+    background-image: url(../img/veg@1x.png);
+    background-size: 100% 100%;
+    height: 220px;
+    left: 287px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 40px;
+    width: 191px;
+  }
+  .home .veggies-pql4zr {
+    --z-index: 10;
+    background-color: transparent;
+    bottom: 49px;
+    color: #47512c;
+    font-family: 'Avenir-Roman', Helvetica;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    height: 32px;
+    left: calc(18.70% - 15px);
+    letter-spacing: 0.00px;
+    line-height: 22px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    white-space: nowrap;
+    width: 80px;
+  }
+  .home .x0-jHv1io {
+    --z-index: 0;
+    background-color: transparent;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 288px;
+  }
+  .home .x0000kllorem-ipsum-dolor-2VuuQe {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .home .x0000kllorem-ipsum-dolor-AD0iRl {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .home .x0000kllorem-ipsum-dolor-FNN9Ow {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .home .x0000kllorem-ipsum-dolor-LyxMQe {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .home .x0000kllorem-ipsum-dolor-VavT31 {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .home .x0000kllorem-ipsum-dolor-X0tm9L {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .home .x0000kllorem-ipsum-dolor-ZXViyD {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .home .x0000kllorem-ipsum-dolor-cakCEY {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .home .x0000kllorem-ipsum-dolor-fWHBaA {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .home .x0000kllorem-ipsum-dolor-jyhgso {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .home .x0000kllorem-ipsum-dolor-pJEbq1 {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .home .x0000kllorem-ipsum-dolor-yLIvvV {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .home .x1-jHv1io {
+    --z-index: 1;
+    background-color: transparent;
+    height: 272px;
+    left: 308px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 288px;
+  }
+  .home .x10-jHv1io {
+    --z-index: 10;
+    background-color: transparent;
+    height: 272px;
+    left: 616px;
+    opacity: 1;
+    position: absolute;
+    top: 584px;
+    width: 288px;
+  }
+  .home .x11-jHv1io {
+    --z-index: 11;
+    background-color: transparent;
+    height: 272px;
+    left: 924px;
+    opacity: 1;
+    position: absolute;
+    top: 584px;
+    width: 288px;
+  }
+  .home .x2-jHv1io {
+    --z-index: 2;
+    background-color: transparent;
+    height: 272px;
+    left: 616px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 288px;
+  }
+  .home .x3-jHv1io {
+    --z-index: 3;
+    background-color: transparent;
+    height: 272px;
+    left: 924px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 288px;
+  }
+  .home .x4-jHv1io {
+    --z-index: 4;
+    background-color: transparent;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 292px;
+    width: 288px;
+  }
+  .home .x5-jHv1io {
+    --z-index: 5;
+    background-color: transparent;
+    height: 272px;
+    left: 308px;
+    opacity: 1;
+    position: absolute;
+    top: 292px;
+    width: 288px;
+  }
+  .home .x6-jHv1io {
+    --z-index: 6;
+    background-color: transparent;
+    height: 272px;
+    left: 616px;
+    opacity: 1;
+    position: absolute;
+    top: 292px;
+    width: 288px;
+  }
+  .home .x7-jHv1io {
+    --z-index: 7;
+    background-color: transparent;
+    height: 272px;
+    left: 924px;
+    opacity: 1;
+    position: absolute;
+    top: 292px;
+    width: 288px;
+  }
+  .home .x8-jHv1io {
+    --z-index: 8;
+    background-color: transparent;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 584px;
+    width: 288px;
+  }
+  .home .x9-jHv1io {
+    --z-index: 9;
+    background-color: transparent;
+    height: 272px;
+    left: 308px;
+    opacity: 1;
+    position: absolute;
+    top: 584px;
+    width: 288px;
+  }
+  /* screen - products-list-5 */
+  
+  .products-list-5 {
+    background-color: #ffffff;
+    height: 1736px;
+    opacity: 1;
+    overflow: hidden;
+    overflow-x: hidden;
+    position: relative;
+    width: 1920px;
+  }
+  .products-list-5 .base-0yHZyz {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .base-2ZEOAi {
+    --z-index: 0;
+    background-color: transparent;
+    background-image: url(../img/base-10@1x.png);
+    background-size: 100% 100%;
+    height: 100%;
+    left: 0px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .base-3djaYd {
+    --z-index: 0;
+    background-color: transparent;
+    background-image: url(../img/base-11@1x.png);
+    background-size: 100% 100%;
+    height: 100%;
+    left: 0px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .base-oXJrry {
+    --z-index: 0;
+    background-color: #eceee6;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .base-qo6ry6 {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-background-3xCfAx {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-background-7BR89l {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-background-B2bcoY {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-background-BVJUFN {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-background-Bwutan {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-background-GYFm9r {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-background-H2dI6r {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-background-Izutph {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-background-STcfig {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-background-Ukxgd4 {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-background-W66crl {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-background-XBr98x {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-background-Yx7h0Q {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-background-Z0SdoC {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-background-iFBrdh {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-background-o6wly8 {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-background-slmtqJ {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-background-tZDxnS {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-background-ue92P2 {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-backgroundsimple-5ELVAj {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-backgroundsimple-7OxONx {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-backgroundsimple-9lTRa3 {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-backgroundsimple-C5KfJh {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-backgroundsimple-EQx4Kw {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-backgroundsimple-HzsSzz {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-backgroundsimple-KLj7Vn {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-backgroundsimple-LP2BL8 {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-backgroundsimple-UyxoNZ {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-backgroundsimple-YTYeZc {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-backgroundsimple-aQ7UvN {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-backgroundsimple-diZ3jD {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-backgroundsimple-ekHOL7 {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-backgroundsimple-g0IxlX {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-backgroundsimple-hLtzHo {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-backgroundsimple-rOpEVj {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-backgroundsimple-wDvRlV {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-backgroundsimple-ynoCL4 {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .card-backgroundsimple-zIdRUF {
+    --z-index: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .cardwith-images-0Awdpi {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-0Awdpi:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .cardwith-images-2JlqiP {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-2JlqiP:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .cardwith-images-79hzFJ {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-79hzFJ:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .cardwith-images-9Pwt4O {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-9Pwt4O:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .cardwith-images-FdPOjz {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-FdPOjz:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .cardwith-images-KcI2bI {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-KcI2bI:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .cardwith-images-UEDVCY {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-UEDVCY:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .cardwith-images-UYDgfi {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-UYDgfi:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .cardwith-images-UxiU4o {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-UxiU4o:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .cardwith-images-b7BmBg {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-b7BmBg:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .cardwith-images-bT0rBv {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-bT0rBv:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .cardwith-images-hubGuZ {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-hubGuZ:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .cardwith-images-iptAhO {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-iptAhO:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .cardwith-images-nkZ7VS {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-nkZ7VS:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .cardwith-images-sGwp8m {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-sGwp8m:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .cardwith-images-sQOtfl {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-sQOtfl:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .cardwith-images-tkaYDM {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-tkaYDM:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .cardwith-images-vXsnQA {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-vXsnQA:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .cardwith-images-wgIqpT {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-wgIqpT:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .cardwith-images-yELsKQ {
+    --z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    top: 0px;
+    transition: all 0.5s ease;
+    width: 288px;
+  }
+  .products-list-5 .cardwith-images-yELsKQ:hover {
+  
+  transform: scale(1.1);
+  }
+  .products-list-5 .component-45-7-guA5EA {
+    --z-index: 16;
+    background-color: transparent;
+    height: 39px;
+    left: calc(47.99% - 38px);
+    opacity: 1;
+    position: absolute;
+    top: 37px;
+    width: 80px;
+  }
+  .products-list-5 .component-6-39-guA5EA {
+    --z-index: 0;
+    background-color: transparent;
+    height: 82px;
+    left: 0px;
+    opacity: 0.5;
+    position: absolute;
+    top: calc(17.23% - 14px);
+    width: 100%;
+  }
+  .products-list-5 .component-6-40-guA5EA {
+    --z-index: 2;
+    background-color: transparent;
+    height: 82px;
+    left: 0px;
+    opacity: 0.5;
+    position: absolute;
+    top: 115px;
+    width: 100%;
+  }
+  .products-list-5 .component-6-41-guA5EA {
+    --z-index: 3;
+    background-color: transparent;
+    cursor: pointer;
+    height: 82px;
+    left: 0px;
+    opacity: 0.5;
+    position: absolute;
+    top: 200px;
+    width: 100%;
+  }
+  .products-list-5 .component-6-42-guA5EA {
+    --z-index: 5;
+    background-color: transparent;
+    cursor: pointer;
+    height: 82px;
+    left: 0px;
+    opacity: 0.5;
+    position: absolute;
+    top: calc(17.23% - 14px);
+    width: 100%;
+  }
+  .products-list-5 .component-6-43-guA5EA {
+    --z-index: 7;
+    background-color: transparent;
+    cursor: pointer;
+    height: 82px;
+    left: 0px;
+    opacity: 0.5;
+    position: absolute;
+    top: calc(22.37% - 18px);
+    width: 100%;
+  }
+  .products-list-5 .component-6-44-guA5EA {
+    --z-index: 9;
+    background-color: transparent;
+    cursor: pointer;
+    height: 82px;
+    left: 0px;
+    opacity: 0.5;
+    position: absolute;
+    top: calc(27.51% - 23px);
+    width: 100%;
+  }
+  .products-list-5 .fruit-guA5EA {
+    --z-index: 4;
+    background-color: transparent;
+    background-image: url(../img/fruit-1@1x.png);
+    background-size: 100% 100%;
+    height: 66px;
+    left: calc(20.10% - 9px);
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 208px;
+    width: 45px;
+  }
+  .products-list-5 .fruits-guA5EA {
+    --z-index: 12;
+    background-color: transparent;
+    color: #47512c;
+    font-family: 'Avenir-Roman', Helvetica;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    height: 32px;
+    left: calc(41.41% - 24px);
+    letter-spacing: 0.00px;
+    line-height: 22px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    top: 226px;
+    white-space: nowrap;
+    width: 57px;
+  }
+  .products-list-5 .goods-guA5EA {
+    --z-index: 8;
+    background-color: transparent;
+    background-image: url(../img/goods-1@1x.png);
+    background-size: 100% 100%;
+    height: 66px;
+    left: calc(19.80% - 10px);
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: calc(22.63% - 15px);
+    width: 49px;
+  }
+  .products-list-5 .group-588-C61RwL {
+    --z-index: 3;
+    background-color: transparent;
+    height: 1736px;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 453px;
+  }
+  .products-list-5 .group-589-C61RwL {
+    --z-index: 2;
+    background-color: transparent;
+    height: 34px;
+    left: 1053px;
+    opacity: 1;
+    position: absolute;
+    top: 1594px;
+    width: 264px;
+  }
+  .products-list-5 .homemade-goods-guA5EA {
+    --z-index: 14;
+    background-color: transparent;
+    color: #47512c;
+    font-family: 'Avenir-Roman', Helvetica;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    height: 32px;
+    letter-spacing: 0.00px;
+    line-height: 22px;
+    opacity: 1;
+    position: absolute;
+    right: calc(37.64% - 72px);
+    text-align: left;
+    top: calc(23.24% - 7px);
+    white-space: nowrap;
+    width: 190px;
+  }
+  .products-list-5 .image-3Dlx9q {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .image-3xCfAx {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .image-7BR89l {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .image-B2bcoY {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .image-BVJUFN {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .image-Bwutan {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .image-GYFm9r {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .image-H2dI6r {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .image-Izutph {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .image-STcfig {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .image-Ukxgd4 {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .image-W66crl {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .image-XBr98x {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .image-Yx7h0Q {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .image-Z0SdoC {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .image-iFBrdh {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .image-o6wly8 {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .image-slmtqJ {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .image-tZDxnS {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .image-ue92P2 {
+    --z-index: 2;
+    background-color: transparent;
+    background-image: url(../img/image-100@1x.png);
+    background-size: 100% 100%;
+    height: 182px;
+    left: 1px;
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    width: calc(100.00% - 1px);
+  }
+  .products-list-5 .meat-fish-and-poultry-guA5EA {
+    --z-index: 13;
+    background-color: transparent;
+    color: #47512c;
+    font-family: 'Avenir-Roman', Helvetica;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    height: 32px;
+    letter-spacing: 0.00px;
+    line-height: 22px;
+    opacity: 1;
+    position: absolute;
+    right: 65px;
+    text-align: left;
+    top: 311px;
+    white-space: nowrap;
+    width: 224px;
+  }
+  .products-list-5 .meat-guA5EA {
+    --z-index: 6;
+    background-color: transparent;
+    background-image: url(../img/meat-1@1x.png);
+    background-size: 100% 100%;
+    height: 67px;
+    left: calc(20.57% - 7px);
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: calc(17.56% - 12px);
+    width: 35px;
+  }
+  .products-list-5 .next-3djaYd {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(46.15% - 10px);
+    color: #43281b;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    height: 21px;
+    left: 16px;
+    letter-spacing: 0.00px;
+    line-height: 14px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    white-space: nowrap;
+    width: calc(100.00% - 30px);
+  }
+  .products-list-5 .pagination-center-small-hxTP1d {
+    --z-index: 3;
+    background-color: transparent;
+    height: 100%;
+    opacity: 1;
+    position: absolute;
+    right: calc(44.64% - 18px);
+    top: 0px;
+    width: 40px;
+  }
+  .products-list-5 .pagination-center-small-suW3mx {
+    --z-index: 2;
+    background-color: transparent;
+    height: 100%;
+    left: calc(37.95% - 15px);
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 40px;
+  }
+  .products-list-5 .pagination-center-small-vfwskr {
+    --z-index: 4;
+    background-color: transparent;
+    height: 100%;
+    opacity: 1;
+    position: absolute;
+    right: calc(27.23% - 11px);
+    top: 0px;
+    width: 40px;
+  }
+  .products-list-5 .pagination-left-small-suW3mx {
+    --z-index: 0;
+    background-color: transparent;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 84px;
+  }
+  .products-list-5 .pagination-right-small-suW3mx {
+    --z-index: 1;
+    background-color: transparent;
+    height: 100%;
+    opacity: 1;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 62px;
+  }
+  .products-list-5 .path-6-C61RwL {
+    --z-index: 1;
+    background-color: transparent;
+    background-image: url(../img/path-6-1@1x.png);
+    background-size: 100% 100%;
+    height: 31px;
+    left: -10px;
+    object-fit: cover;
+    opacity: 1;
+    position: fixed;
+    top: -10px;
+    width: 1950px;
+  }
+  .products-list-5 .plant-guA5EA {
+    --z-index: 10;
+    background-color: transparent;
+    background-image: url(../img/plant-1@1x.png);
+    background-size: 100% 100%;
+    height: 67px;
+    left: calc(21.00% - 7px);
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: calc(27.68% - 19px);
+    width: 34px;
+  }
+  .products-list-5 .plants-and-flowers-guA5EA {
+    --z-index: 15;
+    background-color: transparent;
+    color: #47512c;
+    font-family: 'Avenir-Roman', Helvetica;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    height: 32px;
+    letter-spacing: 0.00px;
+    line-height: 22px;
+    opacity: 1;
+    position: absolute;
+    right: calc(38.35% - 72px);
+    text-align: left;
+    top: calc(28.23% - 9px);
+    white-space: nowrap;
+    width: 187px;
+  }
+  .products-list-5 .previous-2ZEOAi {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(46.15% - 10px);
+    color: #6c757d;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    height: 21px;
+    left: 16px;
+    letter-spacing: 0.00px;
+    line-height: 14px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    white-space: nowrap;
+    width: calc(100.00% - 30px);
+  }
+  .products-list-5 .rectangle-10-2Bp5f9 {
+    --z-index: 0;
+    background-color: #eceee6;
+    height: 100%;
+    left: 0px;
+    opacity: 0.5;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .rectangle-10-68LRgx {
+    --z-index: 0;
+    background-color: #eceee6;
+    height: 100%;
+    left: 0px;
+    opacity: 0.5;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .rectangle-10-6VCbCb {
+    --z-index: 0;
+    background-color: #eceee6;
+    height: 100%;
+    left: 0px;
+    opacity: 0.5;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .rectangle-10-RSQ23k {
+    --z-index: 0;
+    background-color: #3f4628;
+    height: 100%;
+    left: 0px;
+    opacity: 0.5;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .rectangle-10-lrEP1N {
+    --z-index: 0;
+    background-color: #eceee6;
+    height: 100%;
+    left: 0px;
+    opacity: 0.5;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .rectangle-10-nAnzzb {
+    --z-index: 0;
+    background-color: #eceee6;
+    height: 100%;
+    left: 0px;
+    opacity: 0.5;
+    position: relative;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .rectangle-63-guA5EA {
+    --z-index: 1;
+    background-color: #eceee6;
+    height: 100%;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+  }
+  .products-list-5 .repeat-grid-2-C61RwL {
+    --z-index: 0;
+    background-color: transparent;
+    height: 1457px;
+    left: 569px;
+    mix-blend-mode: normal;
+    opacity: 1;
+    position: absolute;
+    top: 67px;
+    width: 1231px;
+  }
+  .products-list-5 .shop-zUf6xk {
+    --z-index: 0;
+    background-color: transparent;
+    color: #42271b;
+    font-family: 'Open Sans', Helvetica;
+    font-size: 29px;
+    font-style: normal;
+    font-weight: 300;
+    height: calc(100.00% + 2px);
+    left: 0px;
+    letter-spacing: 1.45px;
+    line-height: 29px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    top: 0px;
+    white-space: nowrap;
+    width: calc(100.00% + 2px);
+  }
+  .products-list-5 .veg-guA5EA {
+    --z-index: 17;
+    background-color: transparent;
+    background-image: url(../img/veg-1@1x.png);
+    background-size: 100% 100%;
+    height: 66px;
+    left: calc(18.94% - 11px);
+    object-fit: cover;
+    opacity: 1;
+    position: absolute;
+    top: 122px;
+    width: 57px;
+  }
+  .products-list-5 .veggies-guA5EA {
+    --z-index: 11;
+    background-color: transparent;
+    color: #47512c;
+    font-family: 'Avenir-Roman', Helvetica;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    height: 32px;
+    left: calc(43.97% - 35px);
+    letter-spacing: 0.00px;
+    line-height: 22px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    top: 137px;
+    white-space: nowrap;
+    width: 80px;
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-3Dlx9q {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-3xCfAx {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-7BR89l {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-B2bcoY {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-BVJUFN {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-Bwutan {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-GYFm9r {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-H2dI6r {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-Izutph {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-STcfig {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-Ukxgd4 {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-W66crl {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-XBr98x {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-Yx7h0Q {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-Z0SdoC {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-iFBrdh {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-o6wly8 {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-slmtqJ {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-tZDxnS {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x0000kllorem-ipsum-dolor-ue92P2 {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(0.98% - 1px);
+    color: #000000;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    height: 68px;
+    left: 22px;
+    letter-spacing: 0.00px;
+    line-height: 24px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    width: calc(100.00% - 41px);
+  }
+  .products-list-5 .x03-jHv1io {
+    --z-index: 0;
+    background-color: transparent;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 288px;
+  }
+  .products-list-5 .x1-oXJrry {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(46.15% - 10px);
+    color: #6c757d;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    height: 21px;
+    left: 16px;
+    letter-spacing: 0.00px;
+    line-height: 14px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    white-space: nowrap;
+    width: calc(100.00% - 30px);
+  }
+  .products-list-5 .x103-jHv1io {
+    --z-index: 10;
+    background-color: transparent;
+    height: 272px;
+    left: 616px;
+    opacity: 1;
+    position: absolute;
+    top: 584px;
+    width: 288px;
+  }
+  .products-list-5 .x115-jHv1io {
+    --z-index: 1;
+    background-color: transparent;
+    height: 272px;
+    left: 308px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 288px;
+  }
+  .products-list-5 .x116-jHv1io {
+    --z-index: 11;
+    background-color: transparent;
+    height: 272px;
+    left: 924px;
+    opacity: 1;
+    position: absolute;
+    top: 584px;
+    width: 288px;
+  }
+  .products-list-5 .x123-jHv1io {
+    --z-index: 12;
+    background-color: transparent;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 876px;
+    width: 288px;
+  }
+  .products-list-5 .x132-jHv1io {
+    --z-index: 13;
+    background-color: transparent;
+    height: 272px;
+    left: 308px;
+    opacity: 1;
+    position: absolute;
+    top: 876px;
+    width: 288px;
+  }
+  .products-list-5 .x142-jHv1io {
+    --z-index: 14;
+    background-color: transparent;
+    height: 272px;
+    left: 616px;
+    opacity: 1;
+    position: absolute;
+    top: 876px;
+    width: 288px;
+  }
+  .products-list-5 .x152-jHv1io {
+    --z-index: 15;
+    background-color: transparent;
+    height: 272px;
+    left: 924px;
+    opacity: 1;
+    position: absolute;
+    top: 876px;
+    width: 288px;
+  }
+  .products-list-5 .x162-jHv1io {
+    --z-index: 16;
+    background-color: transparent;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 1168px;
+    width: 288px;
+  }
+  .products-list-5 .x172-jHv1io {
+    --z-index: 17;
+    background-color: transparent;
+    height: 272px;
+    left: 308px;
+    opacity: 1;
+    position: absolute;
+    top: 1168px;
+    width: 288px;
+  }
+  .products-list-5 .x182-jHv1io {
+    --z-index: 18;
+    background-color: transparent;
+    height: 272px;
+    left: 616px;
+    opacity: 1;
+    position: absolute;
+    top: 1168px;
+    width: 288px;
+  }
+  .products-list-5 .x192-jHv1io {
+    --z-index: 19;
+    background-color: transparent;
+    height: 272px;
+    left: 924px;
+    opacity: 1;
+    position: absolute;
+    top: 1168px;
+    width: 288px;
+  }
+  .products-list-5 .x2-qo6ry6 {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(46.15% - 10px);
+    color: #43281b;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    height: 21px;
+    left: 16px;
+    letter-spacing: 0.00px;
+    line-height: 14px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    white-space: nowrap;
+    width: calc(100.00% - 30px);
+  }
+  .products-list-5 .x23-jHv1io {
+    --z-index: 2;
+    background-color: transparent;
+    height: 272px;
+    left: 616px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 288px;
+  }
+  .products-list-5 .x3-0yHZyz {
+    --z-index: 1;
+    background-color: transparent;
+    bottom: calc(46.15% - 10px);
+    color: #43281b;
+    font-family: 'Avenir-Book', Helvetica;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    height: 21px;
+    left: 16px;
+    letter-spacing: 0.00px;
+    line-height: 14px;
+    opacity: 1;
+    position: absolute;
+    text-align: left;
+    white-space: nowrap;
+    width: calc(100.00% - 30px);
+  }
+  .products-list-5 .x33-jHv1io {
+    --z-index: 3;
+    background-color: transparent;
+    height: 272px;
+    left: 924px;
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    width: 288px;
+  }
+  .products-list-5 .x43-jHv1io {
+    --z-index: 4;
+    background-color: transparent;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 292px;
+    width: 288px;
+  }
+  .products-list-5 .x53-jHv1io {
+    --z-index: 5;
+    background-color: transparent;
+    height: 272px;
+    left: 308px;
+    opacity: 1;
+    position: absolute;
+    top: 292px;
+    width: 288px;
+  }
+  .products-list-5 .x63-jHv1io {
+    --z-index: 6;
+    background-color: transparent;
+    height: 272px;
+    left: 616px;
+    opacity: 1;
+    position: absolute;
+    top: 292px;
+    width: 288px;
+  }
+  .products-list-5 .x73-jHv1io {
+    --z-index: 7;
+    background-color: transparent;
+    height: 272px;
+    left: 924px;
+    opacity: 1;
+    position: absolute;
+    top: 292px;
+    width: 288px;
+  }
+  .products-list-5 .x83-jHv1io {
+    --z-index: 8;
+    background-color: transparent;
+    height: 272px;
+    left: 0px;
+    opacity: 1;
+    position: absolute;
+    top: 584px;
+    width: 288px;
+  }
+  .products-list-5 .x93-jHv1io {
+    --z-index: 9;
+    background-color: transparent;
+    height: 272px;
+    left: 308px;
+    opacity: 1;
+    position: absolute;
+    top: 584px;
+    width: 288px;
+  }
+  
