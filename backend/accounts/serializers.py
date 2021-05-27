@@ -1,3 +1,4 @@
+from backend.store.models import OrderDetail
 from rest_framework import serializers
 from django.conf import settings
 
@@ -13,6 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
     products = serializers.PrimaryKeyRelatedField(many=True, queryset=Product.objects.all())
     user_product_reviews = serializers.PrimaryKeyRelatedField(many=True, queryset=ProductReview.objects.all())
     cart = serializers.PrimaryKeyRelatedField(many=True, queryset=Cart.objects.all())
+    order_detail = serializers.PrimaryKeyRelatedField(many=True, queryset=OrderDetail.objects.all())
 
     class Meta:
         model = User
@@ -31,7 +33,8 @@ class UserSerializer(serializers.ModelSerializer):
             'user_reviews_to',
             'products',
             'user_product_reviews',
-            'cart'
+            'cart',
+            'order_detail'
         ]
 
 
@@ -58,8 +61,11 @@ class UserReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserReview
         fields = [
+            'id',
             'recipient',
             'rating',
-            'title',
             'body',
+            'slug',
+            'created_at',
+            'last_updated'
         ]

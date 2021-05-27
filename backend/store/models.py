@@ -53,7 +53,7 @@ class Cart(models.Model):
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
     def save(self, **kwargs):
-        slug_field = '%s-%s' % (str(self.user), 'cart')
+        slug_field = '%s-%s' % (str(self.user) , 'cart')
         unique_slugify(self, slug_field)
         super(Cart, self).save(**kwargs)
 
@@ -65,12 +65,6 @@ class CartItem(models.Model):
     cart = models.ForeignKey(Cart, related_name=_('cart_items'), on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name=_('products_in_cart'), on_delete=models.CASCADE)
     quantity = models.IntegerField(validators=[MinValueValidator(1)])
-    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
-    last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
-
-
-class OrderItem(models.Model):
-    item = models.ForeignKey(CartItem, related_name=_('items_in_order'), on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
@@ -91,12 +85,24 @@ class OrderDetail(models.Model):
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
 
+class OrderItem(models.Model):
+    order = models.ForeignKey(OrderDetail, related_name=_('order_item'), on_delete=models.CASCADE)
+    item = models.ForeignKey(CartItem, related_name=_('cart_order_item'), on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+
+
+def product_review_image_path(instance, filename):
+    return '/'.join(['product-review-images/% Y/% m', str(instance.name), filename])
+
+
 class ProductReview(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('user_product_reviews'), on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name=_('product_product_reviews'), on_delete=models.CASCADE)
     rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0)
     title = models.CharField(max_length=100)
     body = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to=product_review_image_path, height_field=None, width_field=None, max_length=None)
     slug = models.SlugField(max_length=25, unique=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
@@ -113,17 +119,3 @@ class ProductReview(models.Model):
 
     def get_review_body(self):
         return self.body
-
-
-def product_review_image_path(instance, filename):
-    return '/'.join(['product-review-images/% Y/% m', str(instance.name), filename])
-
-
-class ProductReviewImage(models.Model):
-    product_review = models.ForeignKey(ProductReview, related_name=_('product_review_images'), on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=product_review_image_path, height_field=None, 
-        width_field=None, max_length=None, blank=True, null=True)
-    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
-    last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
-
-

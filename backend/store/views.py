@@ -5,7 +5,9 @@ from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import (
-    Category, 
+    Category,
+    OrderDetail,
+    OrderItem, 
     Product, 
     Cart,
     CartItem, 
@@ -13,7 +15,9 @@ from .models import (
 )
 from .serializers import (
     CartItemSerializer, 
-    CategorySerializer, 
+    CategorySerializer,
+    OrderDetailSerializer,
+    OrderItemSerializer, 
     ProductSerializer, 
     CartSerializer, 
     CartItemSerializer, 
@@ -59,9 +63,19 @@ class CartViewSet(viewsets.ModelViewSet):
 class CartItemViewSet(viewsets.ModelViewSet):
     queryset = CartItem.objects.all()
     serializer_class = CartItemSerializer
-    permission_classes = [permissions.IsAuthenticated]
+
+
+class OrderDetailViewSet(viewsets.ModelViewSet):
+    queryset = OrderDetail.objects.all()
+    serializer_class = OrderDetailSerializer
+
+
+class OrderItemViewSet(viewsets.ModelViewSet):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
 
     
 class ProductReviewViewSet(viewsets.ModelViewSet):
     queryset = ProductReview.objects.all()
     serializer_class = ProductReviewSerializer
+    lookup_field = 'slug'
