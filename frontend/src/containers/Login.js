@@ -14,6 +14,9 @@ const Login = ({ login, isAuthenticated }) => {
 
     const { phoneNumber, password } = formData;
 
+    if (isAuthenticated)
+        return <Redirect to="/" />;
+        
     const onChange = e => {
         if (e.target.name === 'phoneNumber') {
             const re = /^[0-9\b]+$/;
@@ -24,6 +27,7 @@ const Login = ({ login, isAuthenticated }) => {
             setFormData({ ...formData, [e.target.name]: e.target.value })
         }
     };
+
     const onSubmit = e => {
         e.preventDefault();
 
@@ -31,8 +35,6 @@ const Login = ({ login, isAuthenticated }) => {
         login(phone, password);
     };
 
-    if (isAuthenticated)
-        return <Redirect to="/" />;
 
     return (
         <>

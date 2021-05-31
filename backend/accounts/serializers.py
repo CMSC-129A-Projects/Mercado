@@ -1,9 +1,8 @@
-from backend.store.models import OrderDetail
 from rest_framework import serializers
 from django.conf import settings
 
 from .models import (User, Profile, UserAddress, UserReview)
-from store.models import (Product, ProductReview, Cart)
+from store.models import (Product, ProductReview, Cart, OrderDetail)
 
 
 class UserSerializer(serializers.ModelSerializer):

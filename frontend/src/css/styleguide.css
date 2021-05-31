@@ -1,32 +1,52 @@
 :root {
-    --bison-hide: #bfbaa3;
+    --bison-hide: #beb7a3;
+    --bison-hide-2: #bfbaa3;
+    --black: #000000;
+    --black-2: #00000066;
     --bon-jour: #e0e0e0;
-    --dove-gray: #707070;
-    --fuscous-gray: #525252;
-    --pale-oyster: #998f6e;
-    --pale-oyster-2: #998f6f;
-    --pampas: #f1f4ea;
+    --cararra: #eceee6;
+    --cork: #43281b;
+    --cork-2: #42271b;
+    --eagle: #b4b7aa;
+    --lisbon-brown: #3f4628;
+    --mercury: #dee2e6;
+    --mine-shaft: #333333;
+    --pale-sky: #6c757d;
+    --pampas: #f2f4ea;
     --silver-chalice: #a8aaab;
+    --sonic-silver: #777777;
     --white: #ffffff;
+    --woodland: #47512c;
 
-    --font-size-l: 16px;
-    --font-size-m: 15px;
-    --font-size-s: 12px;
-    --font-size-xl: 20px;
-    --font-size-xxl: 21px;
-    --font-size-xxxl: 22px;
-    --font-size-xxxxl: 30px;
-    --font-size-xxxxxl: 38px;
-    --font-size-xxxxxxl: 100px;
+    --font-size-l: 14px;
+    --font-size-m: 12px;
+    --font-size-xl: 15px;
+    --font-size-xxl: 16px;
+    --font-size-xxxl: 20px;
+    --font-size-xxxxl: 22px;
+    --font-size-xxxxxl: 29px;
+    --font-size-xxxxxxl: 30px;
+    --font-size-xxxxxxxl: 33px;
+    --font-size-xxxxxxxxl: 40px;
+    --font-size-xxxxxxxxxl: 50px;
+    --font-size-xxxxxxxxxxl: 86px;
+    --font-size-xxxxxxxxxxxl: 100px;
 
+    --font-family-avenir-black: "Avenir-Black", Helvetica;
+    --font-family-avenir-book: "Avenir-Book", Helvetica;
     --font-family-avenir-heavy: "Avenir-Heavy", Helvetica;
+    --font-family-avenir-light: "Avenir-Light", Helvetica;
     --font-family-avenir-medium: "Avenir-Medium", Helvetica;
     --font-family-avenir-roman: "Avenir-Roman", Helvetica;
-    --font-family-helveticaneue: "HelveticaNeue", Helvetica;
+    --font-family-fontawesome_5_pro-regular: "FontAwesome 5 Pro-Regular", Helvetica;
+    --font-family-lato: "Lato", Helvetica;
+    --font-family-mrs_sheppards: "Mrs Sheppards", Helvetica;
     --font-family-open_sans: "Open Sans", Helvetica;
+    --font-family-opensans_condensed-bold: "OpenSans Condensed-Bold", Helvetica;
+    --font-family-shrikhand: "Shrikhand", Helvetica;
 }
 
-.avenir-book-normal-black-16px {
+.avenir-book-normal-black-12px {
     color: var(--black);
     font-family: var(--font-family-avenir-book);
     font-size: var(--font-size-m);
@@ -37,7 +57,7 @@
 .avenir-roman-normal-woodland-22px {
     color: var(--woodland);
     font-family: var(--font-family-avenir-roman);
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-xxxxl);
     font-style: normal;
     font-weight: 400;
 }
@@ -45,23 +65,47 @@
 .avenir-book-normal-cork-14px {
     color: var(--cork);
     font-family: var(--font-family-avenir-book);
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-l);
     font-style: normal;
     font-weight: 400;
 }
 
-.opensans-light-cork-29px {
-    color: var(--cork-2);
+.avenir-book-normal-pale-sky-14px {
+    color: var(--pale-sky);
+    font-family: var(--font-family-avenir-book);
+    font-size: var(--font-size-l);
+    font-style: normal;
+    font-weight: 400;
+}
+
+.avenir-book-normal-black-16px {
+    color: var(--black);
+    font-family: var(--font-family-avenir-book);
+    font-size: var(--font-size-xxl);
+    font-style: normal;
+    font-weight: 400;
+}
+
+.opensans-light-woodland-20px {
+    color: var(--woodland);
     font-family: var(--font-family-open_sans);
     font-size: var(--font-size-xxxl);
     font-style: normal;
     font-weight: 300;
 }
 
-.avenir-book-normal-pale-sky-14px {
-    color: var(--pale-sky);
-    font-family: var(--font-family-avenir-book);
-    font-size: var(--font-size-xs);
+.opensans-light-cork-29px {
+    color: var(--cork-2);
+    font-family: var(--font-family-open_sans);
+    font-size: var(--font-size-xxxxxl);
+    font-style: normal;
+    font-weight: 300;
+}
+
+.shrikhand-normal-bison-hide-86px {
+    color: var(--bison-hide);
+    font-family: var(--font-family-shrikhand);
+    font-size: var(--font-size-xxxxxxxxxxl);
     font-style: normal;
     font-weight: 400;
 }
@@ -69,7 +113,7 @@
 .avenir-heavy-normal-woodland-22px {
     color: var(--woodland);
     font-family: var(--font-family-avenir-heavy);
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-xxxxl);
     font-style: normal;
     font-weight: 400;
 }
@@ -77,7 +121,7 @@
 .lato-normal-black-12px {
     color: var(--black-2);
     font-family: var(--font-family-lato);
-    font-size: var(--font-size-xxs);
+    font-size: var(--font-size-m);
     font-style: normal;
     font-weight: 400;
 }
@@ -85,140 +129,53 @@
 .avenir-book-normal-mine-shaft-15px {
     color: var(--mine-shaft);
     font-family: var(--font-family-avenir-book);
-    font-size: var(--font-size-s);
+    font-size: var(--font-size-xl);
     font-style: normal;
     font-weight: 400;
 }
 
-.shrikhand-normal-bison-hide-86px {
-    color: var(--bison-hide);
-    font-family: var(--font-family-shrikhand);
-    font-size: var(--font-size-xxxxxxxxl);
-    font-style: normal;
-    font-weight: 400;
-}
-
-.avenir-book-normal-pampas-20px {
+.avenir-book-normal-pampas-15px {
     color: var(--pampas);
     font-family: var(--font-family-avenir-book);
-    font-size: var(--font-size-l);
+    font-size: var(--font-size-xl);
     font-style: normal;
     font-weight: 400;
 }
 
-.opensans-light-pampas-20px {
+.opensans-light-pampas-15px {
     color: var(--pampas);
     font-family: var(--font-family-open_sans);
-    font-size: var(--font-size-l);
+    font-size: var(--font-size-xl);
 }
-  
-.opensans-extra-bold-pampas-20px {
+
+.opensans-extra-bold-pampas-15px {
     color: var(--pampas);
     font-family: var(--font-family-open_sans);
-    font-size: var(--font-size-l);
-    font-style: normal;
-    font-weight: 800;
-}
-
-.opensans-light-pampas-20px-2 {
-    color: var(--pampas);
-    font-family: var(--font-family-open_sans);
-    font-size: var(--font-size-l);
-    font-style: normal;
-    font-weight: 300;
-}
-
-.opensans-light-fuscous-gray-15px {
-    color: var(--fuscous-gray);
-    font-family: var(--font-family-open_sans);
-    font-size: var(--font-size-m);
-    font-style: normal;
-    font-weight: 300;
-}
-
-.opensans-extra-bold-white-16px {
-    color: var(--white);
-    font-family: var(--font-family-open_sans);
-    font-size: var(--font-size-l);
-    font-style: normal;
-    font-weight: 800;
-}
-
-.opensans-light-silver-chalice-12px {
-    color: var(--silver-chalice);
-    font-family: var(--font-family-open_sans);
-    font-size: var(--font-size-s);
-    font-style: normal;
-    font-weight: 300;
-}
-
-.opensans-extra-bold-silver-chalice-12px {
-    color: var(--silver-chalice);
-    font-family: var(--font-family-open_sans);
-    font-size: var(--font-size-s);
-    font-style: normal;
-    font-weight: 800;
-}
-
-.avenir-medium-white-20px {
-    color: var(--white);
-    font-family: var(--font-family-avenir-medium);
     font-size: var(--font-size-xl);
     font-style: normal;
-    font-weight: 500;
+    font-weight: 800;
 }
 
-.opensans-light-pale-oyster-15px {
-    color: var(--pale-oyster);
-    font-family: var(--font-family-open_sans);
-    font-size: var(--font-size-m);
-    font-style: normal;
-    font-weight: 300;
-}
-
-.opensans-light-silver-chalice-16px {
-    color: var(--silver-chalice);
-    font-family: var(--font-family-open_sans);
-    font-size: var(--font-size-l);
-    font-style: normal;
-    font-weight: 300;
-}
-
-.opensans-light-fuscous-gray-20px {
-    color: var(--fuscous-gray);
+.opensans-light-pampas-15px-2 {
+    color: var(--pampas);
     font-family: var(--font-family-open_sans);
     font-size: var(--font-size-xl);
     font-style: normal;
     font-weight: 300;
-}
-
-.opensans-extra-bold-fuscous-gray-38px {
-    color: var(--fuscous-gray);
-    font-family: var(--font-family-open_sans);
-    font-size: var(--font-size-xxxxxl);
-    font-style: normal;
-    font-weight: 800;
-}
-
-.opensans-extra-bold-fuscous-gray-30px {
-    color: var(--fuscous-gray);
-    font-family: var(--font-family-open_sans);
-    font-size: var(--font-size-xxxxl);
-    font-style: normal;
-    font-weight: 800;
-}
-
-.helveticaneue-normal-silver-chalice-16px {
-    color: var(--silver-chalice);
-    font-family: var(--font-family-helveticaneue);
-    font-size: var(--font-size-l);
-    font-style: normal;
 }
 
 .border-1px-bon-jour {
     border: 1px solid var(--bon-jour);
 }
 
-.border-1px-dove-gray {
-    border: 1px solid var(--dove-gray);
+.border-1px-mercury {
+    border: 1px solid var(--mercury);
+}
+
+.border-1px-white {
+    border: 1px solid var(--white);
+}
+
+.border-1px-pampas {
+    border: 1px solid var(--pampas);
 }

@@ -186,3 +186,8 @@
     font-family: 'Open Sans', sans-serif;
     color: rgb(0, 0, 0);
 }
+
+.product h1 {
+    font-weight: bolder;
+    color: rgb(71, 81, 44);
+}
