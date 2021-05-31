@@ -1,7 +1,8 @@
 from rest_framework import permissions, serializers
 
 from .models import (
-    Category, 
+    Category,
+    OrderDetail, 
     Product, 
     Cart,
     CartItem, 
@@ -39,31 +40,57 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class CartSerializer(serializers.ModelSerializer):
+    cart_items = serializers.PrimaryKeyRelatedField(many=True, queryset=CartItem.objects.all())
+
     class Meta:
         model = Cart
-        fields = ['total', 'created_at', 'last_updated']
+        fields = [
+            'cart_items',
+            'total', 
+            'slug', 
+            'created_at', 
+            'last_updated'
+        ]
 
 
 class CartItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = CartItem
-        fields = ['cart', 'product', 'quantity', 'created_at', 'last_updated']
+        fields = [
+            'id',
+            'cart',
+            'product', 
+            'quantity', 
+            'created_at', 
+            'last_updated'
+        ]
+
+
+class OrderDetailSerializer(serializers.ModelSerializer):
+    items = serializers.PrimaryKeyRelatedField(many=True, queryset=OrderItem.objects.all())
+
+    class Meta:
+        model = OrderDetail
+        fields = ['items', 'total', 'payment', 'created_at', 'last_updated']
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
-        fields = ['product', 'quantity', 'created_at', 'last_updated']
+        fields = ['id', 'product', 'quantity', 'created_at', 'last_updated']
 
 
 class ProductReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductReview
         fields = [
+            'id',
             'product',
             'rating',
             'title',
             'body',
+            'slug',
+            'image',
             'created_at',
             'last_updated'
         ]

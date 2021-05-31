@@ -6,6 +6,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator, RegexVa
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 
+from store.models import Cart
+
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
@@ -23,6 +25,7 @@ class UserManager(BaseUserManager):
 
         user.save(using=self._db)
 
+        # On creation of ``User`` instance: create ``Profile`` and ``Cart`` instance.
         Profile.objects.create(user=user)
 
         return user
@@ -63,6 +66,15 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         ordering = ['last_name']
+
+    def get_full_name(self):
+        return '%s %s' % (self.first_name, self.last_name)
+
+    def get_short_name(self):
+        return self.first_name
+
+    def __str__(self):
+        return self.username
 
 
 class Profile(models.Model):
