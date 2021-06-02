@@ -1,8 +1,9 @@
-from rest_framework import serializers
+from rest_framework import fields, serializers
 
 from .models import (
     Category,
-    OrderDetail, 
+    OrderDetail,
+    PaymentDetail, 
     Product, 
     Cart,
     CartItem, 
@@ -12,66 +13,25 @@ from .models import (
 
 
 class CategorySerializer(serializers.ModelSerializer):
-    products = serializers.PrimaryKeyRelatedField(many=True, queryset=Product.objects.all())
     class Meta:
         model = Category
         fields = ['name', 'created_at', 'last_updated']
 
 
-class ProductSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Product
-        fields = [
-            'id',
-            'user',
-            'category',
-            'name',
-            'description',
-            'slug',
-            'price',
-            'disc_price',
-            'stock',
-            'sold',
-            'image',
-            'in_stock',
-            'created_at',
-            'last_updated',
-        ]
-
-
-class CartSerializer(serializers.ModelSerializer):
-    cart_items = serializers.PrimaryKeyRelatedField(many=True, queryset=CartItem.objects.all())
-
-    class Meta:
-        model = Cart
-        fields = [
-            'cart_items',
-            'total', 
-            'slug', 
-            'created_at', 
-            'last_updated'
-        ]
-
-
 class CartItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = CartItem
-        fields = [
-            'id',
-            'cart',
-            'product', 
-            'quantity', 
-            'created_at', 
-            'last_updated'
-        ]
+        fields = ['id', 'product', 'quantity', 'created_at', 'last_updated']
+        read_only_fields = ['product']
 
 
-class OrderDetailSerializer(serializers.ModelSerializer):
-    items = serializers.PrimaryKeyRelatedField(many=True, queryset=OrderItem.objects.all())
+class CartSerializer(serializers.ModelSerializer):
+    cart_items = CartItemSerializer(many=True, read_only=True)
 
     class Meta:
-        model = OrderDetail
-        fields = ['items', 'total', 'payment', 'created_at', 'last_updated']
+        model = Cart
+        fields = ['__all__', 'cart_items']
+        read_only_fields = ['user']
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
@@ -80,18 +40,35 @@ class OrderItemSerializer(serializers.ModelSerializer):
         fields = ['id', 'product', 'quantity', 'created_at', 'last_updated']
 
 
+class PaymentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PaymentDetail
+        fields = '__all__'
+
+
+class OrderDetailSerializer(serializers.ModelSerializer):
+    payment = PaymentSerializer(read_only=True)
+    items = OrderItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = OrderDetail
+        fields = ['__all__', 'items']
+        read_only_fields = ['user']
+        depth = 1
+
+
 class ProductReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductReview
-        fields = [
-            'id',
-            'product',
-            'rating',
-            'title',
-            'body',
-            'slug',
-            'image',
-            'created_at',
-            'last_updated'
-        ]
+        exclude = ['slug']
+        read_only_fields = ['user', 'product']
+        depth = 1
 
+
+class ProductSerializer(serializers.ModelSerializer):
+    category = CategorySerializer(read_only=True)
+    product_reviews = ProductReviewSerializer(many=True, read_only=True)
+    class Meta:
+        model = Product
+        fields = ['__all__', 'product_reviews']
+        read_only_fields = ['user']

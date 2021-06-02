@@ -14,37 +14,37 @@ from store.serializers import CartSerializer, OrderDetailSerializer, ProductRevi
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = (
+        fields = [
             'slug',
             'image',
             'dob',
             'gender',
             'bio'
-        )
+        ]
 
 
 class UserAddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserAddress
-        fields = (
+        fields = [
             'address_line1', 
             'address_line2', 
             'city',
             'province',
             'postal_code'
-        )
+        ]
 
 
 class UserReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserReview
-        fields = (
+        fields = [
             'rating',
             'body',
             'slug',
             'created_at',
             'last_updated',
-        )
+        ]
 
 
 class UserSerializer(serializers.ModelSerializer):

@@ -80,7 +80,7 @@ class PaymentDetail(models.Model):
 class OrderDetail(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('user_order_details'), on_delete=models.CASCADE)
     total = models.DecimalField(max_digits=5, decimal_places=2)
-    payment = models.ForeignKey(PaymentDetail, related_name=_('order_detail_payment_details'), on_delete=models.CASCADE)
+    payment = models.ForeignKey(PaymentDetail, related_name=_('order_payment'), on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
