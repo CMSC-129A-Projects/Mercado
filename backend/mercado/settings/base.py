@@ -116,8 +116,6 @@ SIMPLE_JWT = {
 DOMAIN = config('DOMAIN')
 SITE_NAME = config('SITE_NAME')
 
-# Without email verification 
-
 DJOSER = {
     'LOGIN_FIELD': 'phone_number',
     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
@@ -126,6 +124,7 @@ DJOSER = {
     'SERIALIZERS': {
         'user_create': 'accounts.serializers.UserSerializer',
         'user': 'accounts.serializers.UserSerializer',
+        'current_user': 'accounts.serializers.UserSerializer',
         'user_delete': 'djoser.serializers.UserDeleteSerializer',
     },
 }

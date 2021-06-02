@@ -1,31 +1,63 @@
 from rest_framework import serializers
 from django.conf import settings
+from djoser.compat import get_user_email, get_user_email_field_name
+from djoser.conf import settings
 
-from .models import (User, Profile, UserAddress, UserReview)
-from store.models import (Product, ProductReview, Cart, OrderDetail)
+from .models import User, Profile, UserAddress, UserReview
+from store.serializers import CartSerializer, OrderDetailSerializer, ProductReviewSerializer, ProductSerializer
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = (
+            'slug',
+            'image',
+            'dob',
+            'gender',
+            'bio'
+        )
+
+
+class UserAddressSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserAddress
+        fields = (
+            'address_line1', 
+            'address_line2', 
+            'city',
+            'province',
+            'postal_code'
+        )
+
+
+class UserReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserReview
+        fields = (
+            'rating',
+            'body',
+            'slug',
+            'created_at',
+            'last_updated',
+        )
 
 
 class UserSerializer(serializers.ModelSerializer):
-    profile = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
-    user_address = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
-    user_reviews_from = serializers.PrimaryKeyRelatedField(many=True, queryset=Product.objects.all())
-    user_reviews_to = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-    products = serializers.PrimaryKeyRelatedField(many=True, queryset=Product.objects.all())
-    user_product_reviews = serializers.PrimaryKeyRelatedField(many=True, queryset=ProductReview.objects.all())
-    cart = serializers.PrimaryKeyRelatedField(many=True, queryset=Cart.objects.all())
-    order_detail = serializers.PrimaryKeyRelatedField(many=True, queryset=OrderDetail.objects.all())
+    profile = ProfileSerializer(read_only=True)
+    user_address = UserAddressSerializer(read_only=True)
+    user_reviews_from = UserReviewSerializer(many=True, read_only=True)
+    user_reviews_to = UserReviewSerializer(many=True, read_only=True)
+    products = ProductSerializer(many=True, read_only=True)
+    user_product_reviews = ProductReviewSerializer(many=True, read_only=True)
+    cart = CartSerializer(read_only=True)
+    order_detail = OrderDetailSerializer(many=True, read_only=True)
 
     class Meta:
         model = User
-        fields = [
-            'id',
-            'phone_number',
-            'first_name',
-            'last_name',
-            'username',
-            'email',
-            'created_at',
-            'last_updated',
+        fields = tuple(User.REQUIRED_FIELDS) + (
+            settings.USER_ID_FIELD,
+            settings.LOGIN_FIELD,
             'profile',
             'user_address',
             'user_reviews_from',
@@ -34,37 +66,14 @@ class UserSerializer(serializers.ModelSerializer):
             'user_product_reviews',
             'cart',
             'order_detail'
-        ]
+        )
+        read_only_fields = (settings.LOGIN_FIELD,)
 
-
-class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Profile
-        fields = ['bio', 'image']
-        lookup_field = 'user'
-
-
-class UserAddressSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserAddress
-        fields = [
-            'address_line1', 
-            'address_line2', 
-            'city',
-            'postal_code',
-            'country'
-        ]
-
-
-class UserReviewSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserReview
-        fields = [
-            'id',
-            'recipient',
-            'rating',
-            'body',
-            'slug',
-            'created_at',
-            'last_updated'
-        ]
+    def update(self, instance, validated_data):
+        email_field = get_user_email_field_name(User)
+        if settings.SEND_ACTIVATION_EMAIL and email_field in validated_data:
+            instance_email = get_user_email(instance)
+            if instance_email != validated_data[email_field]:
+                instance.is_active = False
+                instance.save(update_fields=["is_active"])
+        return super().update(instance, validated_data)
