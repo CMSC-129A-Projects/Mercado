@@ -93,6 +93,7 @@ class Profile(models.Model):
         return str(self.user)
 
 
+
 class UserAddress(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('user_address'), on_delete=models.CASCADE)
     address_line1 = models.CharField(max_length=100)
