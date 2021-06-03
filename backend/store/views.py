@@ -23,6 +23,7 @@ from .serializers import (
     CartItemSerializer, 
     ProductReviewSerializer
 )
+from accounts.models import UserAddress
 from accounts.permissions import IsOwnerOrReadOnly
 
 
@@ -33,7 +34,6 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 
 class ProductViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.all()
     serializer_class = ProductSerializer
     lookup_field = 'slug'
     permission_classes = [IsOwnerOrReadOnly]
@@ -41,6 +41,11 @@ class ProductViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = ['id', 'name', 'slug', 'sold', 'category__name']
     search_fields = ['$name', '=category__name', '$description', 'slug']
+    
+    def get_queryset(self):
+        user_address = UserAddress.objects.get(user=self.request.user)
+        locality = user_address.city
+        return Product.objects.filter(locality=locality)
 
 
 class CartViewSet(viewsets.ModelViewSet):

@@ -4,6 +4,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
 from core.utils import unique_slugify
 
+from accounts.models import UserAddress
+
 
 class Category(models.Model):
     name = models.CharField(_('category name'), max_length=50, db_index=True)
@@ -30,6 +32,7 @@ class Product(models.Model):
     sold = models.IntegerField(default=0)
     image = models.ImageField(upload_to='product_images/', height_field=None, width_field=None, max_length=None)
     in_stock = models.BooleanField(default=True)
+    locality = models.CharField(max_length=50, default='Cebu')
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
@@ -37,9 +40,12 @@ class Product(models.Model):
     class Meta:
         ordering = ['-created_at']
 
-    def save(self, **kwargs):
+    def save(self, *args, **kwargs):
+        if self.locality is None:
+            address = UserAddress.objects.get(user=self.user)
+            self.locality = address.city
         unique_slugify(self, self.name)
-        super(Product, self).save(**kwargs)
+        super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name

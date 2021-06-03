@@ -72,3 +72,6 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = ['__all__', 'product_reviews']
         read_only_fields = ['user']
+
+    def create(self, validated_data):
+        return super().create(validated_data)

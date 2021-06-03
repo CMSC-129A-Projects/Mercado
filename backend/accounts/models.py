@@ -6,8 +6,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator, RegexVa
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 
-from store.models import Cart
-
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
