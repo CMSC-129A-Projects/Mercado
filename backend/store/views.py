@@ -47,6 +47,11 @@ class ProductViewSet(viewsets.ModelViewSet):
         locality = user_address.city
         return Product.objects.filter(locality=locality)
 
+    def perform_create(self, serializer):
+        user_address = UserAddress.objects.get(user=self.request.user)
+        locality = user_address.city
+        serializer.save(user=self.request.user, locality=locality)
+
 
 class CartViewSet(viewsets.ModelViewSet):
     queryset = Cart.objects.all()

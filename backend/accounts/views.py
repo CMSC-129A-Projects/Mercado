@@ -15,3 +15,6 @@ class UserAddressViewSet(viewsets.ModelViewSet):
     queryset = UserAddress
     serializer_class = UserAddressSerializer
     permission_classes =  [IsOwnerOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

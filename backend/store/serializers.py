@@ -66,12 +66,27 @@ class ProductReviewSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    category = CategorySerializer(read_only=True)
+    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
     product_reviews = ProductReviewSerializer(many=True, read_only=True)
     class Meta:
         model = Product
-        fields = ['__all__', 'product_reviews']
+        fields = [
+            'id',
+            'user',
+            'category', 
+            'name',
+            'description',
+            'slug',
+            'price',
+            'disc_price',
+            'stock',
+            'sold',
+            'image',
+            'in_stock',
+            'locality',
+            'is_active',
+            'created_at',
+            'last_updated',
+            'product_reviews'
+        ]
         read_only_fields = ['user']
-
-    def create(self, validated_data):
-        return super().create(validated_data)
