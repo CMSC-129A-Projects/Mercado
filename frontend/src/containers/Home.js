@@ -8,7 +8,6 @@ import { loadProducts } from '../actions/products';
 const Home = ({ loadProducts, isAuthenticated, products }) => {
     useEffect(() => {
         loadProducts();
-        
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

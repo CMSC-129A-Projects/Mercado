@@ -6,7 +6,6 @@ import { refreshToken } from '../actions/auth';
 const Layout = ({ refreshToken, children }) => {
     useEffect(() => {
         refreshToken();
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     });
 

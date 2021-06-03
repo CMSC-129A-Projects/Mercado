@@ -11,8 +11,13 @@ import {
 import { setAlert } from './alert';
 
 export const loadProducts = () => async dispatch => {
+    const config = {
+        headers: {
+            'Authorization': `JWT ${localStorage.getItem('access')}`
+        }
+    }
     try {
-        const res = await axios.get(`/store/products/`);
+        const res = await axios.get(`/store/products/`, config);
 
         dispatch({
             type: PRODUCTS_LOADED_SUCCESS,
@@ -32,7 +37,7 @@ export const loadProducts = () => async dispatch => {
 export const getProduct = (slug) => async dispatch => {
     const config = {
         headers: {
-            'Accept': 'application/json'
+            'Authorization': `JWT ${localStorage.getItem('access')}`
         }
     }
 
@@ -50,22 +55,23 @@ export const getProduct = (slug) => async dispatch => {
     }
 };
 
-export const createProduct = (user_id, productName, desc, price, discPrice, inStock) => async dispatch => {
+export const createProduct = (product) => async dispatch => {
     const config = {
         headers: {
-            'Content-Type': 'application/json',
             'Authorization': `JWT ${localStorage.getItem('access')}`
         }
     };
 
     const body = JSON.stringify({
-        user: user_id,
-        category: 1,
-        name: productName,
-        description: desc,
-        price: price,
-        disc_price: discPrice,
-        in_stock: inStock
+        category: product.category,
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        disc_price: product.discPrice,
+        stock: product.stock,
+        image: product.image,
+        slug: '',
+        locality: ''
     });
 
     console.log(body);
