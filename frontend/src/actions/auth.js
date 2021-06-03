@@ -2,6 +2,7 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
 import {
+    LOADING,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     SIGNUP_SUCCESS,
@@ -28,6 +29,8 @@ import { setAlert } from './alert';
  * @returns 
  */
 export const checkAuthenticated = () => async dispatch => {
+    dispatch({type: LOADING});
+
     if (localStorage.getItem('access')) {
         const config = {
             headers: {
@@ -68,6 +71,8 @@ export const checkAuthenticated = () => async dispatch => {
  * @returns 
  */
 export const refreshToken = () => async dispatch => {
+    dispatch({type: LOADING});
+    
     if (localStorage.getItem('access')) {
         const token_decoded = jwt_decode(localStorage.getItem('access'));
         
@@ -102,9 +107,6 @@ export const refreshToken = () => async dispatch => {
             type: REFRESH_FAIL
         });
     }
-
-    dispatch(checkAuthenticated());
-    dispatch(loadUser());
 };
 
 /**
@@ -113,6 +115,8 @@ export const refreshToken = () => async dispatch => {
  * @returns 
  */
 export const loadUser = () => async dispatch => {
+    dispatch({type: LOADING});
+
     if (localStorage.getItem('access')) {
         const config = {
             headers: {

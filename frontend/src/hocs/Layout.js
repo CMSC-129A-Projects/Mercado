@@ -1,19 +1,25 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { refreshToken } from '../actions/auth';
+import { refreshToken, checkAuthenticated, loadUser } from '../actions/auth';
 
-const Layout = ({ refreshToken, children }) => {
+const Layout = ({ isLoading, refreshToken, checkAuthenticated, loadUser, children }) => {
     useEffect(() => {
         refreshToken();
+        checkAuthenticated();
+        loadUser();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    });
+    }, []);
 
-    return (
-        <>
-            {children}
-        </>
-    );
+    if (isLoading) {
+        return (<>Loading...</>);
+    } else {
+        return (<>{children}</>);
+    }
 };
 
-export default connect(null, { refreshToken })(Layout);
+const mapStateToProps = state => ({
+    isLoading: state.auth.isLoading
+});
+
+export default connect(mapStateToProps, { refreshToken, checkAuthenticated, loadUser })(Layout);

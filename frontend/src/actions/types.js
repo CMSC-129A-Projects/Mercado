@@ -1,3 +1,4 @@
+export const LOADING = 'LOADING';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCES';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';

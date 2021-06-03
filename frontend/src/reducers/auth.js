@@ -1,4 +1,5 @@
 import {
+    LOADING,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     SIGNUP_SUCCESS,
@@ -21,6 +22,7 @@ import {
 const initialState = {
     access: localStorage.getItem('access'),
     refresh: localStorage.getItem('refresh'),
+    isLoading: false,
     isAuthenticated: null,
     user: null
 };
@@ -29,14 +31,21 @@ export default function auth(state=initialState, action) {
     const { type, payload } = action;
 
     switch(type) {
+        case LOADING:
+            return {
+                ...state,
+                isLoading: true
+            }
         case AUTHENTICATED_SUCCESS:
             return {
                 ...state,
+                isLoading: false,
                 isAuthenticated: true
             }
         case AUTHENTICATED_FAIL:
             return {
                 ...state,
+                isLoading: false,
                 isAuthenticated: false
             }
         case LOGIN_SUCCESS:
@@ -44,6 +53,7 @@ export default function auth(state=initialState, action) {
             localStorage.setItem('refresh', payload.refresh);
             return {
                 ...state,
+                isLoading: false,
                 isAuthenticated: true,
                 access: payload.access,
                 refresh: payload.refresh
@@ -51,22 +61,27 @@ export default function auth(state=initialState, action) {
         case SIGNUP_SUCCESS:
             return {
                 ...state,
+                isLoading: false,
                 isAuthenticated: false
             }
         case USER_LOADED_SUCCESS:
             return {
                 ...state,
+                isLoading: false,
                 user: payload
             }
         case REFRESH_SUCCESS:
             localStorage.setItem('access', payload.access);
             return {
                 ...state,
+                isLoading: false,
+                isAuthenticated: true,
                 access: payload.access
             }
         case USER_LOADED_FAIL:
             return {
                 ...state,
+                isLoading: false,
                 user: null
             }
         case LOGIN_FAIL:
@@ -76,6 +91,7 @@ export default function auth(state=initialState, action) {
             localStorage.removeItem('refresh');
             return {
                 ...state,
+                isLoading: false,
                 isAuthenticated: false,
                 access: null,
                 refresh: null,
@@ -89,7 +105,8 @@ export default function auth(state=initialState, action) {
         case ACTIVATION_FAIL:
         case REFRESH_FAIL:
             return {
-                ...state
+                ...state,
+                isLoading: false
             }
         default:
             return state;
