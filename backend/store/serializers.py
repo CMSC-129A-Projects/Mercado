@@ -60,14 +60,13 @@ class OrderDetailSerializer(serializers.ModelSerializer):
 class ProductReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductReview
-        exclude = ['slug']
-        read_only_fields = ['user', 'product']
-        depth = 1
+        fields = '__all__'
 
 
 class ProductSerializer(serializers.ModelSerializer):
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
-    product_reviews = ProductReviewSerializer(many=True, read_only=True)
+    product_product_reviews = ProductReviewSerializer(many=True, read_only=True)
+
     class Meta:
         model = Product
         fields = [
@@ -87,6 +86,6 @@ class ProductSerializer(serializers.ModelSerializer):
             'is_active',
             'created_at',
             'last_updated',
-            'product_reviews'
+            'product_product_reviews'
         ]
         read_only_fields = ['user']
