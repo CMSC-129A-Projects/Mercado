@@ -54,6 +54,7 @@ const Profile = ({ logout, user, isAuthenticated }) => {
                 break;
             case 'barangay':
                 setAddressData({ ...addressData, barangay: e.target.value });
+                break;
             default:
                 break;
         }

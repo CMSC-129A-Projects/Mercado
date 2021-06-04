@@ -110,6 +110,7 @@ export const refreshToken = () => async dispatch => {
     }
 
     dispatch(checkAuthenticated());
+    dispatch(loadUser());
 };
 
 /**
