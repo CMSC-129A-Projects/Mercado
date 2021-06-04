@@ -108,6 +108,8 @@ export const refreshToken = () => async dispatch => {
             type: REFRESH_FAIL
         });
     }
+
+    dispatch(checkAuthenticated());
 };
 
 /**
