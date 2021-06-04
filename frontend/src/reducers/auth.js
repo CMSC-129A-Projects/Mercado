@@ -76,7 +76,7 @@ export default function auth(state=initialState, action) {
                 user: payload.data
             }
         case REFRESH_SUCCESS:
-            localStorage.setItem('access', payload.access);
+            localStorage.setItem('access', payload.data.ccess);
             return {
                 ...state,
                 status: payload.status,
