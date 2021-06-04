@@ -93,7 +93,7 @@ const Home = ({ loadProducts, isAuthenticated, products }) => {
                         <div className="row">
                             {
                                 products 
-                                ? (products.map((product, key) => {
+                                ? (products.map((product) => {
                                     return (
                                         <div className="col-lg-3 text-center" key={product.id}>
                                             <div className="card border-0 mb-3">
