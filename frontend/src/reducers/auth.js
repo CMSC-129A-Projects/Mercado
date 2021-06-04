@@ -20,7 +20,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-    status_code: null,
+    status: null,
     access: localStorage.getItem('access'),
     refresh: localStorage.getItem('refresh'),
     isLoading: false,
@@ -73,7 +73,7 @@ export default function auth(state=initialState, action) {
                 ...state,
                 status: payload.status,
                 isLoading: false,
-                user: payload
+                user: payload.data
             }
         case REFRESH_SUCCESS:
             localStorage.setItem('access', payload.access);

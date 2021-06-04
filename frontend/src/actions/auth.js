@@ -168,8 +168,8 @@ export const login = (phoneNumber, password) => async dispatch => {
             payload: res
         });
 
-        dispatch(loadUser());
         dispatch(setAlert('Login successful', 'success'));
+        dispatch(loadUser());
     } catch (err) {
         dispatch({
             type: LOGIN_FAIL
@@ -212,6 +212,7 @@ export const create_user = (phoneNumber, firstName, lastName, username, password
         });
 
         dispatch(setAlert('Sign up successful.', 'success'));
+        dispatch(login(phoneNumber, password));
     } catch (err) {
         dispatch({
             type: SIGNUP_FAIL
@@ -316,9 +317,11 @@ export const reset_password_confirm = (uid, token, new_password, re_new_password
  * @returns 
  */
 export const logout = () => dispatch => {
+    dispatch({type: LOADING});
+
     dispatch({
         type: LOGOUT
     });
 
-    dispatch(setAlert('Logout successful', 'success'));
+    dispatch(setAlert('Logout successful', 'warning'));
 };

@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import '../css/signup.css';
 
 import Alert from '../components/Alert';
-import { create_user, login } from '../actions/auth';
+import { create_user } from '../actions/auth';
+import { setAlert } from '../actions/alert';
 
-const Signup = ({ create_user, isAuthenticated, login }) => {
+const Signup = ({ create_user, isAuthenticated, setAlert }) => {
     const [page, setPage] = useState(1);
 
     const [formData, setFormData] = useState({
@@ -21,6 +22,7 @@ const Signup = ({ create_user, isAuthenticated, login }) => {
     const { phoneNumber, firstName, lastName, username, password, rePassword } = formData;
 
     const [isPhoneValid, setIsPhoneValid] = useState(null);
+    const [passwordMatch, setPasswordMatch] = useState(null);
 
     const onChange = e => {
         if (e.target.name === 'phoneNumber') {
@@ -34,6 +36,12 @@ const Signup = ({ create_user, isAuthenticated, login }) => {
                 setIsPhoneValid(phoneRe.test(e.target.value));
             else
                 setIsPhoneValid(null);
+        } else if (e.target.name === 'rePassword') {
+            if (e.target.value === password)
+                setPasswordMatch(true);
+            else
+                setPasswordMatch(false);
+            setFormData({ ...formData, [e.target.name]: e.target.value });
         } else {
             setFormData({ ...formData, [e.target.name]: e.target.value });
         }
@@ -44,7 +52,9 @@ const Signup = ({ create_user, isAuthenticated, login }) => {
 
         if (password === rePassword) {
             create_user(phoneNumber, firstName, lastName, username, password, rePassword);
-            
+            return <Redirect to="/" />;
+        } else {
+            setAlert('Passwords do not match.', 'warning');
         }
     };
     
@@ -216,12 +226,23 @@ const Signup = ({ create_user, isAuthenticated, login }) => {
                             <div className="col">
                                 <div className="form-floating">
                                     <input
-                                        className="form-control"
+                                        className={
+                                            'form-control'
+                                            + (
+                                                passwordMatch === null
+                                                ? ''
+                                                : (
+                                                    passwordMatch
+                                                    ? ''
+                                                    : ' is-invalid'
+                                                )
+                                            )
+                                        }
                                         type="password"
                                         name="password"
                                         id="password"
                                         placeholder="Password"
-                                        maxLength={16}
+                                        maxLength={25}
                                         required
                                         value={password}
                                         onChange={e => onChange(e)}
@@ -235,7 +256,18 @@ const Signup = ({ create_user, isAuthenticated, login }) => {
                             <div className="col">
                                 <div className="form-floating">
                                     <input
-                                        className="form-control"
+                                        className={
+                                            'form-control'
+                                            + (
+                                                passwordMatch === null
+                                                ? ''
+                                                : (
+                                                    passwordMatch
+                                                    ? ''
+                                                    : ' is-invalid'
+                                                )
+                                            )
+                                        }
                                         type="password"
                                         name="rePassword"
                                         id="rePassword"
@@ -293,4 +325,4 @@ const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { create_user, login })(Signup);
+export default connect(mapStateToProps, { create_user, setAlert })(Signup);
