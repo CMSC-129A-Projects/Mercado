@@ -6,6 +6,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator, RegexVa
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 
+from store.models import Cart
+
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
@@ -23,8 +25,15 @@ class UserManager(BaseUserManager):
 
         user.save(using=self._db)
 
-        # On creation of ``User`` instance: create ``Profile`` and ``Cart`` instance.
-        Profile.objects.create(user=user)
+        # On creation of ``User`` instance: create ``Profile``, ``UserAddress``, and ``Cart`` instance.
+        profile = Profile(user=user)
+        profile.save()
+
+        cart = Cart(user=user)
+        cart.save()
+
+        address = UserAddress(user=user)
+        address.save()
 
         return user
 
@@ -97,7 +106,7 @@ class UserAddress(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('user_address'), on_delete=models.CASCADE)
     address_line1 = models.CharField(max_length=100)
     address_line2 = models.CharField(max_length=100)
-    city = models.CharField(max_length=100)
+    locality = models.CharField(max_length=100)
     province = models.CharField(max_length=50, blank=True, null=True)
     postal_code =  models.CharField(max_length=50, blank=True, null=True)
     country = models.CharField(max_length=50, default='PH')

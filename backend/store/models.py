@@ -4,8 +4,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
 from core.utils import unique_slugify
 
-from accounts.models import UserAddress
-
 
 class Category(models.Model):
     name = models.CharField(_('category name'), max_length=50, db_index=True)
