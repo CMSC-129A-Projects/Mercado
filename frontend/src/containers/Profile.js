@@ -15,15 +15,16 @@ const Profile = ({ logout, user, isAuthenticated }) => {
     });
     const { region, province, city, barangay } = addressData;
     const [addressOptions, setAddressOptions] = useState({
-        regionOptions: [],
-        provinceOptions: [],
-        cityOptions: [],
-        barangayOptions: []
+        regionOptions: null,
+        provinceOptions: null,
+        cityOptions: null,
+        barangayOptions: null
     });
     const { regionOptions, provinceOptions, cityOptions, barangayOptions } = addressOptions;
 
     useEffect(() => {
-        fetch('https://psgc.gitlab.io/api/regions/')
+        let isMounted = true;
+        fetch('https://psgc.gitlab.io/api/regions.json')
             .then(response => {
                 if (response.ok) {
                     return response.json();
@@ -31,11 +32,13 @@ const Profile = ({ logout, user, isAuthenticated }) => {
                 throw response;
             })
             .then(data => {
-                setAddressOptions({ ...addressOptions, [regionOptions]: data });
+                if (isMounted)
+                    setAddressOptions({ ...addressOptions, regionOptions: data });
             })
             .catch(error => {
-                console.log("Error fetching regions: ", error)
+                console.log("Error fetching regions: ", error);
             });
+        return () => { isMounted = false; };
     }, []);
 
     if (isAuthenticated !== null && !isAuthenticated)
@@ -57,22 +60,28 @@ const Profile = ({ logout, user, isAuthenticated }) => {
                         <form className="form-floating needs-validation">
                             <div className="row mb-3">
                                 <div className="col">
-                                    <select 
-                                        className="form-select"
-                                        id="region"
-                                        aria-label="Region"
-                                    >
-                                        <option selected>Region</option>
-                                        {
-                                            regionOptions
-                                            ? (regionOptions.map((value, key) => {
-                                                return (<option key={key} value={value}>{value}</option>);
-                                            }))
-                                            : (
-                                                <option></option>
-                                            )
-                                        }
-                                    </select>
+                                    {
+                                        regionOptions === null
+                                        ? (
+                                            <p>Loading...</p>
+                                        )
+                                        : (
+                                            <select 
+                                                className="form-select"
+                                                id="region"
+                                                aria-label="Region"
+                                            >
+                                                <option defaultValue>Region</option>
+                                                {
+                                                    regionOptions.map((value, key) => {
+                                                        return (
+                                                            <option value={value.name} key={key}>{value.name}</option>
+                                                        );
+                                                    })
+                                                }
+                                            </select>
+                                        )
+                                    }
                                 </div>
                             </div>
                         </form>
@@ -85,6 +94,8 @@ const Profile = ({ logout, user, isAuthenticated }) => {
     return (
         <Fragment>
             <NavigationBar />
+
+            {profileSetup}
 
             <div className="container mt-5">
                 <h1>{user && user.first_name} {user && user.last_name}</h1>
