@@ -31,7 +31,7 @@ const Login = ({ login, isAuthenticated }) => {
     const onSubmit = e => {
         e.preventDefault();
 
-        let phone = '+63' + phoneNumber;
+        let phone = '0' + phoneNumber;
         login(phone, password);
     };
 

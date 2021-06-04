@@ -102,6 +102,70 @@
     font-weight: 300;
 }
 
+.opensans-extra-bold-white-16px {
+    color: var(--white);
+    font-family: var(--font-family-open_sans);
+    font-size: var(--font-size-l);
+    font-style: normal;
+    font-weight: 800;
+}
+
+.opensans-light-fuscous-gray-15px {
+    color: var(--fuscous-gray);
+    font-family: var(--font-family-open_sans);
+    font-size: var(--font-size-m);
+    font-style: normal;
+    font-weight: 300;
+}
+
+.opensans-light-fuscous-gray-12px {
+    color: var(--fuscous-gray);
+    font-family: var(--font-family-open_sans);
+    font-size: var(--font-size-xs);
+    font-style: normal;
+    font-weight: 300;
+}
+
+.opensans-extra-bold-fuscous-gray-22px {
+    color: var(--fuscous-gray);
+    font-family: var(--font-family-open_sans);
+    font-size: var(--font-size-xxl);
+    font-style: normal;
+    font-weight: 800;
+}
+
+.opensans-light-pale-oyster-12px {
+    color: var(--pale-oyster);
+    font-family: var(--font-family-open_sans);
+    font-size: var(--font-size-xs);
+    font-style: normal;
+    font-weight: 300;
+}
+
+.opensans-light-silver-chalice-16px {
+    color: var(--silver-chalice);
+    font-family: var(--font-family-open_sans);
+    font-size: var(--font-size-l);
+    font-style: normal;
+    font-weight: 300;
+}
+
+.opensans-extra-bold-silver-chalice-12px {
+    color: var(--silver-chalice);
+    font-family: var(--font-family-open_sans);
+    font-size: var(--font-size-xs);
+    font-style: normal;
+    font-weight: 800;
+}
+
+.opensans-light-silver-chalice-12px {
+    color: var(--silver-chalice);
+    font-family: var(--font-family-open_sans);
+    font-size: var(--font-size-xs);
+    font-style: normal;
+    font-weight: 300;
+}
+
 .shrikhand-normal-bison-hide-86px {
     color: var(--bison-hide);
     font-family: var(--font-family-shrikhand);

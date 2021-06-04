@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { Fragment, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import '../css/signup.css';
 
-import { create_user } from '../actions/auth';
+import Alert from '../components/Alert';
+import { create_user, login } from '../actions/auth';
 
-const Signup = ({ create_user, isAuthenticated }) => {
-    const [accountCreated, setAccountCreated] = useState(false);
-    
+const Signup = ({ create_user, isAuthenticated, login }) => {
+    const [page, setPage] = useState(1);
+
     const [formData, setFormData] = useState({
         phoneNumber: '',
         firstName: '',
@@ -15,17 +17,25 @@ const Signup = ({ create_user, isAuthenticated }) => {
         password: '',
         rePassword: ''
     });
-
+    
     const { phoneNumber, firstName, lastName, username, password, rePassword } = formData;
+
+    const [isPhoneValid, setIsPhoneValid] = useState(null);
 
     const onChange = e => {
         if (e.target.name === 'phoneNumber') {
             const re = /^[0-9\b]+$/;
-            if (e.target.value === '' || re.test(e.target.value)) {
+            const phoneRe = /^(09)\d{9}$/;
+
+            if (e.target.value === '' || re.test(e.target.value))
                 setFormData({ ...formData, [e.target.name]: e.target.value });
-            }
+
+            if (e.target.value !== '')
+                setIsPhoneValid(phoneRe.test(e.target.value));
+            else
+                setIsPhoneValid(null);
         } else {
-            setFormData({ ...formData, [e.target.name]: e.target.value })
+            setFormData({ ...formData, [e.target.name]: e.target.value });
         }
     };
 
@@ -33,148 +43,249 @@ const Signup = ({ create_user, isAuthenticated }) => {
         e.preventDefault();
 
         if (password === rePassword) {
-            let phone = '+63' + phoneNumber;
-            create_user(phone, firstName, lastName, username, password, rePassword);
-            setAccountCreated(true);
+            create_user(phoneNumber, firstName, lastName, username, password, rePassword);
+            
         }
     };
+    
+    const onNext = (e, p, isPhoneValid) => {
+        if (!isPhoneValid)
+            return setIsPhoneValid(false);
+        setPage(p);
+    };
+
+    const onKeyPress = (e, isPhoneValid) => {
+        if(e.which === 13) {
+            e.preventDefault();
+            onNext(e, 2, isPhoneValid);
+        }
+    }
 
     if (isAuthenticated)
         return <Redirect to="/" />;
 
-    if (accountCreated)
-        return <Redirect to="/login" />;
-
-    return (
-        <div className="outer">
-            <div className="inner mt-4">
-                <div className="container mt-4">
-                    <div className="row justify-content-center">
-                        <img src="images/logo1.png" alt="logo" style={{ maxHeight: "200px", width: "auto" }} />
+    const page1 = (
+        <div className="container">
+            <div className="d-flex justify-content-center">
+                <div className="row">
+                    <div className="col">
+                        <img className="mb-3" src="images/mer-1@1x.png" alt="" />
                     </div>
-                    
-                    <form onSubmit={e => onSubmit(e)}>
-                        <div className="row">
-                            <div className="col">
-                                <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
-                                <div className="input-group mb-3">
-                                    <span className="input-group-text" id="phonePrefix">(+63)</span>
-                                    <input 
-                                        type="text" 
-                                        className="form-control" 
-                                        id="phoneNumber" 
-                                        name="phoneNumber"
-                                        placeholder="9*********" 
-                                        aria-label="9*********"
-                                        aria-describedby="phonePrefix"
-                                        maxLength={10}
-                                        required={true}
-                                        value={phoneNumber}
-                                        onChange={e => onChange(e)}
-                                    />
-                                </div>
-                            </div>
+                </div>
+            </div>
+            <div className="row mb-3">
+                <div className="col text-center">
+                    <h1>Start shopping now!</h1>
+                    <p>Enter your phone number.</p>
+                </div>
+            </div>
+            <div className="row mb-3">
+                <div className="col"></div>
+                <div className="col-6">
+                    <form className="form-floating needs-validation">
+                        <input
+                            className={
+                                'form-control'
+                                + (
+                                    isPhoneValid === null
+                                    ? ''
+                                    : (
+                                        isPhoneValid
+                                        ? ' is-valid'
+                                        : ' is-invalid'
+                                    )
+                                )
+                            }
+                            type="text"
+                            name="phoneNumber"
+                            id="phoneNumber"
+                            placeholder="09 * * * * * * * * *"
+                            maxLength={11}
+                            required
+                            value={phoneNumber}
+                            onChange={e => onChange(e)}
+                            onKeyPress={e => onKeyPress(e, isPhoneValid)}
+                        />
+                        <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
+                        <div className="invalid-feedback mt-3 text-start">
+                            Use 09********* format.
                         </div>
+                        <button 
+                            type="button" 
+                            className="btn btn-outline-info mt-3" 
+                            style={{ width: "100%" }} 
+                            onClick={e => onNext(e, page+1, isPhoneValid)}
+                        >
+                            Next
+                        </button>
+                        <p className="mt-3"><a href="/login">Sign in</a> instead.</p>
+                    </form>
+                </div>
+                <div className="col"></div>
+            </div>
+        </div>
+    );
 
-                        <div className="row">
+    const page2 = (
+        <div className="container">
+            <div className="row mt-3">
+                <div className="col">
+                    <nav aria-label="breadcrumb">
+                        <ol className="breadcrumb">
+                            <button className="btn" onClick={e => setPage(1)}><span className="material-icons">arrow_back</span></button>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div className="d-flex justify-content-center">
+                <div className="row">
+                    <div className="col">
+                        <img className="" src="images/mer-1@1x.png" alt="Mercado logo" height="150" />
+                    </div>
+                </div>
+            </div>
+            <div className="row mb-3">
+                <div className="col text-center">
+                    <h1>You're almost there!</h1>
+                </div>
+            </div>
+            <div className="row mb-3">
+                <div className="col"></div>
+                <div className="col-6">
+                    <form className="needs-validation" onSubmit={e => onSubmit(e)}>
+                    <div className="row mb-3">
                             <div className="col">
-                                <div className="mb-3">
-                                    <label htmlFor="firstName" className="form-label">First Name</label>
-                                    <input 
-                                        type="text"
+                                <div className="form-floating">
+                                    <input
                                         className="form-control"
-                                        id="firstName"
+                                        type="text"
                                         name="firstName"
+                                        id="firstName"
                                         placeholder="First Name"
-                                        required={true}
+                                        required
                                         value={firstName}
                                         onChange={e => onChange(e)}
                                     />
+                                    <label htmlFor="firstName" className="form-label">First Name</label>
+                                    <div className="invalid-feedback">
+                                        This field is required.
+                                    </div>
                                 </div>
                             </div>
-
                             <div className="col">
-                                <div className="mb-3">
-                                    <label htmlFor="lastName" className="form-label">Last Name</label>
-                                    <input 
-                                        type="text"
+                                <div className="form-floating">
+                                    <input
                                         className="form-control"
-                                        id="lastName"
+                                        type="text"
                                         name="lastName"
+                                        id="lastName"
                                         placeholder="Last Name"
-                                        required={true}
+                                        required
                                         value={lastName}
                                         onChange={e => onChange(e)}
                                     />
+                                    <label htmlFor="lastName" className="form-label">Last Name</label>
+                                    <div className="invalid-feedback">
+                                        This field is required.
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div className="row">
+                        <div className="row mb-3">
                             <div className="col">
-                                <div className="mb-3">
-                                    <label htmlFor="username" className="form-label">Username</label>
-                                    <input 
-                                        type="text"
+                                <div className="form-floating">
+                                    <input
                                         className="form-control"
-                                        id="username"
+                                        type="text"
                                         name="username"
+                                        id="username"
                                         placeholder="Username"
-                                        required={true}
+                                        maxLength={25}
+                                        required
                                         value={username}
                                         onChange={e => onChange(e)}
                                     />
+                                    <label htmlFor="username" className="form-label">Username</label>
+                                    <div className="invalid-feedback">
+                                        This field is required.
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div className="row">
+                        <div className="row mb-3">
                             <div className="col">
-                                <div className="mb-3">
-                                    <label htmlFor="password" className="form-label">Password</label>
-                                    <input 
-                                        type="password"
+                                <div className="form-floating">
+                                    <input
                                         className="form-control"
-                                        id="password"
+                                        type="password"
                                         name="password"
+                                        id="password"
                                         placeholder="Password"
-                                        required={true}
+                                        maxLength={16}
+                                        required
                                         value={password}
                                         onChange={e => onChange(e)}
                                     />
+                                    <label htmlFor="password" className="form-label">Password</label>
+                                    <div className="invalid-feedback">
+                                        This field is required.
+                                    </div>
                                 </div>
                             </div>
-
                             <div className="col">
-                                <div className="mb-3">
-                                    <label htmlFor="rePassword" className="form-label">Confirm Password</label>
-                                    <input 
-                                        type="password"
+                                <div className="form-floating">
+                                    <input
                                         className="form-control"
-                                        id="rePassword"
+                                        type="password"
                                         name="rePassword"
+                                        id="rePassword"
                                         placeholder="Confirm Password"
-                                        required={true}
+                                        required
                                         value={rePassword}
                                         onChange={e => onChange(e)}
                                     />
+                                    <label htmlFor="rePassword" className="form-label">Confirm Password</label>
+                                    <div className="invalid-feedback">
+                                        Passwords do not match.
+                                    </div>
                                 </div>
                             </div>
+                            <div className="form-text text-start">
+                                Password must be at least 8 characters.
+                            </div>
                         </div>
-
-                        <div className="row justify-content-center mt-3">
-                            <button type="submit" className="btn btn-outline-secondary" style={{ background: "rgba(175, 167, 140, 1)" }}>
-                                CREATE MY ACCOUNT NOW
-                            </button>
-
-                            <p className="forgot-password text-center">
-                                Already have an account? <Link to="/login">Login</Link>
-                            </p>
-                        </div>
+                        <button 
+                            type="submit" 
+                            className="btn btn-outline-info mt-3" 
+                            style={{ width: "100%" }} 
+                        >
+                            Create Account
+                        </button>
+                        <p className="mt-3"><a href="/login">Sign in</a> instead.</p>
                     </form>
                 </div>
+                <div className="col"></div>
             </div>
         </div>
+    );
+
+    const renderPageSwitch = (page, page1, page2) => {
+        switch (page) {
+            case 1:
+                return page1;
+            case 2:
+                return page2;
+            default:
+                return page1;
+        }
+    };
+
+    return (
+        <Fragment>
+            <Alert/>
+
+            {renderPageSwitch(page, page1, page2)}
+        </Fragment>
     );
 };
 
@@ -182,4 +293,4 @@ const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { create_user })(Signup);
+export default connect(mapStateToProps, { create_user, login })(Signup);

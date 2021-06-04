@@ -1,7 +1,5 @@
 import React from 'react';
 import './App.css';
-// import './css/globals.css';
-// import './css/styleguide.css';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from 'react-redux';

@@ -20,6 +20,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
+    status_code: null,
     access: localStorage.getItem('access'),
     refresh: localStorage.getItem('refresh'),
     isLoading: false,
@@ -39,6 +40,7 @@ export default function auth(state=initialState, action) {
         case AUTHENTICATED_SUCCESS:
             return {
                 ...state,
+                status: payload.status,
                 isLoading: false,
                 isAuthenticated: true
             }
@@ -49,24 +51,27 @@ export default function auth(state=initialState, action) {
                 isAuthenticated: false
             }
         case LOGIN_SUCCESS:
-            localStorage.setItem('access', payload.access);
-            localStorage.setItem('refresh', payload.refresh);
+            localStorage.setItem('access', payload.data.access);
+            localStorage.setItem('refresh', payload.data.refresh);
             return {
                 ...state,
+                status: payload.status,
                 isLoading: false,
                 isAuthenticated: true,
-                access: payload.access,
-                refresh: payload.refresh
+                access: payload.data.access,
+                refresh: payload.data.refresh
             }
         case SIGNUP_SUCCESS:
             return {
                 ...state,
+                status: payload.status,
                 isLoading: false,
                 isAuthenticated: false
             }
         case USER_LOADED_SUCCESS:
             return {
                 ...state,
+                status: payload.status,
                 isLoading: false,
                 user: payload
             }
@@ -74,9 +79,10 @@ export default function auth(state=initialState, action) {
             localStorage.setItem('access', payload.access);
             return {
                 ...state,
+                status: payload.status,
                 isLoading: false,
                 isAuthenticated: true,
-                access: payload.access
+                access: payload.data.access
             }
         case USER_LOADED_FAIL:
             return {

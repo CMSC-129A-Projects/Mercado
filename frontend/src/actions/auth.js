@@ -46,7 +46,8 @@ export const checkAuthenticated = () => async dispatch => {
 
             if (res.data.code !== 'token_not_valid') {
                 dispatch({
-                    type: AUTHENTICATED_SUCCESS
+                    type: AUTHENTICATED_SUCCESS,
+                    payload: res
                 });
             } else {
                 dispatch({
@@ -90,7 +91,7 @@ export const refreshToken = () => async dispatch => {
                 
                 dispatch({
                     type: REFRESH_SUCCESS,
-                    payload: res.data
+                    payload: res
                 });
             } catch (err) {
                 dispatch({
@@ -131,7 +132,7 @@ export const loadUser = () => async dispatch => {
     
             dispatch({
                 type: USER_LOADED_SUCCESS,
-                payload: res.data
+                payload: res
             });
         } catch (err) {
             dispatch({
@@ -164,7 +165,7 @@ export const login = (phoneNumber, password) => async dispatch => {
 
         dispatch({
             type: LOGIN_SUCCESS,
-            payload: res.data
+            payload: res
         });
 
         dispatch(loadUser());
@@ -173,8 +174,8 @@ export const login = (phoneNumber, password) => async dispatch => {
         dispatch({
             type: LOGIN_FAIL
         });
-
-        dispatch(setAlert('Login failed', 'error'));
+        
+        dispatch(setAlert('Login failed', 'danger'));
     }
 };
 
@@ -203,18 +204,21 @@ export const create_user = (phoneNumber, firstName, lastName, username, password
     try {
         const res = await axios.post(`/auth/users/`, body, config);
 
+        console.log(res);
+
         dispatch({
             type: SIGNUP_SUCCESS,
-            payload: res.data
+            payload: res
         });
 
-        dispatch(setAlert('Sign up successful', 'success'));
+        dispatch(setAlert('Sign up successful.', 'success'));
     } catch (err) {
         dispatch({
             type: SIGNUP_FAIL
         });
 
-        dispatch(setAlert('Sign up failed', 'error'));
+        for (const field in err.response.data)
+            dispatch(setAlert(err.response.data[field], 'danger'));
     }
 };
 

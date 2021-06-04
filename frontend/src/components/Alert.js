@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const Alert = ({ alerts }) => alerts !== null && alerts.length > 0 && alerts.map(alert => (
-    <div key={alert.id} className={`alert alert--${alert.alertType}`}>
-        { alert.msg }
+    <div key={alert.id} className={`alert alert-${alert.alertType} alert-dismissible fade show`} role="alert">
+        {alert.msg}
+        <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 ));
 
