@@ -1,6 +1,6 @@
 {
   "01": {
-    "region_name": "REGION I",
+    "region_name": "REGION 1",
     "province_list": {
       "ILOCOS NORTE": {
         "municipality_list": {
@@ -3788,7 +3788,7 @@
     }
   },
   "02": {
-    "region_name": "REGION II",
+    "region_name": "REGION 2",
     "province_list": {
       "BATANES": {
         "municipality_list": {
@@ -6496,7 +6496,7 @@
     }
   },
   "03": {
-    "region_name": "REGION III",
+    "region_name": "REGION 3",
     "province_list": {
       "AURORA": {
         "municipality_list": {
@@ -10151,7 +10151,7 @@
     }
   },
   "4A": {
-    "region_name": "REGION IV-A",
+    "region_name": "REGION 4-A",
     "province_list": {
       "BATANGAS": {
         "municipality_list": {
@@ -14763,7 +14763,7 @@
     }
   },
   "4B": {
-    "region_name": "REGION IV-B",
+    "region_name": "REGION 4-B",
     "province_list": {
       "MARINDUQUE": {
         "municipality_list": {
@@ -16540,7 +16540,7 @@
     }
   },
   "05": {
-    "region_name": "REGION V",
+    "region_name": "REGION 5",
     "province_list": {
       "ALBAY": {
         "municipality_list": {
@@ -20496,7 +20496,7 @@
     }
   },
   "06": {
-    "region_name": "REGION VI",
+    "region_name": "REGION 6",
     "province_list": {
       "AKLAN": {
         "municipality_list": {
@@ -25108,7 +25108,7 @@
     }
   },
   "07": {
-    "region_name": "REGION VII",
+    "region_name": "REGION 7",
     "province_list": {
       "BOHOL": {
         "municipality_list": {
@@ -28660,7 +28660,7 @@
     }
   },
   "08": {
-    "region_name": "REGION VIII",
+    "region_name": "REGION 8",
     "province_list": {
       "BILIRAN": {
         "municipality_list": {
@@ -33651,7 +33651,7 @@
     }
   },
   "09": {
-    "region_name": "REGION IX",
+    "region_name": "REGION 9",
     "province_list": {
       "ZAMBOANGA DEL NORTE": {
         "municipality_list": {
@@ -35811,7 +35811,7 @@
     }
   },
   "10": {
-    "region_name": "REGION X",
+    "region_name": "REGION 10",
     "province_list": {
       "BUKIDNON": {
         "municipality_list": {
@@ -38230,7 +38230,7 @@
     }
   },
   "11": {
-    "region_name": "REGION XI",
+    "region_name": "REGION 11",
     "province_list": {
       "COMPOSTELA VALLEY": {
         "municipality_list": {
@@ -39613,7 +39613,7 @@
     }
   },
   "12": {
-    "region_name": "REGION XII",
+    "region_name": "REGION 12",
     "province_list": {
       "COTABATO (NORTH COT.)": {
         "municipality_list": {
@@ -40988,7 +40988,7 @@
     }
   },
   "13": {
-    "region_name": "REGION XIII",
+    "region_name": "REGION 13",
     "province_list": {
       "AGUSAN DEL NORTE": {
         "municipality_list": {
