@@ -30,7 +30,7 @@ class UserAddressSerializer(serializers.ModelSerializer):
         fields = [
             'address_line1', 
             'address_line2', 
-            'city',
+            'locality',
             'province',
             'postal_code'
         ]
