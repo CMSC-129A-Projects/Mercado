@@ -28,12 +28,14 @@ class UserAddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserAddress
         fields = [
+            'user',
             'address_line1', 
             'address_line2', 
             'locality',
             'province',
-            'postal_code'
+            'region'
         ]
+        read_only_fields = ['user']
 
 
 class UserReviewSerializer(serializers.ModelSerializer):

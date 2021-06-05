@@ -15,6 +15,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
 class UserAddressViewSet(viewsets.ModelViewSet):
     queryset = UserAddress
     serializer_class = UserAddressSerializer
+    lookup_field = 'user__username'
     permission_classes =  [IsOwnerOrReadOnly]
 
     def perform_create(self, serializer):

@@ -7,7 +7,7 @@ app_name = 'accounts'
 router = routers.SimpleRouter()
 
 router.register(r'profile', ProfileViewSet, basename='profile')
-router.register(r'address', ProfileViewSet, basename='address')
+router.register(r'user-address', UserAddressViewSet, basename='user-address')
 
 
 urlpatterns = router.urls
