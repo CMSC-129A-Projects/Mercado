@@ -87,7 +87,7 @@ const Signup = ({ createUser, isAuthenticated, setAlert }) => {
                         </div>
                         <div className="row mb-3">
                             <div className="col text-center">
-                                <h1>Start shopping now!</h1>
+                                <h1>START SHOPPING NOW!</h1>
                                 <p>Enter your phone number.</p>
                             </div>
                         </div>
@@ -133,7 +133,7 @@ const Signup = ({ createUser, isAuthenticated, setAlert }) => {
                                         Next
                                     </button>
                                 </form>
-                                <p className="text-muted mt-5"><a href="/login">SIGN IN</a> instead.</p>
+                                <p className="text-muted mt-5"><a href="/login">Sign in</a> instead.</p>
                             </div>
                         </div>
                     </div>
@@ -302,7 +302,7 @@ const Signup = ({ createUser, isAuthenticated, setAlert }) => {
                                         Create Account
                                     </button>
                                 </form>
-                                <p className="text-muted mt-5"><a href="/login">SIGN IN</a> instead.</p>
+                                <p className="text-muted mt-5"><a href="/login">Sign in</a> instead.</p>
                             </div>
                         </div>
                     </div>
