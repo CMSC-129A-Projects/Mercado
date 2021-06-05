@@ -76,227 +76,231 @@ const Signup = ({ create_user, isAuthenticated, setAlert }) => {
 
     const page1 = (
         <div className="container">
-            <div className="d-flex justify-content-center">
-                <div className="row">
-                    <div className="col">
-                        <img className="mb-3" src="images/mer-1@1x.png" alt="" />
+            <div className="shadow p-3 mt-5 mb-5 bg-white rounded">
+                <div className="d-flex justify-content-center">
+                    <div className="row">
+                        <div className="col">
+                            <img className="mb-3" src="images/mer-1@1x.png" alt="" />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="row mb-3">
-                <div className="col text-center">
-                    <h1>Start shopping now!</h1>
-                    <p>Enter your phone number.</p>
+                <div className="row mb-3">
+                    <div className="col text-center">
+                        <h1>Start shopping now!</h1>
+                        <p>Enter your phone number.</p>
+                    </div>
                 </div>
-            </div>
-            <div className="row mb-3">
-                <div className="col"></div>
-                <div className="col-6">
-                    <form className="form-floating needs-validation">
-                        <input
-                            className={
-                                'form-control'
-                                + (
-                                    isPhoneValid === null
-                                    ? ''
-                                    : (
-                                        isPhoneValid
-                                        ? ' is-valid'
-                                        : ' is-invalid'
+                <div className="row mb-3">
+                    <div className="col"></div>
+                    <div className="col-6">
+                        <form className="form-floating needs-validation">
+                            <input
+                                className={
+                                    'form-control'
+                                    + (
+                                        isPhoneValid === null
+                                        ? ''
+                                        : (
+                                            isPhoneValid
+                                            ? ' is-valid'
+                                            : ' is-invalid'
+                                        )
                                     )
-                                )
-                            }
-                            type="text"
-                            name="phoneNumber"
-                            id="phoneNumber"
-                            placeholder="09 * * * * * * * * *"
-                            maxLength={11}
-                            required
-                            value={phoneNumber}
-                            onChange={e => onChange(e)}
-                            onKeyPress={e => onKeyPress(e, isPhoneValid)}
-                        />
-                        <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
-                        <div className="invalid-feedback mt-3 text-start">
-                            Use 09********* format.
-                        </div>
-                        <button 
-                            type="button" 
-                            className="btn btn-outline-info mt-3" 
-                            style={{ width: "100%" }} 
-                            onClick={e => onNext(e, page+1, isPhoneValid)}
-                        >
-                            Next
-                        </button>
-                        <p className="mt-3"><a href="/login">Sign in</a> instead.</p>
-                    </form>
+                                }
+                                type="text"
+                                name="phoneNumber"
+                                id="phoneNumber"
+                                placeholder="09 * * * * * * * * *"
+                                maxLength={11}
+                                required
+                                value={phoneNumber}
+                                onChange={e => onChange(e)}
+                                onKeyPress={e => onKeyPress(e, isPhoneValid)}
+                            />
+                            <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
+                            <div className="invalid-feedback mt-3 text-start">
+                                Use 09xxxxxxxxx format.
+                            </div>
+                            <button 
+                                type="button" 
+                                className="btn btn-outline-info mt-3" 
+                                style={{ width: "100%" }} 
+                                onClick={e => onNext(e, page+1, isPhoneValid)}
+                            >
+                                Next
+                            </button>
+                            <p className="mt-3"><a href="/login">Sign in</a> instead.</p>
+                        </form>
+                    </div>
+                    <div className="col"></div>
                 </div>
-                <div className="col"></div>
             </div>
         </div>
     );
 
     const page2 = (
         <div className="container">
-            <div className="row mt-3">
-                <div className="col">
-                    <nav aria-label="breadcrumb">
-                        <ol className="breadcrumb">
-                            <button className="btn" onClick={e => setPage(1)}><span className="material-icons">arrow_back</span></button>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-            <div className="d-flex justify-content-center">
+            <div className="shadow p-3 mt-5 mb-5 bg-white rounded">
                 <div className="row">
                     <div className="col">
-                        <img className="" src="images/mer-1@1x.png" alt="Mercado logo" height="150" />
+                        <nav aria-label="breadcrumb">
+                            <ol className="breadcrumb">
+                                <button className="btn" onClick={e => setPage(1)}><span className="material-icons">arrow_back</span></button>
+                            </ol>
+                        </nav>
                     </div>
                 </div>
-            </div>
-            <div className="row mb-3">
-                <div className="col text-center">
-                    <h1>You're almost there!</h1>
+                <div className="d-flex justify-content-center">
+                    <div className="row">
+                        <div className="col">
+                            <img className="" src="images/mer-1@1x.png" alt="Mercado logo" height="150" />
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className="row mb-3">
-                <div className="col"></div>
-                <div className="col-6">
-                    <form className="needs-validation" onSubmit={e => onSubmit(e)}>
-                    <div className="row mb-3">
-                            <div className="col">
-                                <div className="form-floating">
-                                    <input
-                                        className="form-control"
-                                        type="text"
-                                        name="firstName"
-                                        id="firstName"
-                                        placeholder="First Name"
-                                        required
-                                        value={firstName}
-                                        onChange={e => onChange(e)}
-                                    />
-                                    <label htmlFor="firstName" className="form-label">First Name</label>
-                                    <div className="invalid-feedback">
-                                        This field is required.
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col">
-                                <div className="form-floating">
-                                    <input
-                                        className="form-control"
-                                        type="text"
-                                        name="lastName"
-                                        id="lastName"
-                                        placeholder="Last Name"
-                                        required
-                                        value={lastName}
-                                        onChange={e => onChange(e)}
-                                    />
-                                    <label htmlFor="lastName" className="form-label">Last Name</label>
-                                    <div className="invalid-feedback">
-                                        This field is required.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row mb-3">
-                            <div className="col">
-                                <div className="form-floating">
-                                    <input
-                                        className="form-control"
-                                        type="text"
-                                        name="username"
-                                        id="username"
-                                        placeholder="Username"
-                                        maxLength={25}
-                                        required
-                                        value={username}
-                                        onChange={e => onChange(e)}
-                                    />
-                                    <label htmlFor="username" className="form-label">Username</label>
-                                    <div className="invalid-feedback">
-                                        This field is required.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row mb-3">
-                            <div className="col">
-                                <div className="form-floating">
-                                    <input
-                                        className={
-                                            'form-control'
-                                            + (
-                                                passwordMatch === null
-                                                ? ''
-                                                : (
-                                                    passwordMatch
-                                                    ? ''
-                                                    : ' is-invalid'
-                                                )
-                                            )
-                                        }
-                                        type="password"
-                                        name="password"
-                                        id="password"
-                                        placeholder="Password"
-                                        maxLength={25}
-                                        required
-                                        value={password}
-                                        onChange={e => onChange(e)}
-                                    />
-                                    <label htmlFor="password" className="form-label">Password</label>
-                                    <div className="invalid-feedback">
-                                        This field is required.
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col">
-                                <div className="form-floating">
-                                    <input
-                                        className={
-                                            'form-control'
-                                            + (
-                                                passwordMatch === null
-                                                ? ''
-                                                : (
-                                                    passwordMatch
-                                                    ? ''
-                                                    : ' is-invalid'
-                                                )
-                                            )
-                                        }
-                                        type="password"
-                                        name="rePassword"
-                                        id="rePassword"
-                                        placeholder="Confirm Password"
-                                        required
-                                        value={rePassword}
-                                        onChange={e => onChange(e)}
-                                    />
-                                    <label htmlFor="rePassword" className="form-label">Confirm Password</label>
-                                    <div className="invalid-feedback">
-                                        Passwords do not match.
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="form-text text-start">
-                                Password must be at least 8 characters.
-                            </div>
-                        </div>
-                        <button 
-                            type="submit" 
-                            className="btn btn-outline-info mt-3" 
-                            style={{ width: "100%" }} 
-                        >
-                            Create Account
-                        </button>
-                        <p className="mt-3"><a href="/login">Sign in</a> instead.</p>
-                    </form>
+                <div className="row mb-3">
+                    <div className="col text-center">
+                        <h1>You're almost there!</h1>
+                    </div>
                 </div>
-                <div className="col"></div>
+                <div className="row mb-3">
+                    <div className="col"></div>
+                    <div className="col-6">
+                        <form className="needs-validation" onSubmit={e => onSubmit(e)}>
+                        <div className="row mb-3">
+                                <div className="col">
+                                    <div className="form-floating">
+                                        <input
+                                            className="form-control"
+                                            type="text"
+                                            name="firstName"
+                                            id="firstName"
+                                            placeholder="First Name"
+                                            required
+                                            value={firstName}
+                                            onChange={e => onChange(e)}
+                                        />
+                                        <label htmlFor="firstName" className="form-label">First Name</label>
+                                        <div className="invalid-feedback">
+                                            This field is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="form-floating">
+                                        <input
+                                            className="form-control"
+                                            type="text"
+                                            name="lastName"
+                                            id="lastName"
+                                            placeholder="Last Name"
+                                            required
+                                            value={lastName}
+                                            onChange={e => onChange(e)}
+                                        />
+                                        <label htmlFor="lastName" className="form-label">Last Name</label>
+                                        <div className="invalid-feedback">
+                                            This field is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row mb-3">
+                                <div className="col">
+                                    <div className="form-floating">
+                                        <input
+                                            className="form-control"
+                                            type="text"
+                                            name="username"
+                                            id="username"
+                                            placeholder="Username"
+                                            maxLength={25}
+                                            required
+                                            value={username}
+                                            onChange={e => onChange(e)}
+                                        />
+                                        <label htmlFor="username" className="form-label">Username</label>
+                                        <div className="invalid-feedback">
+                                            This field is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row mb-3">
+                                <div className="col">
+                                    <div className="form-floating">
+                                        <input
+                                            className={
+                                                'form-control'
+                                                + (
+                                                    passwordMatch === null
+                                                    ? ''
+                                                    : (
+                                                        passwordMatch
+                                                        ? ''
+                                                        : ' is-invalid'
+                                                    )
+                                                )
+                                            }
+                                            type="password"
+                                            name="password"
+                                            id="password"
+                                            placeholder="Password"
+                                            maxLength={25}
+                                            required
+                                            value={password}
+                                            onChange={e => onChange(e)}
+                                        />
+                                        <label htmlFor="password" className="form-label">Password</label>
+                                        <div className="invalid-feedback">
+                                            This field is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="form-floating">
+                                        <input
+                                            className={
+                                                'form-control'
+                                                + (
+                                                    passwordMatch === null
+                                                    ? ''
+                                                    : (
+                                                        passwordMatch
+                                                        ? ''
+                                                        : ' is-invalid'
+                                                    )
+                                                )
+                                            }
+                                            type="password"
+                                            name="rePassword"
+                                            id="rePassword"
+                                            placeholder="Confirm Password"
+                                            required
+                                            value={rePassword}
+                                            onChange={e => onChange(e)}
+                                        />
+                                        <label htmlFor="rePassword" className="form-label">Confirm Password</label>
+                                        <div className="invalid-feedback">
+                                            Passwords do not match.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="form-text text-start">
+                                    Password must be at least 8 characters.
+                                </div>
+                            </div>
+                            <button 
+                                type="submit" 
+                                className="btn btn-outline-info mt-3" 
+                                style={{ width: "100%" }} 
+                            >
+                                Create Account
+                            </button>
+                            <p className="mt-3"><a href="/login">Sign in</a> instead.</p>
+                        </form>
+                    </div>
+                    <div className="col"></div>
+                </div>
             </div>
         </div>
     );

@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 
 import Layout from './hocs/Layout';
 import Home from './containers/Home';
+import Setup from './containers/Setup';
 import Login from './containers/Login';
 import Signup from './containers/Signup';
 import Activate from './containers/Activate';
@@ -25,6 +26,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/setup" component={Setup} />
             <Route path="/reset_password" component={ResetPassword} />
             <Route path="/profile" component={Profile} />
             <Route path="/shop" component={Shop} />
