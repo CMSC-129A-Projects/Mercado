@@ -14,15 +14,24 @@ const Login = ({ login, isAuthenticated }) => {
 
     const { phoneNumber, password } = formData;
 
+    const [isPhoneValid, setIsPhoneValid] = useState(null);
+
     if (isAuthenticated)
         return <Redirect to="/" />;
         
     const onChange = e => {
         if (e.target.name === 'phoneNumber') {
             const re = /^[0-9\b]+$/;
+            const phoneRe = /^(+639)\d{9}$/;
+
             if (e.target.value === '' || re.test(e.target.value)) {
                 setFormData({ ...formData, [e.target.name]: e.target.value });
             }
+
+            if (e.target.value !== '')
+                setIsPhoneValid(phoneRe.test(e.target.value));
+            else
+                setIsPhoneValid(null);
         } else {
             setFormData({ ...formData, [e.target.name]: e.target.value })
         }
@@ -31,13 +40,12 @@ const Login = ({ login, isAuthenticated }) => {
     const onSubmit = e => {
         e.preventDefault();
 
-        let phone = '0' + phoneNumber;
-        login(phone, password);
+        login(phoneNumber, password);
     };
 
 
     return (
-        <>
+        <Fragment>
             <Alert />
 
             <div className="outer">
@@ -103,7 +111,7 @@ const Login = ({ login, isAuthenticated }) => {
                     </div>
                 </div>
             </div>
-        </>
+        </Fragment>
     );
 };
 
