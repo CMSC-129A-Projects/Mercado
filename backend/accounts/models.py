@@ -104,11 +104,11 @@ class Profile(models.Model):
 
 class UserAddress(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('user_address'), on_delete=models.CASCADE)
-    address_line1 = models.CharField(max_length=100, blank=True, null=True)
-    address_line2 = models.CharField(max_length=100, blank=True, null=True)
-    locality = models.CharField(max_length=100, blank=True, null=True)
-    province = models.CharField(max_length=50, blank=True, null=True)
-    region = models.CharField(max_length=50, blank=True, null=True)
+    address_line1 = models.CharField(max_length=100)
+    address_line2 = models.CharField(max_length=100)
+    locality = models.CharField(max_length=100)
+    province = models.CharField(max_length=50)
+    region = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
