@@ -13,40 +13,6 @@ a:hover { text-decoration: none; }
 
 a:active { text-decoration: none; }
 
-/* login and signup */
-
-.outer {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: left;
-}
-
-.inner {
-    height: 650px;
-    width: 550px;
-    margin: auto;
-    background: rgb(255, 255, 255);
-    padding: 10px 55px 10px 55px;
-    border-radius: 15px;
-    transition: all .3s;
-    font-size: 13px;
-    opacity: 0.9;
-}
-
-.forgot-password,
-.forgot-password a {
-    text-align: right;
-    font-size: 13px;
-    padding-top: 10px;
-    color: #7f7d7d;
-    margin: 0;
-}
-
-.forgot-password a {
-    color: #167bff;
-}
-
 /* navbar */
 
 .navbar-brand {

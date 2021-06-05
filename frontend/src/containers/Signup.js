@@ -26,8 +26,8 @@ const Signup = ({ createUser, isAuthenticated, setAlert }) => {
 
     const onChange = e => {
         if (e.target.name === 'phoneNumber') {
-            const re = /^[0-9\b]+$/;
-            const phoneRe = /^(+639)\d{9}$/;
+            const re = /^\+|[0-9\b]+$/;
+            const phoneRe = /^(\+639)\d{9}$/;
 
             if (e.target.value === '' || re.test(e.target.value))
                 setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -112,7 +112,7 @@ const Signup = ({ createUser, isAuthenticated, setAlert }) => {
                                             name="phoneNumber"
                                             id="phoneNumber"
                                             placeholder="+639xxxxxxxxx"
-                                            maxLength={11}
+                                            maxLength={13}
                                             required
                                             value={phoneNumber}
                                             onChange={e => onChange(e)}
