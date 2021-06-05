@@ -52,7 +52,7 @@ const Signup = ({ create_user, isAuthenticated, setAlert }) => {
 
         if (password === rePassword) {
             create_user(phoneNumber, firstName, lastName, username, password, rePassword);
-            return <Redirect to="/profile" />;
+            return <Redirect to="/setup" />;
         } else {
             setAlert('Passwords do not match.', 'warning');
         }
