@@ -16,7 +16,9 @@ import {
     PASSWORD_RESET_CONFIRM_SUCCESS,
     PASSWORD_RESET_CONFIRM_FAIL,
     REFRESH_SUCCESS,
-    REFRESH_FAIL
+    REFRESH_FAIL,
+    PROFILE_UPDATE_SUCCESS,
+    PROFILE_UPDATE_FAIL
 } from '../actions/types';
 
 const initialState = {
@@ -84,11 +86,22 @@ export default function auth(state=initialState, action) {
                 isAuthenticated: true,
                 access: payload.data.access
             }
+        case PROFILE_UPDATE_SUCCESS:
+            return {
+                ...state,
+                status: payload.status,
+                isLoading: false
+            }
         case USER_LOADED_FAIL:
             return {
                 ...state,
                 isLoading: false,
                 user: null
+            }
+        case PROFILE_UPDATE_FAIL:
+            return {
+                ...state,
+                isLoading: false
             }
         case LOGIN_FAIL:
         case SIGNUP_FAIL:

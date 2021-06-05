@@ -19,7 +19,9 @@ import {
     PASSWORD_RESET_CONFIRM_SUCCESS,
     PASSWORD_RESET_CONFIRM_FAIL,
     REFRESH_SUCCESS,
-    REFRESH_FAIL
+    REFRESH_FAIL,
+    PROFILE_UPDATE_SUCCESS,
+    PROFILE_UPDATE_FAIL
 } from './types';
 import { setAlert } from './alert';
 
@@ -193,7 +195,7 @@ export const login = (phoneNumber, password) => async dispatch => {
  * @param {string} re_password Password retype
  * @returns 
  */
-export const create_user = (phoneNumber, firstName, lastName, username, password, rePassword) => async dispatch => {
+export const createUser = (phoneNumber, firstName, lastName, username, password, rePassword) => async dispatch => {
     const config = { headers: { 'Content-Type': 'application/json' } };
     const body = JSON.stringify({ 
         "phone_number": phoneNumber, 
@@ -261,7 +263,7 @@ export const verify = (uid, token) => async dispatch => {
  * @param {string} email User email
  * @returns 
  */
-export const reset_password = (email) => async dispatch => {
+export const resetPassword = (email) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -292,7 +294,7 @@ export const reset_password = (email) => async dispatch => {
  * @param {string} re_new_password Password re-type
  * @returns 
  */
-export const reset_password_confirm = (uid, token, new_password, re_new_password) => async dispatch => {
+export const resetPasswordConfirm = (uid, token, new_password, re_new_password) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -327,4 +329,30 @@ export const logout = () => dispatch => {
     });
 
     dispatch(setAlert('Logout successful', 'warning'));
+};
+
+export const updateProfile = (data) => async dispatch => {
+    dispatch({type: LOADING});
+
+    if (localStorage.getItem('access')) {
+        const config = {
+            headers: {
+                'Authorization': `JWT ${localStorage.getItem('access')}`
+            }
+        };
+
+        const body = JSON.stringify({data});
+
+        try {
+            const res = await axios.put(`/accounts/profile/${data.slug}/`, body, config);
+
+            dispatch({type: PROFILE_UPDATE_SUCCESS});
+        } catch (err) {
+            dispatch({type: PROFILE_UPDATE_FAIL});
+        }
+    } else {
+        dispatch({type: PROFILE_UPDATE_FAIL});
+    }
+
+    dispatch(loadUser());
 };

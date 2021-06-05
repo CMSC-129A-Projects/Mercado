@@ -3,9 +3,9 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Container, Form, Button } from 'react-bootstrap';
 
-import { reset_password } from '../actions/auth';
+import { resetPassword } from '../actions/auth';
 
-const ResetPassword = ({ reset_password }) => {
+const ResetPassword = ({ resetPassword }) => {
     const [requestSent, setRequestSent] = useState(false);
 
     const [formData, setFormData] = useState({
@@ -19,7 +19,7 @@ const ResetPassword = ({ reset_password }) => {
     const onSubmit = e => {
         e.preventDefault();
 
-        reset_password(email);
+        resetPassword(email);
         setRequestSent(true);
     };
 
@@ -51,4 +51,4 @@ const ResetPassword = ({ reset_password }) => {
     );
 };
 
-export default connect(null, { reset_password })(ResetPassword);
+export default connect(null, { resetPassword })(ResetPassword);

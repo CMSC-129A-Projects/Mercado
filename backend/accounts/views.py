@@ -8,6 +8,7 @@ from accounts.permissions import IsOwnerOrReadOnly
 class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile
     serializer_class = ProfileSerializer
+    lookup_field = 'slug'
     permission_classes = [IsOwnerOrReadOnly]
 
 

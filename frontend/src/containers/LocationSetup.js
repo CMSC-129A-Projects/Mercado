@@ -4,71 +4,64 @@ import { Redirect } from 'react-router';
 
 import pgc from '../data/pgc';
 
-const Setup = ({ isAuthenticated, user }) => {
+const LocationSetup = ({ isAuthenticated, user }) => {
     const [setupData, setSetupData] = useState({
-        userType: 'buyer',
         region: '',
         province: '',
         locality: '',
         barangay: ''
     });
-    const { userType, region, province, locality, barangay } = setupData;
+    const { region, province, locality, barangay } = setupData;
 
     const onChange = e => {
-        if (e.target.type === 'radio') {
-            setSetupData({ ...setupData, userType: e.target.value });
-        } else {
-            switch (e.target.name) {
-                case 'region':
-                    setSetupData({
-                        ...setupData,
-                        region: e.target.value,
-                        province: '',
-                        locality: '',
-                        barangay: ''
-                    });
-                    break;
-                case 'province':
-                    setSetupData({
-                        ...setupData,
-                        province: e.target.value,
-                        locality: '',
-                        barangay: ''
-                    });
-                    break;
-                case 'locality':
-                    setSetupData({
-                        ...setupData,
-                        locality: e.target.value,
-                        barangay: ''
-                    });
-                    break;
-                case 'barangay':
-                    setSetupData({ ...setupData, barangay: e.target.value });
-                    break;
-                default:
-                    break;
-            }
+        switch (e.target.name) {
+            case 'region':
+                setSetupData({
+                    region: e.target.value,
+                    province: '',
+                    locality: '',
+                    barangay: ''
+                });
+                break;
+            case 'province':
+                setSetupData({
+                    ...setupData,
+                    province: e.target.value,
+                    locality: '',
+                    barangay: ''
+                });
+                break;
+            case 'locality':
+                setSetupData({
+                    ...setupData,
+                    locality: e.target.value,
+                    barangay: ''
+                });
+                break;
+            case 'barangay':
+                setSetupData({ ...setupData, barangay: e.target.value });
+                break;
+            default:
+                break;
         }
     };
 
     const onSubmit = e => {
-        e.preventDefault();
         console.log({...setupData});
     };
 
-    // Check if user is authenticated.
-    if (isAuthenticated === null)
-        return (<>Loading...</>);
-    else if (!isAuthenticated)
-        return <Redirect to="/login" />;
+    // // Check if user is authenticated.
+    // if (isAuthenticated === null)
+    //     return (<>Loading...</>);
+    // else if (!isAuthenticated)
+    //     return <Redirect to="/login" />;
 
-    // Check if user is done with profile Setup. 
-    // Address should have locality if setup is done. 
-    if (user === null)
-        return (<>Loading...</>);
-    else if (user.user_address.locality !== '')
-        return <Redirect to="/" />;
+    // // Check if user is done with profile Setup. 
+    // // Address should have locality if setup is done. 
+    // if (user === null)
+    //     return (<>Loading...</>);
+    // else if (user.user_address.locality !== '')
+    //     return <Redirect to="/" />;
 
     return (
         <Fragment>
@@ -79,46 +72,16 @@ const Setup = ({ isAuthenticated, user }) => {
                         <div className="row mt-3">
                             <div className="col">
                                 <h4>Thank you for being part of</h4>
-                                <h1>MERCADO</h1>
+                                <img src="images/mer-1@1x.png" alt="Mercado logo" height="100" />
+                                <h1>Mercado!</h1>
                             </div>
                         </div>
                         <hr />
                         <form className="mb-3 needs-validation">
                             <div className="row mb-3">
                                 <div className="col">
-                                    <div>
-                                        <h5 className="mb-5">ONE MORE THING</h5>
-                                        <h5>Are you a buyer or a seller?</h5>
-                                    </div>
-                                    <div className="form-check form-check-inline">
-                                        <input
-                                            className="form-check-input"
-                                            type="radio"
-                                            name="userType"
-                                            id="buyer"
-                                            value="buyer"
-                                            checked={userType === 'buyer'}
-                                            onChange={e => onChange(e)}
-                                        />
-                                        <label className="form-check-label" htmlFor="buyer">Buyer</label>
-                                    </div>
-                                    <div className="form-check form-check-inline">
-                                        <input
-                                            className="form-check-input"
-                                            type="radio"
-                                            name="userType"
-                                            id="seller"
-                                            value="seller"
-                                            checked={userType === 'seller'}
-                                            onChange={e => onChange(e)}
-                                        />
-                                        <label className="form-check-label" htmlFor="seller">Seller</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row mb-3">
-                                <div className="col">
-                                    <h5>Select your location</h5>
+                                    <h5>Get the freshiest products in your local area!</h5>
+                                    <h5 className="form-text">SELECT YOUR LOCATION</h5>
                                 </div>
                             </div>
                             <div className="row mb-3">
@@ -160,7 +123,7 @@ const Setup = ({ isAuthenticated, user }) => {
                                                 value={province}
                                                 onChange={e => onChange(e)}
                                             >
-                                                <option value="" defaultValue><p className="text-muted">Province</p></option>
+                                                <option value="" defaultValue>Province</option>
                                                 {
                                                     region &&
                                                     (
@@ -251,12 +214,11 @@ const Setup = ({ isAuthenticated, user }) => {
                             }
                             <button 
                                 type="button" 
-                                className="btn btn-primary" 
-                                style={{width: "100%"}}
+                                className="btn btn-primary float-end" 
                                 disabled={barangay===''}
                                 onClick={e => onSubmit(e)}
                             >
-                                Done
+                                DONE
                             </button>
                         </form>
                     </div>
@@ -272,4 +234,4 @@ const mapStateToProps = state => ({
     user: state.auth.user
 });
 
-export default connect(mapStateToProps, {})(Setup);
+export default connect(mapStateToProps, {})(LocationSetup);
