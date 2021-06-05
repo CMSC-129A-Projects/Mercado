@@ -22,7 +22,7 @@ const Home = ({ loadProducts, isAuthenticated, user, products }) => {
     if (user === null)
         return (<>Loading...</>);
     else if (user.user_address.locality === '')
-        return <Redirect to="/setup" />;
+        return <Redirect to="/setup-your-locality" />;
 
     return (
         <Fragment>

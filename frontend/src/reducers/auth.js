@@ -17,8 +17,10 @@ import {
     PASSWORD_RESET_CONFIRM_FAIL,
     REFRESH_SUCCESS,
     REFRESH_FAIL,
-    PROFILE_UPDATE_SUCCESS,
-    PROFILE_UPDATE_FAIL
+    PROFILE_PATCH_SUCCESS,
+    PROFILE_PATCH_FAIL,
+    ADDRESS_PATCH_SUCCESS,
+    ADDRESS_PATCH_FAIL
 } from '../actions/types';
 
 const initialState = {
@@ -86,7 +88,8 @@ export default function auth(state=initialState, action) {
                 isAuthenticated: true,
                 access: payload.data.access
             }
-        case PROFILE_UPDATE_SUCCESS:
+        case PROFILE_PATCH_SUCCESS:
+        case ADDRESS_PATCH_SUCCESS:
             return {
                 ...state,
                 status: payload.status,
@@ -98,7 +101,8 @@ export default function auth(state=initialState, action) {
                 isLoading: false,
                 user: null
             }
-        case PROFILE_UPDATE_FAIL:
+        case PROFILE_PATCH_FAIL:
+        case ADDRESS_PATCH_FAIL:
             return {
                 ...state,
                 isLoading: false

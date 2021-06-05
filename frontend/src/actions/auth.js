@@ -20,8 +20,10 @@ import {
     PASSWORD_RESET_CONFIRM_FAIL,
     REFRESH_SUCCESS,
     REFRESH_FAIL,
-    PROFILE_UPDATE_SUCCESS,
-    PROFILE_UPDATE_FAIL
+    PROFILE_PATCH_SUCCESS,
+    PROFILE_PATCH_FAIL,
+    ADDRESS_PATCH_SUCCESS,
+    ADDRESS_PATCH_FAIL
 } from './types';
 import { setAlert } from './alert';
 
@@ -331,7 +333,7 @@ export const logout = () => dispatch => {
     dispatch(setAlert('Logout successful', 'warning'));
 };
 
-export const updateProfile = (data) => async dispatch => {
+export const patchProfile = (data) => async dispatch => {
     dispatch({type: LOADING});
 
     if (localStorage.getItem('access')) {
@@ -341,17 +343,58 @@ export const updateProfile = (data) => async dispatch => {
             }
         };
 
-        const body = JSON.stringify({data});
+        const body = JSON.stringify(data);
+
 
         try {
             const res = await axios.put(`/accounts/profile/${data.slug}/`, body, config);
 
-            dispatch({type: PROFILE_UPDATE_SUCCESS});
+
+            dispatch({
+                type: PROFILE_PATCH_SUCCESS,
+                payload: res
+            });
         } catch (err) {
-            dispatch({type: PROFILE_UPDATE_FAIL});
+            dispatch({type: PROFILE_PATCH_FAIL});
         }
     } else {
-        dispatch({type: PROFILE_UPDATE_FAIL});
+        dispatch({type: PROFILE_PATCH_FAIL});
+    }
+
+    dispatch(loadUser());
+};
+
+export const patchUserAddress = (data) => async dispatch => {
+    dispatch({type: LOADING});
+
+    if (localStorage.getItem('access')) {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `JWT ${localStorage.getItem('access')}`
+            }
+        };
+        
+        const body = JSON.stringify({
+            'address_line2': data.barangay,
+            'locality': data.locality,
+            'province': data.province,
+            'region': data.region
+        });
+
+
+        try {
+            const res = await axios.patch(`/accounts/user-address/${data.slug}/`, body, config);
+
+            dispatch({
+                type: ADDRESS_PATCH_SUCCESS,
+                payload: res
+            });
+        } catch (err) {
+            dispatch({type: ADDRESS_PATCH_FAIL});
+        }
+    } else {
+        dispatch({type: ADDRESS_PATCH_FAIL});
     }
 
     dispatch(loadUser());

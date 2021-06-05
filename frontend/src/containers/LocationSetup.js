@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
 import pgc from '../data/pgc';
+import { patchUserAddress } from '../actions/auth';
 
-const LocationSetup = ({ isAuthenticated, user }) => {
+const LocationSetup = ({ isAuthenticated, user, patchUserAddress }) => {
     const [setupData, setSetupData] = useState({
         region: '',
         province: '',
@@ -47,7 +48,9 @@ const LocationSetup = ({ isAuthenticated, user }) => {
     };
 
     const onSubmit = e => {
-        console.log({...setupData});
+        console.log({...setupData, slug: user.username});
+        patchUserAddress({slug: user.username, ...setupData});
+        return <Redirect to="/profile" />;
     };
 
     // // Check if user is authenticated.
@@ -234,4 +237,4 @@ const mapStateToProps = state => ({
     user: state.auth.user
 });
 
-export default connect(mapStateToProps, {})(LocationSetup);
+export default connect(mapStateToProps, { patchUserAddress })(LocationSetup);
