@@ -1,62 +1,83 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
+import '../css/navigationBar.css';
 
 import Alert from './Alert';
 
 const NavigationBar = ({ isAuthenticated }) => {
     return (
         <Fragment>
-            <nav className="navbar navbar-expand-lg">
+            <Alert />
+
+            <header className="p-3 mb-3 sticky-top" style={{ backgroundColor: "#c4bda7" }}>
                 <div className="container">
-                    <a className="navbar-brand" href="/">Mercado</a>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarScroll">
-                        <ul className="navbar-nav me-auto my-2 my-lg-0">
-                            <li className="nav-item">
-                                <a className="nav-link" href="/">Home</a>
+                    <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                        <a href="/" className="d=flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                            Mercado
+                        </a>
+                        <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                            <li>
+                                <a href="/shop" className="nav-link px-2 link-secondary">
+                                    Shop
+                                </a>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/shop">Shop</a>
+                            <li>
+                                <a href="/categories" className="nav-link px-2 link-secondary">
+                                    Categories
+                                </a>
                             </li>
-
-                            {
-                                isAuthenticated
-                                ? (
-                                    <>
-                                        <li className="nav-item">
-                                            <a className="nav-link" href="/profile">Account</a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" href="/cart">Cart</a>
-                                        </li>
-                                    </>
-                                ) : (
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="/login">Login</a>
-                                    </li>
-                                )
-                            }
-
-                            <li className="nav-item">
-                                <a className="nav-link" href="contact-us/">Contact Us</a>
+                            <li>
+                                <a href="/cart" className="nav-link px-2 link-secondary">
+                                    Cart
+                                </a>
                             </li>
                         </ul>
-                        <form className="d-flex">
+                        <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                             <input 
-                                className="px-2 search" 
-                                type="text" 
-                                aria-label="Search" 
-
+                                type="search"
+                                className="form-control"
+                                placeholder="Search"
+                                aria-label="Search"
                             />
-                            <button className="search-btn" type="submit">Search</button>
                         </form>
+                        <div className="dropdown text-end">
+                            <a 
+                                href="" 
+                                className="d-block link-dark text-decoration-none dropdown-toggle"
+                                id="dropdownUser"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                <img
+                                    src="https://github.com/mdo.png" 
+                                    alt="mdo"
+                                    width="32"
+                                    height="32"
+                                    className="rounded-circle"
+                                />
+                            </a>
+                            <ul 
+                                className="dropdown-menu text-small"
+                                aria-labelledby="dropdownUser"
+                            >
+                                <li>
+                                    <a className="dropdown-item" href="/profile">
+                                        Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr className="dropdown-divider" />
+                                </li>
+                                <li>
+                                    <a className="dropdown-item" href="/">
+                                        Sign out
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </nav>
-
-            <Alert />
+            </header>
         </Fragment>
     );
 };
