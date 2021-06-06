@@ -57,7 +57,7 @@ class UserSerializer(serializers.ModelSerializer):
     user_reviews_to = UserReviewSerializer(many=True, read_only=True)
     products = ProductSerializer(many=True, read_only=True)
     user_product_reviews = ProductReviewSerializer(many=True, read_only=True)
-    cart = CartSerializer(read_only=True)
+    user_cart = CartSerializer(read_only=True)
     order_detail = OrderDetailSerializer(many=True, read_only=True)
 
     class Meta:
@@ -71,7 +71,7 @@ class UserSerializer(serializers.ModelSerializer):
             'user_reviews_to',
             'products',
             'user_product_reviews',
-            'cart',
+            'user_cart',
             'order_detail'
         )
         read_only_fields = (settings.LOGIN_FIELD,)

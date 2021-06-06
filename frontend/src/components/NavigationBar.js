@@ -9,26 +9,26 @@ const NavigationBar = ({ isAuthenticated }) => {
         <Fragment>
             <Alert />
 
-            <header className="p-3 mb-3 sticky-top" style={{ backgroundColor: "#c4bda7" }}>
+            <header className="p-3 mb-3 border-bottom sticky-top" style={{ backgroundColor: "#faf1e6" }}>
                 <div className="container">
                     <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                         <a href="/" className="d=flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                            Mercado
+                            <img src="logo192.png" alt="Mercado logo" height="32" />
                         </a>
                         <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                             <li>
                                 <a href="/shop" className="nav-link px-2 link-secondary">
-                                    Shop
+                                    SHOP
                                 </a>
                             </li>
                             <li>
                                 <a href="/categories" className="nav-link px-2 link-secondary">
-                                    Categories
+                                    CATEGORY
                                 </a>
                             </li>
                             <li>
                                 <a href="/cart" className="nav-link px-2 link-secondary">
-                                    Cart
+                                    CART
                                 </a>
                             </li>
                         </ul>
