@@ -5,16 +5,14 @@ import { connect } from 'react-redux';
 import NavigationBar from '../components/NavigationBar';
 import { loadProducts } from '../actions/products';
 
-const Home = ({ loadProducts, isAuthenticated, user, products }) => {
+const Home = ({ loadProducts, isAuthenticated, isLoading, user, products }) => {
     useEffect(() => {
         loadProducts();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Check if user is authenticated.
-    if (isAuthenticated === null)
-        return (<>Loading...</>);
-    else if (!isAuthenticated)
+    if (isAuthenticated !== null && !isAuthenticated)
         return <Redirect to="/login" />;
 
     // Check if user is done with profile Setup. 
@@ -22,7 +20,9 @@ const Home = ({ loadProducts, isAuthenticated, user, products }) => {
     if (user !== null && user.user_address.locality === '')
         return <Redirect to="/setup-your-location" />;
 
-    return (
+    return isLoading
+    ? (<Fragment>Loading...</Fragment>)
+    : (
         <Fragment>
             <NavigationBar />
 
