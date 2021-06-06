@@ -54,12 +54,12 @@ const LocationSetup = ({ isAuthenticated, user, patchUserAddress }) => {
     };
 
     // Check if user is authenticated.
-    if (isAuthenticated === null && !isAuthenticated)
+    if (isAuthenticated !== null && !isAuthenticated)
         return <Redirect to="/login" />;
 
     // Check if user is done with profile Setup. 
     // Address should have locality if setup is done. 
-    if (user === null && user.user_address.locality !== '')
+    if (user !== null && user.user_address.locality !== '')
         return <Redirect to="/" />;
 
     return (

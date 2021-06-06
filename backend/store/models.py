@@ -54,7 +54,7 @@ class Cart(models.Model):
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
     def save(self, **kwargs):
-        unique_slugify(self, self.user.usename)
+        unique_slugify(self, self.user.username)
         super(Cart, self).save(**kwargs)
 
     def __str__(self):

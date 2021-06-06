@@ -1,8 +1,10 @@
 from rest_framework import viewsets, permissions
 from rest_framework.parsers import MultiPartParser, FormParser
-from rest_framework.filters import SearchFilter
+from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
+
+from . import filters
 
 from .models import (
     Category,
@@ -38,9 +40,10 @@ class ProductViewSet(viewsets.ModelViewSet):
     lookup_field = 'slug'
     permission_classes = [IsOwnerOrReadOnly]
     parser_classes = [MultiPartParser, FormParser]
-    filter_backends = [DjangoFilterBackend, SearchFilter]
-    filterset_fields = ['id', 'name', 'slug', 'sold', 'category__name']
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_class = filters.ProductFilter
     search_fields = ['$name', '=category__name', '$description', 'slug']
+    ordering_fields = ['sold']
     
     def get_queryset(self):
         user_address = UserAddress.objects.get(user=self.request.user)
