@@ -61,6 +61,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=150)
     username = models.CharField(max_length=50, unique=True)
     email = models.CharField(max_length=50, blank=True, null=True)
+    user_type = models.CharField(choices=(('BUYER', 'Buyer'), ('SELLER', 'Seller')), max_length=50)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now=False, auto_now_add=True)
@@ -69,7 +70,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
     
     USERNAME_FIELD = 'phone_number'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'username']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'username', 'user_type']
 
     class Meta:
         ordering = ['last_name']
@@ -80,13 +81,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         return self.first_name
 
+    def get_user_type(self):
+        return self.user_type
+
     def __str__(self):
         return self.username
 
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('profile'), on_delete=models.CASCADE)
-    user_type = models.CharField(choices=(('B', 'Buyer'), ('S', 'Seller')), max_length=1, default='B')
     shop_name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=25, unique=True)
     image = models.ImageField(upload_to='profile-images/', height_field=None, width_field=None, max_length=None, blank=True, null=True)

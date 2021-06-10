@@ -193,17 +193,19 @@ export const login = (phoneNumber, password) => async dispatch => {
  * @param {string} firstName User first name
  * @param {string} lastName User last name
  * @param {string} username User username
+ * @param {string} userType User type
  * @param {string} password User password
  * @param {string} re_password Password retype
  * @returns 
  */
-export const createUser = (phoneNumber, firstName, lastName, username, password, rePassword) => async dispatch => {
+export const createUser = (phoneNumber, firstName, lastName, username, userType, password, rePassword) => async dispatch => {
     const config = { headers: { 'Content-Type': 'application/json' } };
     const body = JSON.stringify({ 
         "phone_number": phoneNumber, 
         "first_name": firstName, 
         "last_name": lastName, 
         "username": username, 
+        "user_type": userType,
         "password": password, 
         "re_password": rePassword
     });
@@ -384,7 +386,7 @@ export const patchUserAddress = (data) => async dispatch => {
 
 
         try {
-            const res = await axios.patch(`/accounts/user-address/${data.slug}/`, body, config);
+            const res = await axios.patch(`/accounts/location/${data.slug}/`, body, config);
 
             dispatch({
                 type: ADDRESS_PATCH_SUCCESS,

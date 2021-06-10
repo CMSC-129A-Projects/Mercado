@@ -15,7 +15,6 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = [
-            'user_type',
             'shop_name',
             'slug',
             'image',

@@ -15,11 +15,12 @@ const Signup = ({ createUser, isAuthenticated, setAlert }) => {
         firstName: '',
         lastName: '',
         username: '',
+        userType: 'Buyer',
         password: '',
         rePassword: ''
     });
     
-    const { phoneNumber, firstName, lastName, username, password, rePassword } = formData;
+    const { phoneNumber, firstName, lastName, username, userType, password, rePassword } = formData;
 
     const [isPhoneValid, setIsPhoneValid] = useState(null);
     const [passwordMatch, setPasswordMatch] = useState(null);
@@ -51,7 +52,7 @@ const Signup = ({ createUser, isAuthenticated, setAlert }) => {
         e.preventDefault();
 
         if (password === rePassword) {
-            createUser(phoneNumber, firstName, lastName, username, password, rePassword);
+            createUser(phoneNumber, firstName, lastName, username, userType, password, rePassword);
             return <Redirect to="/setup-your-location" />;
         } else {
             setAlert('Passwords do not match.', 'warning');
