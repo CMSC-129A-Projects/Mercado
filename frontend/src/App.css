@@ -2,6 +2,10 @@ body {
     background-color: #fdfaf6;
 }
 
+a {
+    color: rgb(71, 81, 44);
+}
+
 a:link { text-decoration: none; }
 
 
@@ -13,55 +17,18 @@ a:hover { text-decoration: none; }
 
 a:active { text-decoration: none; }
 
-/* navbar
-
-.navbar-brand {
-    margin-right: 100px;
-    font-size: 300%;
-    color: rgb(196, 189, 167);
-    font-family: 'Shrikhand', cursive;
-}
-
-.navbar-brand:hover {
-    color: rgb(71, 81, 44);
-}
-
-.nav-link {
-    margin-right: 20px;
-    margin-left: 20px;
-    color: black;
-    font-family: 'Open Sans', sans-serif;
+.btn-primary {
+    background-color: #beb7a3;
+    border-color: rgb(255, 255, 255);
+    height: 3rem;
+    font-weight: bolder;
     text-transform: uppercase;
 }
 
-.nav-link:hover {
-    color: rgb(196, 189, 167);
+.btn-primary:hover {
+    background-color: rgb(71, 81, 44);
+    border-color: rgb(69, 41, 28);;
 }
-
-.nav-item .active {
-    text-decoration: underline;
-}
-
-.search {
-    height: 40px;
-    width: 180px;
-    border-radius: 60px;
-    outline: none;
-    margin-right: -35px;
-    font-family: 'Open Sans', sans-serif;
-    border: 2px solid rgb(71, 81, 44);
-}
-
-.search-btn {
-    height: 40px;
-    width: 90px;
-    outline: none;
-    border: none;
-    background: rgb(71, 81, 44);
-    color: rgb(255, 255, 255);
-    border-radius: 60px;
-    font-weight: 500;
-} */
 
 /* showcase */
 
@@ -101,16 +68,17 @@ a:active { text-decoration: none; }
 
 .showcase-btn-1:hover {
     background-color: rgb(71, 81, 44);
-    outline-color: rgb(242, 244, 235);
     color: rgb(242, 244, 235);
 }
 
 .showcase-btn-2 {
     margin-left: 10px;
-    height: 45px;
+    height: 39px;
     width: 25%;
     border: none;
-    outline: none;
+    outline-width: 3px;
+    outline-style: solid;
+    outline-color: rgb(71, 81, 44);
     background-color: rgb(71, 81, 44);
     font-family: 'Open Sans Condensed', sans-serif;
     color: rgb(242, 244, 235);

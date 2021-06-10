@@ -90,8 +90,8 @@ const Login = ({ login, isAuthenticated }) => {
                                                         onChange={e => onChange(e)}
                                                     />
                                                     <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
-                                                    <div className="invalid-feedback mt-3 text-start">
-                                                        Use +639xxxxxxxxx format.
+                                                    <div className="invalid-feedback text-start">
+                                                        Must start with +639
                                                     </div>
                                                 </div>
                                             </div>
@@ -123,10 +123,10 @@ const Login = ({ login, isAuthenticated }) => {
                                             SIGN IN
                                         </button>
                                     </form>
-                                    <p className="text-muted mt-5"><a href="/signup">Sign up</a> instead.</p>
                                 </div>
                             </div>
                         </div>
+                        <a className="mt-5" href="/signup"><h6>CREATE AN ACCOUNT</h6></a>
                     </div>
                     <div className="col"></div>
                 </div>

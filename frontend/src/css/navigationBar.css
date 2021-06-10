@@ -5,3 +5,32 @@
 .dropdown-toggle {
     outline: 0;
 }
+
+.nav {
+    background-color: rgb(255, 255, 255);
+}
+
+.mercado-brand {
+    font-family: "Shrikhand", Helvetica;
+    color: rgb(69, 41, 28);
+    font-size: 3em;
+}
+
+.mercado-brand:hover {
+    font-family: "Shrikhand", Helvetica;
+    color: rgb(69, 41, 28);
+    font-size: 3em;
+}
+
+.nav-link {
+    color: rgb(69, 41, 28);
+}
+
+.nav-link:hover {
+    color: #beb7a3;
+}
+
+.nav-link .active {
+    font-weight: bold;
+    color: rgb(69, 41, 28);
+}

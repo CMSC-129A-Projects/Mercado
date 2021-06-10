@@ -15,7 +15,7 @@ const Signup = ({ createUser, isAuthenticated, setAlert }) => {
         firstName: '',
         lastName: '',
         username: '',
-        userType: 'Buyer',
+        userType: 'BUYER',
         password: '',
         rePassword: ''
     });
@@ -76,7 +76,7 @@ const Signup = ({ createUser, isAuthenticated, setAlert }) => {
         return <Redirect to="/" />;
 
     const page1 = (
-        <div className="container">
+        <div className="container mt-5">
             <div className="row">
                 <div className="col"></div>
                 <div className="col-6">
@@ -88,7 +88,15 @@ const Signup = ({ createUser, isAuthenticated, setAlert }) => {
                         </div>
                         <div className="row mb-3">
                             <div className="col text-center">
-                                <h1>START SHOPPING NOW!</h1>
+                                <h1 
+                                    className="signup-showcase" 
+                                    style={{
+                                        fontFamily: "'Shrikhand', Helvetica", 
+                                        color: "#47512c"
+                                    }}
+                                >
+                                    START SHOPPING NOW
+                                </h1>
                                 <p>Enter your phone number.</p>
                             </div>
                         </div>
@@ -121,8 +129,8 @@ const Signup = ({ createUser, isAuthenticated, setAlert }) => {
                                             
                                         />
                                         <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
-                                        <div className="invalid-feedback mt-3 text-start">
-                                            Use +639xxxxxxxxx format.
+                                        <div className="invalid-feedback text-start">
+                                            Must start with +639
                                         </div>
                                     </div>
                                     <button 
@@ -134,10 +142,15 @@ const Signup = ({ createUser, isAuthenticated, setAlert }) => {
                                         Next
                                     </button>
                                 </form>
-                                <p className="text-muted mt-5"><a href="/login">Sign in</a> instead.</p>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col">
+                                <span className="mt-5">Want to sell your products?</span><a href="/signup"> BECOME A SELLER</a>
                             </div>
                         </div>
                     </div>
+                    <span className="mt-5">Already have an acount?</span><a href="/login"> SIGN IN</a>
                 </div>
                 <div className="col"></div>
             </div>
@@ -292,7 +305,7 @@ const Signup = ({ createUser, isAuthenticated, setAlert }) => {
                                             </div>
                                         </div>
                                         <div className="form-text text-start">
-                                            Password must be at least 8 characters.
+                                            Password must be 8-16 characters.
                                         </div>
                                     </div>
                                     <button 
@@ -303,7 +316,6 @@ const Signup = ({ createUser, isAuthenticated, setAlert }) => {
                                         Create Account
                                     </button>
                                 </form>
-                                <p className="text-muted mt-5"><a href="/login">Sign in</a> instead.</p>
                             </div>
                         </div>
                     </div>

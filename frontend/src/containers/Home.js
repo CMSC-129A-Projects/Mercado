@@ -3,6 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import NavigationBar from '../components/NavigationBar';
+import Footer from '../components/Footer';
 import { loadProducts } from '../actions/products';
 
 const Home = ({ loadProducts, isAuthenticated, isLoading, user, products }) => {
@@ -19,6 +20,18 @@ const Home = ({ loadProducts, isAuthenticated, isLoading, user, products }) => {
     // Address should have locality if setup is done. 
     if (user !== null && user.user_address.locality === '')
         return <Redirect to="/setup-your-location" />;
+
+    const formatDate = (dateString) => {
+        const options = {
+            year: "numeric", 
+            month: "long", 
+            day: "numeric", 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit' 
+        };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
 
     return isLoading
     ? (<Fragment>Loading...</Fragment>)
@@ -103,14 +116,18 @@ const Home = ({ loadProducts, isAuthenticated, isLoading, user, products }) => {
                                 products 
                                 ? (products.map((product) => {
                                     return (
-                                        <div className="col-lg-3 text-center" key={product.id}>
+                                        <div className="col-lg-3" key={product.id}>
                                             <div className="card border-0 mb-3">
                                                 <img src={product.image} className="card-img-top" alt="" />
                                                 <div className="card-body">
                                                     <h5 className="card-title">{product.name}</h5>
                                                     <h6 className="card-subtitle mb-2">Php {product.price}</h6>
+                                                    <p className="card-text">{product.review_count} Reviews <span>({product.average_rating}/5)</span></p>
                                                     <a href={'/products/'+product.slug} className="card-link">View</a>
                                                     <a href={'/products/'+product.slug} className="card-link">Add to Cart</a>
+                                                </div>
+                                                <div className="card-footer text-muted">
+                                                    {formatDate(product.created_at)}
                                                 </div>
                                             </div>
                                         </div>
@@ -126,6 +143,8 @@ const Home = ({ loadProducts, isAuthenticated, isLoading, user, products }) => {
                     </div>
                 </section>
             </div>
+
+            <Footer />
         </Fragment>
     );
 };

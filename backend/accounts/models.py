@@ -98,6 +98,7 @@ class Profile(models.Model):
     bio = models.CharField(max_length=100, blank=True, null=True)
 
     def save(self, **kwargs):
+        self.shop_name = self.user.username
         unique_slugify(self, self.user.username)
         super(Profile, self).save(**kwargs)
 

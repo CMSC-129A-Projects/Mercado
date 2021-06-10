@@ -2,44 +2,50 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import '../css/navigationBar.css';
 
-import Alert from './Alert';
-
-const NavigationBar = ({ isAuthenticated }) => {
+const NavigationBar = () => {
     return (
         <Fragment>
-            <Alert />
-
-            <header className="p-3 mb-3 border-bottom sticky-top" style={{ backgroundColor: "#faf1e6" }}>
-                <div className="container">
+            <header className="p-3 mb-3 border-bottom sticky-top nav">
+                <div className="container-fluid">
                     <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                        <a href="/" className="d=flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                            <img src="logo192.png" alt="Mercado logo" height="32" />
+                        <a href="/" className="d=flex align-items-center mb-2 me-md-5 mb-lg-0 text-decoration-none mercado-brand">
+                            Mercado
                         </a>
-                        <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <div className="col"></div>
+                        <form className="col-6 col-lg-auto me-lg-auto ms-3 mb-2 justify-content-center mb-md-0" style={{ width: "50%"}}>
+                            <input 
+                                type="search"
+                                className="form-control"
+                                placeholder="What are you looking for?"
+                                aria-label="Search"
+                            />
+                        </form>
+                        <div className="col"></div>
+                        <ul className="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                             <li>
-                                <a href="/shop" className="nav-link px-2 link-secondary">
+                                <a href="/shop" className="nav-link px-2">
                                     SHOP
                                 </a>
                             </li>
                             <li>
-                                <a href="/categories" className="nav-link px-2 link-secondary">
+                                <a href="/categories" className="nav-link px-2">
                                     CATEGORY
                                 </a>
                             </li>
                             <li>
-                                <a href="/cart" className="nav-link px-2 link-secondary">
-                                    CART
+                                <a 
+                                    href="/cart" 
+                                    className="nav-link px-2"
+                                    data-bs-toggle="tooltip" 
+                                    data-bs-placement="top" 
+                                    title="Shopping Bag"
+                                >
+                                    <span class="material-icons">
+                                        shopping_bag
+                                    </span>
                                 </a>
                             </li>
                         </ul>
-                        <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                            <input 
-                                type="search"
-                                className="form-control"
-                                placeholder="Search"
-                                aria-label="Search"
-                            />
-                        </form>
                         <div className="dropdown text-end">
                             <a 
                                 href="" 
@@ -69,7 +75,7 @@ const NavigationBar = ({ isAuthenticated }) => {
                                     <hr className="dropdown-divider" />
                                 </li>
                                 <li>
-                                    <a className="dropdown-item" href="/">
+                                    <a className="dropdown-item" href="/logout">
                                         Sign out
                                     </a>
                                 </li>
@@ -82,8 +88,4 @@ const NavigationBar = ({ isAuthenticated }) => {
     );
 };
 
-const mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
-});
-
-export default connect(mapStateToProps, {})(NavigationBar);
+export default connect(null, {})(NavigationBar);

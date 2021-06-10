@@ -7,6 +7,7 @@ import Layout from './hocs/Layout';
 import Home from './containers/Home';
 import LocationSetup from './containers/LocationSetup';
 import Login from './containers/Login';
+import Logout from './containers/Logout';
 import Signup from './containers/Signup';
 import Activate from './containers/Activate';
 import ResetPassword from './containers/ResetPassword';
@@ -25,6 +26,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
+            <Route path="/logout" component={Logout} />
             <Route path="/signup" component={Signup} />
             <Route path="/setup-your-location" component={LocationSetup} />
             <Route path="/reset_password" component={ResetPassword} />
