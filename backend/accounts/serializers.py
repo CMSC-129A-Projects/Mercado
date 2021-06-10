@@ -16,6 +16,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = [
             'user_type',
+            'shop_name',
             'slug',
             'image',
             'dob',
