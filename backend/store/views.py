@@ -26,7 +26,7 @@ from .serializers import (
     ProductReviewSerializer
 )
 from accounts.models import UserAddress
-from accounts.permissions import IsOwnerOrReadOnly
+from accounts.permissions import IsSellerOrReadOnly
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -38,7 +38,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
     lookup_field = 'slug'
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsSellerOrReadOnly]
     parser_classes = [MultiPartParser, FormParser]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class = filters.ProductFilter

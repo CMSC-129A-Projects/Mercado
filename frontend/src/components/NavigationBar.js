@@ -23,12 +23,12 @@ const NavigationBar = () => {
                         <div className="col"></div>
                         <ul className="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                             <li>
-                                <a href="/shop" className="nav-link px-2">
+                                <a href="/browse/shop" className="nav-link px-2">
                                     SHOP
                                 </a>
                             </li>
                             <li>
-                                <a href="/categories" className="nav-link px-2">
+                                <a href="/browse/category" className="nav-link px-2">
                                     CATEGORY
                                 </a>
                             </li>

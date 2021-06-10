@@ -31,10 +31,10 @@ function App() {
             <Route path="/setup-your-location" component={LocationSetup} />
             <Route path="/reset_password" component={ResetPassword} />
             <Route path="/profile" component={Profile} />
-            <Route path="/shop" component={Shop} />
+            <Route path="/browse/all" component={Shop} />
             <Route path="/activate/:uid/:token" component={Activate} />
             <Route path="/password/reset/confirm/:uid/:token" component={ResetPasswordConfirm} />
-            <Route path="/products/:slug" component={Product} />
+            <Route path="/product/:slug" component={Product} />
           </Switch>
         </Layout>
       </BrowserRouter>
