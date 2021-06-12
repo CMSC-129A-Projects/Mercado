@@ -12,6 +12,7 @@ class ProductFilter(filters.FilterSet):
     class Meta:
         model = Product
         fields = (
+            'shop__name',
             'category__name',
             'sold',
             'min_price',

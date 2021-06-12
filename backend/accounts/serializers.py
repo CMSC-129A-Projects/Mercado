@@ -14,14 +14,15 @@ from store.serializers import CartSerializer, OrderDetailSerializer, ProductRevi
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = [
-            'shop_name',
+        fields = (
+            'id',
+            'user',
             'slug',
             'image',
             'dob',
             'gender',
             'bio'
-        ]
+        )
 
 
 class UserAddressSerializer(serializers.ModelSerializer):

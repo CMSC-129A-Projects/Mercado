@@ -1,72 +1,70 @@
 from rest_framework import serializers
 from django.db.models import Avg
 
-from .models import (
-    Category,
-    OrderDetail,
-    PaymentDetail, 
-    Product, 
-    Cart,
-    CartItem, 
-    OrderItem, 
-    ProductReview
-)
+from . import models
 
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Category
-        fields = ['name', 'created_at', 'last_updated']
+        model = models.Category
+        fields = '__all__'
 
 
 class CartItemSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CartItem
-        fields = ['id', 'product', 'quantity', 'created_at', 'last_updated']
-        read_only_fields = ['product']
+        model = models.CartItem
+        fields = '__all__'
+        read_only_fields = ('product')
 
 
 class CartSerializer(serializers.ModelSerializer):
     cart_items = CartItemSerializer(many=True, read_only=True)
 
     class Meta:
-        model = Cart
-        fields = [
+        model = models.Cart
+        fields = (
             'id',
             'user',
+            'slug',
             'total',
             'cart_items'
-        ]
-        read_only_fields = ['user']
+        )
+        read_only_fields = ('user')
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
-        model = OrderItem
-        fields = ['id', 'product', 'quantity', 'created_at', 'last_updated']
+        model = models.OrderItem
+        fields = '__all__'
 
 
 class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PaymentDetail
+        model = models.PaymentDetail
         fields = '__all__'
 
 
 class OrderDetailSerializer(serializers.ModelSerializer):
-    payment = PaymentSerializer(read_only=True)
+    order_payment = PaymentSerializer(read_only=True)
     items = OrderItemSerializer(many=True, read_only=True)
 
     class Meta:
-        model = OrderDetail
-        fields = ['__all__', 'items']
-        read_only_fields = ['user']
-        depth = 1
+        model = models.OrderDetail
+        fields = (
+            'id',
+            'user',
+            'total',
+            'order_payment',
+            'created_at',
+            'items'
+        )
+        read_only_fields = ('user')
 
 
 class ProductReviewSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ProductReview
-        fields = [
+        model = models.ProductReview
+        fields = (
             'id',
             'product',
             'rating',
@@ -76,21 +74,21 @@ class ProductReviewSerializer(serializers.ModelSerializer):
             'slug',
             'created_at',
             'last_updated',
-        ]
-        read_only_fields = ['user', 'product']
+        )
+        read_only_fields = ('user', 'product')
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
+    category = serializers.PrimaryKeyRelatedField(queryset=models.Category.objects.all())
     product_product_reviews = ProductReviewSerializer(many=True, read_only=True)
     review_count = serializers.SerializerMethodField()
     average_rating = serializers.SerializerMethodField()
 
     class Meta:
-        model = Product
-        fields = [
+        model = models.Product
+        fields = (
             'id',
-            'user',
+            'shop',
             'category', 
             'name',
             'description',
@@ -108,8 +106,8 @@ class ProductSerializer(serializers.ModelSerializer):
             'product_product_reviews',
             'review_count',
             'average_rating'
-        ]
-        read_only_fields = ['user']
+        )
+        read_only_fields = ('shop', 'category')
 
     def get_review_count(self, obj):
         return obj.product_product_reviews.count()
@@ -119,3 +117,20 @@ class ProductSerializer(serializers.ModelSerializer):
         if average == None:
             return 0
         return average
+
+
+class ShopSerializer(serializers.ModelSerializer):
+    products = ProductSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = models.Shop
+        fields = (
+            'id',
+            'user',
+            'name',
+            'slug',
+            'description'
+            'created_at',
+            'products'
+        )
+        read_only_fields = ('user')

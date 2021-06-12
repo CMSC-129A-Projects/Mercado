@@ -90,8 +90,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('profile'), on_delete=models.CASCADE)
-    shop_name = models.CharField(max_length=50, unique=True)
-    shop_description = models.TextField(blank=True, null=True)
     slug = models.SlugField(max_length=25, unique=True)
     image = models.ImageField(upload_to='profile-images/', height_field=None, width_field=None, max_length=None, blank=True, null=True)
     dob = models.DateField(_('date of birth'), auto_now=False, auto_now_add=False, blank=True, null=True)

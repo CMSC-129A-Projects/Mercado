@@ -5,38 +5,20 @@ from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 
 from . import filters
-
-from .models import (
-    Category,
-    OrderDetail,
-    OrderItem, 
-    Product, 
-    Cart,
-    CartItem, 
-    ProductReview
-)
-from .serializers import (
-    CartItemSerializer, 
-    CategorySerializer,
-    OrderDetailSerializer,
-    OrderItemSerializer, 
-    ProductSerializer, 
-    CartSerializer, 
-    CartItemSerializer, 
-    ProductReviewSerializer
-)
+from . import models
+from . import serializers
 from accounts.models import UserAddress
 from accounts.permissions import IsSellerOrReadOnly
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
+    queryset = models.Category.objects.all()
+    serializer_class = serializers.CategorySerializer
     permission_classes = [permissions.IsAdminUser, permissions.IsAuthenticatedOrReadOnly]
 
 
 class ProductViewSet(viewsets.ModelViewSet):
-    serializer_class = ProductSerializer
+    serializer_class = serializers.ProductSerializer
     lookup_field = 'slug'
     permission_classes = [IsSellerOrReadOnly]
     parser_classes = [MultiPartParser, FormParser]
@@ -47,7 +29,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     
     def get_queryset(self):
         user_address = UserAddress.objects.get(user=self.request.user)
-        return Product.objects.filter(locality=user_address.locality)
+        return models.Product.objects.filter(locality=user_address.locality)
 
     def perform_create(self, serializer):
         user_address = UserAddress.objects.get(user=self.request.user)
@@ -55,8 +37,8 @@ class ProductViewSet(viewsets.ModelViewSet):
 
 
 class CartViewSet(viewsets.ModelViewSet):
-    queryset = Cart.objects.all()
-    serializer_class = CartSerializer
+    queryset = models.Cart.objects.all()
+    serializer_class = serializers.CartSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
@@ -66,27 +48,27 @@ class CartViewSet(viewsets.ModelViewSet):
         return self.queryset.filter(user=self.request.user)
 
     def retrieve(self, request, *args, **kwargs):
-        instance , created = Cart.objects.get_or_create(user=self.request.user)
-        serializer = CartSerializer(instance)
+        instance , created = models.Cart.objects.get_or_create(user=self.request.user)
+        serializer = serializers.CartSerializer(instance)
         return Response(serializer.data)
 
 
 class CartItemViewSet(viewsets.ModelViewSet):
-    queryset = CartItem.objects.all()
-    serializer_class = CartItemSerializer
+    queryset = models.CartItem.objects.all()
+    serializer_class = serializers.CartItemSerializer
 
 
 class OrderDetailViewSet(viewsets.ModelViewSet):
-    queryset = OrderDetail.objects.all()
-    serializer_class = OrderDetailSerializer
+    queryset = models.OrderDetail.objects.all()
+    serializer_class = serializers.OrderDetailSerializer
 
 
 class OrderItemViewSet(viewsets.ModelViewSet):
-    queryset = OrderItem.objects.all()
-    serializer_class = OrderItemSerializer
+    queryset = models.OrderItem.objects.all()
+    serializer_class = serializers.OrderItemSerializer
 
     
 class ProductReviewViewSet(viewsets.ModelViewSet):
-    queryset = ProductReview.objects.all()
-    serializer_class = ProductReviewSerializer
+    queryset = models.ProductReview.objects.all()
+    serializer_class = serializers.ProductReviewSerializer
     lookup_field = 'slug'

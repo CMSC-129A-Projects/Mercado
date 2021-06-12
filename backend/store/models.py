@@ -1,12 +1,44 @@
+from enum import unique
 from django.db import models
+from django.db.models.fields import DateTimeField
+from django.db.models.fields.related import ManyToManyField
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
 from core.utils import unique_slugify
 
 
+class Shop(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('shop'), on_delete=models.CASCADE)
+    name = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(unique=True, max_length=50)
+    description = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        unique_slugify(self, self.name)
+        super(Product, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+
+class ShopReview(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('shop_review_author'), on_delete=models.CASCADE)
+    shop = models.ManyToManyField(Shop, related_name=_('shop_reviewed'))
+    body = models.TextField()
+    slug = models.SlugField(unique=True, max_length=25)
+    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+
+    def save(self, **kwargs):
+        unique_slugify(self, self.body)
+        super(ShopReview, self).save(**kwargs)
+
+
 class Category(models.Model):
     name = models.CharField(_('category name'), max_length=50, db_index=True)
+    slug = models.SlugField(unique=True, max_length=50)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
@@ -14,12 +46,16 @@ class Category(models.Model):
         verbose_name_plural = 'categories'
         ordering = ['name']
 
+    def save(self, *args, **kwargs):
+        unique_slugify(self, self.name)
+        super(Product, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.name
     
 
 class Product(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('products'), on_delete=models.CASCADE)
+    shop = models.ForeignKey(Shop, related_name=_('products'), on_delete=models.CASCADE)
     category = models.ForeignKey(Category, related_name=_('product_category'), on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
@@ -34,9 +70,6 @@ class Product(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
-
-    class Meta:
-        ordering = ['-created_at']
 
     def save(self, *args, **kwargs):
         unique_slugify(self, self.name)

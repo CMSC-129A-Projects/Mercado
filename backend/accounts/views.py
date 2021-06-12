@@ -1,19 +1,19 @@
 from rest_framework import viewsets
 
-from .models import (Profile, UserAddress)
+from . import models
 from .serializers import (ProfileSerializer, UserAddressSerializer)
 from accounts.permissions import IsOwnerOrReadOnly
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
-    queryset = Profile
+    queryset = models.Profile
     serializer_class = ProfileSerializer
     lookup_field = 'slug'
     permission_classes = [IsOwnerOrReadOnly]
 
 
 class UserAddressViewSet(viewsets.ModelViewSet):
-    queryset = UserAddress
+    queryset = models.UserAddress
     serializer_class = UserAddressSerializer
     lookup_field = 'user__username'
     permission_classes =  [IsOwnerOrReadOnly]
