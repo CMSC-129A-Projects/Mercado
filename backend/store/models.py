@@ -92,7 +92,7 @@ class Cart(models.Model):
 
     def __str__(self):
         return self.slug
-
+        
 
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, related_name=_('cart_items'), on_delete=models.CASCADE)

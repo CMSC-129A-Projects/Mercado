@@ -14,7 +14,6 @@ class CartItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.CartItem
         fields = '__all__'
-        read_only_fields = ('product')
 
 
 class CartSerializer(serializers.ModelSerializer):
@@ -25,11 +24,10 @@ class CartSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'user',
-            'slug',
             'total',
             'cart_items'
         )
-        read_only_fields = ('user')
+        read_only_fields = ['user']
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
@@ -58,7 +56,7 @@ class OrderDetailSerializer(serializers.ModelSerializer):
             'created_at',
             'items'
         )
-        read_only_fields = ('user')
+        read_only_fields = ['user']
 
 
 class ProductReviewSerializer(serializers.ModelSerializer):
@@ -75,7 +73,7 @@ class ProductReviewSerializer(serializers.ModelSerializer):
             'created_at',
             'last_updated',
         )
-        read_only_fields = ('user', 'product')
+        read_only_fields = ['user', 'product']
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -107,7 +105,6 @@ class ProductSerializer(serializers.ModelSerializer):
             'review_count',
             'average_rating'
         )
-        read_only_fields = ('shop', 'category')
 
     def get_review_count(self, obj):
         return obj.product_product_reviews.count()
@@ -133,4 +130,3 @@ class ShopSerializer(serializers.ModelSerializer):
             'created_at',
             'products'
         )
-        read_only_fields = ('user')

@@ -25,6 +25,7 @@ import {
 
 const initialState = {
     status: null,
+    error: null,
     access: localStorage.getItem('access'),
     refresh: localStorage.getItem('refresh'),
     isLoading: false,
@@ -109,6 +110,17 @@ export default function auth(state=initialState, action) {
             }
         case LOGIN_FAIL:
         case SIGNUP_FAIL:
+            localStorage.removeItem('access');
+            localStorage.removeItem('refresh');
+            return {
+                ...state,
+                error: payload.response.data,
+                isLoading: false,
+                isAuthenticated: false,
+                access: null,
+                refresh: null,
+                user: null
+            }
         case LOGOUT:
             localStorage.removeItem('access');
             localStorage.removeItem('refresh');

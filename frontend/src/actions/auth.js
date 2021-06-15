@@ -29,8 +29,6 @@ import { setAlert } from './alert';
 
 /**
  * Verify access token
- * 
- * @returns 
  */
 export const checkAuthenticated = () => async dispatch => {
     dispatch({type: LOADING});
@@ -156,7 +154,7 @@ export const loadUser = () => async dispatch => {
 /**
  * Create jwt to login user
  * 
- * @param {string} email User email
+ * @param {string} phoneNumber User phone number
  * @param {string} password User password
  * @returns 
  */
@@ -179,7 +177,8 @@ export const login = (phoneNumber, password) => async dispatch => {
         dispatch(loadUser());
     } catch (err) {
         dispatch({
-            type: LOGIN_FAIL
+            type: LOGIN_FAIL,
+            payload: err
         });
         
         dispatch(setAlert('Login failed', 'danger'));
@@ -193,21 +192,24 @@ export const login = (phoneNumber, password) => async dispatch => {
  * @param {string} firstName User first name
  * @param {string} lastName User last name
  * @param {string} username User username
+ * @param {string} email User email
  * @param {string} userType User type
  * @param {string} password User password
- * @param {string} re_password Password retype
+ * @param {string} rePassword Password retype
  * @returns 
  */
-export const createUser = (phoneNumber, firstName, lastName, username, userType, password, rePassword) => async dispatch => {
+export const createUser = (data) => async dispatch => {
+    console.log(data);
     const config = { headers: { 'Content-Type': 'application/json' } };
     const body = JSON.stringify({ 
-        "phone_number": phoneNumber, 
-        "first_name": firstName, 
-        "last_name": lastName, 
-        "username": username, 
-        "user_type": userType,
-        "password": password, 
-        "re_password": rePassword
+        'phone_number': data.phoneNumber,
+        'first_name': data.firstName,
+        'last_name': data.lastName,
+        'username': data.username,
+        'email': data.email,
+        'user_type': data.userType,
+        'password': data.password,
+        're_password': data.rePassword
     });
 
     try {
@@ -220,11 +222,12 @@ export const createUser = (phoneNumber, firstName, lastName, username, userType,
             payload: res
         });
 
-        dispatch(setAlert('Sign up successful.', 'success'));
-        dispatch(login(phoneNumber, password));
+        dispatch(setAlert('Sign up successful', 'success'));
+        dispatch(login(data.phoneNumber, data.password));
     } catch (err) {
         dispatch({
-            type: SIGNUP_FAIL
+            type: SIGNUP_FAIL,
+            payload: err
         });
 
         for (const field in err.response.data)

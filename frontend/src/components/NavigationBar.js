@@ -2,13 +2,20 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import '../css/navigationBar.css';
 
-const NavigationBar = () => {
+const NavigationBar = (props) => {
     return (
         <Fragment>
-            <header className="p-3 mb-3 border-bottom sticky-top nav">
-                <div className="container-fluid">
+            <header className="p-1 mb-3 border-bottom sticky-top nav">
+                <div className="container">
                     <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                         <a href="/" className="d=flex align-items-center mb-2 me-md-5 mb-lg-0 text-decoration-none mercado-brand">
+                            <span>
+                                <img 
+                                    src="/images/mercado-bag.png" 
+                                    alt="Mercado logo"
+                                    height="60" 
+                                />
+                            </span>
                             Mercado
                         </a>
                         <div className="col"></div>
@@ -40,7 +47,7 @@ const NavigationBar = () => {
                                     data-bs-placement="top" 
                                     title="Shopping Bag"
                                 >
-                                    <span class="material-icons">
+                                    <span className="material-icons">
                                         shopping_bag
                                     </span>
                                 </a>

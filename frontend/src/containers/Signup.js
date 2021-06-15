@@ -66,11 +66,11 @@ const Signup = ({ createUser, isAuthenticated, setAlert }) => {
     };
 
     const onKeyPress = (e, isPhoneValid) => {
-        if(e.which === 13) {
+        if (e.which === 13) {
             e.preventDefault();
             onNext(e, 2, isPhoneValid);
         }
-    }
+    };
 
     if (isAuthenticated)
         return <Redirect to="/" />;
@@ -83,7 +83,7 @@ const Signup = ({ createUser, isAuthenticated, setAlert }) => {
                     <div className="shadow p-3 mt-5 mb-5 bg-white rounded">
                         <div className="row">
                             <div className="col">
-                                <img className="mb-3" src="images/mer-1@1x.png" alt="" height="200" />
+                                <img className="mb-3" src="/images/mer-1@1x.png" alt="" height="200" />
                             </div>
                         </div>
                         <div className="row mb-3">

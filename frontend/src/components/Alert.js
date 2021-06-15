@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const Alert = ({ alerts }) => alerts !== null && alerts.length > 0 && alerts.map(alert => (
-    <div key={alert.id} className={`alert alert-${alert.alertType} fade show`} role="alert">
+    <div key={alert.id} className={`container alert alert-${alert.alertType} fade show mt-3`} role="alert">
         {alert.msg}
     </div>
 ));

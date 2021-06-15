@@ -28,27 +28,27 @@ class ProfileSerializer(serializers.ModelSerializer):
 class UserAddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserAddress
-        fields = [
+        fields = (
             'user',
             'address_line1', 
             'address_line2', 
             'locality',
             'province',
             'region'
-        ]
+        )
         read_only_fields = ['user']
 
 
 class UserReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserReview
-        fields = [
+        fields = (
             'rating',
             'body',
             'slug',
             'created_at',
             'last_updated',
-        ]
+        )
 
 
 class UserSerializer(serializers.ModelSerializer):

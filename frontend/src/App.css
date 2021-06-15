@@ -1,33 +1,22 @@
-body {
-    background-color: #fdfaf6;
-}
-
 a {
     color: rgb(71, 81, 44);
 }
 
 a:link { text-decoration: none; }
 
-
 a:visited { text-decoration: none; }
-
 
 a:hover { text-decoration: none; }
 
-
 a:active { text-decoration: none; }
 
-.btn-primary {
+.btn-primary, 
+.btn-primary:hover,
+.btn-primary:disabled {
     background-color: #beb7a3;
     border-color: rgb(255, 255, 255);
-    height: 3rem;
     font-weight: bolder;
     text-transform: uppercase;
-}
-
-.btn-primary:hover {
-    background-color: rgb(71, 81, 44);
-    border-color: rgb(69, 41, 28);;
 }
 
 /* showcase */
