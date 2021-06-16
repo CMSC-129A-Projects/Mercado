@@ -56,7 +56,7 @@ const SellerSignup = ({ createUser, error }) => {
             createUser({ ...formData, phoneNumber: phone });
 
             if (!error)
-                return <Redirect to="/sellercenter" />;
+                return <Redirect to="/seller/profile" />;
         }
     };
 

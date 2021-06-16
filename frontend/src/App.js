@@ -15,6 +15,7 @@ import ResetPasswordConfirm from './containers/ResetPasswordConfirm';
 import Profile from './containers/Profile';
 import Shop from './containers/Shop';
 import Product from './containers/Product';
+import SellerHome from './containers/seller/SellerHome';
 import SellerSignup from './containers/seller/SellerSignup';
 import SellerProfile from './containers/seller/SellerProfile';
 
@@ -30,7 +31,6 @@ function App() {
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
             <Route path="/buyer/signup" component={Signup} />
-            <Route path="/sellercenter/signup" component={SellerSignup} />
             <Route path="/setup-your-location" component={LocationSetup} />
             <Route path="/reset_password" component={ResetPassword} />
             <Route path="/profile" component={Profile} />
@@ -38,7 +38,9 @@ function App() {
             <Route path="/activate/:uid/:token" component={Activate} />
             <Route path="/password/reset/confirm/:uid/:token" component={ResetPasswordConfirm} />
             <Route path="/product/:slug" component={Product} />
-            <Route path="/sellercenter/profile/:username" component={SellerProfile} />
+            <Route path="/sellercenter" component={SellerHome} />
+            <Route path="/seller/signup" component={SellerSignup} />
+            <Route path="/seller/profile" component={SellerProfile} />
           </Switch>
         </Layout>
       </BrowserRouter>
