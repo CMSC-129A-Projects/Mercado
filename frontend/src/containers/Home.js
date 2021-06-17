@@ -20,7 +20,7 @@ const Home = ({ loadProducts, isAuthenticated, isLoading, user, products }) => {
     // Check if user is done with profile Setup. 
     // Address should have locality if setup is done. 
     if (user !== null && user.user_address.locality === '')
-        return <Redirect to="/setup-your-location" />;
+        return <Redirect to="/profile/setuplocation" />;
 
     return isLoading
     ? (<Fragment>Loading...</Fragment>)
