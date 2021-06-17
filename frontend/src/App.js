@@ -34,13 +34,13 @@ function App() {
             <Route path="/buyer/verifyphone" render={(props) => <SignupPhoneVerify {...props} />} />
             <Route path="/buyer/createaccount" render={(props) => <Signup {...props} />} />
             <Route path="/profile/setuplocation" component={LocationSetup} />
-            <Route path="/login" component={Login} />
+            <Route path="/buyer/login" component={Login} />
+            <Route path="/resetpassword" component={ResetPassword} />
+            <Route path="/password/reset/confirm/:uid/:token" component={ResetPasswordConfirm} />
             <Route path="/logout" component={Logout} />
-            <Route path="/reset_password" component={ResetPassword} />
             <Route path="/profile" component={Profile} />
             <Route path="/browse/all" component={Shop} />
             <Route path="/activate/:uid/:token" component={Activate} />
-            <Route path="/password/reset/confirm/:uid/:token" component={ResetPasswordConfirm} />
             <Route path="/product/:slug" component={Product} />
             <Route path="/sellercenter" component={SellerHome} />
             <Route path="/seller/signup" component={SellerSignup} />

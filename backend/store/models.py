@@ -17,7 +17,7 @@ class Shop(models.Model):
 
     def save(self, *args, **kwargs):
         unique_slugify(self, self.name)
-        super(Product, self).save(*args, **kwargs)
+        super(Shop, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name

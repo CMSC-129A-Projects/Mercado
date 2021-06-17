@@ -26,7 +26,7 @@ const Home = ({ loadProducts, isAuthenticated, isLoading, user, products }) => {
     ? (<Fragment>Loading...</Fragment>)
     : (
         <Fragment>
-            <NavigationBar />
+            <NavigationBar pageType="authenticated" />
 
             <div className="container">
                 <section className="showcase">
