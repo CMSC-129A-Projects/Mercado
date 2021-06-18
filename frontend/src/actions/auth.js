@@ -381,8 +381,8 @@ export const patchUserAddress = (data) => async dispatch => {
         };
         
         const body = JSON.stringify({
-            'address_line2': data.barangay,
-            'locality': data.locality,
+            'brgy': data.barangay,
+            'city': data.city,
             'province': data.province,
             'region': data.region
         });
