@@ -41,7 +41,7 @@ const Signup = ({ error, isAuthenticated, createUser, ...props }) => {
 
         if (password === rePassword) {
             createUser(formData);
-            return <Redirect to="/profile/setuplocation" />;
+            return <Redirect to="/account/location-setup" />;
         }
     };
 
@@ -54,7 +54,7 @@ const Signup = ({ error, isAuthenticated, createUser, ...props }) => {
     };
 
     // ? Condition statement not tested 
-    if (!props.location.state)  return <Redirect to="/buyer/signup" />;
+    if (!props.location.state)  return <Redirect to="/signup" />;
 
     // * Redirect to home if user is logged in
     if (isAuthenticated) return <Redirect to="/" />;
@@ -243,8 +243,8 @@ const Signup = ({ error, isAuthenticated, createUser, ...props }) => {
                                 </div>
                                 <div className="form-text text-center">By continuing, you agree to Mercado's
                                     <span>
-                                        <a href="/terms"> Terms of Service </a> 
-                                        &amp; <a href="/privacypolicy">Privacy Policy</a>
+                                        <a href="/"> Terms of Service </a> 
+                                        &amp; <a href="/">Privacy Policy</a>
                                     </span>
                                 </div>
                             </div>

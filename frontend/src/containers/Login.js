@@ -159,7 +159,7 @@ const Login = ({ error, isAuthenticated, login }) => {
                                                             && error['password'][0]
                                                         }
                                                     </div>
-                                                    <a className="form-text float-end mt-1" href="/resetpassword">Forgot password?</a>
+                                                    <a className="form-text float-end mt-1" href="/account/password-reset">Forgot password?</a>
                                                 </div>
                                             </div>
                                             <button type="submit" className="btn btn-primary w-100">SIGN IN</button>

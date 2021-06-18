@@ -19,20 +19,20 @@ const Shop = ({ loadProducts, products }) => {
                     <div className="col-auto col-md-3 col-xl-2 p-0 border-end" style={{ backgroundColor: "#eceee6"}}>
                         <ul className="nav nav-pills text-center flex-column px-1 min-vh-100 text-white" style={{ backgroundColor: "#eceee6"}}>
                             <h4 className="mt-3 mb-5" style={{ color: "#beb7a3" }}>CATEGORY</h4>
-                                <a className="nav-link active" href="/browse/all?category=veggies">Veggies</a>
+                                <a className="nav-link active" href="/products/veggies">Veggies</a>
                             <li className="nav-item">
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/browse/all?category=fruits">Fruits</a>
+                                <a className="nav-link" href="/products/fruits">Fruits</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/browse/all?category=meat,+fish,+and+poultry">Meat, Fish, and Poultry</a>
+                                <a className="nav-link" href="/products/meat,+fish,+and+poultry">Meat, Fish, and Poultry</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/browse/all?category=homemade+goods">Homemade Goods</a>
+                                <a className="nav-link" href="/products/homemade+goods">Homemade Goods</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/browse/all?category=plants+and+flowers">Plants and Flowers</a>
+                                <a className="nav-link" href="/products/plants+and+flowers">Plants and Flowers</a>
                             </li>
                         </ul>
                     </div>
@@ -49,8 +49,8 @@ const Shop = ({ loadProducts, products }) => {
                                         </div>
                                         <h5>{product.name}</h5>
                                         <p>Php {product.price}</p>
-                                        <a href={'/products/'+product.slug} className="card-link">View</a>
-                                        <a href={'/products/'+product.slug} className="card-link">Add to Cart</a>
+                                        <a href={`/products/product/${product.slug}`} className="card-link">View</a>
+                                        <a href={`/products/product/${product.slug}`} className="card-link">Add to Cart</a>
                                     </div>
                                 );
                             }))

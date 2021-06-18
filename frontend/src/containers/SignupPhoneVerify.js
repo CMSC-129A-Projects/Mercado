@@ -5,7 +5,7 @@ const SignupPhoneVerify = (props) => {
     return (
         <Redirect 
             to={{
-                pathname: "/buyer/createaccount",
+                pathname: "/signup/finishing-up",
                 state: { phoneNumber: props.location.state.phoneNumber }
             }}
         />

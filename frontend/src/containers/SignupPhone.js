@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
-const SignupPhone = ({ error, ...props }) => {
+const SignupPhone = ({ error, isAuthenticated, ...props }) => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [isPhoneValid, setIsPhoneValid] = useState(null);
 
@@ -19,10 +19,12 @@ const SignupPhone = ({ error, ...props }) => {
         console.log(phoneNumber);
         e.preventDefault();
         props.history.push({
-            pathname: '/buyer/verifyphone',
+            pathname: '/signup/phone-verification',
             state: { phoneNumber: phoneNumber}
         })
     };
+
+    if (isAuthenticated) return <Redirect to="/" />;
 
     return (
         <div className="container mt-5">
@@ -113,7 +115,8 @@ const SignupPhone = ({ error, ...props }) => {
 };
 
 const mapStateToProps = state =>({
-    error: state.auth.error
+    error: state.auth.error,
+    isAuthenticated: state.auth.isAuthenticated
 })
 
 export default connect(mapStateToProps, {})(SignupPhone);

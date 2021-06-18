@@ -4,25 +4,25 @@ import { connect } from 'react-redux';
 import '../css/navigationBar.css';
 import Alert from './Alert';
 
-const NavigationBar = (props) => {
+const NavigationBar = ({ user, ...props}) => {
     const renderLinks = () => {
         switch (props.pageType) {
             case 'authenticated':
                 return (
                     <>
                         <li>
-                            <a href="/browse/shop" className="nav-link px-2">
+                            <a href="/" className="nav-link px-2">
                                 SHOP
                             </a>
                         </li>
                         <li>
-                            <a href="/browse/category" className="nav-link px-2">
+                            <a href="/" className="nav-link px-2">
                                 CATEGORY
                             </a>
                         </li>
                         <li>
                             <a 
-                                href="/cart" 
+                                href="/" 
                                 className="nav-link px-2"
                                 data-bs-toggle="tooltip" 
                                 data-bs-placement="top" 
@@ -39,7 +39,7 @@ const NavigationBar = (props) => {
                 return (
                     <>
                         <li>
-                            <a href="/buyer/login" className="nav-link px-2">LOGIN</a>
+                            <a href="/login" className="nav-link px-2">LOGIN</a>
                         </li>
                     </>
                 )
@@ -47,7 +47,7 @@ const NavigationBar = (props) => {
                 return (
                     <>
                         <li>
-                            <a href="/buyer/signup" className="nav-link px-2">SIGNUP</a>
+                            <a href="/signup" className="nav-link px-2">SIGNUP</a>
                         </li>
                     </>
                 );
@@ -114,7 +114,7 @@ const NavigationBar = (props) => {
                                         aria-labelledby="dropdownUser"
                                     >
                                         <li>
-                                            <a className="dropdown-item" href="/profile">
+                                            <a className="dropdown-item" href={`/account/${user.username}`}>
                                                 Profile
                                             </a>
                                         </li>
@@ -137,4 +137,8 @@ const NavigationBar = (props) => {
     );
 };
 
-export default connect(null, {})(NavigationBar);
+mapStateToProps = state => ({
+    user: state.auth.user
+});
+
+export default connect(mapStateToProps, {})(NavigationBar);

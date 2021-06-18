@@ -5,14 +5,14 @@ import { connect } from 'react-redux';
 import NavigationBar from '../components/NavigationBar';
 import { logout } from '../actions/auth';
 
-const Profile = ({ logout, user, isAuthenticated }) => {
+const Profile = ({ isAuthenticated, user, logout }) => {
     const [logoutSuccess, setLogoutSuccess] = useState(false);
     
     if (isAuthenticated !== null && !isAuthenticated)
         return <Redirect to="/login" />;
 
     if (user !== null && user.user_address.locality === '')
-        return <Redirect to="/setup" />;
+        return <Redirect to="/account/location-setup" />;
 
     const logout_user = (e) => {
         logout();
@@ -20,8 +20,7 @@ const Profile = ({ logout, user, isAuthenticated }) => {
     };
 
 
-    if (logoutSuccess)
-        return <Redirect to="/login" />;
+    if (logoutSuccess) return <Redirect to="/login" />;
 
     return (
         <Fragment>
@@ -38,8 +37,8 @@ const Profile = ({ logout, user, isAuthenticated }) => {
 };
 
 const mapStateToProps = state => ({
-    user: state.auth.user,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user
 });
 
 export default connect(mapStateToProps, { logout })(Profile);
