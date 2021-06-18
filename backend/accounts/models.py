@@ -25,13 +25,15 @@ class UserManager(BaseUserManager):
 
         user.save(using=self._db)
 
-        # On creation of ``User`` instance: create ``Profile``, ``UserAddress``, and ``Cart`` instance.
+        # Create a Profile object for the user
         profile = Profile(user=user)
         profile.save()
 
+        # Create a Cart object for the user
         cart = Cart(user=user)
         cart.save()
 
+        # Create a UserAddress object for the user
         address = UserAddress(user=user)
         address.save()
 
@@ -54,6 +56,16 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     """
     Creates custom User model with phone number as username
+
+    Parameters:
+        phone_number (char_field): Phone number of the user (w/ PH code regex)
+        first_name (char_field):
+        last_name (char_field):
+        username (char_field):
+        email (char_field):
+        is_set (boolean_field): True is user address is set
+        is_active (boolean_field): If False, user cannot login
+        is_staff (boolean_field):
     """
 
     phone_number = models.CharField(validators=[RegexValidator(regex=r'^(09|\+639)\d{9}$')], max_length=50, unique=True)
@@ -61,7 +73,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=150)
     username = models.CharField(max_length=50, unique=True)
     email = models.CharField(max_length=50, blank=True, null=True)
-    user_type = models.CharField(choices=(('BUYER', 'Buyer'), ('SELLER', 'Seller')), max_length=50)
+    is_set = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now=False, auto_now_add=True)
@@ -97,7 +109,6 @@ class Profile(models.Model):
     bio = models.CharField(max_length=100, blank=True, null=True)
 
     def save(self, **kwargs):
-        self.shop_name = self.user.username
         unique_slugify(self, self.user.username)
         super(Profile, self).save(**kwargs)
 
@@ -108,8 +119,8 @@ class Profile(models.Model):
 class UserAddress(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('user_address'), on_delete=models.CASCADE)
     address_line1 = models.CharField(max_length=100)
-    address_line2 = models.CharField(max_length=100)
-    locality = models.CharField(max_length=100)
+    brgy = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
     province = models.CharField(max_length=50)
     region = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
@@ -119,13 +130,13 @@ class UserAddress(models.Model):
         verbose_name_plural = _('addresses')
 
     def __str__(self):
-        complete_address = '%s, %s, %s, %s %s ' % (self.address_line1, self.address_line2, self.city, self.province, self.country, self.postal_code)
+        complete_address = '%s, %s, %s, %s, %s ' % (self.address_line1, self.brgy, self.city, self.province, self.region)
         return complete_address
 
 
 class UserReview(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('user_reviews_from'), on_delete=models.CASCADE)
-    recipient = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('user_reviews_to'), on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('user_review_author'), on_delete=models.CASCADE)
+    recipient = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('user_review_recipient'), on_delete=models.CASCADE)
     rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0)
     body = models.TextField(blank=True, null=True)
     slug = models.SlugField(max_length=25, unique=True)
@@ -138,9 +149,6 @@ class UserReview(models.Model):
     def save(self, **kwargs):
         unique_slugify(self, self.body)
         super(UserReview, self).save(**kwargs)
-
-    def __str__(self):
-        return self.title
 
     def get_review_body(self):
         return self.body

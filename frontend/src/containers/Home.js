@@ -1,13 +1,13 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import '../css/home.css'
 
+import '../css/home.css'
 import NavigationBar from '../components/NavigationBar';
 import Footer from '../components/Footer';
 import { loadProducts } from '../actions/products';
 
-const Home = ({ loadProducts, isAuthenticated, isLoading, user, products }) => {
+const Home = ({ isLoading, isAuthenticated, user, products, loadProducts  }) => {
     useEffect(() => {
         loadProducts();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -23,9 +23,9 @@ const Home = ({ loadProducts, isAuthenticated, isLoading, user, products }) => {
         return <Redirect to="/profile/setuplocation" />;
 
     return isLoading
-    ? (<Fragment>Loading...</Fragment>)
+    ? (<>Loading...</>)
     : (
-        <Fragment>
+        <>
             <NavigationBar pageType="authenticated" />
 
             <div className="container">
@@ -42,7 +42,6 @@ const Home = ({ loadProducts, isAuthenticated, isLoading, user, products }) => {
                     </div>
                     </div>
                 </section>
-
                 <section className="categories">
                     <div className="container py-5">
                         <div className="row justify-content-center">
@@ -99,7 +98,6 @@ const Home = ({ loadProducts, isAuthenticated, isLoading, user, products }) => {
                         </div>
                     </div>
                 </section>
-
                 <section className="product">
                     <div className="container py-5">
                         <div className="row py-5">
@@ -108,14 +106,14 @@ const Home = ({ loadProducts, isAuthenticated, isLoading, user, products }) => {
                                 <h6 style={{color: "rgb(71, 81, 44)"}}>What's hot and new right now!</h6>
                             </div>
                         </div>
-                        <div className="row">
+                        {/* <div className="row">
                             {
                                 products 
                                 ? (products.map((product) => {
                                     return (
-                                        <div className="col-md-3" key={product.id}>
+                                        <div className="col-4 mt-3" key={product.id}>
                                             <div className="card" style={{ backgroundColor: "#beb7a3" }}>
-                                                <img src={product.image} className="card-img-top" alt={product.name} height="30" />
+                                                <img src={product.image} className="card-img-top" alt={product.name} height="10" />
                                                 <div className="card-body">
                                                     <a 
                                                         className="stretched-link" 
@@ -148,13 +146,205 @@ const Home = ({ loadProducts, isAuthenticated, isLoading, user, products }) => {
                                     </div>
                                 )
                             }
+                        </div> */}
+                        <div className="row">
+                            <div className="col-4 mt-3">
+                                <div className="card">
+                                    <img src="/images/goods1.jpg" className="card-img-top" alt="A product" height="10" />
+                                    <div className="card-body">
+                                        <a className="stretched-link" href="/product/a-product">
+                                            <p className="card-title">A Product</p>
+                                        </a>
+                                        <h5 className="card-text">PHP 99.99</h5>
+                                        <span>
+                                            <small className="card-text">100 reviews
+                                                <span> 4.5/5</span>
+                                            </small>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-4 mt-3">
+                                <div className="card">
+                                    <img src="/images/goods1.jpg" className="card-img-top" alt="A product" height="10" />
+                                    <div className="card-body">
+                                        <a className="stretched-link" href="/product/a-product">
+                                            <p className="card-title">A Product</p>
+                                        </a>
+                                        <h5 className="card-text">PHP 99.99</h5>
+                                        <span>
+                                            <small className="card-text">100 reviews
+                                                <span> 4.5/5</span>
+                                            </small>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-4 mt-3">
+                                <div className="card">
+                                    <img src="/images/goods1.jpg" className="card-img-top" alt="A product" height="10" />
+                                    <div className="card-body">
+                                        <a className="stretched-link" href="/product/a-product">
+                                            <p className="card-title">A Product</p>
+                                        </a>
+                                        <h5 className="card-text">PHP 99.99</h5>
+                                        <span>
+                                            <small className="card-text">100 reviews
+                                                <span> 4.5/5</span>
+                                            </small>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-4 mt-3">
+                                <div className="card">
+                                    <img src="/images/goods1.jpg" className="card-img-top" alt="A product" height="10" />
+                                    <div className="card-body">
+                                        <a className="stretched-link" href="/product/a-product">
+                                            <p className="card-title">A Product</p>
+                                        </a>
+                                        <h5 className="card-text">PHP 99.99</h5>
+                                        <span>
+                                            <small className="card-text">100 reviews
+                                                <span> 4.5/5</span>
+                                            </small>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-4 mt-3">
+                                <div className="card">
+                                    <img src="/images/goods1.jpg" className="card-img-top" alt="A product" height="10" />
+                                    <div className="card-body">
+                                        <a className="stretched-link" href="/product/a-product">
+                                            <p className="card-title">A Product</p>
+                                        </a>
+                                        <h5 className="card-text">PHP 99.99</h5>
+                                        <span>
+                                            <small className="card-text">100 reviews
+                                                <span> 4.5/5</span>
+                                            </small>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-4 mt-3">
+                                <div className="card">
+                                    <img src="/images/goods1.jpg" className="card-img-top" alt="A product" height="10" />
+                                    <div className="card-body">
+                                        <a className="stretched-link" href="/product/a-product">
+                                            <p className="card-title">A Product</p>
+                                        </a>
+                                        <h5 className="card-text">PHP 99.99</h5>
+                                        <span>
+                                            <small className="card-text">100 reviews
+                                                <span> 4.5/5</span>
+                                            </small>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-4 mt-3">
+                                <div className="card">
+                                    <img src="/images/goods1.jpg" className="card-img-top" alt="A product" height="10" />
+                                    <div className="card-body">
+                                        <a className="stretched-link" href="/product/a-product">
+                                            <p className="card-title">A Product</p>
+                                        </a>
+                                        <h5 className="card-text">PHP 99.99</h5>
+                                        <span>
+                                            <small className="card-text">100 reviews
+                                                <span> 4.5/5</span>
+                                            </small>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-4 mt-3">
+                                <div className="card">
+                                    <img src="/images/goods1.jpg" className="card-img-top" alt="A product" height="10" />
+                                    <div className="card-body">
+                                        <a className="stretched-link" href="/product/a-product">
+                                            <p className="card-title">A Product</p>
+                                        </a>
+                                        <h5 className="card-text">PHP 99.99</h5>
+                                        <span>
+                                            <small className="card-text">100 reviews
+                                                <span> 4.5/5</span>
+                                            </small>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-4 mt-3">
+                                <div className="card">
+                                    <img src="/images/goods1.jpg" className="card-img-top" alt="A product" height="10" />
+                                    <div className="card-body">
+                                        <a className="stretched-link" href="/product/a-product">
+                                            <p className="card-title">A Product</p>
+                                        </a>
+                                        <h5 className="card-text">PHP 99.99</h5>
+                                        <span>
+                                            <small className="card-text">100 reviews
+                                                <span> 4.5/5</span>
+                                            </small>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-4 mt-3">
+                                <div className="card">
+                                    <img src="/images/goods1.jpg" className="card-img-top" alt="A product" height="10" />
+                                    <div className="card-body">
+                                        <a className="stretched-link" href="/product/a-product">
+                                            <p className="card-title">A Product</p>
+                                        </a>
+                                        <h5 className="card-text">PHP 99.99</h5>
+                                        <span>
+                                            <small className="card-text">100 reviews
+                                                <span> 4.5/5</span>
+                                            </small>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-4 mt-3">
+                                <div className="card">
+                                    <img src="/images/goods1.jpg" className="card-img-top" alt="A product" height="10" />
+                                    <div className="card-body">
+                                        <a className="stretched-link" href="/product/a-product">
+                                            <p className="card-title">A Product</p>
+                                        </a>
+                                        <h5 className="card-text">PHP 99.99</h5>
+                                        <span>
+                                            <small className="card-text">100 reviews
+                                                <span> 4.5/5</span>
+                                            </small>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-4 mt-3">
+                                <div className="card">
+                                    <img src="/images/goods1.jpg" className="card-img-top" alt="A product" height="10" />
+                                    <div className="card-body">
+                                        <a className="stretched-link" href="/product/a-product">
+                                            <p className="card-title">A Product</p>
+                                        </a>
+                                        <h5 className="card-text">PHP 99.99</h5>
+                                        <span>
+                                            <small className="card-text">100 reviews
+                                                <span> 4.5/5</span>
+                                            </small>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className="row text-center mt-5">
                             <div className="col">
                                 <Link to="/browse/all">
-                                    <button type="button" className="btn btn-primary">
-                                        Browse Store
-                                    </button>
+                                    <button type="button" className="btn btn-primary">Browse Products</button>
                                 </Link>
                             </div>
                         </div>                            
@@ -163,7 +353,7 @@ const Home = ({ loadProducts, isAuthenticated, isLoading, user, products }) => {
             </div>
 
             <Footer />
-        </Fragment>
+        </>
     );
 };
 

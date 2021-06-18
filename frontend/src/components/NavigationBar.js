@@ -80,7 +80,7 @@ const NavigationBar = (props) => {
                                     <input 
                                         type="search"
                                         className="form-control"
-                                        placeholder="What are you looking for?"
+                                        placeholder="Search for products, categories, and shops"
                                         aria-label="Search"
                                     />
                                 </form>

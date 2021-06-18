@@ -23,14 +23,10 @@ export const loadProducts = () => async dispatch => {
             type: PRODUCTS_LOADED_SUCCESS,
             payload: res.data
         });
-
-        dispatch(setAlert('Products loaded', 'success'));
     } catch (err) {
         dispatch({
             type: PRODUCTS_LOADED_FAIL
         });
-
-        dispatch(setAlert('Products not loaded', 'error'));
     }
 };
 

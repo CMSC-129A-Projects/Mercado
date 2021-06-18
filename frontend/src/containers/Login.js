@@ -58,7 +58,7 @@ const Login = ({ error, isAuthenticated, login }) => {
         <>
             <NavigationBar pageType="login" />
             <main>
-                <div className="container-fluid">
+                <div className="container">
                     <div className="row">
                         <div className="col"></div>
                         <div className="col-6">

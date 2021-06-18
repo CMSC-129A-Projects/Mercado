@@ -25,7 +25,7 @@ const Profile = ({ logout, user, isAuthenticated }) => {
 
     return (
         <Fragment>
-            <NavigationBar />
+            <NavigationBar pageType="authenticated" />
 
             <div className="container mt-5">
                 <h1>{user && user.first_name} {user && user.last_name}</h1>
