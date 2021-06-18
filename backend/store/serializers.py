@@ -66,7 +66,6 @@ class ProductReviewSerializer(serializers.ModelSerializer):
             'id',
             'product',
             'rating',
-            'title',
             'body',
             'image',
             'slug',
@@ -78,7 +77,7 @@ class ProductReviewSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     category = serializers.PrimaryKeyRelatedField(queryset=models.Category.objects.all())
-    product_product_reviews = ProductReviewSerializer(many=True, read_only=True)
+    product_review_product = ProductReviewSerializer(many=True, read_only=True)
     review_count = serializers.SerializerMethodField()
     average_rating = serializers.SerializerMethodField()
 
@@ -93,40 +92,24 @@ class ProductSerializer(serializers.ModelSerializer):
             'slug',
             'price',
             'disc_price',
-            'stock',
-            'sold',
+            'available_count',
+            'sold_count',
             'image',
-            'in_stock',
-            'locality',
+            'is_available',
+            'location',
             'is_active',
             'created_at',
             'last_updated',
-            'product_product_reviews',
+            'product_review_product',
             'review_count',
             'average_rating'
         )
 
     def get_review_count(self, obj):
-        return obj.product_product_reviews.count()
+        return obj.product_review_product.count()
 
     def get_average_rating(self, obj):
-        average = obj.product_product_reviews.all().aggregate(Avg('rating')).get('rating__avg')
+        average = obj.product_review_product.all().aggregate(Avg('rating')).get('rating__avg')
         if average == None:
             return 0
         return average
-
-
-class ShopSerializer(serializers.ModelSerializer):
-    products = ProductSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = models.Shop
-        fields = (
-            'id',
-            'user',
-            'name',
-            'slug',
-            'description'
-            'created_at',
-            'products'
-        )

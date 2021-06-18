@@ -7,8 +7,7 @@ from .models import User, Profile, UserAddress, UserReview
 from store.serializers import (
     CartSerializer, 
     OrderDetailSerializer, 
-    ProductReviewSerializer, 
-    ShopSerializer
+    ProductReviewSerializer
 )
 
 
@@ -58,8 +57,7 @@ class UserSerializer(serializers.ModelSerializer):
     user_address = UserAddressSerializer(read_only=True)
     user_review_author = UserReviewSerializer(many=True, read_only=True)
     user_review_recipient = UserReviewSerializer(many=True, read_only=True)
-    user_product_reviews = ProductReviewSerializer(many=True, read_only=True)
-    shop = ShopSerializer(read_only=True)
+    product_review_author = ProductReviewSerializer(many=True, read_only=True)
     user_cart = CartSerializer(read_only=True)
     order_detail = OrderDetailSerializer(many=True, read_only=True)
 
@@ -72,8 +70,7 @@ class UserSerializer(serializers.ModelSerializer):
             'user_address',
             'user_review_author',
             'user_review_recipient',
-            'user_product_reviews',
-            'shop',
+            'product_review_author',
             'user_cart',
             'order_detail'
         )

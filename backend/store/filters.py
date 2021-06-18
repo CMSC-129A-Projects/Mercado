@@ -12,9 +12,9 @@ class ProductFilter(filters.FilterSet):
     class Meta:
         model = Product
         fields = (
-            'shop__name',
+            'user__username',
             'category__name',
-            'sold',
+            'sold_count',
             'min_price',
             'max_price',
             'min_sold',
