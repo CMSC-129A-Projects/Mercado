@@ -11,11 +11,11 @@ const LocationSetup = ({ isAuthenticated, user, patchUserAddress }) => {
     const [setupData, setSetupData] = useState({
         region: '',
         province: '',
-        locality: '',
+        city: '',
         barangay: ''
     });
 
-    const { region, province, locality, barangay } = setupData;
+    const { region, province, city, barangay } = setupData;
 
     const onChange = e => {
         switch (e.target.name) {
@@ -23,7 +23,7 @@ const LocationSetup = ({ isAuthenticated, user, patchUserAddress }) => {
                 setSetupData({
                     region: e.target.value,
                     province: '',
-                    locality: '',
+                    city: '',
                     barangay: ''
                 });
                 break;
@@ -31,14 +31,14 @@ const LocationSetup = ({ isAuthenticated, user, patchUserAddress }) => {
                 setSetupData({
                     ...setupData,
                     province: e.target.value,
-                    locality: '',
+                    city: '',
                     barangay: ''
                 });
                 break;
-            case 'locality':
+            case 'city':
                 setSetupData({
                     ...setupData,
-                    locality: e.target.value,
+                    city: e.target.value,
                     barangay: ''
                 });
                 break;
@@ -53,16 +53,14 @@ const LocationSetup = ({ isAuthenticated, user, patchUserAddress }) => {
     const onSubmit = e => {
         e.preventDefault();
         patchUserAddress({ slug: user.username, ...setupData });
-        return <Redirect to="/profile" />;
+        return <Redirect to={`/account${user.username}`} />;
     };
 
     // * Unauthenticated user is redirected
-    if (isAuthenticated !== null && !isAuthenticated)
-        return <Redirect to="/login" />;
+    if (isAuthenticated === false) return <Redirect to="/login" />;
 
     // * User with address is redirected to home
-    if (user !== null && user.user_address.locality !== '')
-        return <Redirect to="/" />;
+    if (user && user.is_set) return <Redirect to="/" />;
 
     return (
         <>
@@ -151,10 +149,10 @@ const LocationSetup = ({ isAuthenticated, user, patchUserAddress }) => {
                                             <div className="col">
                                                 <select
                                                     className="form-select"
-                                                    id="locality"
-                                                    aria-label="locality"
-                                                    name="locality"
-                                                    value={locality}
+                                                    id="city"
+                                                    aria-label="city"
+                                                    name="city"
+                                                    value={city}
                                                     onChange={e => onChange(e)}
                                                 >
                                                     <option value="" defaultValue>City</option>
@@ -179,7 +177,7 @@ const LocationSetup = ({ isAuthenticated, user, patchUserAddress }) => {
                                     )
                                 }
                                 {
-                                    locality && 
+                                    city && 
                                     (
                                         <div className="row mb-3">
                                             <div className="col">
@@ -193,15 +191,15 @@ const LocationSetup = ({ isAuthenticated, user, patchUserAddress }) => {
                                                 >
                                                     <option value="" defaultValue>Barangay</option>
                                                     {
-                                                        locality &&
+                                                        city &&
                                                         (
-                                                            Object.keys(pgc[region].province_list[province].municipality_list[locality].barangay_list).map((value) => {
+                                                            Object.keys(pgc[region].province_list[province].municipality_list[city].barangay_list).map((value) => {
                                                                 return (
                                                                     <option 
-                                                                        value={pgc[region].province_list[province].municipality_list[locality].barangay_list[value]}
+                                                                        value={pgc[region].province_list[province].municipality_list[city].barangay_list[value]}
                                                                         key={value}
                                                                     >
-                                                                        {pgc[region].province_list[province].municipality_list[locality].barangay_list[value]}
+                                                                        {pgc[region].province_list[province].municipality_list[city].barangay_list[value]}
                                                                     </option>
                                                                 );
                                                             })

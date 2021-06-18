@@ -13,21 +13,15 @@ const Home = ({ isLoading, isAuthenticated, user, products, loadProducts  }) => 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // Check if user is authenticated.
-    if (isAuthenticated !== null && !isAuthenticated)
-        return <Redirect to="/login" />;
+    // * Check if user is authenticated
+    if (isAuthenticated === false) return <Redirect to="/login" />;
 
-    // Check if user is done with profile Setup. 
-    // Address should have locality if setup is done. 
-    if (user !== null && user.user_address.locality === '')
-        return <Redirect to="/account/location-setup" />;
+    // Redirects user if user address was not set 
+    if (user && !user.is_set) return <Redirect to="/account/location-setup" />;
 
-    return isLoading
-    ? (<>Loading...</>)
-    : (
+    return (
         <>
             <NavigationBar pageType="authenticated" />
-
             <div className="container">
                 <section className="showcase">
                     <div className="container py-5">

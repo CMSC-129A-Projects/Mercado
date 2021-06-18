@@ -66,6 +66,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = tuple(User.REQUIRED_FIELDS) + (
             settings.USER_ID_FIELD,
             settings.LOGIN_FIELD,
+            'is_set',
             'profile',
             'user_address',
             'user_review_author',
