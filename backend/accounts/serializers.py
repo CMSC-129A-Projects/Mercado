@@ -30,10 +30,11 @@ class UserAddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserAddress
         fields = (
+            'id',
             'user',
             'address_line1', 
-            'address_line2', 
-            'locality',
+            'brgy', 
+            'city',
             'province',
             'region'
         )
@@ -55,8 +56,8 @@ class UserReviewSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     profile = ProfileSerializer(read_only=True)
     user_address = UserAddressSerializer(read_only=True)
-    user_reviews_from = UserReviewSerializer(many=True, read_only=True)
-    user_reviews_to = UserReviewSerializer(many=True, read_only=True)
+    user_review_author = UserReviewSerializer(many=True, read_only=True)
+    user_review_recipient = UserReviewSerializer(many=True, read_only=True)
     user_product_reviews = ProductReviewSerializer(many=True, read_only=True)
     shop = ShopSerializer(read_only=True)
     user_cart = CartSerializer(read_only=True)
@@ -69,8 +70,8 @@ class UserSerializer(serializers.ModelSerializer):
             settings.LOGIN_FIELD,
             'profile',
             'user_address',
-            'user_reviews_from',
-            'user_reviews_to',
+            'user_review_author',
+            'user_review_recipient',
             'user_product_reviews',
             'shop',
             'user_cart',
