@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
 
-import NavigationBar from '../components/NavigationBar';
-import Footer from '../components/Footer';
-import { loadProducts } from '../actions/products';
+import NavigationBar from '../components/NavigationBar'
+import Footer from '../components/Footer'
+import { loadProducts } from '../actions/products'
 
-const Shop = ({ loadProducts, products }) => {
+const Shop = ({ match, loadProducts, products }) => {
     useEffect(() => {
-        loadProducts();
+        loadProducts()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [])
+
+    const [category, setCategory] = useState(match.params.category)
 
     return (
         <>
@@ -61,6 +63,23 @@ const Shop = ({ loadProducts, products }) => {
                             )
                         }
                     </div>
+                    <div className="col">
+                        <nav aria-label="...">
+                            <ul className="pagination">
+                                <li className="page-item disabled">
+                                <span className="page-link">Previous</span>
+                                </li>
+                                <li className="page-item"><a className="page-link" href={`/products/${category}?page=1`}>1</a></li>
+                                <li className="page-item active" aria-current="page">
+                                <span className="page-link">2</span>
+                                </li>
+                                <li className="page-item"><a className="page-link" href="#">3</a></li>
+                                <li className="page-item">
+                                <a className="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
             <Footer />
@@ -70,6 +89,6 @@ const Shop = ({ loadProducts, products }) => {
 
 const mapStateToProps = state => ({
     products: state.products.products
-});
+})
 
-export default connect(mapStateToProps, { loadProducts })(Shop);
+export default connect(mapStateToProps, { loadProducts })(Shop)

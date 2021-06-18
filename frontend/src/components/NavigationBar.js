@@ -91,7 +91,7 @@ const NavigationBar = ({ user, ...props}) => {
                             {renderLinks()}
                         </ul>
                         {
-                            props.pageType === 'authenticated'
+                            props.pageType === 'authenticated' && user
                             && (
                                 <div className="dropdown text-end">
                                     <a 
@@ -137,7 +137,7 @@ const NavigationBar = ({ user, ...props}) => {
     );
 };
 
-mapStateToProps = state => ({
+const mapStateToProps = state => ({
     user: state.auth.user
 });
 
