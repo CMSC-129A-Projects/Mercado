@@ -17,7 +17,8 @@ export const loadProducts = (params) => async dispatch => {
     }
 
     try {
-        const res = await axios.get(`/store/products/?limit=${params.limit}&offset=${params.offset}`, config)
+        let urlParams = Object.entries(params).map(([key, val]) => `${key}=${val}`).join('&')
+        const res = await axios.get(`/store/products/?${urlParams}`, config)
 
         dispatch({
             type: PRODUCTS_LOADED_SUCCESS,

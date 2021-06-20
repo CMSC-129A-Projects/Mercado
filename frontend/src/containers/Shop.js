@@ -13,8 +13,6 @@ const Shop = ({ match, loadProducts, user, products }) => {
             .forEach(function(item) {
                 queryDict[item.split("=")[0]] = item.split("=")[1]
             })
-        
-        let url = Object.entries(queryDict).map(([key, val]) => `${key}=${val}`).join('&')
 
         loadProducts(queryDict)
         // eslint-disable-next-line react-hooks/exhaustive-deps
