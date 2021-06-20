@@ -39,7 +39,7 @@ function App() {
             <Route path="/account/password-reset" component={ResetPassword} />
             <Route path="/account/password/reset/confirm/:uid/:token" component={ResetPasswordConfirm} />
             <Route path="/account/:username" component={Profile} />
-            <Route path="/products/:category" component={Shop} />
+            <Route path="/products" component={Shop} />
             <Route path="/products/product/:slug" component={Product} />
             <Route path="/activate/:uid/:token" component={Activate} />
             <Route path="/seller-center" component={SellerHome} />

@@ -1,5 +1,5 @@
 import {
-    LOADING,
+    USER_LOADING,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     SIGNUP_SUCCESS,
@@ -37,7 +37,7 @@ export default function auth(state=initialState, action) {
     const { type, payload } = action;
 
     switch(type) {
-        case LOADING:
+        case USER_LOADING:
             return {
                 ...state,
                 isLoading: true

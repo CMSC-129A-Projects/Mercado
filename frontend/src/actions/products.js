@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import {
+    PRODUCT_LOADING,
     PRODUCTS_LOADED_SUCCESS,
     PRODUCTS_LOADED_FAIL,
     PRODUCT_LOADED_SUCCESS,
@@ -10,6 +11,8 @@ import {
 } from './types';
 
 export const loadProducts = (params) => async dispatch => {
+    dispatch({ type: PRODUCT_LOADING })
+
     const config = {
         headers: {
             'Authorization': `JWT ${localStorage.getItem('access')}`
@@ -17,17 +20,14 @@ export const loadProducts = (params) => async dispatch => {
     }
 
     try {
-        let urlParams = Object.entries(params).map(([key, val]) => `${key}=${val}`).join('&')
-        const res = await axios.get(`/store/products/?${urlParams}`, config)
+        const res = await axios.get(`/store/products/${params}`, config)
 
         dispatch({
             type: PRODUCTS_LOADED_SUCCESS,
             payload: res.data
         })
     } catch (err) {
-        dispatch({
-            type: PRODUCTS_LOADED_FAIL
-        })
+        dispatch({ type: PRODUCTS_LOADED_FAIL })
     }
 }
 

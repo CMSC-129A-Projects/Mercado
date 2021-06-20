@@ -40,6 +40,9 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
+    class Meta:
+        ordering = ['-created_at']
+
     def save(self, *args, **kwargs):
         unique_slugify(self, self.name)
         super(Product, self).save(*args, **kwargs)

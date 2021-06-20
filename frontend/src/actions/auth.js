@@ -2,7 +2,7 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
 import {
-    LOADING,
+    USER_LOADING,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     SIGNUP_SUCCESS,
@@ -31,7 +31,7 @@ import { setAlert } from './alert';
  * Verify access token
  */
 export const checkAuthenticated = () => async dispatch => {
-    dispatch({type: LOADING});
+    dispatch({type: USER_LOADING});
 
     if (localStorage.getItem('access')) {
         const config = {
@@ -323,7 +323,7 @@ export const resetPasswordConfirm = (uid, token, new_password, re_new_password) 
  * @returns 
  */
 export const logout = () => dispatch => {
-    dispatch({type: LOADING});
+    dispatch({type: USER_LOADING});
 
     dispatch({
         type: LOGOUT
@@ -333,7 +333,7 @@ export const logout = () => dispatch => {
 };
 
 export const patchProfile = (data) => async dispatch => {
-    dispatch({type: LOADING});
+    dispatch({type: USER_LOADING});
 
     if (localStorage.getItem('access')) {
         const config = {
@@ -364,7 +364,7 @@ export const patchProfile = (data) => async dispatch => {
 };
 
 export const patchUserAddress = (data) => async dispatch => {
-    dispatch({type: LOADING});
+    dispatch({type: USER_LOADING});
 
     if (localStorage.getItem('access')) {
         const config = {
