@@ -8,27 +8,27 @@ import {
     PRODUCT_CREATE_SUCCESS,
     PRODUCT_CREATE_FAIL
 } from './types';
-import { setAlert } from './alert';
 
-export const loadProducts = () => async dispatch => {
+export const loadProducts = (params) => async dispatch => {
     const config = {
         headers: {
             'Authorization': `JWT ${localStorage.getItem('access')}`
         }
     }
+
     try {
-        const res = await axios.get(`/store/products/`, config);
+        const res = await axios.get(`/store/products/?limit=${params.limit}&offset=${params.offset}`, config)
 
         dispatch({
             type: PRODUCTS_LOADED_SUCCESS,
             payload: res.data
-        });
+        })
     } catch (err) {
         dispatch({
             type: PRODUCTS_LOADED_FAIL
-        });
+        })
     }
-};
+}
 
 export const getProduct = (slug) => async dispatch => {
     const config = {
@@ -79,13 +79,9 @@ export const createProduct = (product) => async dispatch => {
             type: PRODUCT_CREATE_SUCCESS,
             payload: res
         });
-
-        dispatch(setAlert('Product created successfully', 'success'));
     } catch (err) {
         dispatch({
             type: PRODUCT_CREATE_FAIL
         });
-
-        dispatch(setAlert('Product creation failed', 'error'));
     }
 };

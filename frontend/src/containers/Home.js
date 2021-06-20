@@ -144,7 +144,7 @@ const Home = ({ isLoading, isAuthenticated, user, products, loadProducts  }) => 
                         <div className="row">
                             <div className="col-4 mt-3">
                                 <div className="card">
-                                    <img src="/images/goods1.jpg" className="card-img-top" alt="A product" height="10" />
+                                    <img src="/images/goods1.jpg" className="card-img-top" alt="A product" />
                                     <div className="card-body">
                                         <a className="stretched-link" href="/product/a-product">
                                             <p className="card-title">A Product</p>

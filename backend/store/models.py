@@ -30,7 +30,7 @@ class Product(models.Model):
     description = models.TextField(blank=True, null=True)
     slug = models.SlugField(max_length=25, unique=True)
     price = models.FloatField()
-    disc_price = models.FloatField(_('discounted price'), blank=True, null=True, default=0)
+    disc_price = models.FloatField(_('discounted price'), default=0)
     available_count = models.IntegerField(default=1)
     sold_count = models.IntegerField(default=0)
     image = models.ImageField(upload_to='product_images/', height_field=None, width_field=None, max_length=None)

@@ -85,9 +85,8 @@ export default function auth(state=initialState, action) {
             return {
                 ...state,
                 status: payload.status,
-                isLoading: false,
-                isAuthenticated: true,
-                access: payload.data.access
+                access: payload.data.access,
+                isAuthenticated: true
             }
         case PROFILE_PATCH_SUCCESS:
         case ADDRESS_PATCH_SUCCESS:
@@ -138,11 +137,11 @@ export default function auth(state=initialState, action) {
         case PASSWORD_RESET_CONFIRM_FAIL:
         case ACTIVATION_SUCCESS:
         case ACTIVATION_FAIL:
-        case REFRESH_FAIL:
             return {
                 ...state,
                 isLoading: false
             }
+        case REFRESH_FAIL:
         default:
             return state;
     }
