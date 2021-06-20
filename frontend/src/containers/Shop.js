@@ -47,7 +47,7 @@ const Shop = ({ user, isLoading, products, loadProducts, ...props }) => {
     ? (<>Loading...</>)
     : (
         <>
-            <NavigationBar pageType="authenticated" />
+            <NavigationBar pageType="shop" />
             <div className="container-fluid">
                 <div className="row flex-nowrap">
                     <div className="col-auto col-md-3 col-xl-2 p-0 border-end">

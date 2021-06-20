@@ -11,18 +11,13 @@ const NavigationBar = ({ user, ...props}) => {
                 return (
                     <>
                         <li>
-                            <a href="/" className="nav-link px-2">
+                            <a href="/products" className="nav-link px-2">
                                 SHOP
                             </a>
                         </li>
                         <li>
-                            <a href="/" className="nav-link px-2">
-                                CATEGORY
-                            </a>
-                        </li>
-                        <li>
                             <a 
-                                href="/" 
+                                href="/cart" 
                                 className="nav-link px-2"
                                 data-bs-toggle="tooltip" 
                                 data-bs-placement="top" 
@@ -35,7 +30,25 @@ const NavigationBar = ({ user, ...props}) => {
                         </li>
                     </>
                 )
-            case "signup":
+            case 'shop':
+                return (
+                    (                            
+                        <li>
+                            <a 
+                                href="/cart" 
+                                className="nav-link px-2"
+                                data-bs-toggle="tooltip" 
+                                data-bs-placement="top" 
+                                title="Shopping Bag"
+                            >
+                                <span className="material-icons">
+                                    shopping_bag
+                                </span>
+                            </a>
+                        </li>
+                    )
+                )
+            case 'signup':
                 return (
                     <>
                         <li>
@@ -43,7 +56,7 @@ const NavigationBar = ({ user, ...props}) => {
                         </li>
                     </>
                 )
-            case "login":
+            case 'login':
                 return (
                     <>
                         <li>
@@ -74,7 +87,7 @@ const NavigationBar = ({ user, ...props}) => {
                         </a>
                         <div className="col"></div>
                         {
-                            props.pageType === 'authenticated'
+                            (props.pageType === 'authenticated' || props.pageType === 'shop')
                             && (
                                 <form className="col-6 col-lg-auto me-lg-auto ms-3 mb-2 justify-content-center mb-md-0" style={{ width: "50%"}}>
                                     <input 
@@ -91,7 +104,7 @@ const NavigationBar = ({ user, ...props}) => {
                             {renderLinks()}
                         </ul>
                         {
-                            props.pageType === 'authenticated' && user
+                            (props.pageType === 'authenticated' || props.pageType === 'shop') && user
                             && (
                                 <div className="dropdown text-end">
                                     <a 
