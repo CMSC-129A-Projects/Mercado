@@ -30,7 +30,7 @@ a:active { text-decoration: none; }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #ffffff;
-    background-color: #beb7a3;
+    background-color: transparent;
 }
 
 .btn-primary, 
