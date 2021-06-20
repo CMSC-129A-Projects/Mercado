@@ -156,11 +156,11 @@ const Shop = ({ user, isLoading, products, loadProducts, ...props }) => {
                                             return (
                                                 <div className="col-2 py-3 px-1 text-center" key={product.id}>
                                                     <div className="card border-0">
-                                                        <img src={`${product.image}`} className="card-img-top" alt={product.name}  style={{maxHeight: "160px"}}/>
+                                                        <img src={`${product.image}`} className="card-img-top" alt={product.name}  style={{maxHeight: "160px"}} />
                                                         <div className="card-body py-1">
                                                             <a href={`/products/product/${product.slug}`} className="stretched-link">
                                                                 <h6 className="card-title text-truncate">{product.name}</h6>
-                                                                <h6 className="card-title text-truncate">
+                                                                <h6 className="card-title">
                                                                     {
                                                                         product.disc_price > 0
                                                                         ? (
@@ -174,7 +174,15 @@ const Shop = ({ user, isLoading, products, loadProducts, ...props }) => {
                                                             </a>
                                                         </div>
                                                         <div className="card-footer my-0 py-0">
-                                                            <small className="card-text my-0 py-0">{product.review_count} reviews
+                                                            <small className="card-text my-0 py-0">
+                                                                {
+                                                                    product.review_count + ' review' +
+                                                                    (
+                                                                        product.review_count
+                                                                        ? 's'
+                                                                        : ''
+                                                                    )
+                                                                }
                                                                 {
                                                                     (product.review_count > 0)
                                                                     && (<span> ({product.average_rating}/5)</span>)

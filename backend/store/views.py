@@ -24,7 +24,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class = filters.ProductFilter
     search_fields = ['$name', '=category__name', '$description', 'slug']
-    ordering_fields = ['sold']
+    ordering_fields = ['created_at', 'sold_count']
     
     def get_queryset(self):
         user_address = UserAddress.objects.get(user=self.request.user)
