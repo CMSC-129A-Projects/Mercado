@@ -137,11 +137,11 @@ export default function auth(state=initialState, action) {
         case PASSWORD_RESET_CONFIRM_FAIL:
         case ACTIVATION_SUCCESS:
         case ACTIVATION_FAIL:
+        case REFRESH_FAIL:
             return {
                 ...state,
                 isLoading: false
             }
-        case REFRESH_FAIL:
         default:
             return state;
     }

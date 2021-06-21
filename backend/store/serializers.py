@@ -1,9 +1,8 @@
 from rest_framework import serializers
-from django.db.models import Avg
+from django.db.models import Avg, Sum
 from decimal import Decimal
 
 from . import models
-from accounts.models import Profile
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -121,7 +120,7 @@ class CartItemSerializer(serializers.ModelSerializer):
         Calculated the total amount of the item, 
         ``price`` or ``disc_price`` multiplied by the quantity
         """
-        
+
         price = obj.product.disc_price if obj.product.disc_price > 0 else obj.product.price
         total = price * obj.quantity
         return total
@@ -145,9 +144,12 @@ class CartItemSerializer(serializers.ModelSerializer):
             }
         )
 
-        # Updating total in the Cart model 
+        cart_items = models.CartItem.objects.filter(cart=validated_data['cart'])
+        total = 0
+        for item in cart_items:
+            total += item.total
         cart = models.Cart.objects.get(id=validated_data['cart'].id)
-        cart.total += Decimal(total)
+        cart.total = Decimal(total)
         cart.save()
 
         return cart_item
@@ -155,12 +157,26 @@ class CartItemSerializer(serializers.ModelSerializer):
 
 class CartSerializer(serializers.ModelSerializer):
     cart_items = CartItemSerializer(read_only=True, many=True)
+    total = serializers.SerializerMethodField()
     class Meta:
         model = models.Cart
         fields = (
             'id',
             'user',
-            'cart_items',
-            'total'
+            'slug',
+            'total',
+            'cart_items'
         )
-        read_only_fields = ['user']
+    
+    def get_total(self, obj):
+        total = obj.cart_items.all().aggregate(Sum('total')).get('total__sum')
+        return total
+
+    def update(self, instance, validated_data):
+        cart_items_data = validated_data['cart_items']
+        total = 0.0
+        for item in cart_items_data:
+            total += item.total
+        instance.total = total
+        instance.save()
+        return instance

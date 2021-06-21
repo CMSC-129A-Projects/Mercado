@@ -7,7 +7,9 @@ import {
     PRODUCT_LOADED_SUCCESS,
     PRODUCT_LOADED_FAIL,
     PRODUCT_CREATE_SUCCESS,
-    PRODUCT_CREATE_FAIL
+    PRODUCT_CREATE_FAIL,
+    ADD_TO_BAG_SUCCESS,
+    ADD_TO_BAG_FAIL
 } from './types';
 
 export const loadProducts = (params) => async dispatch => {
@@ -87,18 +89,33 @@ export const createProduct = (product) => async dispatch => {
     }
 };
 
-export const addToBag = (product) => async dispatch => {
+export const addToBag = (cart, product, quantity) => async dispatch => {
+    dispatch({ type: PRODUCT_LOADING })
+    
     const config = {
         headers: {
+            'Content-Type': 'application/json',
             'Authorization': `JWT ${localStorage.getItem('access')}`
         }
     }
 
-    const body = JSON.stringify()
+    const body = JSON.stringify({
+        'cart': cart.id,
+        'product': product.id,
+        'quantity': quantity
+    })
 
     try {
-        const res = await axios.post('store/bag', body, config)
+        const res = await axios.post(`/store/cart-items/`, body, config)
+
+        dispatch({
+            type: ADD_TO_BAG_SUCCESS,
+            payload: res
+        })
     } catch (error) {
-        
+        dispatch({
+            type: ADD_TO_BAG_FAIL,
+            payload: error
+        })
     }
 }

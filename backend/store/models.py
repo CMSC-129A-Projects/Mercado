@@ -52,7 +52,7 @@ class Product(models.Model):
 
 
 class Cart(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('user_cart'), on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('user_cart'), on_delete=models.CASCADE)
     total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     slug = models.SlugField(max_length=25, unique=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
@@ -67,7 +67,7 @@ class Cart(models.Model):
         
 
 class CartItem(models.Model):
-    cart = models.ForeignKey(Cart, related_name=_('cart'), on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, related_name=_('cart_items'), on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name=_('product'), on_delete=models.CASCADE)
     quantity = models.IntegerField(validators=[MinValueValidator(1)])
     total = models.IntegerField(default=0)

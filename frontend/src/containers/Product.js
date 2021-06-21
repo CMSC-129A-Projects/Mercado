@@ -4,10 +4,10 @@ import { Redirect } from 'react-router-dom'
 
 import NavigationBar from '../components/NavigationBar'
 import Footer from '../components/Footer'
-import { getProduct } from '../actions/products'
+import { addToBag, getProduct } from '../actions/products'
 
-const Product = ({ match, isAuthenticated, user, isLoading, product, getProduct }) => {
-    const [qty, setQty] = useState(1)
+const Product = ({ match, isAuthenticated, user, isLoading, product, getProduct, addToBag }) => {
+    const [quantity, setQty] = useState(1)
 
     useEffect(() => {
         if (isAuthenticated === false) return <Redirect to="/login" />
@@ -22,7 +22,10 @@ const Product = ({ match, isAuthenticated, user, isLoading, product, getProduct 
             setQty(e.target.value) 
     }
 
-    const onSubmit = e => { alert(qty) }
+    const onSubmit = e => {
+        e.preventDefault()
+        addToBag(user.user_cart, product, quantity)
+    }
 
     const formatDate = (dateString) => {
         const options = { 
@@ -110,7 +113,7 @@ const Product = ({ match, isAuthenticated, user, isLoading, product, getProduct 
                                                 id="qty"
                                                 name="qty"
                                                 max={product.available_count}
-                                                value={qty}
+                                                value={quantity}
                                                 onChange={e => onChange(e)}
                                             />
                                         </div>
@@ -193,4 +196,4 @@ const mapStateToProps = state => ({
     product: state.products.product
 });
 
-export default connect(mapStateToProps, { getProduct })(Product);
+export default connect(mapStateToProps, { getProduct, addToBag })(Product);

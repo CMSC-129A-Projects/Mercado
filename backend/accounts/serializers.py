@@ -48,7 +48,6 @@ class UserReviewSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    
     profile = ProfileSerializer(read_only=True)
     user_address = UserAddressSerializer(read_only=True)
     user_review_author = UserReviewSerializer(many=True, read_only=True)

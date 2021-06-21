@@ -31,8 +31,6 @@ import { setAlert } from './alert';
  * Verify access token
  */
 export const checkAuthenticated = () => async dispatch => {
-    dispatch({type: USER_LOADING});
-
     if (localStorage.getItem('access')) {
         const config = {
             headers: {
@@ -108,6 +106,8 @@ export const refreshToken = () => async dispatch => {
             type: REFRESH_FAIL
         });
     }
+
+    dispatch(checkAuthenticated())
     dispatch(loadUser())
 };
 
@@ -153,6 +153,8 @@ export const loadUser = () => async dispatch => {
  * @returns 
  */
 export const login = (phoneNumber, password) => async dispatch => {
+    dispatch({ type: USER_LOADING })
+
     const config = { headers: { 'Content-Type': 'application/json' } };
     const body = JSON.stringify({
         "phone_number": phoneNumber, 
@@ -193,7 +195,8 @@ export const login = (phoneNumber, password) => async dispatch => {
  * @returns 
  */
 export const createUser = (data) => async dispatch => {
-    console.log(data);
+    dispatch({ type: USER_LOADING })
+
     const config = { headers: { 'Content-Type': 'application/json' } };
     const body = JSON.stringify({ 
         'phone_number': data.phoneNumber,
@@ -328,8 +331,6 @@ export const logout = () => dispatch => {
     dispatch({
         type: LOGOUT
     });
-
-    dispatch(setAlert('Logout successful', 'warning'));
 };
 
 export const patchProfile = (data) => async dispatch => {

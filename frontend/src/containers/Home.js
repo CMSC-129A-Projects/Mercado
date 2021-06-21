@@ -11,7 +11,7 @@ const Home = ({ isLoading, isAuthenticated, user, products, loadProducts  }) => 
     useEffect(() => {
         loadProducts('?page=1');
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [user]);
 
     // * Check if user is authenticated
     if (isAuthenticated === false) return <Redirect to="/login" />;
