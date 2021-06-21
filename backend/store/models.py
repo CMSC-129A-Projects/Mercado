@@ -24,7 +24,7 @@ class Category(models.Model):
     
 
 class Product(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('products'), on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('user'), on_delete=models.CASCADE)
     category = models.ForeignKey(Category, related_name=_('product_category'), on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
@@ -103,6 +103,7 @@ def product_review_image_path(instance, filename):
 
 class ProductReview(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('product_review_author'), on_delete=models.CASCADE)
+    profile = models.ForeignKey('accounts.Profile', related_name=_('user_profile'), on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name=_('product_review_product'), on_delete=models.CASCADE)
     rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0)
     body = models.TextField(blank=True, null=True)

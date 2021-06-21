@@ -19,7 +19,9 @@ const Home = ({ isLoading, isAuthenticated, user, products, loadProducts  }) => 
     // Redirects user if user address was not set 
     if (user && !user.is_set) return <Redirect to="/account/location-setup" />;
 
-    return (
+    return (user === null || products === null || isLoading)
+    ? (<>Loading...</>)
+    : (
         <>
             <NavigationBar pageType="authenticated" />
             <div className="container">
@@ -105,13 +107,13 @@ const Home = ({ isLoading, isAuthenticated, user, products, loadProducts  }) => 
                                 products 
                                 && (products.results.map((product) => {
                                     return (
-                                        <div className="col-3 mt-3" key={product.id}>
-                                            <div className="card">
-                                                <img src={product.image} className="card-img-top" alt={product.name}  style={{maxHeight: "160px"}} />
+                                        <div className="col-3 mt-3 p-1" key={product.id}>
+                                            <div className="card border-0">
+                                                <img src={product.image} className="card-img-top" alt={product.name} />
                                                 <div className="card-body">
                                                     <a 
                                                         className="stretched-link" 
-                                                        href={'/product/'+product.slug}
+                                                        href={`/product/${product.slug}`}
                                                     >
                                                         <p className="card-title text-truncate">{product.name}</p>
                                                     </a>
@@ -126,6 +128,8 @@ const Home = ({ isLoading, isAuthenticated, user, products, loadProducts  }) => 
                                                             ) : '₱'+product.price
                                                         }
                                                     </h6>
+                                                </div>
+                                                <div className="card-footer my-0 py-0 text-center">
                                                     <span>
                                                         <small className="card-text">
                                                             {
@@ -136,7 +140,12 @@ const Home = ({ isLoading, isAuthenticated, user, products, loadProducts  }) => 
                                                                     : ''
                                                                 )
                                                             }
-                                                            <span> ({product.average_rating}/5)</span>
+                                                            {
+                                                                product.review_count > 0
+                                                                && (
+                                                                    <span> ({product.average_rating}/5)</span>
+                                                                )
+                                                            }
                                                         </small>
                                                     </span>
                                                 </div>

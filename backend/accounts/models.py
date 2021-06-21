@@ -137,6 +137,7 @@ class UserAddress(models.Model):
 
 class UserReview(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('user_review_author'), on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, related_name=_('author_profile'), on_delete=models.CASCADE)
     recipient = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('user_review_recipient'), on_delete=models.CASCADE)
     rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0)
     body = models.TextField(blank=True, null=True)

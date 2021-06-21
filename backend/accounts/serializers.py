@@ -4,12 +4,7 @@ from djoser.compat import get_user_email, get_user_email_field_name
 from djoser.conf import settings
 
 from .models import User, Profile, UserAddress, UserReview
-from store.serializers import (
-    CartSerializer, 
-    OrderDetailSerializer, 
-    ProductReviewSerializer
-)
-
+from store.serializers import CartSerializer, OrderDetailSerializer, ProductReviewSerializer
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -53,6 +48,7 @@ class UserReviewSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+    
     profile = ProfileSerializer(read_only=True)
     user_address = UserAddressSerializer(read_only=True)
     user_review_author = UserReviewSerializer(many=True, read_only=True)

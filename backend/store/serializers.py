@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.db.models import Avg
 
 from . import models
+from accounts.models import Profile
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -64,6 +65,8 @@ class ProductReviewSerializer(serializers.ModelSerializer):
         model = models.ProductReview
         fields = (
             'id',
+            'user',
+            'profile',
             'product',
             'rating',
             'body',
@@ -72,11 +75,12 @@ class ProductReviewSerializer(serializers.ModelSerializer):
             'created_at',
             'last_updated',
         )
+        depth=1
         read_only_fields = ['user', 'product']
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    category = serializers.PrimaryKeyRelatedField(queryset=models.Category.objects.all())
+    category = CategorySerializer(read_only=True)
     product_review_product = ProductReviewSerializer(many=True, read_only=True)
     review_count = serializers.SerializerMethodField()
     average_rating = serializers.SerializerMethodField()
@@ -104,6 +108,7 @@ class ProductSerializer(serializers.ModelSerializer):
             'review_count',
             'average_rating'
         )
+        depth=1
 
     def get_review_count(self, obj):
         return obj.product_review_product.count()
