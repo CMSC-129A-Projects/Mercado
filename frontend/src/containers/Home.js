@@ -7,7 +7,7 @@ import NavigationBar from '../components/NavigationBar';
 import Footer from '../components/Footer';
 import { loadProducts } from '../actions/products';
 
-const Home = ({ isLoading, isAuthenticated, user, products, loadProducts  }) => {
+const Home = ({ isAuthenticated, user, products, loadProducts  }) => {
     useEffect(() => {
         loadProducts('?page=1');
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -19,8 +19,8 @@ const Home = ({ isLoading, isAuthenticated, user, products, loadProducts  }) => 
     // Redirects user if user address was not set 
     if (user && !user.is_set) return <Redirect to="/account/location-setup" />;
 
-    return (user === null || products === null || isLoading)
-    ? (<>Loading...</>)
+    return user === null
+    ? <>Loading...</>
     : (
         <>
             <NavigationBar pageType="authenticated" />
@@ -104,8 +104,9 @@ const Home = ({ isLoading, isAuthenticated, user, products, loadProducts  }) => 
                         </div>
                         <div className="row">
                             {
-                                products 
-                                && (products.results.map((product) => {
+                                products === null
+                                ? <p>Loading...</p>
+                                : (products.results.map((product) => {
                                     return (
                                         <div className="col-3 mt-3 p-1" key={product.id}>
                                             <div className="card border-0">

@@ -17,15 +17,17 @@ const NavigationBar = ({ user, ...props}) => {
                         </li>
                         <li>
                             <a 
-                                href="/cart" 
+                                href="/bag" 
                                 className="nav-link px-2"
                                 data-bs-toggle="tooltip" 
                                 data-bs-placement="top" 
                                 title="Shopping Bag"
                             >
-                                <span className="material-icons">
-                                    shopping_bag
-                                </span>
+                                <span className="material-icons">shopping_bag</span>
+                                {
+                                    (user && Object.keys(user.user_cart.cart_items).length > 0)
+                                    && (<span className="badge rounded-pill bg-dark">{Object.keys(user.user_cart.cart_items).length}</span>)
+                                }
                             </a>
                         </li>
                     </>
@@ -35,7 +37,7 @@ const NavigationBar = ({ user, ...props}) => {
                     (                            
                         <li>
                             <a 
-                                href="/cart" 
+                                href="/bag" 
                                 className="nav-link px-2"
                                 data-bs-toggle="tooltip" 
                                 data-bs-placement="top" 
@@ -43,6 +45,10 @@ const NavigationBar = ({ user, ...props}) => {
                             >
                                 <span className="material-icons">
                                     shopping_bag
+                                    {
+                                        (user && Object.keys(user.user_cart.cart_items).length > 0)
+                                        && (<span className="badge rounded-pill bg-dark">{Object.keys(user.user_cart.cart_items).length}</span>)
+                                    }
                                 </span>
                             </a>
                         </li>
