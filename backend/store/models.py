@@ -67,9 +67,10 @@ class Cart(models.Model):
         
 
 class CartItem(models.Model):
-    cart = models.ForeignKey(Cart, related_name=_('cart_items'), on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, related_name=_('products_in_cart'), on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, related_name=_('cart'), on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name=_('product'), on_delete=models.CASCADE)
     quantity = models.IntegerField(validators=[MinValueValidator(1)])
+    total = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 

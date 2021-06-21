@@ -17,6 +17,7 @@ import ResetPasswordConfirm from './containers/ResetPasswordConfirm';
 import Profile from './containers/Profile';
 import Shop from './containers/Shop';
 import Product from './containers/Product';
+import Bag from './containers/Bag'
 import SellerHome from './containers/seller/SellerHome';
 import SellerProfile from './containers/seller/SellerProfile';
 import Activate from './containers/Activate';
@@ -41,6 +42,7 @@ function App() {
             <Route path="/account/:username" component={Profile} />
             <Route path="/products" component={Shop} />
             <Route path="/product/:slug" component={Product} />
+            <Route path="/bag" component={Bag} />
             <Route path="/activate/:uid/:token" component={Activate} />
             <Route path="/seller-center" component={SellerHome} />
             <Route path="/seller-center/:username" component={SellerProfile} />

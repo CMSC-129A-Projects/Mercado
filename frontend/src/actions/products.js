@@ -86,3 +86,19 @@ export const createProduct = (product) => async dispatch => {
         });
     }
 };
+
+export const addToBag = (product) => async dispatch => {
+    const config = {
+        headers: {
+            'Authorization': `JWT ${localStorage.getItem('access')}`
+        }
+    }
+
+    const body = JSON.stringify()
+
+    try {
+        const res = await axios.post('store/bag', body, config)
+    } catch (error) {
+        
+    }
+}
