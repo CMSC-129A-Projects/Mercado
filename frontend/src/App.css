@@ -38,7 +38,6 @@ a:active { text-decoration: none; }
 .btn-primary:disabled {
     background-color: #beb7a3;
     border-color: rgb(255, 255, 255);
-    font-weight: bolder;
     text-transform: uppercase;
 }
 

@@ -101,7 +101,9 @@ export const addToBag = (cart, product, quantity) => async dispatch => {
 
     const body = JSON.stringify({
         'cart': cart.id,
+        'cart_pk': cart.id,
         'product': product.id,
+        'product_pk': product.id,
         'quantity': quantity
     })
 

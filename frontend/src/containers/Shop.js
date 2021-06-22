@@ -165,10 +165,10 @@ const Shop = ({ user, isLoading, products, loadProducts, ...props }) => {
                                                                         product.disc_price > 0
                                                                         ? (
                                                                             <>
-                                                                                ₱ <span className="text-decoration-line-through">{product.price}</span>
-                                                                                <span> {product.disc_price}</span>
+                                                                                <span className="text-decoration-line-through">₱ {product.price}</span>
+                                                                                <span>₱ {product.disc_price}</span>
                                                                             </>
-                                                                        ) : '₱'+product.price
+                                                                        ) : '₱ '+product.price
                                                                     }
                                                                 </h6>
                                                             </a>

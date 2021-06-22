@@ -25,6 +25,7 @@ const Product = ({ match, isAuthenticated, user, isLoading, product, getProduct,
     const onSubmit = e => {
         e.preventDefault()
         addToBag(user.user_cart, product, quantity)
+        window.location.reload()
     }
 
     const formatDate = (dateString) => {

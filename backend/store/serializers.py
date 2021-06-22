@@ -101,6 +101,14 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class CartItemSerializer(serializers.ModelSerializer):
+    cart_pk = serializers.PrimaryKeyRelatedField(
+        queryset=models.Cart.objects.all(),
+        source='cart'
+    )
+    product_pk = serializers.PrimaryKeyRelatedField(
+        queryset=models.Product.objects.all(),
+        source='product'
+    )
     total = serializers.SerializerMethodField()
 
     class Meta:
@@ -108,12 +116,15 @@ class CartItemSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'cart',
+            'cart_pk',
             'product',
+            'product_pk',
             'quantity',
             'total',
             'created_at',
             'last_updated'
         )
+        depth = 1
 
     def get_total(self, obj):
         """

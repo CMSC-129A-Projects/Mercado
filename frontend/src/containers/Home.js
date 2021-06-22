@@ -108,9 +108,9 @@ const Home = ({ isAuthenticated, user, products, loadProducts  }) => {
                                 ? <p>Loading...</p>
                                 : (products.results.map((product) => {
                                     return (
-                                        <div className="col-3 mt-3 p-1" key={product.id}>
+                                        <div className="col-2 mt-3 p-1" key={product.id}>
                                             <div className="card border-0">
-                                                <img src={product.image} className="card-img-top" alt={product.name} />
+                                                <img src={product.image} className="card-img-top" alt={product.name}  style={{maxHeight: "160px"}} />
                                                 <div className="card-body">
                                                     <a 
                                                         className="stretched-link" 
@@ -159,7 +159,7 @@ const Home = ({ isAuthenticated, user, products, loadProducts  }) => {
                         <div className="row text-center mt-5">
                             <div className="col">
                                 <Link to="/products/all">
-                                    <button type="button" className="btn btn-primary">Browse Products</button>
+                                    <button type="button" className="btn btn-primary">See All</button>
                                 </Link>
                             </div>
                         </div>                            

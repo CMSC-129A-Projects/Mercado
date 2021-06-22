@@ -5,15 +5,21 @@ import { Redirect } from 'react-router-dom'
 import NavigationBar from '../components/NavigationBar'
 import Footer from '../components/Footer'
 
-const Bag = ({ isAuthenticated, user, products }) => {
-    // * Redirects if user is not authenticated 
-    if (user!== null && !isAuthenticated) return <Redirect to="/login" />
+const Checkout = ({ isAuthenticated, user }) => {
+    const [items, setItems] = useState([])
 
-    const checkout = e => { window.location.href = '/checkout' }
+    useEffect(() => {
+        if (user)
+            if (user.user_cart.cart_items)
+                for (let [key, value] in user.user_cart.cart_items)
+                    setItems(state => [...state, value])
+    }, [user])
 
-    return user === null
-    ? <>Loading...</>
-    : (
+    if (user !== null && !isAuthenticated) return <Redirect to="/login" />
+
+    const checkout = e => {}
+
+    return (
         <>
             <NavigationBar pageType="authenticated" />
             <main>
@@ -23,7 +29,7 @@ const Bag = ({ isAuthenticated, user, products }) => {
                             <div className="container">
                                 <div className="row mb-5">
                                     <div className="col text-center">
-                                        <h3>SHOPPING BAG</h3>
+                                        <h3>CHECKOUT ORDERS</h3>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -35,7 +41,6 @@ const Bag = ({ isAuthenticated, user, products }) => {
                                                     <th scope="col">Price</th>
                                                     <th scope="col">Quantity</th>
                                                     <th scope="col">Total</th>
-                                                    <th scope="col"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -64,21 +69,13 @@ const Bag = ({ isAuthenticated, user, products }) => {
                                                                         {item.quantity}
                                                                     </td>
                                                                     <td>₱ {item.total}</td>
-                                                                    <td>
-                                                                        <button 
-                                                                            className="btn"
-                                                                            data-bs-toggle="tooltip" 
-                                                                            data-bs-placement="top" 
-                                                                            title="Remove product from Shopping Bag"
-                                                                        >-</button>
-                                                                    </td>
                                                                 </tr>
                                                             )
                                                         })
                                                     )
                                                     : (
                                                         <tr className="text-center">
-                                                            <td colSpan="4">Your shopping bag is empty.</td>
+                                                            <td colSpan="4">You have no orders.</td>
                                                         </tr>
                                                     )
                                                 }
@@ -88,7 +85,7 @@ const Bag = ({ isAuthenticated, user, products }) => {
                                 </div>
                                 <div className="row">
                                     <div className="col text-end">
-                                        <button className="btn btn-primary" onClick={e => checkout(e)}>Proceed to Checkout</button>
+                                        <button className="btn btn-primary" onClick={e => checkout(e)}>Confirm Checkout</button>
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +95,7 @@ const Bag = ({ isAuthenticated, user, products }) => {
                                 <div className="col">
                                     <div className="row">
                                         <div className="col">
-                                            <h6>Cart Overview</h6>
+                                            <h6>Order Overview</h6>
                                         </div>
                                     </div>
                                     <div className="row">
@@ -144,13 +141,12 @@ const Bag = ({ isAuthenticated, user, products }) => {
             </main>
             <Footer />
         </>
-    )
+    );
 }
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
-    user: state.auth.user,
-    products: state.products.products
+    user: state.auth.user
 })
 
-export default connect(mapStateToProps, {})(Bag);
+export default connect(mapStateToProps, {})(Checkout)
