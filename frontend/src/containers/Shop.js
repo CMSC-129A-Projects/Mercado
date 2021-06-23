@@ -43,7 +43,7 @@ const Shop = ({ user, isLoading, products, loadProducts, ...props }) => {
         window.location.href = `/products?${params.toString()}`
     }
 
-    return (isLoading || user === null)
+    return user === null
     ? (<>Loading...</>)
     : (
         <>
