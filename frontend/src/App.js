@@ -15,13 +15,13 @@ import LocationSetup from './containers/LocationSetup';
 import ResetPassword from './containers/ResetPassword';
 import ResetPasswordConfirm from './containers/ResetPasswordConfirm';
 import Profile from './containers/Profile';
+import SellerProfile from './containers/seller/SellerProfile';
 import Shop from './containers/Shop';
 import Product from './containers/Product';
 import Cart from './containers/Cart'
 import Checkout from './containers/Checkout'
 import CheckoutSuccess from './containers/CheckoutSuccess';
 import SellerHome from './containers/seller/SellerHome';
-import SellerProfile from './containers/seller/SellerProfile';
 import Activate from './containers/Activate';
 
 import store from './store';
@@ -42,14 +42,14 @@ function App() {
             <Route path="/account/password-reset" component={ResetPassword} />
             <Route path="/account/password/reset/confirm/:uid/:token" component={ResetPasswordConfirm} />
             <Route path="/account/:username" component={Profile} />
+            <Route path="/seller/:username" component={SellerProfile} />
             <Route path="/products" component={Shop} />
             <Route path="/product/:slug" component={Product} />
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
             <Route path="/checkout_success" render={(props) => <CheckoutSuccess {...props} />} />
             <Route path="/activate/:uid/:token" component={Activate} />
-            <Route path="/seller-center" component={SellerHome} />
-            <Route path="/seller-center/:username" component={SellerProfile} />
+            <Route path="/seller-center" component={SellerHome} />            
           </Switch>
         </Layout>
       </BrowserRouter>

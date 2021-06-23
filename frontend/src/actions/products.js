@@ -58,7 +58,7 @@ export const getProduct = (slug) => async dispatch => {
     }
 };
 
-export const createProduct = (product) => async dispatch => {
+export const createProduct = (user, product) => async dispatch => {
     const config = {
         headers: {
             'Authorization': `JWT ${localStorage.getItem('access')}`
@@ -71,10 +71,10 @@ export const createProduct = (product) => async dispatch => {
         description: product.description,
         price: product.price,
         disc_price: product.discPrice,
-        stock: product.stock,
+        available_count: product.available_count,
         image: product.image,
-        slug: '',
-        locality: ''
+        slug: 'slug',
+        location: user.user_address.city
     });
 
     console.log(body);

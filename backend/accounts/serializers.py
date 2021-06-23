@@ -36,15 +36,20 @@ class UserAddressSerializer(serializers.ModelSerializer):
 
 
 class UserReviewSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = UserReview
         fields = (
+            'id',
+            'author',
+            'profile',
             'rating',
             'body',
             'slug',
             'created_at',
             'last_updated',
         )
+        depth = 1
 
 
 class UserSerializer(serializers.ModelSerializer):

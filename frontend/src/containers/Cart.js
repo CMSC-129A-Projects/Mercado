@@ -55,11 +55,13 @@ const Cart = ({ isAuthenticated, user, products }) => {
                                                                         />
                                                                         {item.product.name}
                                                                     </th>
-                                                                    {
-                                                                        item.product.disc_price > 0
-                                                                        ? <td>₱ {item.product.disc_price}</td>
-                                                                        : <td>₱ {item.product.price}</td>
-                                                                    }
+                                                                    <td>    
+                                                                        {
+                                                                            item.product.disc_price > 0
+                                                                            ? <td>₱ {item.product.disc_price}</td>
+                                                                            : <td>₱ {item.product.price}</td>
+                                                                        }
+                                                                    </td>
                                                                     <td>
                                                                         {item.quantity}
                                                                     </td>

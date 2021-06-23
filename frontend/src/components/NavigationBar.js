@@ -73,13 +73,15 @@ const NavigationBar = ({ user, ...props}) => {
         }
     };
 
-    return (
+    return user === null
+    ? (<></>)
+    : (
         <>
             <Alert />
             <header className="p-1 border-bottom sticky-top nav">
                 <div className="container">
                     <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                        <a href="/" className="d=flex align-items-center mb-2 me-md-5 mb-lg-0 text-decoration-none mercado-brand">
+                        <a href="/" className="d=flex align-items-center mb-2 me-3 md-5 mb-lg-0 text-decoration-none mercado-brand">
                             <span>
                                 <img 
                                     src="/images/mercado-bag.png" 
@@ -88,7 +90,10 @@ const NavigationBar = ({ user, ...props}) => {
                                 />
                             </span>
                             Mercado
+                            <i className="material-icons ms-1" style={{ fontSize: "20px" }}>location_on</i>
+                            <span style={{ fontSize: "20px" }}>{user.user_address.city}</span>
                         </a>
+                        
                         <div className="col"></div>
                         {
                             (props.pageType === 'authenticated' || props.pageType === 'shop')
@@ -119,8 +124,12 @@ const NavigationBar = ({ user, ...props}) => {
                                         aria-expanded="false"
                                     >
                                         <img
-                                            src="https://github.com/mdo.png" 
-                                            alt="mdo"
+                                            src={
+                                                user && user.profile.image
+                                                ? user.profile.image
+                                                : '/images/default-avatar.png'
+                                            }
+                                            alt="avatar"
                                             width="32"
                                             height="32"
                                             className="rounded-circle"
