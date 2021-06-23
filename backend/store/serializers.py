@@ -48,6 +48,10 @@ class ProductReviewSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    category_pk = serializers.PrimaryKeyRelatedField(
+        queryset=models.Category.objects.all(),
+        source='category'
+    )
     category = CategorySerializer(read_only=True)
     product_review_product = ProductReviewSerializer(many=True, read_only=True)
     review_count = serializers.SerializerMethodField()
@@ -58,6 +62,7 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'user',
+            'category_pk',
             'category', 
             'name',
             'description',

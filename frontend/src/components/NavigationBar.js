@@ -1,8 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
-import '../css/navigationBar.css';
-import Alert from './Alert';
+import '../css/navigationBar.css'
+import Alert from './Alert'
 
 const NavigationBar = ({ user, ...props}) => {
     const renderLinks = () => {
@@ -67,17 +67,14 @@ const NavigationBar = ({ user, ...props}) => {
                             <a href="/signup" className="nav-link px-2">SIGNUP</a>
                         </li>
                     </>
-                );
+                )
             default:
-                return (<></>);
+                return (<></>)
         }
-    };
+    }
 
-    return user === null
-    ? (<></>)
-    : (
+    return (
         <>
-            <Alert />
             <header className="p-1 border-bottom sticky-top nav">
                 <div className="container">
                     <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -91,7 +88,12 @@ const NavigationBar = ({ user, ...props}) => {
                             </span>
                             Mercado
                             <i className="material-icons ms-1" style={{ fontSize: "20px" }}>location_on</i>
-                            <span style={{ fontSize: "20px" }}>{user.user_address.city}</span>
+                            <span style={{ fontSize: "20px" }}>
+                                {
+                                    user
+                                    && user.user_address.city
+                                }
+                            </span>
                         </a>
                         
                         <div className="col"></div>
@@ -159,12 +161,13 @@ const NavigationBar = ({ user, ...props}) => {
                     </div>
                 </div>
             </header>
+            <Alert />
         </>
-    );
-};
+    )
+}
 
 const mapStateToProps = state => ({
     user: state.auth.user
-});
+})
 
-export default connect(mapStateToProps, {})(NavigationBar);
+export default connect(mapStateToProps, {})(NavigationBar)

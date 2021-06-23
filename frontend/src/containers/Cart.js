@@ -88,14 +88,19 @@ const Cart = ({ isAuthenticated, user, products }) => {
                                         </table>
                                     </div>
                                 </div>
-                                <div className="row">
-                                    <div className="col text-end">
-                                        <button 
-                                            className="btn btn-primary" 
-                                            onClick={e => checkout(e)}
-                                        >Proceed to Checkout</button>
-                                    </div>
-                                </div>
+                                {
+                                    (user && Object.keys(user.user_cart.cart_items).length > 0)
+                                    && (
+                                        <div className="row">
+                                            <div className="col text-end">
+                                                <button 
+                                                    className="btn btn-primary" 
+                                                    onClick={e => checkout(e)}
+                                                >Proceed to Checkout</button>
+                                            </div>
+                                        </div>
+                                    )
+                                }
                             </div>
                         </div>
                         <div className="col-2">

@@ -3,7 +3,7 @@ from .base import *
 DEBUG = config('DEBUG', cast=bool)
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 INSTALLED_APPS += ['debug_toolbar']
-MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
+MIDDLEWARE += tuple('debug_toolbar.middleware.DebugToolbarMiddleware')
 
 DATABASES = {
     'default': {

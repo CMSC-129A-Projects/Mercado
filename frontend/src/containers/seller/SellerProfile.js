@@ -10,7 +10,7 @@ const SellerProfile = ({ isAuthenticated, user, createProduct }) => {
     const [content, setContent] = useState(1)
     const [form, setForm] = useState({
         productName: '',
-        category: '',
+        category: '1',
         price: '',
         disc_price: '0',
         description: '',
@@ -27,7 +27,7 @@ const SellerProfile = ({ isAuthenticated, user, createProduct }) => {
 
     const onSubmit = e => {
         e.preventDefault()
-        createProduct(form)
+        createProduct(user, form)
         return <Redirect to={`/seller/${user.username}`} />
     }
 
@@ -53,7 +53,7 @@ const SellerProfile = ({ isAuthenticated, user, createProduct }) => {
                                         />
                                     </div>
                                     <div className="col-4">
-                                        <label htmlFor="category" className="form-label"></label>
+                                        <label htmlFor="category" className="form-label">Category</label>
                                         <select 
                                             name="category" 
                                             id="category"
@@ -61,11 +61,11 @@ const SellerProfile = ({ isAuthenticated, user, createProduct }) => {
                                             value={category}
                                             onChange={e => onChange(e)}
                                         >
-                                            <option value="Veggies" defaultValue>Veggies</option>
-                                            <option value="Fruits">ruits</option>
-                                            <option value="Meat, Fish, and Poultry">Meat, Fish, and Poultry</option>
-                                            <option value="Homemade Goods">Homemade Goods</option>
-                                            <option value="Plants and Flowers">Plants and Flowers</option>
+                                            <option value="1" defaultValue>Veggies</option>
+                                            <option value="2">Fruits</option>
+                                            <option value="3">Meat, Fish, and Poultry</option>
+                                            <option value="4">Homemade Goods</option>
+                                            <option value="5">Plants and Flowers</option>
                                         </select>
                                     </div>
                                 </div>
@@ -188,13 +188,13 @@ const SellerProfile = ({ isAuthenticated, user, createProduct }) => {
                         <div className="col-6">
                             <ul className="nav nav-tabs">
                                 <li className="nav-item">
-                                    <button className="nav-link active" onClick={e => { setContent(1) }}>Sell</button>
+                                    <button className={content === 1 ? 'nav-link active': 'nav-link'} onClick={e => { setContent(1) }}>Sell</button>
                                 </li>
                                 <li className="nav-item">
-                                    <button className="nav-link" onClick={e => { setContent(2) }}>Products</button>
+                                    <button className={content === 2 ? 'nav-link active' : 'nav-link'} onClick={e => { setContent(2) }}>Products</button>
                                 </li>
                                 <li className="nav-item">
-                                    <button className="nav-link" onClick={e => { setContent(3) }}>Orders</button>
+                                    <button className={content === 3 ? 'nav-link active' : 'nav-link'} onClick={e => { setContent(3) }}>Orders</button>
                                 </li>
                             </ul>
                         </div>
@@ -216,4 +216,4 @@ const mapStateToProps = state => ({
     user: state.auth.user
 })
 
-export default connect(mapStateToProps, {})(SellerProfile)
+export default connect(mapStateToProps, { createProduct })(SellerProfile)
