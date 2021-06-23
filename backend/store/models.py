@@ -86,10 +86,6 @@ class OrderItem(models.Model):
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
 
-def product_review_image_path(instance, filename):
-    return '/'.join(['product-review-images/% Y/% m', str(instance.name), filename])
-
-
 class ProductReview(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('product_review_author'), on_delete=models.CASCADE)
     profile = models.ForeignKey('accounts.Profile', related_name=_('user_profile'), on_delete=models.CASCADE)
@@ -97,7 +93,6 @@ class ProductReview(models.Model):
     rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0)
     body = models.TextField(blank=True, null=True)
     slug = models.SlugField(max_length=25, unique=True)
-    image = models.ImageField(upload_to=product_review_image_path, height_field=None, width_field=None, max_length=None)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     

@@ -49,6 +49,10 @@ a:active { text-decoration: none; }
 
 b { color: #52734D; }
 
+.star:hover {
+    cursor: pointer;
+    color: rgb(71, 81, 44);
+}
 
 /* showcase */
 

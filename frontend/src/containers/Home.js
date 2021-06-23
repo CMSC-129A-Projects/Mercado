@@ -119,15 +119,22 @@ const Home = ({ isAuthenticated, user, products, loadProducts  }) => {
                                                         <p className="card-title text-truncate">{product.name}</p>
                                                     </a>
                                                     <h6 className="card-text">
-                                                        {
-                                                            product.disc_price > 0
-                                                            ? (
-                                                                <>
-                                                                    <span className="text-decoration-line-through">₱ {product.price}</span>
-                                                                    <span> {product.disc_price}</span>
-                                                                </>
-                                                            ) : '₱'+product.price
-                                                        }
+                                                        <div className="row">
+                                                            <div className="col">
+                                                                {
+                                                                    product.disc_price > 0
+                                                                    ? (
+                                                                        <>
+                                                                            <span className="text-decoration-line-through">₱ {product.price}</span>
+                                                                            <span> {product.disc_price}</span>
+                                                                        </>
+                                                                    ) : '₱'+product.price
+                                                                }
+                                                            </div>
+                                                            <div className="col text-end">
+                                                                <small className="text-muted">{product.sold_count} sold</small>
+                                                            </div>
+                                                        </div>
                                                     </h6>
                                                 </div>
                                                 <div className="card-footer my-0 py-0 text-center">

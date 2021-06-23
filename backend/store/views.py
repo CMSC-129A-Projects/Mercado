@@ -58,7 +58,6 @@ class CartItemViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return models.CartItem.objects.filter(cart__id=self.request.user.id)
-    
 
 
 class OrderItemViewSet(viewsets.ModelViewSet):

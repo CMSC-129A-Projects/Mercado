@@ -49,6 +49,7 @@ export const checkAuthenticated = () => async dispatch => {
                     type: AUTHENTICATED_SUCCESS,
                     payload: res
                 });
+                dispatch(loadUser())
             } else {
                 dispatch({
                     type: AUTHENTICATED_FAIL

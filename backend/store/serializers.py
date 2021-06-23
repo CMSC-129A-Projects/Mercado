@@ -1,9 +1,10 @@
+from django.contrib.auth.models import update_last_login
 from rest_framework import serializers
 from django.db.models import Avg, Sum
 from decimal import Decimal
 
 from . import models
-from accounts.models import User
+from accounts.models import User, Profile
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -13,16 +14,31 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class ProductReviewSerializer(serializers.ModelSerializer):
+    user_pk = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all(),
+        source='user'
+    )
+    profile_pk = serializers.PrimaryKeyRelatedField(
+        queryset=Profile.objects.all(),
+        source='profile'
+    )
+    product_pk = serializers.PrimaryKeyRelatedField(
+        queryset=models.Product.objects.all(),
+        source='product'
+    )
+
     class Meta:
         model = models.ProductReview
         fields = (
             'id',
+            'user_pk',
             'user',
+            'profile_pk',
             'profile',
+            'product_pk',
             'product',
             'rating',
             'body',
-            'image',
             'slug',
             'created_at',
             'last_updated',
@@ -204,10 +220,20 @@ class OrderItemSerializer(serializers.ModelSerializer):
         return total
 
     def create(self, validated_data):
-        print(validated_data)
         product_data = validated_data['product']
         quantity_data = validated_data['quantity']
         price = product_data.disc_price if product_data.disc_price > 0 else product_data.price
         total = price * quantity_data
         order_item = models.OrderItem.objects.create(total=total, **validated_data)
+
+        # Update Cart data 
+        cart = models.Cart.objects.get(user_id=validated_data['user'].id)
+        cart.save()
+        
+        # Update product data 
+        product = models.Product.objects.get(pk=validated_data['product'].id)
+        product.available_count = product.available_count - 1
+        product.sold_count = product.sold_count + 1
+        product.save()
+
         return order_item

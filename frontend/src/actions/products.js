@@ -11,7 +11,9 @@ import {
     ADD_TO_CART_SUCCESS,
     ADD_TO_CART_FAIL,
     CHECKOUT_SUCCESS,
-    CHECKOUT_FAIL
+    CHECKOUT_FAIL,
+    PRODUCT_REVIEW_SUCCESS,
+    PRODUCT_REVIEW_FAIL
 } from './types';
 
 export const loadProducts = (params) => async dispatch => {
@@ -158,6 +160,43 @@ export const checkout = (user, items) => {
         dispatch({
             type: CHECKOUT_SUCCESS,
             payload: responses
+        })
+    }
+}
+
+export const createProductReview = (user, product, review) => async dispatch => {
+    dispatch({ type: PRODUCT_LOADING })
+
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `JWT ${localStorage.getItem('access')}`
+        }
+    }
+
+    try {
+        const body = JSON.stringify({
+            'user_pk': user.id,
+            'user': user.id,
+            'profile_pk': user.profile.id,
+            'profile': user.profile.id,
+            'product_pk': product.id,
+            'product': product.id,
+            'rating': review.rating,
+            'body': review.body,
+            'slug': 'slug'
+        })
+
+        const res = await axios.post(`/store/product-reviews/`, body, config)
+
+        dispatch({
+            type: PRODUCT_REVIEW_SUCCESS,
+            payload: res
+        })
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_REVIEW_FAIL,
+            payload: error
         })
     }
 }
