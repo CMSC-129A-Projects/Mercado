@@ -1,143 +1,156 @@
-from django.db import models
-from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
-from django.core.validators import RegexValidator
-from django.core.validators import MinValueValidator, MaxValueValidator
+from core.utils import unique_slugify
 from django.conf import settings
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
+from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
+from django.utils.translation import gettext_lazy as _
+from django.db import models
+
+from store.models import Cart
 
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
-    def _create_user(self, email, password, **extra_fields):
+    def _create_user(self, phone_number, password, **extra_fields):
         """
-        Creates and save a User with the email and password
+        Creates and save a User with the phone number and password
         """
-        if not email:
-            raise ValueError("Email is not set.")
 
-        user = self.model(email=email, **extra_fields)
+        if not phone_number:
+            raise ValueError("Phone number is missing")
+
+        user = self.model(phone_number=phone_number, **extra_fields)
         user.set_password(password)
+
         user.save(using=self._db)
+
+        # Create a Profile object for the user
+        profile = Profile(user=user)
+        profile.save()
+
+        # Create a Cart object for the user
+        cart = Cart(user=user)
+        cart.save()
+
+        # Create a UserAddress object for the user
+        address = UserAddress(user=user)
+        address.save()
 
         return user
 
-    def create_user(self, email, password=None, **extra_fields):
+    def create_user(self, phone_number, password=None, **extra_fields):
         extra_fields.setdefault('is_superuser', False)
-        return self._create_user(email, password, **extra_fields)
+        return self._create_user(phone_number, password, **extra_fields)
     
-    def create_superuser(self, email, password=None, **extra_fields):
+    def create_superuser(self, phone_number, password=None, **extra_fields):
         extra_fields.setdefault('is_superuser', True)
 
         if extra_fields.get('is_superuser') is not True:
-            raise ValueError("is_superuser is set to False.")
+            raise ValueError("User admin status is not set")
 
-        return self._create_user(email, password, **extra_fields)
+        return self._create_user(phone_number, password, **extra_fields)
 
 
+# Custom User model 
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(max_length=255, unique=True)
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
+    """
+    Creates custom User model with phone number as username
+
+    Parameters:
+        phone_number (char_field): Phone number of the user (w/ PH code regex)
+        first_name (char_field):
+        last_name (char_field):
+        username (char_field):
+        email (char_field):
+        is_set (boolean_field): True is user address is set
+        is_active (boolean_field): If False, user cannot login
+        is_staff (boolean_field):
+    """
+
     phone_number = models.CharField(validators=[RegexValidator(regex=r'^(09|\+639)\d{9}$')], max_length=50, unique=True)
-    is_verified = models.BooleanField(default=False)
+    first_name = models.CharField(max_length=150)
+    last_name = models.CharField(max_length=150)
+    username = models.CharField(max_length=50, unique=True)
+    email = models.CharField(max_length=50, blank=True, null=True)
+    is_set = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+    date_joined = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
     objects = UserManager()
     
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number']
+    USERNAME_FIELD = 'phone_number'
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'username']
 
-    def __str__(self):
-        return self.email
-
-    def get_username(self):
-        """
-        Returns user email
-        """
-        return self.email
+    class Meta:
+        ordering = ['last_name']
 
     def get_full_name(self):
-        """
-        Returns the formatted full name of the user
-        """
-        full_name = '%s %s' % (self.first_name, self.last_name)
-        return full_name.strip()
+        return '%s %s' % (self.first_name, self.last_name)
 
     def get_short_name(self):
-        """
-        Returns only the first name
-        """
         return self.first_name
 
-    def email_user(self, subject, message, from_email=None, **kwargs):
-        """
-        Send an email to the user
-        """
-        if not self.email:
-            raise ValueError('No email')
+    def get_user_type(self):
+        return self.user_type
 
-        send_email(subject, message, from_email, [self.email], **kwargs)
-
-
-def profile_image_path(instance, filename):
-    return '/'.join(['profile-images/', str(instance.name), filename])
+    def __str__(self):
+        return self.username
 
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('profile'), on_delete=models.CASCADE)
-    bio = models.CharField(max_length=255, blank=True, null=True)
-    image = models.ImageField(upload_to=profile_image_path, height_field=None, width_field=None, max_length=None, blank=True, null=True)
+    shop_name = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=25, unique=True)
+    image = models.ImageField(upload_to='profile-images/', height_field=None, width_field=None, max_length=None, blank=True, null=True)
+    dob = models.DateField(_('date of birth'), auto_now=False, auto_now_add=False, blank=True, null=True)
+    gender = models.CharField(max_length=50, blank=True, null=True)
+    bio = models.CharField(max_length=100, blank=True, null=True)
 
-    class Meta:
-        order_with_respect_to = 'user'
-
-    def get_absolute_url(self):
-        return reverse('accounts:user-profile', args=[self.pk])
+    def save(self, **kwargs):
+        unique_slugify(self, self.user.username)
+        super(Profile, self).save(**kwargs)
 
     def __str__(self):
-        return str(user)
+        return str(self.user)
 
 
 class UserAddress(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('user_address'), on_delete=models.CASCADE)
-    address_line1 = models.CharField(max_length=255, blank=True, null=True)
-    address_line2 = models.CharField(max_length=255, blank=True, null=True)
-    city = models.CharField(max_length=255)
-    postal_code =  models.CharField(max_length=50, blank=True, null=True)
-    country = models.CharField(max_length=50, default='PH')
+    address_line1 = models.CharField(max_length=100)
+    brgy = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    province = models.CharField(max_length=50)
+    region = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
     class Meta:
         verbose_name_plural = _('addresses')
-        order_with_respect_to = 'user'
 
     def __str__(self):
-        complete_address = '%s, %s, %s, %s %s ' % (self.address_line1, self.address_line2, self.city, self.country, self.postal_code)
+        complete_address = '%s, %s, %s, %s, %s ' % (self.address_line1, self.brgy, self.city, self.province, self.region)
         return complete_address
 
 
 class UserReview(models.Model):
-    created_by = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('user_reviews_from'), on_delete=models.CASCADE)
-    recipient = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('user_reviews_to'), on_delete=models.CASCADE)
-    rating = models.DecimalField( max_digits=2, decimal_places=1, validators=[MinValueValidator(0.0), MaxValueValidator(5.0)], default=0)
-    title = models.CharField(max_length=255)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('user_review_author'), on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, related_name=_('author_profile'), on_delete=models.CASCADE)
+    recipient = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('user_review_recipient'), on_delete=models.CASCADE)
+    rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0)
     body = models.TextField(blank=True, null=True)
+    slug = models.SlugField(max_length=25, unique=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
     class Meta:
         ordering = ['-created_at']
 
-    def get_absolute_url(self):
-        return reverse('accounts:user-review', args=[self.pk])
-
-    def __str__(self):
-        return self.title
+    def save(self, **kwargs):
+        unique_slugify(self, self.body)
+        super(UserReview, self).save(**kwargs)
 
     def get_review_body(self):
         return self.body

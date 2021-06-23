@@ -3,9 +3,9 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Container, Form, Button } from 'react-bootstrap';
 
-import { reset_password_confirm } from '../actions/auth';
+import { resetPasswordConfirm } from '../actions/auth';
 
-const ResetPasswordConfirm = ({ match, reset_password_confirm }) => {
+const ResetPasswordConfirm = ({ match, resetPasswordConfirm }) => {
     const [requestSent, setRequestSent] = useState(false);
 
     const [formData, setFormData] = useState({
@@ -23,7 +23,7 @@ const ResetPasswordConfirm = ({ match, reset_password_confirm }) => {
         const uid = match.params.uid;
         const token = match.params.token;
 
-        reset_password_confirm(uid, token, new_password, re_new_password);
+        resetPasswordConfirm(uid, token, new_password, re_new_password);
         setRequestSent(true);
     };
 
@@ -68,4 +68,4 @@ const ResetPasswordConfirm = ({ match, reset_password_confirm }) => {
 
 
 
-export default connect(null, { reset_password_confirm })(ResetPasswordConfirm);
+export default connect(null, { resetPasswordConfirm })(ResetPasswordConfirm);

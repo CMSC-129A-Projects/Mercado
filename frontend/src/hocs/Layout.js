@@ -6,15 +6,10 @@ import { refreshToken } from '../actions/auth';
 const Layout = ({ refreshToken, children }) => {
     useEffect(() => {
         refreshToken();
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    });
+    }, []);
 
-    return (
-        <>
-            {children}
-        </>
-    );
+    return (<>{children}</>);
 };
 
 export default connect(null, { refreshToken })(Layout);

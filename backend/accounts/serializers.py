@@ -1,63 +1,88 @@
 from rest_framework import serializers
 from django.conf import settings
+from djoser.compat import get_user_email, get_user_email_field_name
+from djoser.conf import settings
 
-from .models import (User, Profile, UserAddress, UserReview)
-from store.models import (Product, ProductReview, Cart)
-
+from .models import User, Profile, UserAddress, UserReview
+from store.serializers import CartSerializer, OrderItemSerializer, ProductReviewSerializer
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ['bio', 'image']
-        lookup_field = 'user'
+        fields = (
+            'id',
+            'user',
+            'slug',
+            'image',
+            'dob',
+            'gender',
+            'bio'
+        )
 
 
 class UserAddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserAddress
-        fields = [
+        fields = (
+            'id',
+            'user',
             'address_line1', 
-            'address_line2', 
+            'brgy', 
             'city',
-            'postal_code',
-            'country'
-        ]
+            'province',
+            'region'
+        )
+        read_only_fields = ['user']
 
 
 class UserReviewSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = UserReview
-        fields = [
-            'recipient',
+        fields = (
+            'id',
+            'author',
+            'profile',
             'rating',
-            'title',
             'body',
-        ]
+            'slug',
+            'created_at',
+            'last_updated',
+        )
+        depth = 1
 
 
 class UserSerializer(serializers.ModelSerializer):
-    profile = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
-    user_address = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
-    user_reviews_from = serializers.PrimaryKeyRelatedField(many=True, queryset=Product.objects.all())
-    user_reviews_to = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-    products = serializers.PrimaryKeyRelatedField(many=True, queryset=Product.objects.all())
-    product_reviews_user = serializers.PrimaryKeyRelatedField(many=True, queryset=ProductReview.objects.all())
-    carts = serializers.PrimaryKeyRelatedField(many=True, queryset=Cart.objects.all())
+    profile = ProfileSerializer(read_only=True)
+    user_address = UserAddressSerializer(read_only=True)
+    user_review_author = UserReviewSerializer(many=True, read_only=True)
+    user_review_recipient = UserReviewSerializer(many=True, read_only=True)
+    product_review_author = ProductReviewSerializer(many=True, read_only=True)
+    user_cart = CartSerializer(read_only=True)
+    orders = OrderItemSerializer(read_only=True, many=True)
 
     class Meta:
         model = User
-        fields = [
-            'email',
-            'first_name',
-            'last_name',
-            'phone_number',
-            'created_at',
-            'last_updated',
+        fields = tuple(User.REQUIRED_FIELDS) + (
+            settings.USER_ID_FIELD,
+            settings.LOGIN_FIELD,
+            'is_set',
             'profile',
             'user_address',
-            'user_reviews_from',
-            'user_reviews_to',
-            'products',
-            'product_reviews_user',
-            'carts'
-        ]
+            'user_review_author',
+            'user_review_recipient',
+            'product_review_author',
+            'user_cart',
+            'orders'
+        )
+        read_only_fields = (settings.LOGIN_FIELD,)
+
+    def update(self, instance, validated_data):
+        email_field = get_user_email_field_name(User)
+        if settings.SEND_ACTIVATION_EMAIL and email_field in validated_data:
+            instance_email = get_user_email(instance)
+            if instance_email != validated_data[email_field]:
+                instance.is_active = False
+                instance.save(update_fields=["is_active"])
+        return super().update(instance, validated_data)
+        

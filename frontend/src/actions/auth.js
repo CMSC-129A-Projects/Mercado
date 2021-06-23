@@ -2,6 +2,7 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
 import {
+    USER_LOADING,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     SIGNUP_SUCCESS,
@@ -18,14 +19,16 @@ import {
     PASSWORD_RESET_CONFIRM_SUCCESS,
     PASSWORD_RESET_CONFIRM_FAIL,
     REFRESH_SUCCESS,
-    REFRESH_FAIL
+    REFRESH_FAIL,
+    PROFILE_PATCH_SUCCESS,
+    PROFILE_PATCH_FAIL,
+    ADDRESS_PATCH_SUCCESS,
+    ADDRESS_PATCH_FAIL
 } from './types';
 import { setAlert } from './alert';
 
 /**
  * Verify access token
- * 
- * @returns 
  */
 export const checkAuthenticated = () => async dispatch => {
     if (localStorage.getItem('access')) {
@@ -43,8 +46,10 @@ export const checkAuthenticated = () => async dispatch => {
 
             if (res.data.code !== 'token_not_valid') {
                 dispatch({
-                    type: AUTHENTICATED_SUCCESS
+                    type: AUTHENTICATED_SUCCESS,
+                    payload: res
                 });
+                dispatch(loadUser())
             } else {
                 dispatch({
                     type: AUTHENTICATED_FAIL
@@ -85,7 +90,7 @@ export const refreshToken = () => async dispatch => {
                 
                 dispatch({
                     type: REFRESH_SUCCESS,
-                    payload: res.data
+                    payload: res
                 });
             } catch (err) {
                 dispatch({
@@ -103,8 +108,8 @@ export const refreshToken = () => async dispatch => {
         });
     }
 
-    dispatch(checkAuthenticated());
-    dispatch(loadUser());
+    dispatch(checkAuthenticated())
+    dispatch(loadUser())
 };
 
 /**
@@ -127,7 +132,7 @@ export const loadUser = () => async dispatch => {
     
             dispatch({
                 type: USER_LOADED_SUCCESS,
-                payload: res.data
+                payload: res
             });
         } catch (err) {
             dispatch({
@@ -144,73 +149,87 @@ export const loadUser = () => async dispatch => {
 /**
  * Create jwt to login user
  * 
- * @param {string} email User email
+ * @param {string} phoneNumber User phone number
  * @param {string} password User password
  * @returns 
  */
-export const login = (email, password) => async dispatch => {
-    const config = {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    };
-    
-    const body = JSON.stringify({ email, password });
+export const login = (phoneNumber, password) => async dispatch => {
+    dispatch({ type: USER_LOADING })
+
+    const config = { headers: { 'Content-Type': 'application/json' } };
+    const body = JSON.stringify({
+        "phone_number": phoneNumber, 
+        "password": password
+    });
 
     try {
         const res = await axios.post(`/auth/jwt/create/`, body, config);
 
         dispatch({
             type: LOGIN_SUCCESS,
-            payload: res.data
+            payload: res
         });
 
-        dispatch(loadUser());
         dispatch(setAlert('Login successful', 'success'));
+        dispatch(loadUser());
     } catch (err) {
         dispatch({
-            type: LOGIN_FAIL
+            type: LOGIN_FAIL,
+            payload: err
         });
-
-        dispatch(setAlert('Login failed', 'error'));
+        
+        dispatch(setAlert('Login failed', 'danger'));
     }
 };
 
 /**
  * Create new User 
  * 
+ * @param {string} phoneNumber User phonenumber
+ * @param {string} firstName User first name
+ * @param {string} lastName User last name
+ * @param {string} username User username
  * @param {string} email User email
- * @param {string} phone_number User phonenumber
- * @param {string} first_name User first name
- * @param {string} last_name User last name
+ * @param {string} userType User type
  * @param {string} password User password
- * @param {string} re_password Password retype
+ * @param {string} rePassword Password retype
  * @returns 
  */
-export const signup = (email, phone_number, first_name, last_name, password, re_password) => async dispatch => {
-    const config = {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    };
-    
-    const body = JSON.stringify({ email, phone_number, first_name, last_name, password, re_password });
+export const createUser = (data) => async dispatch => {
+    dispatch({ type: USER_LOADING })
+
+    const config = { headers: { 'Content-Type': 'application/json' } };
+    const body = JSON.stringify({ 
+        'phone_number': data.phoneNumber,
+        'first_name': data.firstName,
+        'last_name': data.lastName,
+        'username': data.username,
+        'email': data.email,
+        'user_type': data.userType,
+        'password': data.password,
+        're_password': data.rePassword
+    });
 
     try {
         const res = await axios.post(`/auth/users/`, body, config);
 
+        console.log(res);
+
         dispatch({
             type: SIGNUP_SUCCESS,
-            payload: res.data
+            payload: res
         });
 
         dispatch(setAlert('Sign up successful', 'success'));
+        dispatch(login(data.phoneNumber, data.password));
     } catch (err) {
         dispatch({
-            type: SIGNUP_FAIL
+            type: SIGNUP_FAIL,
+            payload: err
         });
 
-        dispatch(setAlert('Sign up failed', 'error'));
+        for (const field in err.response.data)
+            dispatch(setAlert(err.response.data[field], 'danger'));
     }
 };
 
@@ -249,7 +268,7 @@ export const verify = (uid, token) => async dispatch => {
  * @param {string} email User email
  * @returns 
  */
-export const reset_password = (email) => async dispatch => {
+export const resetPassword = (email) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -280,7 +299,7 @@ export const reset_password = (email) => async dispatch => {
  * @param {string} re_new_password Password re-type
  * @returns 
  */
-export const reset_password_confirm = (uid, token, new_password, re_new_password) => async dispatch => {
+export const resetPasswordConfirm = (uid, token, new_password, re_new_password) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -308,9 +327,76 @@ export const reset_password_confirm = (uid, token, new_password, re_new_password
  * @returns 
  */
 export const logout = () => dispatch => {
+    dispatch({type: USER_LOADING});
+
     dispatch({
         type: LOGOUT
     });
+};
 
-    dispatch(setAlert('Logout successful', 'success'));
+export const patchProfile = (data) => async dispatch => {
+    dispatch({type: USER_LOADING});
+
+    if (localStorage.getItem('access')) {
+        const config = {
+            headers: {
+                'Authorization': `JWT ${localStorage.getItem('access')}`
+            }
+        };
+
+        const body = JSON.stringify(data);
+
+
+        try {
+            const res = await axios.put(`/accounts/profile/${data.slug}/`, body, config);
+
+
+            dispatch({
+                type: PROFILE_PATCH_SUCCESS,
+                payload: res
+            });
+        } catch (err) {
+            dispatch({type: PROFILE_PATCH_FAIL});
+        }
+    } else {
+        dispatch({type: PROFILE_PATCH_FAIL});
+    }
+
+    dispatch(loadUser());
+};
+
+export const patchUserAddress = (data) => async dispatch => {
+    dispatch({type: USER_LOADING});
+
+    if (localStorage.getItem('access')) {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `JWT ${localStorage.getItem('access')}`
+            }
+        };
+        
+        const body = JSON.stringify({
+            'brgy': data.barangay,
+            'city': data.city,
+            'province': data.province,
+            'region': data.region
+        });
+
+
+        try {
+            const res = await axios.patch(`/accounts/location/${data.slug}/`, body, config);
+
+            dispatch({
+                type: ADDRESS_PATCH_SUCCESS,
+                payload: res
+            });
+        } catch (err) {
+            dispatch({type: ADDRESS_PATCH_FAIL});
+        }
+    } else {
+        dispatch({type: ADDRESS_PATCH_FAIL});
+    }
+
+    dispatch(loadUser());
 };

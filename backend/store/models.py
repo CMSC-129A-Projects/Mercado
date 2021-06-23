@@ -1,30 +1,41 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
-from django.urls import reverse
+from core.utils import unique_slugify
 
 
 class Category(models.Model):
-    name = models.CharField(_('category name'), max_length=255, db_index=True)
+    name = models.CharField(max_length=50, db_index=True)
+    slug = models.SlugField(unique=True, max_length=50)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
     class Meta:
         verbose_name_plural = 'categories'
+        ordering = ['name']
+
+    def save(self, *args, **kwargs):
+        unique_slugify(self, self.name)
+        super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
     
 
 class Product(models.Model):
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('products'), on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
-    desc = models.TextField(_('description'), blank=True, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('user'), on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name=_('product_category'), on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True, null=True)
+    slug = models.SlugField(max_length=25, unique=True)
     price = models.FloatField()
-    disc_price = models.FloatField(_('discounted price'), blank=True, null=True, default=0)
-    categories = models.ManyToManyField(Category, related_name=_('product_categories'), blank=True)
-    in_stock = models.BooleanField(default=True)
+    disc_price = models.FloatField(_('discounted price'), default=0)
+    available_count = models.IntegerField(default=1)
+    sold_count = models.IntegerField(default=0)
+    image = models.ImageField(upload_to='product_images/', height_field=None, width_field=None, max_length=None)
+    is_available = models.BooleanField(default=True)
+    location = models.CharField(max_length=50)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
@@ -32,85 +43,68 @@ class Product(models.Model):
     class Meta:
         ordering = ['-created_at']
 
-    def get_absolute_url(self):
-        return reverse('store:product-detail', args=[self.pk])
+    def save(self, *args, **kwargs):
+        unique_slugify(self, self.name)
+        super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
-    
-
-def product_image_path(instance, filename):
-    return 'user_{0}/{1}'.format(instance.user.id, filename)
-
-
-class ProductImage(models.Model):
-    product = models.ForeignKey(Product, related_name=_('image_product'), on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=product_image_path, height_field=None, width_field=None, max_length=None)
-    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
 
 
 class Cart(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('carts'), on_delete=models.CASCADE)
-    total = models.DecimalField(max_digits=5, decimal_places=2)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name=_('user_cart'), on_delete=models.CASCADE)
+    total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    slug = models.SlugField(max_length=25, unique=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
+    def save(self, **kwargs):
+        unique_slugify(self, self.user.username)
+        super(Cart, self).save(**kwargs)
+
+    def __str__(self):
+        return self.slug
+        
 
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, related_name=_('cart_items'), on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, related_name=_('cart_products'), on_delete=models.CASCADE)
-    quantity = models.IntegerField()
+    product = models.ForeignKey(Product, related_name=_('product'), on_delete=models.CASCADE)
+    quantity = models.IntegerField(validators=[MinValueValidator(1)])
+    total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
 
 class OrderItem(models.Model):
-    product = models.ForeignKey(Product, related_name=_('order_products'), on_delete=models.CASCADE)
-    quantity = models.IntegerField()
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('orders'), on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name=_('order_product'), on_delete=models.CASCADE)
+    quantity = models.IntegerField(validators=[MinValueValidator(1)])
+    total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    status = models.CharField(max_length=50)
+    is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
-
-
-class PaymentDetail(models.Model):
-    amount = models.DecimalField(max_digits=5, decimal_places=2)
-    provider = models.CharField(max_length=255)
-    status = models.CharField(max_length=255)
-    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
-    last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
-
-
-class OrderDetail(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('order_detail_user'), on_delete=models.CASCADE)
-    total = models.DecimalField(max_digits=5, decimal_places=2)
-    payment = models.ForeignKey(PaymentDetail, related_name=_('order_detail_payment'), on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
-    last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
-
-
-def review_image_path(instance, filename):
-    return '/'.join(['review-images/% Y/% m', str(instance.name), filename])
 
 
 class ProductReview(models.Model):
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('product_reviews_user'), on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, related_name=_('product_reviews_product'), on_delete=models.CASCADE)
-    rating = models.DecimalField(max_digits=2, decimal_places=1, validators=[MinValueValidator(0.0), MaxValueValidator(5.0)], default=0)
-    title = models.CharField(max_length=255)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('product_review_author'), on_delete=models.CASCADE)
+    profile = models.ForeignKey('accounts.Profile', related_name=_('user_profile'), on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name=_('product_review_product'), on_delete=models.CASCADE)
+    rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0)
     body = models.TextField(blank=True, null=True)
-    review_image = models.ImageField(upload_to=review_image_path, height_field=None, width_field=None, max_length=None)
+    slug = models.SlugField(max_length=25, unique=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     
     class Meta:
         ordering = ['-created_at']
 
-    def get_absolute_url(self):
-        return reverse('store:product-review', args=[self.pk])
+    def save(self, **kwargs):
+        unique_slugify(self, self.body)
+        super(ProductReview, self).save(**kwargs)
 
     def __str__(self):
-        return self.title
+        return (str(self.product.name) + 'review')
 
     def get_review_body(self):
         return self.body
-
-

@@ -1,0 +1,20 @@
+.card {
+  border-radius: 0;
+}
+
+.card:hover {
+  box-shadow: -2px -1px 10px -4px rgba(0,0,0,0.75);
+  -webkit-box-shadow: -2px -1px 10px -4px rgba(0,0,0,0.75);
+  -moz-box-shadow: -2px -1px 10px -4px rgba(0,0,0,0.75);
+  transition: 0s;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+
+.stretched-link:hover {
+  color: rgb(71, 81, 44);
+}

@@ -1,31 +1,28 @@
 from rest_framework import viewsets
 
-from .models import (Profile, UserAddress)
-from .serializers import (ProfileSerializer, UserAddressSerializer)
+from . import models
+from .serializers import (ProfileSerializer, UserAddressSerializer, UserSerializer)
+from accounts.permissions import IsOwnerOrReadOnly
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
-    queryset = Profile
+    queryset = models.Profile
     serializer_class = ProfileSerializer
-    lookup_field = 'user'
-
-    def get_object(self):
-        if self.request.method == 'PUT':
-            obj, created = Profile.objects.get_or_create(user=self.request.user)
-
-            return obj
-        else:
-            return super(ProfileViewSet, self).get_object()
+    lookup_field = 'slug'
+    permission_classes = [IsOwnerOrReadOnly]
 
 
 class UserAddressViewSet(viewsets.ModelViewSet):
-    queryset = UserAddress
+    queryset = models.UserAddress
     serializer_class = UserAddressSerializer
+    lookup_field = 'user__username'
+    permission_classes =  [IsOwnerOrReadOnly]
 
-    def get_object(self):
-        if self.request.method == 'PUT':
-            obj, created = UserAddress.objects.get_or_create(user=self.request.user)
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
-            return obj
-        else:
-            return super(UserAddressViewSet, self).get_object()
+    def partial_update(self, request, *args, **kwargs):
+        user = models.User.objects.get(username=self.request.user.username)
+        user.is_set = True
+        user.save()
+        return super().partial_update(request, *args, **kwargs)

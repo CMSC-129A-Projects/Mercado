@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'djoser',
+    'django_filters',
     'core',
     'accounts',
     'store',
@@ -87,11 +88,18 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 25
 }
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
+
+# Custom User model 
 
 AUTH_USER_MODEL = 'accounts.User'
 
@@ -105,34 +113,20 @@ SIMPLE_JWT = {
 
 # Djoser settings
 
+# Used in email templates
+
 DOMAIN = config('DOMAIN')
 SITE_NAME = config('SITE_NAME')
 
-# DJOSER = {
-#     'LOGIN_FIELD': 'email',
-#     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
-#     'ACTIVATION_URL': 'activate/{uid}/{token}',
-#     'USER_CREATE_PASSWORD_RETYPE': True,
-#     'SEND_ACTIVATION_EMAIL': True,
-#     'SEND_CONFIRMATION_EMAIL': True,
-#     'SET_PASSWORD_RETYPE': True,
-#     'SERIALIZERS': {
-#         'user_create': 'accounts.serializers.UserSerializer',
-#         'user': 'accounts.serializers.UserSerializer',
-#         'user_delete': 'djoser.serializers.UserDeleteSerializer',
-#     },
-# }
-
-# Without email verification 
-
 DJOSER = {
-    'LOGIN_FIELD': 'email',
+    'LOGIN_FIELD': 'phone_number',
     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
     'USER_CREATE_PASSWORD_RETYPE': True,
     'SET_PASSWORD_RETYPE': True,
     'SERIALIZERS': {
-        'user_create': 'accounts.serializers.UserSerializer',
+        'user_create': 'accounts.serializers.UserCreateSerializer',
         'user': 'accounts.serializers.UserSerializer',
+        'current_user': 'accounts.serializers.UserSerializer',
         'user_delete': 'djoser.serializers.UserDeleteSerializer',
     },
 }

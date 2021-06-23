@@ -1,91 +1,57 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+html {
+    height: 100%;
 }
 
-/* login and signup */
-
-.outer {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: left;
+body {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
 }
 
-.inner {
-    height: 650px;
-    width: 550px;
-    margin: auto;
-    background: rgb(255, 255, 255);
-    padding: 10px 55px 10px 55px;
-    border-radius: 15px;
-    transition: all .3s;
-    font-size: 13px;
-    opacity: 0.9;
+main {
+    min-height: 100%;
 }
 
-.forgot-password,
-.forgot-password a {
-    text-align: right;
-    font-size: 13px;
-    padding-top: 10px;
-    color: #7f7d7d;
-    margin: 0;
-}
-
-.forgot-password a {
-    color: #167bff;
-}
-
-/* navbar */
-
-.navbar-brand {
-    margin-right: 100px;
-    font-size: 300%;
-    color: rgb(196, 189, 167);
-    font-family: 'Shrikhand', cursive;
-}
-
-.navbar-brand:hover {
+a {
     color: rgb(71, 81, 44);
 }
 
-.nav-link {
-    margin-right: 20px;
-    margin-left: 20px;
-    color: black;
-    font-family: 'Open Sans', sans-serif;
+a:link { text-decoration: none; }
+
+a:visited { text-decoration: none; }
+
+a:hover { text-decoration: none; }
+
+a:active { text-decoration: none; }
+
+.nav-pills {
+    border-radius: 0;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #e4dede;
+    background-color: transparent;
+}
+
+.btn-primary, 
+.btn-primary:disabled {
+    background-color: #52734D;
+    border-color: rgb(255, 255, 255);
     text-transform: uppercase;
 }
 
-.nav-link:hover {
-    color: rgb(196, 189, 167);
+.btn-primary:hover {
+    color: #52734D;
+    background-color: rgb(255, 255, 255);
+    border-color: #52734D;
+    text-transform: uppercase;
 }
 
-.nav-item .active {
-    text-decoration: underline;
-}
+b { color: #52734D; }
 
-.search {
-    height: 40px;
-    width: 180px;
-    border-radius: 60px;
-    outline: none;
-    margin-right: -35px;
-    font-family: 'Open Sans', sans-serif;
-    border: 2px solid rgb(71, 81, 44);
-}
-
-.search-btn {
-    height: 40px;
-    width: 90px;
-    outline: none;
-    border: none;
-    background: rgb(71, 81, 44);
-    color: rgb(255, 255, 255);
-    border-radius: 60px;
-    font-weight: 500;
+.star:hover {
+    cursor: pointer;
+    color: rgb(71, 81, 44);
 }
 
 /* showcase */
@@ -126,16 +92,17 @@
 
 .showcase-btn-1:hover {
     background-color: rgb(71, 81, 44);
-    outline-color: rgb(242, 244, 235);
     color: rgb(242, 244, 235);
 }
 
 .showcase-btn-2 {
     margin-left: 10px;
-    height: 45px;
+    height: 39px;
     width: 25%;
     border: none;
-    outline: none;
+    outline-width: 3px;
+    outline-style: solid;
+    outline-color: rgb(71, 81, 44);
     background-color: rgb(71, 81, 44);
     font-family: 'Open Sans Condensed', sans-serif;
     color: rgb(242, 244, 235);
@@ -169,20 +136,19 @@
     color: rgb(69, 41, 28);
 }
 
-.card:hover {
-    box-shadow: -2px -1px 25px -4px rgba(0,0,0,0.75);
-    -webkit-box-shadow: -2px -1px 25px -4px rgba(0,0,0,0.75);
-    -moz-box-shadow: -2px -1px 25px -4px rgba(0,0,0,0.75);
-    transition: 0.5s;
-}
 
-.card-img-top {
-    width: 100%;
-    height: 15vw;
-    object-fit: cover;
-}
 
-.product h1, h6, p {
+/* .product h1, h6, p {
     font-family: 'Open Sans', sans-serif;
     color: rgb(0, 0, 0);
+}
+
+.product h1 {
+    font-weight: bolder;
+    color: rgb(71, 81, 44);
+} */
+
+footer {
+    grid-row-start: 2;
+    grid-row-end: 3;
 }
