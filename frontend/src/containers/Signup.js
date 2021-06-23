@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { useState } from 'react'
+import { Redirect } from 'react-router'
+import { connect } from 'react-redux'
 
-import '../css/signup.css';
-import { createUser } from '../actions/auth';
-import NavigationBar from '../components/NavigationBar';
-import Footer from '../components/Footer';
+import NavigationBar from '../components/NavigationBar'
+import Footer from '../components/Footer'
+import { createUser } from '../actions/auth'
 
 const Signup = ({ error, isAuthenticated, createUser, ...props }) => {
     const [formData, setFormData] = useState({
@@ -14,7 +13,6 @@ const Signup = ({ error, isAuthenticated, createUser, ...props }) => {
         lastName: '',
         username: '',
         email: '',
-        userType: 'BUYER',
         password: '',
         rePassword: ''
     });
@@ -26,44 +24,43 @@ const Signup = ({ error, isAuthenticated, createUser, ...props }) => {
         email,
         password, 
         rePassword
-    } = formData;
+    } = formData
 
-    const [passwordMatch, setPasswordMatch] = useState(null);
+    const [passwordMatch, setPasswordMatch] = useState(null)
 
     const onChange = e => {
         if (e.target.name === 'password' || e.target.name === 'rePassword')
-            setPasswordMatch(e.target.value === password);
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+            setPasswordMatch(e.target.value === password)
+        setFormData({ ...formData, [e.target.name]: e.target.value })
+    }
 
     const onSubmit = e => {
         e.preventDefault();
-
         if (password === rePassword) {
-            createUser(formData);
-            return <Redirect to="/account/location-setup" />;
+            createUser(formData)
+            return <Redirect to="/account/location-setup" />
         }
-    };
+    }
 
     const renderErrors = () => {
         if (error)
             for (const field in error)
                 if (error[field])
                     for (const i in error[field])
-                        return error[field][i];
-    };
+                        return error[field][i]
+    }
 
     // ? Condition statement not tested 
-    if (!props.location.state)  return <Redirect to="/signup" />;
+    if (!props.location.state)  return <Redirect to="/signup" />
 
     // * Redirect to home if user is logged in
-    if (isAuthenticated) return <Redirect to="/" />;
+    if (isAuthenticated) return <Redirect to="/" />
 
     return (
         <>
             <NavigationBar pageType="signup" />
             <main>
-                <div className="container">
+                <div className="container mt-5">
                     <div className="row">
                         <div className="col"></div>
                         <div className="col-6">
@@ -261,6 +258,6 @@ const Signup = ({ error, isAuthenticated, createUser, ...props }) => {
 const mapStateToProps = state => ({
     error: state.auth.error,
     isAuthenticated: state.auth.isAuthenticated
-});
+})
 
-export default connect(mapStateToProps, { createUser })(Signup);
+export default connect(mapStateToProps, { createUser })(Signup)

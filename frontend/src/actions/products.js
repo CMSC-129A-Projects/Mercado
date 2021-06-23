@@ -66,18 +66,19 @@ export const createProduct = (user, product) => async dispatch => {
     };
 
     const body = JSON.stringify({
-        category: product.category,
-        name: product.name,
-        description: product.description,
-        price: product.price,
-        disc_price: product.discPrice,
-        available_count: product.available_count,
-        image: product.image,
-        slug: 'slug',
-        location: user.user_address.city
+        'user': user.id,
+        'category_pk': product.category,
+        'category': product.category,
+        'name': product.productName,
+        'description': product.description,
+        'price': product.price,
+        'disc_price': product.disc_price,
+        'available_count': product.available_count,
+        'sold_count': '0',
+        'image': product.image,
+        'slug': 'slug',
+        'location': user.user_address.city
     });
-
-    console.log(body);
 
     try {
         const res = await axios.post(`/store/products/`, body, config);
@@ -88,7 +89,8 @@ export const createProduct = (user, product) => async dispatch => {
         });
     } catch (err) {
         dispatch({
-            type: PRODUCT_CREATE_FAIL
+            type: PRODUCT_CREATE_FAIL,
+            payload: err
         });
     }
 };

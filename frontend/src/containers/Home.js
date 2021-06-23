@@ -1,23 +1,23 @@
-import React, { useEffect } from 'react';
-import { Redirect, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react'
+import { Redirect, Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import '../css/home.css'
-import NavigationBar from '../components/NavigationBar';
-import Footer from '../components/Footer';
-import { loadProducts } from '../actions/products';
+import NavigationBar from '../components/NavigationBar'
+import Footer from '../components/Footer'
+import { loadProducts } from '../actions/products'
 
 const Home = ({ isAuthenticated, user, products, loadProducts  }) => {
     useEffect(() => {
-        loadProducts('?page=1');
+        loadProducts('?page=1')
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user]);
+    }, [user])
 
     // * Check if user is authenticated
-    if (user!== null && !isAuthenticated) return <Redirect to="/login" />;
+    if (user!== null && !isAuthenticated) return <Redirect to="/login" />
 
     // Redirects user if user address was not set 
-    if (user && !user.is_set) return <Redirect to="/account/location-setup" />;
+    if (user && !user.is_set) return <Redirect to="/account/location-setup" />
 
     return user === null
     ? <>Loading...</>
@@ -188,6 +188,6 @@ const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user,
     products: state.products.products
-});
+})
 
-export default connect(mapStateToProps, { loadProducts })(Home);
+export default connect(mapStateToProps, { loadProducts })(Home)

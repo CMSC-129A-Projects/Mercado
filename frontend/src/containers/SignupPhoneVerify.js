@@ -1,5 +1,5 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+import React from 'react'
+import { Redirect } from 'react-router'
 
 const SignupPhoneVerify = (props) => {
     return (
@@ -9,7 +9,7 @@ const SignupPhoneVerify = (props) => {
                 state: { phoneNumber: props.location.state.phoneNumber }
             }}
         />
-    );
-};
+    )
+}
 
-export default SignupPhoneVerify;
+export default SignupPhoneVerify

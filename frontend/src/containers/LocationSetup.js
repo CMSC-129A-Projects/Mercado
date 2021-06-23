@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
 
-import pgc from '../data/pgc';
-import { patchUserAddress } from '../actions/auth';
-import NavigationBar from '../components/NavigationBar';
-import Footer from '../components/Footer';
+import pgc from '../data/pgc'
+import { patchUserAddress } from '../actions/auth'
+import Footer from '../components/Footer'
 
 const LocationSetup = ({ isAuthenticated, user, patchUserAddress }) => {
     const [setupData, setSetupData] = useState({
@@ -13,9 +12,9 @@ const LocationSetup = ({ isAuthenticated, user, patchUserAddress }) => {
         province: '',
         city: '',
         barangay: ''
-    });
+    })
 
-    const { region, province, city, barangay } = setupData;
+    const { region, province, city, barangay } = setupData
 
     const onChange = e => {
         switch (e.target.name) {
@@ -25,54 +24,53 @@ const LocationSetup = ({ isAuthenticated, user, patchUserAddress }) => {
                     province: '',
                     city: '',
                     barangay: ''
-                });
-                break;
+                })
+                break
             case 'province':
                 setSetupData({
                     ...setupData,
                     province: e.target.value,
                     city: '',
                     barangay: ''
-                });
-                break;
+                })
+                break
             case 'city':
                 setSetupData({
                     ...setupData,
                     city: e.target.value,
                     barangay: ''
-                });
-                break;
+                })
+                break
             case 'barangay':
-                setSetupData({ ...setupData, barangay: e.target.value });
-                break;
+                setSetupData({ ...setupData, barangay: e.target.value })
+                break
             default:
-                break;
+                break
         }
-    };
+    }
 
     const onSubmit = e => {
-        e.preventDefault();
-        patchUserAddress({ slug: user.username, ...setupData });
-        return <Redirect to={`/account${user.username}`} />;
-    };
+        e.preventDefault()
+        patchUserAddress({ slug: user.username, ...setupData })
+        return <Redirect to={`/account${user.username}`} />
+    }
 
     // * Unauthenticated user is redirected
-    if (isAuthenticated === false) return <Redirect to="/login" />;
+    if (isAuthenticated === false) return <Redirect to="/login" />
 
     // * User with address is redirected to home
-    if (user && user.is_set) return <Redirect to="/" />;
+    if (user && user.is_set) return <Redirect to="/" />
 
     return (
         <>
-            <NavigationBar pageType="authenticated" />
             <main>
                 <div className="container mt-5">
-                    <div className="row mt-3">
+                    <div className="row mt-5 pt-5">
                         <div className="col"></div>
                         <div className="col-4 shadow p-3 mb-5 bg-white rounded">
                             <div className="row mt-3 text-center">
                                 <div className="col">
-                                    <h5>Get the freshiest products in your local area</h5>
+                                    <h5>Address Setup</h5>
                                 </div>
                             </div>
                             <hr />
@@ -229,6 +227,6 @@ const LocationSetup = ({ isAuthenticated, user, patchUserAddress }) => {
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user
-});
+})
 
-export default connect(mapStateToProps, { patchUserAddress })(LocationSetup);
+export default connect(mapStateToProps, { patchUserAddress })(LocationSetup)
