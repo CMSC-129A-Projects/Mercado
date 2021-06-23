@@ -1,44 +1,44 @@
-import React, { Fragment, useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { Fragment, useState } from 'react'
+import { Redirect } from 'react-router'
+import { connect } from 'react-redux'
 
-import { login } from '../actions/auth';
-import NavigationBar from '../components/NavigationBar';
-import Footer from '../components/Footer';
+import NavigationBar from '../components/NavigationBar'
+import Footer from '../components/Footer'
+import { login } from '../actions/auth'
 
 const Login = ({ error, isAuthenticated, login }) => {
     const [formData, setFormData] = useState({
         phoneNumber: '',
         password: ''
-    });
+    })
 
-    const { phoneNumber, password } = formData;
+    const { phoneNumber, password } = formData
 
-    const [isPhoneValid, setIsPhoneValid] = useState(null);
+    const [isPhoneValid, setIsPhoneValid] = useState(null)
 
     // * Redirect authenticated users
-    if (isAuthenticated) return <Redirect to="/" />;
+    if (isAuthenticated) return <Redirect to="/" />
         
     const onChange = e => {
         if (e.target.name === 'phoneNumber') {
-            const re = /^\+|[0-9\b]+$/;
-            const phoneRe = /^(9)\d{9}$/;
+            const re = /^\+|[0-9\b]+$/
+            const phoneRe = /^(9)\d{9}$/
 
             if (e.target.value === '' || re.test(e.target.value))
-                setFormData({ ...formData, [e.target.name]: e.target.value });
+                setFormData({ ...formData, [e.target.name]: e.target.value })
 
             if (e.target.value === '')
-                setIsPhoneValid(null);
-            setIsPhoneValid(phoneRe.test(e.target.value));
+                setIsPhoneValid(null)
+            setIsPhoneValid(phoneRe.test(e.target.value))
         } else {
             setFormData({ ...formData, [e.target.name]: e.target.value })
         }
     };
 
     const onSubmit = e => {
-        e.preventDefault();
-        login('+63'+phoneNumber, password);
-    };
+        e.preventDefault()
+        login('+63'+phoneNumber, password)
+    }
 
     const renderErrors = () => {
         if (error) {
@@ -46,13 +46,13 @@ const Login = ({ error, isAuthenticated, login }) => {
                 if (error[field]) {
                     if (typeof(error[field]) === 'object')
                         for (const i in error[field])
-                            return error[field][i];
+                            return error[field][i]
                     else
-                        return error[field];
+                        return error[field]
                 }
             }
         }
-    };
+    }
 
     return (
         <>
@@ -180,6 +180,6 @@ const Login = ({ error, isAuthenticated, login }) => {
 const mapStateToProps = state => ({
     error: state.auth.error,
     isAuthenticated: state.auth.isAuthenticated
-});
+})
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { login })(Login)

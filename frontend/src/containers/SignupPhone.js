@@ -1,33 +1,35 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
+
+import NavigationBar from '../components/NavigationBar'
+import Footer from '../components/Footer'
 
 import NavigationBar from '../components/NavigationBar';
 import Footer from '../components/Footer';
 
 const SignupPhone = ({ error, isAuthenticated, ...props }) => {
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [isPhoneValid, setIsPhoneValid] = useState(null);
+    const [phoneNumber, setPhoneNumber] = useState('')
+    const [isPhoneValid, setIsPhoneValid] = useState(null)
 
     const onChange = e => {
-        const re = /^\+|[0-9\b]+$/;
-        const phoneRe = /^(\9)\d{9}$/;
+        const re = /^\+|[0-9\b]+$/
+        const phoneRe = /^(\9)\d{9}$/
 
         if (e.target.value === '' || re.test(e.target.value))
             setPhoneNumber(e.target.value)
-        setIsPhoneValid(phoneRe.test(e.target.value));
-    };
+        setIsPhoneValid(phoneRe.test(e.target.value))
+    }
 
     const onSubmit = e => {
-        console.log(phoneNumber);
-        e.preventDefault();
+        e.preventDefault()
         props.history.push({
-            pathname: '/signup/phone-verification',
+            pathname: '/signup_finishing-up',
             state: { phoneNumber: phoneNumber}
         })
-    };
+    }
 
-    if (isAuthenticated) return <Redirect to="/" />;
+    if (isAuthenticated) return <Redirect to="/" />
 
     return (
         <>
@@ -128,4 +130,4 @@ const mapStateToProps = state =>({
     isAuthenticated: state.auth.isAuthenticated
 })
 
-export default connect(mapStateToProps, {})(SignupPhone);
+export default connect(mapStateToProps, {})(SignupPhone)

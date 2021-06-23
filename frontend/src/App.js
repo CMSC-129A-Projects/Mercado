@@ -21,7 +21,6 @@ import Product from './containers/Product';
 import Cart from './containers/Cart'
 import Checkout from './containers/Checkout'
 import CheckoutSuccess from './containers/CheckoutSuccess';
-import SellerHome from './containers/seller/SellerHome';
 import Activate from './containers/Activate';
 
 import store from './store';
@@ -36,8 +35,8 @@ function App() {
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
             <Route path="/signup" component={SignupPhone} />
-            <Route path="/signup/phone-verification" render={(props) => <SignupPhoneVerify {...props} />} />
-            <Route path="/signup/finishing-up" render={(props) => <Signup {...props} />} />
+            <Route path="/signup_phone-verification" render={(props) => <SignupPhoneVerify {...props} />} />
+            <Route path="/signup_finishing-up" render={(props) => <Signup {...props} />} />
             <Route path="/account/location-setup" component={LocationSetup} />
             <Route path="/account/password-reset" component={ResetPassword} />
             <Route path="/account/password/reset/confirm/:uid/:token" component={ResetPasswordConfirm} />
@@ -49,7 +48,6 @@ function App() {
             <Route path="/checkout" component={Checkout} />
             <Route path="/checkout_success" render={(props) => <CheckoutSuccess {...props} />} />
             <Route path="/activate/:uid/:token" component={Activate} />
-            <Route path="/seller-center" component={SellerHome} />            
           </Switch>
         </Layout>
       </BrowserRouter>
