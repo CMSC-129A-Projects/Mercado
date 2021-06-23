@@ -4,8 +4,9 @@ import { Redirect } from 'react-router-dom'
 
 import NavigationBar from '../components/NavigationBar'
 import Footer from '../components/Footer'
+import { checkout } from '../actions/products'
 
-const Checkout = ({ isAuthenticated, user }) => {
+const Checkout = ({ isAuthenticated, user, checkout }) => {
     const [items, setItems] = useState([])
 
     useEffect(() => {
@@ -13,28 +14,33 @@ const Checkout = ({ isAuthenticated, user }) => {
             if (user.user_cart.cart_items)
                 for (let [key, value] in user.user_cart.cart_items)
                     setItems(state => [...state, value])
+
+        console.log(items)
     }, [user])
 
     if (user !== null && !isAuthenticated) return <Redirect to="/login" />
 
-    const checkout = e => {}
+    const checkoutOrders = e => {
+        console.log(user.user_cart.cart_items)
+        checkout(user, user.user_cart.cart_items)
+    }
 
     return (
         <>
             <NavigationBar pageType="authenticated" />
             <main>
-                <div className="container-fluid p-5">
+                <div className="container p-5">
                     <div className="row">
                         <div className="col">
                             <div className="container">
                                 <div className="row mb-5">
                                     <div className="col text-center">
-                                        <h3>CHECKOUT ORDERS</h3>
+                                        <h3><b>CHECKOUT</b></h3>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="col">
-                                        <table className="table table-hover align-middle">
+                                        <table className="table table-bordered align-middle">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Product</th>
@@ -49,7 +55,7 @@ const Checkout = ({ isAuthenticated, user }) => {
                                                     ? (
                                                         user.user_cart.cart_items.map((item, key) => {
                                                             return (
-                                                                <tr key={key} onClick={e => { window.location.href = `/product/${item.product.slug}`}}>
+                                                                <tr key={key}>
                                                                     <th scope="row">
                                                                         <img 
                                                                             src={item.product.image} 
@@ -79,45 +85,64 @@ const Checkout = ({ isAuthenticated, user }) => {
                                                         </tr>
                                                     )
                                                 }
+                                                {
+                                                    user 
+                                                    && (
+                                                        <tr>
+                                                            <th scope="row" colSpan="3">Total</th>
+                                                            <th><b>₱ {user.user_cart.total}</b></th>
+                                                        </tr>
+                                                    )
+                                                }
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="col text-end">
-                                        <button className="btn btn-primary" onClick={e => checkout(e)}>Confirm Checkout</button>
+                                        <button className="btn btn-primary" onClick={e => checkoutOrders(e)}>Confirm Checkout</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-2">
-                            <div className="row" style={{ backgroundColor: "#beb7a3" }}>
+                        <div className="col-3 text-white">
+                            <div className="row mt-5 p-5" style={{ backgroundColor: "#beb7a3", height: "300px" }}>
                                 <div className="col">
                                     <div className="row">
                                         <div className="col">
-                                            <h6>Order Overview</h6>
+                                            <h6>Mode of Payment</h6>
+                                        </div>
+                                    </div>
+                                    <div className="row pb-3">
+                                        <div className="col">
+                                            <div className="form-check">
+                                                <input 
+                                                    className="form-check-input" 
+                                                    type="radio" 
+                                                    name="mop" 
+                                                    id="mop" 
+                                                    checked 
+                                                    disabled 
+                                                    style={{ backgroundColor: "#52734D" }}
+                                                />
+                                                <label 
+                                                    className="form-check-label" 
+                                                    htmlFor="mop"
+                                                >Cash on Delivery</label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col">
-                                            <p>Total:</p>
-                                        </div>
-                                        <div className="col">
-                                            {
-                                                user
-                                                && <h6>₱ {user.user_cart.total}</h6>
-                                            }
+                                            <h6>Deliver to</h6>
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <div className="col">
-                                            <p>Deliver to:</p>
-                                        </div>
                                         <div className="col">
                                             {
                                                 user && user.user_address
                                                 && (
-                                                    <h6>
+                                                    <p>
                                                         <span>{user.user_address.address_line1}{
                                                             user.user_address.address_line1
                                                             && ', '
@@ -128,7 +153,7 @@ const Checkout = ({ isAuthenticated, user }) => {
                                                         }</span>
                                                         <span>{user.user_address.city}, </span>
                                                         <span>{user.user_address.province}</span>
-                                                    </h6>
+                                                    </p>
                                                 )
                                             }
                                         </div>
@@ -149,4 +174,4 @@ const mapStateToProps = state => ({
     user: state.auth.user
 })
 
-export default connect(mapStateToProps, {})(Checkout)
+export default connect(mapStateToProps, { checkout })(Checkout)

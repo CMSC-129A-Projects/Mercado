@@ -159,7 +159,12 @@ const Home = ({ isAuthenticated, user, products, loadProducts  }) => {
                         <div className="row text-center mt-5">
                             <div className="col">
                                 <Link to="/products/all">
-                                    <button type="button" className="btn btn-primary">See All</button>
+                                    <button 
+                                        type="button" 
+                                        className="shadow btn btn-primary px-5 align-items-center"
+                                    >
+                                        <h6 className="py-1 m-0">See All</h6>
+                                    </button>
                                 </Link>
                             </div>
                         </div>                            

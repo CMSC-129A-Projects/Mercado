@@ -8,7 +8,6 @@ from . import filters
 from . import models
 from . import serializers
 from accounts.models import UserAddress
-from accounts.permissions import IsSellerOrReadOnly
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -55,16 +54,21 @@ class CartViewSet(viewsets.ModelViewSet):
 class CartItemViewSet(viewsets.ModelViewSet):
     queryset = models.CartItem.objects.all()
     serializer_class = serializers.CartItemSerializer
+    lookup_field = 'id'
 
-
-class OrderDetailViewSet(viewsets.ModelViewSet):
-    queryset = models.OrderDetail.objects.all()
-    serializer_class = serializers.OrderDetailSerializer
+    def get_queryset(self):
+        return models.CartItem.objects.filter(cart__id=self.request.user.id)
+    
 
 
 class OrderItemViewSet(viewsets.ModelViewSet):
     queryset = models.OrderItem.objects.all()
     serializer_class = serializers.OrderItemSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['user__id']
+
+    def get_queryset(self):
+        return self.queryset.filter(product__user=self.request.user)
 
     
 class ProductReviewViewSet(viewsets.ModelViewSet):

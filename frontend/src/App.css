@@ -34,12 +34,21 @@ a:active { text-decoration: none; }
 }
 
 .btn-primary, 
-.btn-primary:hover,
 .btn-primary:disabled {
-    background-color: #beb7a3;
+    background-color: #52734D;
     border-color: rgb(255, 255, 255);
     text-transform: uppercase;
 }
+
+.btn-primary:hover {
+    color: #52734D;
+    background-color: rgb(255, 255, 255);
+    border-color: #52734D;
+    text-transform: uppercase;
+}
+
+b { color: #52734D; }
+
 
 /* showcase */
 

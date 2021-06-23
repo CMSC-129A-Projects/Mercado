@@ -3,41 +3,13 @@ from django.db.models import Avg, Sum
 from decimal import Decimal
 
 from . import models
+from accounts.models import User
 
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Category
         fields = '__all__'
-
-
-class OrderItemSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.OrderItem
-        fields = '__all__'
-
-
-class PaymentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.PaymentDetail
-        fields = '__all__'
-
-
-class OrderDetailSerializer(serializers.ModelSerializer):
-    order_payment = PaymentSerializer(read_only=True)
-    items = OrderItemSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = models.OrderDetail
-        fields = (
-            'id',
-            'user',
-            'total',
-            'order_payment',
-            'created_at',
-            'items'
-        )
-        read_only_fields = ['user']
 
 
 class ProductReviewSerializer(serializers.ModelSerializer):
@@ -191,3 +163,51 @@ class CartSerializer(serializers.ModelSerializer):
         instance.total = total
         instance.save()
         return instance
+
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    user_pk = product_pk = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all(),
+        source='user'
+    )
+    product_pk = serializers.PrimaryKeyRelatedField(
+        queryset=models.Product.objects.all(),
+        source='product'
+    )
+    total = serializers.SerializerMethodField()
+
+    class Meta:
+        model = models.OrderItem
+        fields = (
+            'id',
+            'user_pk',
+            'user',
+            'product_pk',
+            'product',
+            'quantity',
+            'total',
+            'status',
+            'is_active',
+            'created_at',
+            'last_updated'
+        )
+        depth = 1
+
+    def get_total(self, obj):
+        """
+        Calculated the total amount of the item, 
+        ``price`` or ``disc_price`` multiplied by the quantity
+        """
+
+        price = obj.product.disc_price if obj.product.disc_price > 0 else obj.product.price
+        total = price * obj.quantity
+        return total
+
+    def create(self, validated_data):
+        print(validated_data)
+        product_data = validated_data['product']
+        quantity_data = validated_data['quantity']
+        price = product_data.disc_price if product_data.disc_price > 0 else product_data.price
+        total = price * quantity_data
+        order_item = models.OrderItem.objects.create(total=total, **validated_data)
+        return order_item

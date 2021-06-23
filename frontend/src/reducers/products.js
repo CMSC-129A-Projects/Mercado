@@ -6,8 +6,10 @@ import {
     PRODUCT_CREATE_SUCCESS,
     PRODUCT_CREATE_FAIL,
     PRODUCT_LOADING,
-    ADD_TO_BAG_SUCCESS,
-    ADD_TO_BAG_FAIL
+    ADD_TO_CART_SUCCESS,
+    ADD_TO_CART_FAIL,
+    CHECKOUT_SUCCESS,
+    CHECKOUT_FAIL
 } from '../actions/types';
 
 const initialState = {
@@ -15,7 +17,8 @@ const initialState = {
     isLoading: false,
     products: null,
     product: null,
-    bag: null
+    cart: null,
+    checkout: null
 };
 
 export default function product(state = initialState, action) {
@@ -45,16 +48,22 @@ export default function product(state = initialState, action) {
                 isLoading: false,
                 product: payload
             }
-        case ADD_TO_BAG_SUCCESS:
+        case ADD_TO_CART_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
-                bag: payload.data
+                cart: payload.data
+            }
+        case CHECKOUT_SUCCESS:
+            return {
+                ...state,
+                checkout: payload
             }
         case PRODUCT_CREATE_FAIL:
         case PRODUCTS_LOADED_FAIL:
         case PRODUCT_LOADED_FAIL:
-        case ADD_TO_BAG_FAIL:
+        case ADD_TO_CART_FAIL:
+        case CHECKOUT_FAIL:
             return {
                 ...state,
                 error: payload,

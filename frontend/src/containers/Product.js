@@ -4,9 +4,9 @@ import { Redirect } from 'react-router-dom'
 
 import NavigationBar from '../components/NavigationBar'
 import Footer from '../components/Footer'
-import { addToBag, getProduct } from '../actions/products'
+import { addToCart, getProduct } from '../actions/products'
 
-const Product = ({ match, isAuthenticated, user, isLoading, product, getProduct, addToBag }) => {
+const Product = ({ match, isAuthenticated, user, isLoading, product, getProduct, addToCart }) => {
     const [quantity, setQty] = useState(1)
 
     useEffect(() => {
@@ -24,7 +24,7 @@ const Product = ({ match, isAuthenticated, user, isLoading, product, getProduct,
 
     const onSubmit = e => {
         e.preventDefault()
-        addToBag(user.user_cart, product, quantity)
+        addToCart(user.user_cart, product, quantity)
         window.location.reload()
     }
 
@@ -197,4 +197,4 @@ const mapStateToProps = state => ({
     product: state.products.product
 });
 
-export default connect(mapStateToProps, { getProduct, addToBag })(Product);
+export default connect(mapStateToProps, { getProduct, addToCart })(Product);

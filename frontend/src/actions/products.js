@@ -8,8 +8,10 @@ import {
     PRODUCT_LOADED_FAIL,
     PRODUCT_CREATE_SUCCESS,
     PRODUCT_CREATE_FAIL,
-    ADD_TO_BAG_SUCCESS,
-    ADD_TO_BAG_FAIL
+    ADD_TO_CART_SUCCESS,
+    ADD_TO_CART_FAIL,
+    CHECKOUT_SUCCESS,
+    CHECKOUT_FAIL
 } from './types';
 
 export const loadProducts = (params) => async dispatch => {
@@ -89,7 +91,7 @@ export const createProduct = (product) => async dispatch => {
     }
 };
 
-export const addToBag = (cart, product, quantity) => async dispatch => {
+export const addToCart = (cart, product, quantity) => async dispatch => {
     dispatch({ type: PRODUCT_LOADING })
     
     const config = {
@@ -111,13 +113,51 @@ export const addToBag = (cart, product, quantity) => async dispatch => {
         const res = await axios.post(`/store/cart-items/`, body, config)
 
         dispatch({
-            type: ADD_TO_BAG_SUCCESS,
+            type: ADD_TO_CART_SUCCESS,
             payload: res
         })
     } catch (error) {
         dispatch({
-            type: ADD_TO_BAG_FAIL,
+            type: ADD_TO_CART_FAIL,
             payload: error
+        })
+    }
+}
+
+export const checkout = (user, items) => {
+    return async (dispatch) => {
+        dispatch({ type: PRODUCT_LOADING })
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `JWT ${localStorage.getItem('access')}`
+            }
+        }
+
+        let requests = items.map(async (value, key) => {
+            const body = JSON.stringify({
+                'user_pk': user.id,
+                'user': user.id,
+                'product_pk': value.product_pk,
+                'product': value.product_pk,
+                'quantity': value.quantity,
+                'total': '',
+                'status': 'pending'
+            })
+
+            let [order_res, cart_item_res] = await axios.all([
+                axios.post(`/store/orders/`, body, config),
+                axios.delete(`/store/cart-items/${value.id}`, config)
+            ]) 
+            return {key, data: order_res, cart_item_res}
+        })
+
+        let responses = await Promise.all(requests)
+
+        dispatch({
+            type: CHECKOUT_SUCCESS,
+            payload: responses
         })
     }
 }

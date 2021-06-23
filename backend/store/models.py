@@ -70,30 +70,18 @@ class CartItem(models.Model):
     cart = models.ForeignKey(Cart, related_name=_('cart_items'), on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name=_('product'), on_delete=models.CASCADE)
     quantity = models.IntegerField(validators=[MinValueValidator(1)])
-    total = models.IntegerField(default=0)
-    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
-    last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
-
-
-class PaymentDetail(models.Model):
-    amount = models.DecimalField(max_digits=5, decimal_places=2)
-    provider = models.CharField(max_length=50)
-    status = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
-    last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
-
-
-class OrderDetail(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('user_order_details'), on_delete=models.CASCADE)
-    total = models.DecimalField(max_digits=5, decimal_places=2)
-    payment = models.ForeignKey(PaymentDetail, related_name=_('order_payment'), on_delete=models.CASCADE)
+    total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(OrderDetail, related_name=_('order_item'), on_delete=models.CASCADE)
-    item = models.ForeignKey(CartItem, related_name=_('cart_order_item'), on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name=_('orders'), on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name=_('order_product'), on_delete=models.CASCADE)
+    quantity = models.IntegerField(validators=[MinValueValidator(1)])
+    total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    status = models.CharField(max_length=50)
+    is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
