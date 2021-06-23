@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom'
 import NavigationBar from '../components/NavigationBar'
 import Footer from '../components/Footer'
 
-const Bag = ({ isAuthenticated, user, products }) => {
+const Cart = ({ isAuthenticated, user, products }) => {
     // * Redirects if user is not authenticated 
     if (user!== null && !isAuthenticated) return <Redirect to="/login" />
 
@@ -23,7 +23,7 @@ const Bag = ({ isAuthenticated, user, products }) => {
                             <div className="container">
                                 <div className="row mb-5">
                                     <div className="col text-center">
-                                        <h3>SHOPPING BAG</h3>
+                                        <h3><b>CART</b></h3>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -88,7 +88,10 @@ const Bag = ({ isAuthenticated, user, products }) => {
                                 </div>
                                 <div className="row">
                                     <div className="col text-end">
-                                        <button className="btn btn-primary" onClick={e => checkout(e)}>Proceed to Checkout</button>
+                                        <button 
+                                            className="btn btn-primary" 
+                                            onClick={e => checkout(e)}
+                                        >Proceed to Checkout</button>
                                     </div>
                                 </div>
                             </div>
@@ -153,4 +156,4 @@ const mapStateToProps = state => ({
     products: state.products.products
 })
 
-export default connect(mapStateToProps, {})(Bag);
+export default connect(mapStateToProps, {})(Cart);

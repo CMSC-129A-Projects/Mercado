@@ -17,13 +17,13 @@ const NavigationBar = ({ user, ...props}) => {
                         </li>
                         <li>
                             <a 
-                                href="/bag" 
+                                href="/cart" 
                                 className="nav-link px-2"
                                 data-bs-toggle="tooltip" 
                                 data-bs-placement="top" 
-                                title="Shopping Bag"
+                                title="Cart"
                             >
-                                <span className="material-icons">shopping_bag</span>
+                                <span className="material-icons">shopping_cart</span>
                                 {
                                     (user && Object.keys(user.user_cart.cart_items).length > 0)
                                     && (<span className="badge rounded-pill bg-dark">{Object.keys(user.user_cart.cart_items).length}</span>)
@@ -37,19 +37,17 @@ const NavigationBar = ({ user, ...props}) => {
                     (                            
                         <li>
                             <a 
-                                href="/bag" 
+                                href="/cart" 
                                 className="nav-link px-2"
                                 data-bs-toggle="tooltip" 
                                 data-bs-placement="top" 
-                                title="Shopping Bag"
+                                title="Cart"
                             >
-                                <span className="material-icons">
-                                    shopping_bag
-                                    {
-                                        (user && Object.keys(user.user_cart.cart_items).length > 0)
-                                        && (<span className="badge rounded-pill bg-dark">{Object.keys(user.user_cart.cart_items).length}</span>)
-                                    }
-                                </span>
+                                <span className="material-icons">shopping_cart</span>
+                                {
+                                    (user && Object.keys(user.user_cart.cart_items).length > 0)
+                                    && (<span className="badge rounded-pill bg-dark">{Object.keys(user.user_cart.cart_items).length}</span>)
+                                }
                             </a>
                         </li>
                     )

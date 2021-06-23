@@ -29,7 +29,7 @@ a:active { text-decoration: none; }
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #ffffff;
+    color: #e4dede;
     background-color: transparent;
 }
 

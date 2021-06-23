@@ -6,26 +6,39 @@ import NavigationBar from '../components/NavigationBar'
 import Footer from '../components/Footer'
 import { checkout } from '../actions/products'
 
-const Checkout = ({ isAuthenticated, user, checkout }) => {
-    const [items, setItems] = useState([])
+const Checkout = ({ isAuthenticated, user, checkout, ...props }) => {
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        if (user)
-            if (user.user_cart.cart_items)
-                for (let [key, value] in user.user_cart.cart_items)
-                    setItems(state => [...state, value])
-
-        console.log(items)
+        if (user) setIsLoading(false)
     }, [user])
 
     if (user !== null && !isAuthenticated) return <Redirect to="/login" />
 
-    const checkoutOrders = e => {
-        console.log(user.user_cart.cart_items)
+    const checkoutOrders = e => { 
+        let items = []
+        user.user_cart.cart_items.map((value, key) => {
+            items.push({
+                'productName': value.product.name,
+                'quantity': value.quantity,
+                'subTotal': value.total
+            })
+        })
+
         checkout(user, user.user_cart.cart_items)
+
+        props.history.push({
+            pathname: '/checkout_success',
+            state: {
+                items: items,
+                total: user.user_cart.total
+            }
+        })
     }
 
-    return (
+    return isLoading
+    ? (<>Loading...</>)
+    : (
         <>
             <NavigationBar pageType="authenticated" />
             <main>
@@ -100,7 +113,10 @@ const Checkout = ({ isAuthenticated, user, checkout }) => {
                                 </div>
                                 <div className="row">
                                     <div className="col text-end">
-                                        <button className="btn btn-primary" onClick={e => checkoutOrders(e)}>Confirm Checkout</button>
+                                        <button 
+                                            className="btn btn-primary" 
+                                            onClick={e => checkoutOrders(e)}
+                                        >Confirm Checkout</button>
                                     </div>
                                 </div>
                             </div>
