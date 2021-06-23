@@ -2,7 +2,6 @@ import os
 from pathlib import Path
 from decouple import config
 from datetime import timedelta
-import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -17,7 +16,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
     'djoser',
@@ -29,7 +27,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [ 
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -39,13 +36,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 ROOT_URLCONF = 'mercado.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'build')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,18 +74,11 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build/static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'templates')]
 VENV_PATH = BASE_DIR
-STATIC_ROOT = VENV_PATH / 'staticfiles'
+STATIC_ROOT = VENV_PATH / 'static_root'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = VENV_PATH / 'media'
-
-django_heroku.settings(locals())
-
-try:
-    from .local_settings import *
-except ImportError:
-    pass
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
