@@ -143,7 +143,7 @@ const Product = ({ match, isAuthenticated, user, isLoading, product, getProduct,
                                             />
                                         </div>
                                         <div className="col-3 ps-1 pe-0">
-                                            <button type="submit" className="btn btn-primary btn-sm">ADD TO BAG</button>
+                                            <button type="submit" className="btn btn-primary btn-sm">ADD TO CART</button>
                                         </div>
                                     </form>
                                 </div>
