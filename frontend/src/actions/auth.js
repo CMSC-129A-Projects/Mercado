@@ -327,12 +327,12 @@ export const resetPasswordConfirm = (uid, token, new_password, re_new_password) 
  * @returns 
  */
 export const logout = () => dispatch => {
-    dispatch({type: USER_LOADING});
+    dispatch({type: USER_LOADING})
 
     dispatch({
         type: LOGOUT
-    });
-};
+    })
+}
 
 export const patchProfile = (data) => async dispatch => {
     dispatch({type: USER_LOADING});
