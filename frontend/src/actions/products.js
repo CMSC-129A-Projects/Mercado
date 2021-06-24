@@ -61,6 +61,7 @@ export const getProduct = (slug) => async dispatch => {
 export const createProduct = (user, product) => async dispatch => {
     const config = {
         headers: {
+            'Content-Type': 'multipart/form-data',
             'Authorization': `JWT ${localStorage.getItem('access')}`
         }
     };

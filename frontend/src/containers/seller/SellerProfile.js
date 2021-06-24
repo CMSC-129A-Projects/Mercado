@@ -23,11 +23,15 @@ const SellerProfile = ({ isAuthenticated, user, createProduct }) => {
         setContent(1)
     }, [user])
 
-    const onChange = e => { setForm({ ...form, [e.target.name]: e.target.value })}
+    const onChange = e => { setForm({ ...form, [e.target.name]: e.target.value }) }
+
+    const onFileHandle = e => { setForm({ ...form, image: e.target.files[0] }) }
 
     const onSubmit = e => {
         e.preventDefault()
+        console.log(form)
         createProduct(user, form)
+        // window.location.reload()
         return <Redirect to={`/seller/${user.username}`} />
     }
 
@@ -116,8 +120,7 @@ const SellerProfile = ({ isAuthenticated, user, createProduct }) => {
                                             className="form-control"
                                             name="image"
                                             id="image"
-                                            value={image}
-                                            onChange={e => onChange(e)}
+                                            onChange={e => onFileHandle(e)}
                                         />
                                     </div>
                                     <div className="col">
