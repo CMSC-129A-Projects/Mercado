@@ -12,7 +12,7 @@ const Profile = ({ match, isAuthenticated, isLoading, user, logout }) => {
 
     if (user !== null && user.user_address.city === '') return <Redirect to="/account/location-setup" />
 
-    if (user !== null && match.params.username !== user.username) return <Redirect to="/" />
+    // if (user !== null && match.params.username !== user.username) return <Redirect to="/" />
 
     const logout_user = e => {
         logout()
@@ -90,21 +90,28 @@ const Profile = ({ match, isAuthenticated, isLoading, user, logout }) => {
                                                     )
                                                 }
                                             </div>
-                                            <div className="col">
-                                                <button className="btn"><i className="material-icons">edit</i></button>
-                                            </div>
+                                            {
+                                                user && match.params.username === user.username
+                                                && (
+                                                    <div className="col">
+                                                        <button className="btn"><i className="material-icons">edit</i></button>
+                                                    </div>
+                                                )
+                                            }
                                         </div>
-                                        <div className="row">
-                                            <div className="col-1">
-                                                <i className="material-icons">mail</i>
-                                            </div>
-                                            <div className="col">
-                                                <p>{user.email}</p>
-                                            </div>
-                                            <div className="col">
-                                                <button className="btn"><i className="material-icons">edit</i></button>
-                                            </div>
-                                        </div>
+                                        {
+                                            user && match.params.username === user.username
+                                            && (
+                                                <div className="row">
+                                                    <div className="col-1">
+                                                        <i className="material-icons">mail</i>
+                                                    </div>
+                                                    <div className="col">
+                                                        <p>{user.email}</p>
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
                                         <div className="row">
                                             <div className="col-1">
                                                 <i className="material-icons">phone_android</i>
@@ -112,99 +119,117 @@ const Profile = ({ match, isAuthenticated, isLoading, user, logout }) => {
                                             <div className="col">
                                                 <p>{user.phone_number}</p>
                                             </div>
-                                            <div className="col">
-                                                <button className="btn"><i className="material-icons">edit</i></button>
-                                            </div>
+                                            {
+                                                user && match.params.username === user.username
+                                                && (
+                                                    <div className="col">
+                                                        <button className="btn"><i className="material-icons">edit</i></button>
+                                                    </div>
+                                                )
+                                            }
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-3 p-0" style={{ backgroundColor: "#beb7a3", height: "195px" }}>
-                            <div className="container p-3">
-                                <div className="row">
-                                    <div className="col">
-                                        <b>Pending purchases</b>
-                                    </div>
-                                    <div className="col-2">
-                                        <p>{Object.keys(user.orders).length}</p>
+                        {
+                            user && match.params.username === user.username
+                            && (
+
+                                <div className="col-3 p-0" style={{ backgroundColor: "#beb7a3", height: "195px" }}>
+                                    <div className="container p-3">
+                                        <div className="row">
+                                            <div className="col">
+                                                <b>Pending purchases</b>
+                                            </div>
+                                            <div className="col-2">
+                                                <p>{Object.keys(user.orders).length}</p>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col">
+                                                <b>On cart</b>
+                                            </div>
+                                            <div className="col-2">
+                                                <p>{Object.keys(user.user_cart.cart_items).length}</p>
+                                            </div>
+                                        </div>
+                                        <div className="row mt-5">
+                                            <div className="col text-start">
+                                                <a href={`/seller/${user.username}`}>Seller Center</a>
+                                            </div>
+                                            <div className="col text-end">
+                                                <button 
+                                                    className="btn btn-primary btn-sm" 
+                                                    style={{ border: "none" }}
+                                                    onClick={e => logout_user(e)}
+                                                >Logout</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="row">
-                                    <div className="col">
-                                        <b>On cart</b>
-                                    </div>
-                                    <div className="col-2">
-                                        <p>{Object.keys(user.user_cart.cart_items).length}</p>
-                                    </div>
-                                </div>
-                                <div className="row mt-5">
-                                    <div className="col text-start">
-                                        <a href={`/seller/${user.username}`}>Seller Center</a>
-                                    </div>
-                                    <div className="col text-end">
-                                        <button 
-                                            className="btn btn-primary btn-sm" 
-                                            style={{ border: "none" }}
-                                            onClick={e => logout_user(e)}
-                                        >Logout</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            )
+                        }
                     </div>
                     <div className="row mt-5 mx-3">
                         <div className="col">
                             <div className="container">
-                                <div className="row mb-3">
-                                    <div className="col">
-                                        <h4><b>PENDING PURCHASES</b></h4>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col">
-                                        <table className="table table-bordered align-middle">
-                                            <tbody>
-                                                {
-                                                    user && user.orders
-                                                    && (
-                                                        user.orders.map((value, key) => {
-                                                            return (
-                                                                <tr key={key}>
-                                                                    <th scope="row">
-                                                                        <img 
-                                                                            src={value.product.image}
-                                                                            alt={value.product.name} 
-                                                                            className="m-1 me-3"
-                                                                            height="50"
-                                                                            width="50"
-                                                                        />
-                                                                        {value.product.name}
-                                                                    </th>
-                                                                    <td>
-                                                                        {
-                                                                            value.product.disc_price > 0
-                                                                            ? <td>₱ {value.product.disc_price}</td>
-                                                                            : <td>₱ {value.product.price}</td>
-                                                                        }
-                                                                    </td>
-                                                                    <td>{value.quantity}</td>
-                                                                    <td><b>₱ {value.total}</b></td>
-                                                                </tr>
-                                                            )
-                                                        })
-                                                    )
-                                                }
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                {
+                                    user && match.params.username === user.username
+                                    && (
+                                        <>
+                                            <div className="row mb-3">
+                                                <div className="col">
+                                                    <h4><b>PENDING PURCHASES</b></h4>
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="col">
+                                                    <table className="table table-bordered align-middle">
+                                                        <tbody>
+                                                            {
+                                                                user && user.orders
+                                                                && (
+                                                                    user.orders.map((value, key) => {
+                                                                        return (
+                                                                            <tr key={key}>
+                                                                                <th scope="row">
+                                                                                    <img 
+                                                                                        src={value.product.image}
+                                                                                        alt={value.product.name} 
+                                                                                        className="m-1 me-3"
+                                                                                        height="50"
+                                                                                        width="50"
+                                                                                    />
+                                                                                    {value.product.name}
+                                                                                </th>
+                                                                                <td>
+                                                                                    {
+                                                                                        value.product.disc_price > 0
+                                                                                        ? <td>₱ {value.product.disc_price}</td>
+                                                                                        : <td>₱ {value.product.price}</td>
+                                                                                    }
+                                                                                </td>
+                                                                                <td>{value.quantity}</td>
+                                                                                <td><b>₱ {value.total}</b></td>
+                                                                            </tr>
+                                                                        )
+                                                                    })
+                                                                )
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </>
+                                    )
+                                }
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col">
-                            <div className="container p-5">
+                            <div className="container p-5 pt-0">
                                 <div className="row my-5">
                                     <div className="col">
                                         <h4><b>USER REVIEWS</b></h4>

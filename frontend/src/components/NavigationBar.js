@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import '../css/navigationBar.css'
-import Alert from './Alert'
 
 const NavigationBar = ({ user, ...props}) => {
     const renderLinks = () => {
@@ -161,7 +160,6 @@ const NavigationBar = ({ user, ...props}) => {
                     </div>
                 </div>
             </header>
-            <Alert />
         </>
     )
 }
