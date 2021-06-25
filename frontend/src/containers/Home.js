@@ -14,7 +14,7 @@ const Home = ({ isAuthenticated, user, products, loadProducts  }) => {
     }, [user])
 
     // * Check if user is authenticated
-    if (user!== null && !isAuthenticated) return <Redirect to="/login" />
+    if (!isAuthenticated) return <Redirect to="/login" />
 
     // Redirects user if user address was not set 
     if (user && !user.is_set) return <Redirect to="/account/location-setup" />

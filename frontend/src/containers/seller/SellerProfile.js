@@ -30,9 +30,9 @@ const SellerProfile = ({ isAuthenticated, user, createProduct }) => {
     const onSubmit = e => {
         e.preventDefault()
         console.log(form)
-        createProduct(user, form)
-        // window.location.reload()
-        return <Redirect to={`/seller/${user.username}`} />
+        // createProduct(user, form)
+        window.location.reload()
+        // return <Redirect to={`/seller/${user.username}`} />
     }
 
     const renderContent = () => {

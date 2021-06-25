@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 
 import '../css/navigationBar.css'
 
 const NavigationBar = ({ user, ...props}) => {
+    const [search, setSearch] = useState('')
+
+    const onChange = e => { setSearch(e.target.value) }
+
+    const onSubmit = e => {
+        e.preventDefault()
+        window.location.href = `/products?page=1&search=${search}`
+    }
+
     const renderLinks = () => {
         switch (props.pageType) {
             case 'authenticated':
@@ -99,12 +108,18 @@ const NavigationBar = ({ user, ...props}) => {
                         {
                             (props.pageType === 'authenticated' || props.pageType === 'shop')
                             && (
-                                <form className="col-6 col-lg-auto me-lg-auto ms-3 mb-2 justify-content-center mb-md-0" style={{ width: "50%"}}>
+                                <form 
+                                    className="col-6 col-lg-auto me-lg-auto ms-3 mb-2 justify-content-center mb-md-0" 
+                                    style={{ width: "50%"}}
+                                    onSubmit={e => onSubmit(e)}
+                                >
                                     <input 
                                         type="search"
                                         className="form-control"
                                         placeholder="Search for products, categories, and shops"
                                         aria-label="Search"
+                                        value={search}
+                                        onChange={e => onChange(e)}
                                     />
                                 </form>
                             )

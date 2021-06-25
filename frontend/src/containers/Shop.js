@@ -52,13 +52,13 @@ const Shop = ({ user, isLoading, products, loadProducts, ...props }) => {
                 <div className="row flex-nowrap">
                     <div className="col-auto col-md-3 col-xl-2 p-0 border-end">
                         <ul className="nav nav-pills text-center flex-column px-1 min-vh-100 text-white" id="menu" style={{ backgroundColor: "#beb7a3"}}>
-                            <h4 className="mt-3 mb-5 text-muted">PRODUCTS</h4>
+                            <h6 className="mt-3 mb-5 text-muted"><b>MENU</b></h6>
                             <li className="nav-item">
-                                <a className={!category ? 'nav-link active' : 'nav-link'} href="/products">All</a>
+                                <a className={!category ? 'nav-link active' : 'nav-link'} href="/products">ALL</a>
                             </li>
                             <li>
                                 <a href="#categories" data-bs-toggle="collapse" className="nav-link px-0 align-middle">
-                                    <i className="fs-4 bi-bootstrap"></i> <span className="ms-1 d-none d-sm-inline">Category</span></a>
+                                    <i className="fs-4 bi-bootstrap"></i> <span className="ms-1 d-none d-sm-inline">CATEGORIES</span></a>
                                 <ul 
                                     className={category ? 'collapse nav flex-column ms-1 show' : 'collapse nav flex-column ms-1'}
                                     id="categories" 

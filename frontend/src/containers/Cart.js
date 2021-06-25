@@ -104,7 +104,7 @@ const Cart = ({ isAuthenticated, user, products }) => {
                             </div>
                         </div>
                         <div className="col-2">
-                            <div className="row" style={{ backgroundColor: "#beb7a3" }}>
+                            <div className="row p-5" style={{ backgroundColor: "#beb7a3" }}>
                                 <div className="col">
                                     <div className="row">
                                         <div className="col">

@@ -86,7 +86,7 @@ const Product = ({ match, isAuthenticated, user, isLoading, product, getProduct,
                                         <div className="col">
                                             <h1 className="m-0">{product.name}</h1>
                                             <p className="m-0">by&nbsp;
-                                                <a href={`/account/seller/${product.user.username}`} className="text-uppercase">
+                                                <a href={`/account/${product.user.username}`} className="text-uppercase">
                                                     {product.user.first_name} {product.user.last_name}
                                                 </a>
                                             </p>
